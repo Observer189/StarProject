@@ -1,0 +1,41 @@
+
+TexturePack.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 2, 1146
+  size: 697, 733
+  orig: 697, 733
+  offset: 0, 0
+  index: -1
+Bat
+  rotate: false
+  xy: 701, 1273
+  size: 645, 606
+  orig: 645, 606
+  offset: 0, 0
+  index: -1
+Dakkar
+  rotate: false
+  xy: 1348, 1660
+  size: 210, 219
+  orig: 210, 219
+  offset: 0, 0
+  index: -1
+Hunter
+  rotate: false
+  xy: 2, 477
+  size: 690, 667
+  orig: 690, 667
+  offset: 0, 0
+  index: -1
+Mite
+  rotate: false
+  xy: 2, 2
+  size: 477, 473
+  orig: 477, 473
+  offset: 0, 0
+  index: -1
