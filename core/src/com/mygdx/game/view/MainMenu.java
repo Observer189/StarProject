@@ -44,7 +44,7 @@ public class MainMenu implements Screen {
         img = new TextureRegion(textureAtlas.findRegion("Dakkar"));
 
 
-        System.out.println("show");
+        
 
     }
 

@@ -26,7 +26,7 @@ public class Battle implements Screen {
     }
     @Override
     public void show() {
-      
+
         textManager=new TextManager(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
     }
 
