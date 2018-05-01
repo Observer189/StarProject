@@ -2,13 +2,20 @@
 TexturePack.png
 size: 2048,2048
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 1
   rotate: false
   xy: 2, 1146
   size: 697, 733
   orig: 697, 733
+  offset: 0, 0
+  index: -1
+Angar
+  rotate: false
+  xy: 1560, 1679
+  size: 200, 200
+  orig: 200, 200
   offset: 0, 0
   index: -1
 Bat
@@ -37,5 +44,26 @@ Mite
   xy: 2, 2
   size: 477, 473
   orig: 477, 473
+  offset: 0, 0
+  index: -1
+Shop
+  rotate: false
+  xy: 481, 275
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Shop2
+  rotate: false
+  xy: 1348, 1458
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Start
+  rotate: false
+  xy: 481, 73
+  size: 200, 200
+  orig: 200, 200
   offset: 0, 0
   index: -1
