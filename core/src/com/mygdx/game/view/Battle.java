@@ -1,8 +1,10 @@
 package com.mygdx.game.view;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.utils.TextManager;
 
 /**
@@ -12,12 +14,17 @@ import com.mygdx.game.utils.TextManager;
 public class Battle implements Screen {
     TextManager textManager;
     SpriteBatch batch;
-    public Battle(SpriteBatch batch)
+    Game game;
+    TextureAtlas textureAtlas;
+    public Battle(SpriteBatch batch, Game game,TextureAtlas textureAtlas)
     {
         this.batch=batch;
+        this.game=game;
+        this.textureAtlas=textureAtlas;
     }
     @Override
     public void show() {
+
         textManager=new TextManager(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
     }
 

@@ -1,5 +1,6 @@
 package com.mygdx.game.view;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -20,11 +21,14 @@ public class MainMenu implements Screen {
     TextureRegion img;
     private TextureAtlas textureAtlas;
    TextManager textManager;
+    private Screen battle;
+    Game game;
 
 
-    public MainMenu(SpriteBatch batch)
+    public MainMenu(SpriteBatch batch, Game game)
     {
         this.batch=batch;
+        this.game=game;
     }
 
 
@@ -37,8 +41,8 @@ public class MainMenu implements Screen {
 
        textManager = new TextManager(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         img = new TextureRegion(textureAtlas.findRegion("Dakkar"));
-
-
+        battle = new Battle(batch,game,textureAtlas);
+       game.setScreen(battle);
 
         System.out.println("show");
 
