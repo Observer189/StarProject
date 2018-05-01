@@ -18,11 +18,12 @@ import com.mygdx.game.utils.TextManager;
 
 public class MainMenu implements Screen {
     SpriteBatch batch;
+    Game game;
     TextureRegion img;
     private TextureAtlas textureAtlas;
    TextManager textManager;
-    private Screen battle;
-    Game game;
+
+
 
 
     public MainMenu(SpriteBatch batch, Game game)
@@ -41,8 +42,7 @@ public class MainMenu implements Screen {
 
        textManager = new TextManager(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         img = new TextureRegion(textureAtlas.findRegion("Dakkar"));
-        battle = new Battle(batch,game,textureAtlas);
-       game.setScreen(battle);
+
 
         System.out.println("show");
 

@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.utils.TextManager;
 
+import retrofit2.Retrofit;
+
 /**
  * Created by Sash on 27.04.2018.
  */
@@ -24,7 +26,7 @@ public class Battle implements Screen {
     }
     @Override
     public void show() {
-
+      
         textManager=new TextManager(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
     }
 
