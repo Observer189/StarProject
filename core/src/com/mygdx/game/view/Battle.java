@@ -3,7 +3,10 @@ package com.mygdx.game.view;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.model.Coord;
@@ -26,7 +29,7 @@ import static java.lang.Thread.sleep;
 public class Battle implements Screen {
     TextManager textManager;
     SpriteBatch batch;
-    Game game;
+     Game game;
     TextureAtlas textureAtlas;
     Player player;
     Coord coord;
@@ -44,6 +47,7 @@ public class Battle implements Screen {
     }
     @Override
     public void show() {
+
         player = new Player();
         player.generateName();
         coord = new Coord(20, 30);
@@ -63,6 +67,9 @@ public class Battle implements Screen {
 
     @Override
     public void render(float delta) {
+
+        OrthographicCamera camera = new OrthographicCamera();
+        camera.setToOrtho(false, 800, 480);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -70,9 +77,11 @@ public class Battle implements Screen {
         if((coord.getX()!=null)&&(coord.getY()!=null))
         {
             counter++;
-            textManager.displayMessage(batch, player.getName() + " " + coord.getX().toString() + " " + coord.getY().toString(), Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+            textManager.displayMessage(batch, player.getName() + " " + coord.getX().toString() + " " + coord.getY().toString(),
+                    Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         }
         System.out.println(coord.getX()+" "+coord.getY()+" "+"count:"+counter+"number:"+battleNumber);
+
     }
 
     @Override
