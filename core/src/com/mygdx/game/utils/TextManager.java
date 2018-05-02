@@ -38,7 +38,7 @@ public class TextManager {
             font=gen.generateFont(fontParameter);
 
             batch.begin();
-            font.draw(batch,str, 300,400);
+            font.draw(batch,str, x,y);
             batch.end();
         }
         public void displayMessage(SpriteBatch batch,String str,Color color,int size,int x,int y){
@@ -47,7 +47,7 @@ public class TextManager {
         font=gen.generateFont(fontParameter);
 
         batch.begin();
-        font.draw(batch, str, 300,400);
+        font.draw(batch, str, x,y);
         batch.end();
         }
 
