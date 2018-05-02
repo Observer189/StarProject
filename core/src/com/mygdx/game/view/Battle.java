@@ -56,7 +56,7 @@ public class Battle implements Screen {
                 .build();
         request = retrofit.create(servApi.class);
 
-        getBattleNumber();
+            getBattleNumber();
 
 
     }
@@ -143,6 +143,7 @@ public class Battle implements Screen {
             @Override
             public void onFailure(Call<Coord> call, Throwable t) {
                setBattleNumber(-3);
+               getBattleNumber();
 
             }
         });
