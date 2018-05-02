@@ -31,7 +31,7 @@ public class MainMenu implements Screen {
     private TextureAtlas textureAtlas;
    TextManager textManager;
    public Button.ButtonStyle p_button;
-
+    Screen battle;
 
 
 
@@ -59,7 +59,8 @@ public class MainMenu implements Screen {
         p_button.up= skin.getDrawable("Hunter");
         p_button.down= skin.getDrawable("Hunter");
         sfb=new StageForButton();
-
+        battle = new Battle(batch,game,textureAtlas);
+        game.setScreen(battle);
     }
 
     @Override

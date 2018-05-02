@@ -33,13 +33,16 @@ public class TextManager {
         }
 
         public void displayMessage(SpriteBatch batch,String str,int x,int y){
-            fontParameter.color = Color.BLUE;
-            fontParameter.size=30;
-            font=gen.generateFont(fontParameter);
+            if((str!=null)&&(str!="")) {
+                fontParameter.color = Color.BLUE;
+                fontParameter.size = 30;
+                font = gen.generateFont(fontParameter);
 
-            batch.begin();
-            font.draw(batch,str, 300,400);
-            batch.end();
+                batch.begin();
+                font.draw(batch, str, 300, 400);
+                batch.end();
+            }
+            else displayMessage(batch,"Error,Nullpointer Exception", x,y);
         }
         public void displayMessage(SpriteBatch batch,String str,Color color,int size,int x,int y){
         fontParameter.color = color;
