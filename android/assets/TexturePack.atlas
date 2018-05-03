@@ -1,68 +1,68 @@
 
 TexturePack.png
-size: 2048,2048
+size: 512,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 1
   rotate: false
-  xy: 2, 1146
-  size: 697, 733
-  orig: 697, 733
+  xy: 406, 405
+  size: 100, 105
+  orig: 100, 105
   offset: 0, 0
   index: -1
 Angar
   rotate: false
-  xy: 1560, 1679
+  xy: 204, 310
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Bat
   rotate: false
-  xy: 701, 1273
-  size: 645, 606
-  orig: 645, 606
+  xy: 206, 12
+  size: 100, 94
+  orig: 100, 94
   offset: 0, 0
   index: -1
 Dakkar
   rotate: false
-  xy: 1348, 1660
-  size: 210, 219
-  orig: 210, 219
+  xy: 2, 2
+  size: 100, 104
+  orig: 100, 104
   offset: 0, 0
   index: -1
 Hunter
   rotate: false
-  xy: 2, 477
-  size: 690, 667
-  orig: 690, 667
+  xy: 406, 306
+  size: 100, 97
+  orig: 100, 97
   offset: 0, 0
   index: -1
 Mite
   rotate: false
-  xy: 2, 2
-  size: 477, 473
-  orig: 477, 473
+  xy: 104, 7
+  size: 100, 99
+  orig: 100, 99
   offset: 0, 0
   index: -1
 Shop
   rotate: false
-  xy: 481, 275
+  xy: 2, 310
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Shop2
   rotate: false
-  xy: 1348, 1458
+  xy: 2, 108
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Start
   rotate: false
-  xy: 481, 73
+  xy: 204, 108
   size: 200, 200
   orig: 200, 200
   offset: 0, 0

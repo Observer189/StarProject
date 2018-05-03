@@ -14,6 +14,8 @@ import com.mygdx.game.model.Player;
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.TextManager;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,10 +36,10 @@ public class Battle implements Screen {
     Player player;
     Coord coord;
     servApi request;
-    Coord c;
+    
     int counter;
-    Integer battleNumber;
-    static Integer number;
+    Integer number;
+
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
     public Battle(SpriteBatch batch, Game game,TextureAtlas textureAtlas)
     {
@@ -80,7 +82,7 @@ public class Battle implements Screen {
             textManager.displayMessage(batch, player.getName() + " " + coord.getX().toString() + " " + coord.getY().toString(),
                     Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         }
-        System.out.println(coord.getX()+" "+coord.getY()+" "+"count:"+counter+"number:"+battleNumber);
+        System.out.println(coord.getX()+" "+coord.getY()+" "+"count:"+counter+"number:"+number);
 
     }
 
@@ -109,16 +111,20 @@ public class Battle implements Screen {
 
     }
 
-    public void setBattleNumber(Integer battleNumber) {
-        this.battleNumber = battleNumber;
+    public void setNumber(Integer battleNumber) {
+        this.number = battleNumber;
+    }
+
+    public Integer getNumber() {
+        return number;
     }
 
     private void getCoord()
     {
 
-        c=new Coord();
 
-        Call<Coord> call=request.getCoord("10","150");
+
+        Call<Coord> call=request.get(getNumber(),"10","150");
 
         call.enqueue(new Callback<Coord>()
         {
@@ -137,11 +143,16 @@ public class Battle implements Screen {
         });
 
     }
-    private Integer getBattleNumber()
+    private void getBattleNumber()
     {
 
         Call<Coord> call=request.getBattleNumber(player.getName());
-        call.enqueue(new Callback<Coord>() {
+        try {
+            setNumber(call.execute().body().getX());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        /*call.enqueue(new Callback<Coord>() {
             @Override
             public void onResponse(Call<Coord> call, Response<Coord> response) {
 
@@ -155,7 +166,7 @@ public class Battle implements Screen {
                getBattleNumber();
 
             }
-        });
-        return number;
+        });*/
+
     }
 }

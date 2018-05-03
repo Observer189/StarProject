@@ -4,6 +4,7 @@ import com.mygdx.game.model.Coord;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -12,9 +13,13 @@ import retrofit2.http.Query;
  */
 
 public interface servApi {
-    @GET("sash")
+    @POST("sash")
     Call<Coord> getCoord(@Query("x") String x, @Query("y") String y);
 
     @GET("battle")
     Call<Coord> getBattleNumber(@Query("name")String name);
+
+    @POST("battle/{battleNumber}")
+    Call<Coord> get(@Path("battleNumber") Integer number,@Query("x") String x, @Query("y") String y);
+
 }

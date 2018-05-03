@@ -59,7 +59,7 @@ public class MainMenu implements Screen {
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-
+        //game.setScreen(battle);
         Skin skin = new Skin();
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
 
