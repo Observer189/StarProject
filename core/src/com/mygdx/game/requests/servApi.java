@@ -1,5 +1,6 @@
 package com.mygdx.game.requests;
 
+import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Coord;
 
 import retrofit2.Call;
@@ -17,7 +18,7 @@ public interface servApi {
     Call<Coord> getCoord(@Query("x") String x, @Query("y") String y);
 
     @GET("battle")
-    Call<Coord> getBattleNumber(@Query("name")String name);
+    Call<BattleStatus> getBattleNumber(@Query("name")String name,@Query("status") String status);
 
     @POST("battle/{battleNumber}")
     Call<Coord> get(@Path("battleNumber") Integer number,@Query("x") String x, @Query("y") String y);

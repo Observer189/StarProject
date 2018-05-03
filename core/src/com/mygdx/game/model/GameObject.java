@@ -23,10 +23,18 @@ public abstract class GameObject {
        bounds.setPosition(x,y);
        bounds.setOrigin(width/2,height/2);
     }
+
     public void draw(SpriteBatch batch)
     {
         sprite.setPosition(bounds.getX(),bounds.getY());
         sprite.setRotation(bounds.getRotation());
+        batch.begin();
         sprite.draw(batch);
+        batch.end();
     }
+
+    public void setPosition(float x,float y) {
+        bounds.setPosition(x,y);
+    }
+
 }

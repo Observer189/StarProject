@@ -9,8 +9,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Coord;
 import com.mygdx.game.model.Player;
+import com.mygdx.game.model.Ship;
+import com.mygdx.game.model.Ships.Mite;
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.TextManager;
 
@@ -31,27 +34,31 @@ import static java.lang.Thread.sleep;
 public class Battle implements Screen {
     TextManager textManager;
     SpriteBatch batch;
-     Game game;
+    Game game;
     TextureAtlas textureAtlas;
     Player player;
     Coord coord;
     servApi request;
-    
+
     int counter;
-    Integer number;
+
+    BattleStatus battleStatus;
 
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
-    public Battle(SpriteBatch batch, Game game,TextureAtlas textureAtlas)
-    {
-        this.batch=batch;
-        this.game=game;
-        this.textureAtlas=textureAtlas;
+
+    public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,BattleStatus battleStatus) {
+        this.batch = batch;
+        this.game = game;
+        this.textureAtlas = textureAtlas;
+        this.battleStatus=battleStatus;
     }
+
     @Override
     public void show() {
 
-        player = new Player();
+        player = new Player("unk", 1000, new Mite(textureAtlas.findRegion("Mite"), 200, 300, 100, 100));
         player.generateName();
+
         coord = new Coord(20, 30);
         counter = 0;
 
@@ -62,7 +69,7 @@ public class Battle implements Screen {
                 .build();
         request = retrofit.create(servApi.class);
 
-            getBattleNumber();
+
 
 
     }
@@ -76,13 +83,14 @@ public class Battle implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         getCoord();
-        if((coord.getX()!=null)&&(coord.getY()!=null))
-        {
-            counter++;
+        if ((coord.getX() != null) && (coord.getY() != null)) {
+            player.getShip().setPosition(coord.getX(), coord.getY());
             textManager.displayMessage(batch, player.getName() + " " + coord.getX().toString() + " " + coord.getY().toString(),
                     Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         }
-        System.out.println(coord.getX()+" "+coord.getY()+" "+"count:"+counter+"number:"+number);
+        System.out.println(coord.getX() + " " + coord.getY() + " " + "count:" + counter + "number:" + battleStatus.getNumber());
+
+        player.getShip().draw(batch);
 
     }
 
@@ -111,27 +119,19 @@ public class Battle implements Screen {
 
     }
 
-    public void setNumber(Integer battleNumber) {
-        this.number = battleNumber;
-    }
-
-    public Integer getNumber() {
-        return number;
-    }
-
-    private void getCoord()
-    {
 
 
+    private void getCoord() {
 
-        Call<Coord> call=request.get(getNumber(),"10","150");
 
-        call.enqueue(new Callback<Coord>()
-        {
+        Call<Coord> call = request.get(battleStatus.getNumber(), "10", "150");
+
+        call.enqueue(new Callback<Coord>() {
 
             @Override
             public void onResponse(Call<Coord> call, Response<Coord> response) {
                 //coord=response.body();
+                counter++;
                 coord.setX(Integer.valueOf(response.body().getX()));
                 coord.setY(Integer.valueOf(response.body().getY()));
             }
@@ -143,30 +143,6 @@ public class Battle implements Screen {
         });
 
     }
-    private void getBattleNumber()
-    {
 
-        Call<Coord> call=request.getBattleNumber(player.getName());
-        try {
-            setNumber(call.execute().body().getX());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        /*call.enqueue(new Callback<Coord>() {
-            @Override
-            public void onResponse(Call<Coord> call, Response<Coord> response) {
 
-                setBattleNumber(number=response.body().getX());
-
-            }
-
-            @Override
-            public void onFailure(Call<Coord> call, Throwable t) {
-               setBattleNumber(-3);
-               getBattleNumber();
-
-            }
-        });*/
-
-    }
 }

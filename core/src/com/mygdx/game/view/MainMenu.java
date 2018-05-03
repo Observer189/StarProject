@@ -24,6 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.async.AsyncTask;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.mygdx.game.model.Player;
 import com.mygdx.game.utils.TextManager;
 
 /**
@@ -35,11 +36,11 @@ public class MainMenu implements Screen {
     StageForButton sfplaybutton, sfshop, sfangar;
     SpriteBatch batch;
     Game game;
-
-    private TextureAtlas textureAtlas;
+    Player player;
+    public TextureAtlas textureAtlas;
     TextManager textManager;
     public Button.ButtonStyle p_button, sh_button, ang_button;
-    Screen battle;
+    Screen CTB;//ConnectToBattle
 
     Vector3 touchPos = new Vector3();
 
@@ -55,8 +56,8 @@ public class MainMenu implements Screen {
     @Override
     public void show() {
         batch = new SpriteBatch();
-        battle=new Battle(batch,game,textureAtlas);
-
+        CTB=new ConnectToBattle(batch,game,textureAtlas,player);
+        player=new Player();
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         //game.setScreen(battle);
@@ -74,7 +75,7 @@ public class MainMenu implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
-                game.setScreen(battle);
+                game.setScreen(CTB);
 
             }
         });
