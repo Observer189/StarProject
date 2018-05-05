@@ -154,7 +154,7 @@ public class MainMenu implements Screen {
         sfplaybutton.dispose();
         sfangar.dispose();
         sfshop.dispose();
-       textureAtlas.dispose();
+        textureAtlas.dispose();
         game.dispose();
 
 
