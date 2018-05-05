@@ -32,6 +32,7 @@ import com.mygdx.game.utils.TextManager;
  */
 
 public class MainMenu implements Screen {
+
     public float y = 20 / (float) (Gdx.graphics.getWidth() / Gdx.graphics.getHeight());
     StageForButton sfplaybutton, sfshop, sfangar;
     SpriteBatch batch;
@@ -41,10 +42,10 @@ public class MainMenu implements Screen {
     TextManager textManager;
     public Button.ButtonStyle p_button, sh_button, ang_button;
     Screen CTB;//ConnectToBattle
+    Screen PreShop;
 
-    Vector3 touchPos = new Vector3();
 
-    RenderThread Render;
+
 
 
     public MainMenu(SpriteBatch batch, Game game) {
@@ -55,9 +56,11 @@ public class MainMenu implements Screen {
 
     @Override
     public void show() {
+        PreShop=new PreShop(game,batch,textureAtlas);
         batch = new SpriteBatch();
         CTB=new ConnectToBattle(batch,game,textureAtlas,player);
         player=new Player();
+
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         //game.setScreen(battle);
@@ -65,8 +68,8 @@ public class MainMenu implements Screen {
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
 
                 p_button = new Button.ButtonStyle();
-        p_button.up = skin.getDrawable("Start");
-        p_button.down = skin.getDrawable("Start");
+        p_button.up = skin.getDrawable("Start-up");
+        p_button.down = skin.getDrawable("Start-down");
 
 
 
@@ -79,20 +82,44 @@ public class MainMenu implements Screen {
 
             }
         });
-        Gdx.input.setInputProcessor(sfplaybutton);
 
         //кнопка магаз
         sh_button = new Button.ButtonStyle();
-        sh_button.up = skin.getDrawable("Shop");
-        sh_button.down = skin.getDrawable("Shop");
+        sh_button.up = skin.getDrawable("Shop-up");
+        sh_button.down = skin.getDrawable("Shop-down");
         sfshop = new StageForButton(sh_button, 600, 150);
+        sfshop.btn.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+                game.setScreen( PreShop);
+
+            }
+        });
+
         //кнопка ангар
+
         ang_button = new Button.ButtonStyle();
-        ang_button.up = skin.getDrawable("Angar");
-        ang_button.down = skin.getDrawable("Angar");
+        ang_button.up = skin.getDrawable("Angar-up");
+        ang_button.down = skin.getDrawable("Angar-down");
         sfangar = new StageForButton(ang_button, 900, 150);
+        sfangar.btn.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+                // game.setScreen();
+
+            }
+        });
 
 
+        InputMultiplexer in=new InputMultiplexer();
+
+        in.addProcessor(sfplaybutton);
+        in.addProcessor(sfshop);
+        in.addProcessor(sfangar);
+
+            Gdx.input.setInputProcessor(in);
     }
 
 
@@ -121,7 +148,7 @@ public class MainMenu implements Screen {
 
         batch.begin();
         batch.end();
-        //Render=new RenderThread(delta);        try {            Render.call();        } catch (Exception e) {            e.printStackTrace();        }
+
 
     }
 
@@ -169,7 +196,7 @@ public class MainMenu implements Screen {
         Button btn;
 
         public StageForButton(Button.ButtonStyle btnstyle, int x, int y) {
-            //super(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+
             btn = new Button(btnstyle);
             btn.setBounds(x, y, 200, 200);
 
@@ -180,22 +207,7 @@ public class MainMenu implements Screen {
         }
     }
 
-    class RenderThread implements AsyncTask {
-        float delta;
 
-        public RenderThread(float delta) {
-            this.delta = delta;
-
-        }
-
-
-        @Override
-        public Object call() throws Exception {
-
-
-            return null;
-        }
-    }
 
 
 }
