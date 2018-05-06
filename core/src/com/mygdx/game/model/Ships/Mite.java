@@ -16,7 +16,7 @@ public class Mite extends Ship {
     public Mite(TextureAtlas textureAtlas, float x, float y) {
         super(textureAtlas.findRegion("Mite"), x, y);
         setWidth(5);
-        setHeight(5/(Gdx.graphics.getWidth()/Gdx.graphics.getHeight()));
+        setHeight(5);
     }
 
     @Override

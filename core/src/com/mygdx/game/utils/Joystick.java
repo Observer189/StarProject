@@ -1,7 +1,8 @@
 package com.mygdx.game.utils;
 
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
@@ -9,17 +10,21 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  */
 
 public class Joystick {
-    Stick staticPart;
-    Stick dynamicPart;
+    public Stick staticPart;
+    public Stick dynamicPart;
     boolean isActive;
-    public Joystick(SpriteBatch batch,int x, int y,TextureRegion staticRegion,TextureRegion dynamicRegion)
+    public Joystick(SpriteBatch batch,float x, float y,TextureRegion staticRegion,TextureRegion dynamicRegion)
     {
        staticPart=new Stick(batch,x,y,10,10,staticRegion);
-       dynamicPart=new Stick(batch,staticPart.centerX-5/2,staticPart.centerY-5/2,5,5,dynamicRegion);//установка динамической части в центр статической
+       dynamicPart=new Stick(batch,staticPart.centerX-2.5f,staticPart.centerY-2.5f,5,5,dynamicRegion);//установка динамической части в центр статической
         isActive=false;
     }
     public void draw()
     {
+        if (dynamicPart.centerX>staticPart.centerX+staticPart.width/2)dynamicPart.setCenterX(staticPart.centerX+staticPart.width/2);
+        if (dynamicPart.centerX<staticPart.centerX-staticPart.width/2)dynamicPart.setCenterX(staticPart.centerX-staticPart.width/2);
+        if (dynamicPart.centerY>staticPart.centerY+staticPart.height/2)dynamicPart.setCenterY(staticPart.centerY+staticPart.height/2);
+        if (dynamicPart.centerY<staticPart.centerY-staticPart.height/2)dynamicPart.setCenterY(staticPart.centerY-staticPart.height/2);
         if(isActive) {
             staticPart.draw();
             dynamicPart.draw();
@@ -31,6 +36,16 @@ public class Joystick {
         return new Vector2D(dynamicPart.centerX-staticPart.centerX,dynamicPart.centerY-staticPart.centerY);
         else return new Vector2D(0,0);
 
+    }
+    public void setActive(boolean b)
+    {
+        isActive=b;
+    }
+    public void create(float x, float y)
+    {
+        staticPart.setCenter(x,y);
+        dynamicPart.setCenter(x,y);
+        setActive(true);
     }
     public class Stick{
         private float x;
@@ -50,8 +65,7 @@ public class Joystick {
             this.height=height;
             vision=textureRegion;
             centerX=x+width/2;
-            centerY=y+height/2;
-        }
+            centerY=y+height/2;       }
         public void draw()
         {
             batch.begin();
@@ -82,13 +96,25 @@ public class Joystick {
         public float getCenterY() {
             return centerY;
         }
-        public void setCenter(float centerX,float centerY)
+
+        public void setCenterX(float centerX) {
+            x=centerX-width/2;
+            this.centerX = centerX;
+        }
+
+        public void setCenterY(float centerY) {
+            y=centerY-height/2;
+            this.centerY = centerY;
+        }
+
+        public void setCenter(float centerX, float centerY)
         {
             x=centerX-width/2;
             y=centerY-height/2;
             this.centerX=centerX;
             this.centerY=centerY;
         }
+
     }
 
 }

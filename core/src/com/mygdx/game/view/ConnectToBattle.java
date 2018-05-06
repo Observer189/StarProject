@@ -84,7 +84,7 @@ public class ConnectToBattle implements Screen {
         System.out.println(battleStatus.getNumber()+" "+battleStatus.getStatus()+"QueueSize:"+battleStatus.getQueueSize());
         if(battleStatus.getStatus().equals("add"))
         {
-           // textManager.displayMessage(batch,"Connection to server...",300,300);
+            textManager.displayMessage(batch,blueFont,"Connection to server...",300,300);
         }
         if(battleStatus.getStatus().equals("wait"))
         {

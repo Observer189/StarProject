@@ -44,13 +44,15 @@ public class Battle implements Screen {
     public Player player;
     Coord coord;
     servApi request;
-     OrthographicCamera camera;
+    OrthographicCamera camera;
     int counter;
     BitmapFont blueFont;
     BattleStatus battleStatus;
     InputProcessor processor;
-    Joystick joystick;
-    final public  float AspectRatio;
+    public static float widthCamera;
+    public static float heightCamera;
+    public Joystick joystick;
+    final public float AspectRatio;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
 
     public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,BattleStatus battleStatus) {
@@ -58,7 +60,7 @@ public class Battle implements Screen {
         this.game = game;
         this.textureAtlas = textureAtlas;
         this.battleStatus=battleStatus;
-        AspectRatio=Gdx.graphics.getWidth()/Gdx.graphics.getHeight();
+        AspectRatio=(float)Gdx.graphics.getWidth()/Gdx.graphics.getHeight();
     }
 
     @Override
@@ -67,11 +69,14 @@ public class Battle implements Screen {
 
         player = new Player("unk", 1000, new Mite(textureAtlas.findRegion("Mite"), 15, 15,5,5/AspectRatio));
         player.generateName();
-        camera=new OrthographicCamera(30,30/AspectRatio);
+        widthCamera=30;
+        heightCamera=30/AspectRatio;
+        camera=new OrthographicCamera(widthCamera,heightCamera);
         camera.position.set(new Vector3(player.getShip().getX(),player.getShip().getX(),0));
         coord = new Coord(20, 30);
         counter = 0;
-        joystick=new Joystick(batch,0,0,textureAtlas.findRegion("Dj1p1"),textureAtlas.findRegion("Dj1p2"));
+        joystick=new Joystick(batch,0,10,textureAtlas.findRegion("Dj1p1"),textureAtlas.findRegion("Dj1p2"));
+
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         blueFont=textManager.fontInitialize(Color.BLUE,30);
         Retrofit retrofit = new Retrofit.Builder()
@@ -79,7 +84,7 @@ public class Battle implements Screen {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         request = retrofit.create(servApi.class);
-        processor=new BattleProcessor();
+        processor=new BattleProcessor(joystick,camera.position.x,camera.position.y);
         Gdx.input.setInputProcessor(processor);
 
 
@@ -98,14 +103,15 @@ public class Battle implements Screen {
             player.getShip().setPosition(coord.getX(), coord.getY());
 
         }*/
-        System.out.println(coord.getX() + " " + coord.getY() + " " + "count:" + counter + "number:" + battleStatus.getNumber());
+        //System.out.println(coord.getX() + " " + coord.getY() + " " + "count:" + counter + "number:" + battleStatus.getNumber());
 
        camera.position.x=player.getShip().getX();
         camera.position.y=player.getShip().getY();
         camera.update();
-        System.out.println("x="+camera.position.x+" y="+camera.position.y);
+        System.out.println("x="+joystick.dynamicPart.getCenterX()+" y="+joystick.dynamicPart.getCenterY());
         batch.setProjectionMatrix(camera.combined);
         player.getShip().draw(batch);
+        joystick.draw();
 
     }
 
