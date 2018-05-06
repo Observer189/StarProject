@@ -11,11 +11,13 @@ import com.mygdx.game.utils.Vector2D;
 public class Ship extends GameObject {
     String name;
     int cost;
-    int hp;
+    int maxHp;
+    int currentHp;
 
     Vector2D movementVector;
     public Ship(TextureRegion textureRegion, float x, float y, float width, float height) {
         super(textureRegion, x, y, width, height);
+        currentHp=maxHp;
     }
     public Ship(TextureRegion textureRegion, float x, float y) {
         super(textureRegion, x, y);

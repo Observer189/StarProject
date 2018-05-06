@@ -11,19 +11,26 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Joystick {
     Stick staticPart;
     Stick dynamicPart;
+    boolean isActive;
     public Joystick(SpriteBatch batch,int x, int y,TextureRegion staticRegion,TextureRegion dynamicRegion)
     {
        staticPart=new Stick(batch,x,y,10,10,staticRegion);
        dynamicPart=new Stick(batch,staticPart.centerX-5/2,staticPart.centerY-5/2,5,5,dynamicRegion);//установка динамической части в центр статической
+        isActive=false;
     }
     public void draw()
     {
-        staticPart.draw();
-        dynamicPart.draw();
+        if(isActive) {
+            staticPart.draw();
+            dynamicPart.draw();
+        }
     }
     public Vector2D getVector()
     {
+        if(isActive)
         return new Vector2D(dynamicPart.centerX-staticPart.centerX,dynamicPart.centerY-staticPart.centerY);
+        else return new Vector2D(0,0);
+
     }
     public class Stick{
         private float x;

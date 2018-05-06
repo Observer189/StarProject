@@ -1,82 +1,89 @@
 
 TexturePack.png
-size: 512,512
+size: 2048,256
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 1
   rotate: false
-  xy: 406, 405
+  xy: 1012, 129
   size: 100, 105
   orig: 100, 105
   offset: 0, 0
   index: -1
 Angar
   rotate: false
-  xy: 204, 310
+  xy: 810, 34
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Bat
   rotate: false
-  xy: 206, 12
+  xy: 1420, 140
   size: 100, 94
   orig: 100, 94
   offset: 0, 0
   index: -1
 Dakkar
   rotate: false
-  xy: 2, 2
+  xy: 1114, 130
   size: 100, 104
   orig: 100, 104
   offset: 0, 0
   index: -1
 Dj1p1
   rotate: false
-  xy: 406, 274
+  xy: 2, 2
   size: 30, 30
   orig: 30, 30
   offset: 0, 0
   index: -1
 Dj1p2
   rotate: false
-  xy: 308, 96
+  xy: 1012, 117
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 Hunter
   rotate: false
-  xy: 406, 306
+  xy: 1318, 137
   size: 100, 97
   orig: 100, 97
   offset: 0, 0
   index: -1
 Mite
   rotate: false
-  xy: 104, 7
+  xy: 1216, 135
   size: 100, 99
   orig: 100, 99
   offset: 0, 0
   index: -1
 Shop
   rotate: false
-  xy: 2, 310
+  xy: 406, 34
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Shop2
   rotate: false
-  xy: 2, 108
+  xy: 608, 34
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
-Start
+Start-down
   rotate: false
-  xy: 204, 108
+  xy: 204, 34
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Start-up
+  rotate: false
+  xy: 2, 34
   size: 200, 200
   orig: 200, 200
   offset: 0, 0

@@ -2,6 +2,7 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -11,12 +12,14 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector3;
+import com.mygdx.game.control.BattleProcessor;
 import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Coord;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ship;
 import com.mygdx.game.model.Ships.Mite;
 import com.mygdx.game.requests.servApi;
+import com.mygdx.game.utils.Joystick;
 import com.mygdx.game.utils.TextManager;
 
 import java.io.IOException;
@@ -45,6 +48,8 @@ public class Battle implements Screen {
     int counter;
     BitmapFont blueFont;
     BattleStatus battleStatus;
+    InputProcessor processor;
+    Joystick joystick;
     final public  float AspectRatio;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
 
@@ -60,13 +65,13 @@ public class Battle implements Screen {
     public void show() {
 
 
-        player = new Player("unk", 1000, new Mite(textureAtlas.findRegion("Mite"), 200, 300,5,5/AspectRatio));
+        player = new Player("unk", 1000, new Mite(textureAtlas.findRegion("Mite"), 15, 15,5,5/AspectRatio));
         player.generateName();
         camera=new OrthographicCamera(30,30/AspectRatio);
         camera.position.set(new Vector3(player.getShip().getX(),player.getShip().getX(),0));
         coord = new Coord(20, 30);
         counter = 0;
-
+        joystick=new Joystick(batch,0,0,textureAtlas.findRegion("Dj1p1"),textureAtlas.findRegion("Dj1p2"));
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         blueFont=textManager.fontInitialize(Color.BLUE,30);
         Retrofit retrofit = new Retrofit.Builder()
@@ -74,7 +79,8 @@ public class Battle implements Screen {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         request = retrofit.create(servApi.class);
-
+        processor=new BattleProcessor();
+        Gdx.input.setInputProcessor(processor);
 
 
 
