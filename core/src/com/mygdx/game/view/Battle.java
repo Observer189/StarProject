@@ -36,7 +36,7 @@ public class Battle implements Screen {
     SpriteBatch batch;
     Game game;
     TextureAtlas textureAtlas;
-    public Player player;
+    public static Player player;
     Coord coord;
     servApi request;
 

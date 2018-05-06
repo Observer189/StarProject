@@ -19,10 +19,11 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public class TextManager {
 
-    static BitmapFont font;
-    static float width,height;
-    FreeTypeFontGenerator gen;
-    FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
+   public  BitmapFont font;
+   public float width,height;
+   public FreeTypeFontGenerator gen;
+    public FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
+
     public TextManager(float width,float height){
         this.width=width;
         this.height=height;
@@ -31,6 +32,7 @@ public class TextManager {
         fontParameter=new FreeTypeFontGenerator.FreeTypeFontParameter();
 
     }
+
 
     public void displayMessage(SpriteBatch batch,String str,int x,int y){
         fontParameter.color = Color.BLUE;
@@ -46,9 +48,11 @@ public class TextManager {
         fontParameter.size=size;
         font=gen.generateFont(fontParameter);
 
-        batch.begin();
+       // batch.begin();
         font.draw(batch, str, x,y);
-        batch.end();
+
+
+       // batch.end();
     }
 
 }

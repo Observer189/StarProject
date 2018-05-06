@@ -27,6 +27,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.utils.TextManager;
 
+import java.awt.Font;
+
 /**
  * Created by Sash on 24.04.2018.
  */
@@ -43,9 +45,8 @@ public class MainMenu implements Screen {
     public Button.ButtonStyle p_button, sh_button, ang_button;
     Screen CTB;//ConnectToBattle
     Screen PreShop;
-
-
-
+    Skin skin;
+    private TextManager textManager1;
 
 
     public MainMenu(SpriteBatch batch, Game game) {
@@ -56,6 +57,9 @@ public class MainMenu implements Screen {
 
     @Override
     public void show() {
+        OrthographicCamera camera = new OrthographicCamera();
+        camera.setToOrtho(false, 800, 480);
+
         PreShop=new PreShop(game,batch,textureAtlas);
         batch = new SpriteBatch();
         CTB=new ConnectToBattle(batch,game,textureAtlas,player);
@@ -63,8 +67,8 @@ public class MainMenu implements Screen {
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        //game.setScreen(battle);
-        Skin skin = new Skin();
+
+        skin = new Skin();
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
 
                 p_button = new Button.ButtonStyle();
@@ -120,17 +124,20 @@ public class MainMenu implements Screen {
         in.addProcessor(sfangar);
 
             Gdx.input.setInputProcessor(in);
+
+
     }
 
 
     @Override
     public void render(float delta) {
 
-        OrthographicCamera camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
+
+        System.out.println("Here(Reset)");
         Gdx.gl.glClearColor(0, 64, 247, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        textManager.displayMessage(batch, "Wellcome to Star game!", Color.BLACK, 50, (int) (Gdx.graphics.getWidth() / 3.5), (int) (Gdx.graphics.getHeight() / 1.3 + 20));
+
+
         //textManager.displayMessage(batch,"x= "+Gdx.graphics.getWidth()+" y= "+Gdx.graphics.getHeight() ,Color.BLACK,50, (int) (Gdx.graphics.getWidth()/3.5), (int) (Gdx.graphics.getHeight()/1.3+90));
 
 
@@ -147,8 +154,12 @@ public class MainMenu implements Screen {
         sfangar.draw();
 
         batch.begin();
-        batch.end();
+        textManager.displayMessage(batch, "Welcome to Star game!", Color.BLACK, 50, (int) (Gdx.graphics.getWidth() / 3.5), (int) (Gdx.graphics.getHeight() / 1.3 + 20));
+       // textManager.gen.dispose();
+        //textManager.font.dispose();
 
+
+        batch.end();
 
     }
 
@@ -161,12 +172,13 @@ public class MainMenu implements Screen {
 
     @Override
     public void pause() {
-
+    dispose();
 
     }
 
     @Override
     public void resume() {
+        show();
 
     }
 
@@ -178,11 +190,18 @@ public class MainMenu implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
+
         sfplaybutton.dispose();
         sfangar.dispose();
         sfshop.dispose();
+        skin.dispose();
+        PreShop.dispose();
+        //CTB.dispose();
        textureAtlas.dispose();
         game.dispose();
+        textManager.gen.dispose();
+        textManager.font.dispose();
+        System.out.println("DISPOSED");
 
 
 
@@ -192,7 +211,7 @@ public class MainMenu implements Screen {
         this.textureAtlas = textureAtlas;
     }
 
-    class StageForButton extends Stage {
+   static  class StageForButton extends Stage {
         Button btn;
 
         public StageForButton(Button.ButtonStyle btnstyle, int x, int y) {

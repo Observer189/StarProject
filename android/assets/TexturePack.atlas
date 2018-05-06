@@ -5,126 +5,133 @@ filter: Nearest,Nearest
 repeat: none
 SelectGun
   rotate: false
-  xy: 2, 204
+  xy: 1, 460
+  size: 400, 50
+  orig: 400, 50
+  offset: 0, 0
+  index: -1
+SelectShip
+  rotate: false
+  xy: 1, 408
+  size: 400, 50
+  orig: 400, 50
+  offset: 0, 0
+  index: -1
+UnSelectGun
+  rotate: false
+  xy: 403, 460
+  size: 400, 50
+  orig: 400, 50
+  offset: 0, 0
+  index: -1
+UnSelectShip
+  rotate: false
+  xy: 1, 356
   size: 400, 50
   orig: 400, 50
   offset: 0, 0
   index: -1
 Angar-down
   rotate: false
-  xy: 2, 2
+  xy: 1, 154
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Angar-up
   rotate: false
-  xy: 204, 2
+  xy: 203, 154
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
-SelectShip
+Frame
   rotate: false
-  xy: 404, 204
-  size: 400, 50
-  orig: 400, 50
+  xy: 1, 51
+  size: 200, 101
+  orig: 200, 101
   offset: 0, 0
   index: -1
 Money
   rotate: false
-  xy: 406, 2
+  xy: 405, 258
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Shop-down
   rotate: false
-  xy: 608, 2
+  xy: 607, 258
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
-UnSelectGun
-  rotate: false
-  xy: 806, 204
-  size: 400, 50
-  orig: 400, 50
-  offset: 0, 0
-  index: -1
 Shop-up
   rotate: false
-  xy: 810, 2
+  xy: 809, 310
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Start-down
   rotate: false
-  xy: 1012, 2
+  xy: 405, 56
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
-UnSelectShip
-  rotate: false
-  xy: 1208, 204
-  size: 400, 50
-  orig: 400, 50
-  offset: 0, 0
-  index: -1
 Start-up
   rotate: false
-  xy: 1214, 2
+  xy: 607, 56
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 1
   rotate: false
-  xy: 1416, 97
+  xy: 809, 203
   size: 100, 105
   orig: 100, 105
   offset: 0, 0
   index: -1
 Dakkar
   rotate: false
-  xy: 1518, 98
+  xy: 809, 97
   size: 100, 104
   orig: 100, 104
   offset: 0, 0
   index: -1
-Bat
-  rotate: false
-  xy: 1518, 2
-  size: 100, 94
-  orig: 100, 94
-  offset: 0, 0
-  index: -1
 Back-down
   rotate: false
-  xy: 1620, 154
+  xy: 203, 52
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 Back-up
   rotate: false
-  xy: 1620, 52
+  xy: 911, 208
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 Mite
   rotate: false
-  xy: 1722, 155
+  xy: 911, 107
   size: 100, 99
   orig: 100, 99
   offset: 0, 0
   index: -1
+Bat
+  rotate: false
+  xy: 809, 1
+  size: 100, 94
+  orig: 100, 94
+  offset: 0, 0
+  index: -1
 Hunter
   rotate: false
-  xy: 1722, 56
+  xy: 911, 8
   size: 100, 97
   orig: 100, 97
   offset: 0, 0
