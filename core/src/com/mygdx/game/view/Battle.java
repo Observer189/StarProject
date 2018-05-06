@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.model.BattleStatus;
@@ -36,12 +37,12 @@ public class Battle implements Screen {
     SpriteBatch batch;
     Game game;
     TextureAtlas textureAtlas;
-    Player player;
+    public Player player;
     Coord coord;
     servApi request;
 
     int counter;
-
+    BitmapFont blueFont;
     BattleStatus battleStatus;
 
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
@@ -63,6 +64,7 @@ public class Battle implements Screen {
         counter = 0;
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        blueFont=textManager.fontInitialize(Color.BLUE,30);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -85,8 +87,8 @@ public class Battle implements Screen {
         getCoord();
         if ((coord.getX() != null) && (coord.getY() != null)) {
             player.getShip().setPosition(coord.getX(), coord.getY());
-            textManager.displayMessage(batch, player.getName() + " " + coord.getX().toString() + " " + coord.getY().toString(),
-                    Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+            //textManager.displayMessage(batch, player.getName() + " " + coord.getX().toString() + " " + coord.getY().toString(),
+              //      Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         }
         System.out.println(coord.getX() + " " + coord.getY() + " " + "count:" + counter + "number:" + battleStatus.getNumber());
 

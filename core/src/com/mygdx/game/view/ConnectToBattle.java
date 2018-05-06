@@ -4,7 +4,9 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.control.ConnectToBattleProcessor;
@@ -36,6 +38,7 @@ public class ConnectToBattle implements Screen {
     int counter;
     boolean getBattleIsFinished;
     InputProcessor processor;
+    BitmapFont blueFont;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
     public ConnectToBattle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,Player player) {
         this.batch = batch;
@@ -55,6 +58,7 @@ public class ConnectToBattle implements Screen {
         processor=new ConnectToBattleProcessor();
         Gdx.input.setInputProcessor(processor);
         textManager=new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        blueFont=textManager.fontInitialize(Color.BLUE,30);
         battleStatus=new BattleStatus(null,null,"add");
         player.generateName();
         counter=0;
@@ -77,15 +81,15 @@ public class ConnectToBattle implements Screen {
             getBattleIsFinished=false;
             getBattleNumber();
         }
-        System.out.println(battleStatus.getNumber()+" "+battleStatus.getStatus());
+        System.out.println(battleStatus.getNumber()+" "+battleStatus.getStatus()+"QueueSize:"+battleStatus.getQueueSize());
         if(battleStatus.getStatus().equals("add"))
         {
-            textManager.displayMessage(batch,"Connection to server...",300,300);
+           // textManager.displayMessage(batch,"Connection to server...",300,300);
         }
         if(battleStatus.getStatus().equals("wait"))
         {
-            textManager.displayMessage(batch,"Search enemy...",300,300);
-            textManager.displayMessage(batch,"Players in queue:"+" "+battleStatus.getQueueSize(),300,350);
+            textManager.displayMessage(batch,blueFont,"Search enemy...",300,300);
+            textManager.displayMessage(batch,blueFont,"Players in queue:"+" "+battleStatus.getQueueSize(),300,350);
         }
         if(battleStatus.getNumber()!=null) {
             game.setScreen(new Battle(batch, game, textureAtlas, battleStatus));

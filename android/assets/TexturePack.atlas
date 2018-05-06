@@ -1,69 +1,131 @@
 
 TexturePack.png
-size: 512,512
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+SelectGun
+  rotate: false
+  xy: 2, 204
+  size: 400, 50
+  orig: 400, 50
+  offset: 0, 0
+  index: -1
+Angar-down
+  rotate: false
+  xy: 2, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Angar-up
+  rotate: false
+  xy: 204, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+SelectShip
+  rotate: false
+  xy: 404, 204
+  size: 400, 50
+  orig: 400, 50
+  offset: 0, 0
+  index: -1
+Money
+  rotate: false
+  xy: 406, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Shop-down
+  rotate: false
+  xy: 608, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+UnSelectGun
+  rotate: false
+  xy: 806, 204
+  size: 400, 50
+  orig: 400, 50
+  offset: 0, 0
+  index: -1
+Shop-up
+  rotate: false
+  xy: 810, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Start-down
+  rotate: false
+  xy: 1012, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+UnSelectShip
+  rotate: false
+  xy: 1208, 204
+  size: 400, 50
+  orig: 400, 50
+  offset: 0, 0
+  index: -1
+Start-up
+  rotate: false
+  xy: 1214, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
 1
   rotate: false
-  xy: 406, 405
+  xy: 1416, 97
   size: 100, 105
   orig: 100, 105
   offset: 0, 0
   index: -1
-Angar
-  rotate: false
-  xy: 204, 310
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Bat
-  rotate: false
-  xy: 206, 12
-  size: 100, 94
-  orig: 100, 94
-  offset: 0, 0
-  index: -1
 Dakkar
   rotate: false
-  xy: 2, 2
+  xy: 1518, 98
   size: 100, 104
   orig: 100, 104
   offset: 0, 0
   index: -1
-Hunter
+Bat
   rotate: false
-  xy: 406, 306
-  size: 100, 97
-  orig: 100, 97
+  xy: 1518, 2
+  size: 100, 94
+  orig: 100, 94
+  offset: 0, 0
+  index: -1
+Back-down
+  rotate: false
+  xy: 1620, 154
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Back-up
+  rotate: false
+  xy: 1620, 52
+  size: 100, 100
+  orig: 100, 100
   offset: 0, 0
   index: -1
 Mite
   rotate: false
-  xy: 104, 7
+  xy: 1722, 155
   size: 100, 99
   orig: 100, 99
   offset: 0, 0
   index: -1
-Shop
+Hunter
   rotate: false
-  xy: 2, 310
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Shop2
-  rotate: false
-  xy: 2, 108
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Start
-  rotate: false
-  xy: 204, 108
-  size: 200, 200
-  orig: 200, 200
+  xy: 1722, 56
+  size: 100, 97
+  orig: 100, 97
   offset: 0, 0
   index: -1
