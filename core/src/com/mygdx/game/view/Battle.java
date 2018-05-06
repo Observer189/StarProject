@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Coord;
 import com.mygdx.game.model.Player;
@@ -40,11 +41,11 @@ public class Battle implements Screen {
     public Player player;
     Coord coord;
     servApi request;
-
+     OrthographicCamera camera;
     int counter;
     BitmapFont blueFont;
     BattleStatus battleStatus;
-
+    final public  float AspectRatio;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
 
     public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,BattleStatus battleStatus) {
@@ -52,14 +53,17 @@ public class Battle implements Screen {
         this.game = game;
         this.textureAtlas = textureAtlas;
         this.battleStatus=battleStatus;
+        AspectRatio=Gdx.graphics.getWidth()/Gdx.graphics.getHeight();
     }
 
     @Override
     public void show() {
 
-        player = new Player("unk", 1000, new Mite(textureAtlas.findRegion("Mite"), 200, 300, 100, 100));
-        player.generateName();
 
+        player = new Player("unk", 1000, new Mite(textureAtlas.findRegion("Mite"), 200, 300,5,5/AspectRatio));
+        player.generateName();
+        camera=new OrthographicCamera(30,30/AspectRatio);
+        camera.position.set(new Vector3(player.getShip().getX(),player.getShip().getX(),0));
         coord = new Coord(20, 30);
         counter = 0;
 
@@ -79,19 +83,22 @@ public class Battle implements Screen {
     @Override
     public void render(float delta) {
 
-        OrthographicCamera camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        getCoord();
-        if ((coord.getX() != null) && (coord.getY() != null)) {
+        //getCoord();
+        /*if ((coord.getX() != null) && (coord.getY() != null)) {
             player.getShip().setPosition(coord.getX(), coord.getY());
-            //textManager.displayMessage(batch, player.getName() + " " + coord.getX().toString() + " " + coord.getY().toString(),
-              //      Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-        }
+
+        }*/
         System.out.println(coord.getX() + " " + coord.getY() + " " + "count:" + counter + "number:" + battleStatus.getNumber());
 
+       camera.position.x=player.getShip().getX();
+        camera.position.y=player.getShip().getY();
+        camera.update();
+        System.out.println("x="+camera.position.x+" y="+camera.position.y);
+        batch.setProjectionMatrix(camera.combined);
         player.getShip().draw(batch);
 
     }

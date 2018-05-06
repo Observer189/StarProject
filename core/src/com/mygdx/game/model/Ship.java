@@ -12,9 +12,13 @@ public class Ship extends GameObject {
     String name;
     int cost;
     int hp;
+
     Vector2D movementVector;
     public Ship(TextureRegion textureRegion, float x, float y, float width, float height) {
         super(textureRegion, x, y, width, height);
+    }
+    public Ship(TextureRegion textureRegion, float x, float y) {
+        super(textureRegion, x, y);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.mygdx.game.model.Ships;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -11,8 +12,11 @@ import com.mygdx.game.model.Ship;
 
 public class Mite extends Ship {
 
+
     public Mite(TextureAtlas textureAtlas, float x, float y) {
-        super(textureAtlas.findRegion("Mite"), x, y, 100, 100);
+        super(textureAtlas.findRegion("Mite"), x, y);
+        setWidth(5);
+        setHeight(5/(Gdx.graphics.getWidth()/Gdx.graphics.getHeight()));
     }
 
     @Override
@@ -22,6 +26,7 @@ public class Mite extends Ship {
     public Mite(TextureRegion textureRegion, float x,float y,float width,float height)
     {
         super(textureRegion,x,y,width,height);
+
 
     }
 
