@@ -19,7 +19,7 @@ public class Mite extends Ship {
     }
     public Mite(TextureRegion textureRegion, float x, float y)
     {
-        super(textureRegion,x,y,10,10,"Mite",75000,520,0.5f,60);
+        super(textureRegion,x,y,10,10,"Mite",75000,520,15f,30);
 
 
     }

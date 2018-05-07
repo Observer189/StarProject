@@ -8,22 +8,22 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.control.BattleProcessor;
 import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Coord;
 import com.mygdx.game.model.Mite;
 import com.mygdx.game.model.Player;
-import com.mygdx.game.model.Ship;
 
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.Joystick;
 import com.mygdx.game.utils.TextManager;
-
-import java.io.IOException;
+import com.mygdx.game.utils.Vector2D;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,6 +50,9 @@ public class Battle implements Screen {
     BitmapFont blueFont;
     BattleStatus battleStatus;
     InputProcessor processor;
+    TextureRegion background;
+    public static float camX;
+    public static float camY;
     public static float delta;
     public static float widthCamera;
     public static float heightCamera;
@@ -67,8 +70,7 @@ public class Battle implements Screen {
 
     @Override
     public void show() {
-
-
+        background=new TextureRegion(textureAtlas.findRegion("ClassicSpace"));
         player = new Player("unk", 1000, new Mite(textureAtlas.findRegion("Mite"), 15, 15));
         player.generateName();
         widthCamera=220;
@@ -86,9 +88,9 @@ public class Battle implements Screen {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         request = retrofit.create(servApi.class);
-        processor=new BattleProcessor(joystick,camera.position.x,camera.position.y);
+        processor=new BattleProcessor(joystick);
         Gdx.input.setInputProcessor(processor);
-
+        player.getShip().setRotation(270);
 
 
     }
@@ -107,15 +109,26 @@ public class Battle implements Screen {
         }*/
         //System.out.println(coord.getX() + " " + coord.getY() + " " + "count:" + counter + "number:" + battleStatus.getNumber());
 
-       camera.position.x=player.getShip().getX();
+        camera.position.x=player.getShip().getX();
         camera.position.y=player.getShip().getY();
+        camX =camera.position.x;
+        camY =camera.position.y;
         camera.update();
-        System.out.println("x="+joystick.staticPart.getCenterX()+" y="+joystick.staticPart.getCenterY()+" shipX:"+player.getShip().getX()+" shipY"+player.getShip().getY());
+        System.out.println("x="+joystick.getVector().x+" y="+joystick.getVector().y+" shipX:"+player.getShip().getX()+
+                " shipY"+player.getShip().getY());
+        //System.out.println(" SpeedX: "+player.getShip().getSpeedX()+"SpeedY: "+player.getShip().getSpeedY());
+
         batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        batch.draw(background,0,0,500,250);
+        batch.end();
         player.getShip().setMovementVector(joystick.getVector());
         player.getShip().move();
         player.getShip().draw(batch);
+        joystick.update(BattleProcessor.offsetX,BattleProcessor.offsetY,BattleProcessor.offsetDynamicX,BattleProcessor.offsetDynamicY);//компенсирует смещение камеры смещением джойстика
+
         joystick.draw();
+
 
     }
 

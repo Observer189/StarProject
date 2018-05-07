@@ -13,13 +13,17 @@ public class BattleProcessor implements InputProcessor {
     Joystick joystick;
     float convX= Gdx.graphics.getWidth()/ Battle.widthCamera;
     float convY=Gdx.graphics.getHeight()/Battle.heightCamera;
-    float xPos;//позиции камеры
-    float yPos;
-    public BattleProcessor(Joystick joystick,float xPos,float yPos)
+
+    public static float offsetX;//переменные определяющие смещение статичной части относительно позиции камеры
+    public static float offsetY;
+    public static float offsetDynamicX;//переменные определяющие смещение динамической части относительно статичной
+    public static float offsetDynamicY;
+
+    public BattleProcessor(Joystick joystick)
     {
         this.joystick=joystick;
-        this.xPos=xPos-Battle.widthCamera/2;
-        this.yPos=yPos-Battle.heightCamera/2;
+
+
 
     }
     @Override
@@ -39,8 +43,9 @@ public class BattleProcessor implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        joystick.create(screenX/convX+xPos,Battle.heightCamera-screenY/convY+yPos);//конвертация координат получаемых с InputProcessor в координаты экрана
-
+        joystick.create(screenX/convX+ (Battle.camX-Battle.widthCamera/2),Battle.heightCamera-screenY/convY+ (Battle.camY-Battle.heightCamera/2));//конвертация координат получаемых с InputProcessor в координаты экрана
+        offsetX=joystick.staticPart.getCenterX()-(Battle.camX-Battle.widthCamera/2);
+        offsetY=joystick.staticPart.getCenterY()-(Battle.camY-Battle.heightCamera/2);
         return false;
     }
 
@@ -52,8 +57,10 @@ public class BattleProcessor implements InputProcessor {
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        joystick.dynamicPart.setCenter(screenX/convX+xPos,Battle.heightCamera-screenY/convY+yPos);//смещение динамической части относительно статичной
-
+        //joystick.staticPart.setCenter((Battle.camX-Battle.widthCamera/2)+offsetX,(Battle.camY-Battle.heightCamera/2)+offsetY);
+        joystick.dynamicPart.setCenter(screenX/convX+ (Battle.camX-Battle.widthCamera/2),Battle.heightCamera-screenY/convY+ (Battle.camY-Battle.heightCamera/2));//смещение динамической части относительно статичной
+        offsetDynamicX=joystick.dynamicPart.getCenterX()-joystick.staticPart.getCenterX();
+        offsetDynamicY=joystick.dynamicPart.getCenterY()-joystick.staticPart.getCenterY();
         return false;
     }
 

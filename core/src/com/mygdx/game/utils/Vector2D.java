@@ -9,19 +9,19 @@ public class Vector2D
     public float vX;
     public float vY;
 
-    Vector2D()
+    public Vector2D()
     {
 
         vX=1;
         vY=1;
     }
-    Vector2D(float x,float y)
+    public Vector2D(float x,float y)
     {
 
         vX=x;
         vY=y;
     }
-    Vector2D(Vector2D v)
+    public Vector2D(Vector2D v)
     {
 
         this.vX=v.vX;
