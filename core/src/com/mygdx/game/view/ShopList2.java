@@ -64,6 +64,7 @@ public class ShopList2 implements Screen{
 
             }
         });
+        Gdx.input.setInputProcessor(Ships);
     }
 
     @Override
