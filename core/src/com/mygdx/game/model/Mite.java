@@ -1,10 +1,8 @@
-package com.mygdx.game.model.Ships;
+package com.mygdx.game.model;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.mygdx.game.model.Ship;
 
 /**
  * Created by Sash on 03.05.2018.
@@ -13,19 +11,15 @@ import com.mygdx.game.model.Ship;
 public class Mite extends Ship {
 
 
-    public Mite(TextureAtlas textureAtlas, float x, float y) {
-        super(textureAtlas.findRegion("Mite"), x, y);
-        setWidth(5);
-        setHeight(5);
-    }
+
 
     @Override
     public void draw(SpriteBatch batch) {
         super.draw(batch);
     }
-    public Mite(TextureRegion textureRegion, float x,float y,float width,float height)
+    public Mite(TextureRegion textureRegion, float x, float y)
     {
-        super(textureRegion,x,y,width,height);
+        super(textureRegion,x,y,10,10,"Mite",75000,520,0.5f,60);
 
 
     }

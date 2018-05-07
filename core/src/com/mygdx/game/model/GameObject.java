@@ -25,17 +25,7 @@ public abstract class GameObject {
         bounds.setPosition(x,y);
         bounds.setOrigin(width/2,height/2);
     }
-    public GameObject(TextureRegion textureRegion, float x,float y)
-    {
-        sprite = new Sprite(textureRegion);
-        sprite.setSize(width,height);
-        sprite.setOrigin(width/2,height/2);
-        sprite.setPosition(x,y);
 
-        bounds=new Polygon(new float[]{0.f,0.f,width,0.f,width,height,0.f,height});
-        bounds.setPosition(x,y);
-        bounds.setOrigin(width/2,height/2);
-    }
 
     public void draw(SpriteBatch batch)
     {

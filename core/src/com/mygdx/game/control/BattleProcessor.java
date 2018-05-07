@@ -52,7 +52,7 @@ public class BattleProcessor implements InputProcessor {
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        joystick.dynamicPart.setCenter(screenX/convX+xPos,Battle.heightCamera-screenY/convY+yPos);
+        joystick.dynamicPart.setCenter(screenX/convX+xPos,Battle.heightCamera-screenY/convY+yPos);//смещение динамической части относительно статичной
 
         return false;
     }

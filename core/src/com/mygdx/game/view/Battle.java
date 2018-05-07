@@ -15,9 +15,10 @@ import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.control.BattleProcessor;
 import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Coord;
+import com.mygdx.game.model.Mite;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ship;
-import com.mygdx.game.model.Ships.Mite;
+
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.Joystick;
 import com.mygdx.game.utils.TextManager;
@@ -49,6 +50,7 @@ public class Battle implements Screen {
     BitmapFont blueFont;
     BattleStatus battleStatus;
     InputProcessor processor;
+    public static float delta;
     public static float widthCamera;
     public static float heightCamera;
     public Joystick joystick;
@@ -67,10 +69,10 @@ public class Battle implements Screen {
     public void show() {
 
 
-        player = new Player("unk", 1000, new Mite(textureAtlas.findRegion("Mite"), 15, 15,5,5/AspectRatio));
+        player = new Player("unk", 1000, new Mite(textureAtlas.findRegion("Mite"), 15, 15));
         player.generateName();
-        widthCamera=30;
-        heightCamera=30/AspectRatio;
+        widthCamera=220;
+        heightCamera=220/AspectRatio;
         camera=new OrthographicCamera(widthCamera,heightCamera);
         camera.position.set(new Vector3(player.getShip().getX(),player.getShip().getX(),0));
         coord = new Coord(20, 30);
@@ -97,7 +99,7 @@ public class Battle implements Screen {
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        this.delta=delta;
         //getCoord();
         /*if ((coord.getX() != null) && (coord.getY() != null)) {
             player.getShip().setPosition(coord.getX(), coord.getY());
@@ -108,8 +110,10 @@ public class Battle implements Screen {
        camera.position.x=player.getShip().getX();
         camera.position.y=player.getShip().getY();
         camera.update();
-        System.out.println("x="+joystick.dynamicPart.getCenterX()+" y="+joystick.dynamicPart.getCenterY());
+        System.out.println("x="+joystick.staticPart.getCenterX()+" y="+joystick.staticPart.getCenterY()+" shipX:"+player.getShip().getX()+" shipY"+player.getShip().getY());
         batch.setProjectionMatrix(camera.combined);
+        player.getShip().setMovementVector(joystick.getVector());
+        player.getShip().move();
         player.getShip().draw(batch);
         joystick.draw();
 

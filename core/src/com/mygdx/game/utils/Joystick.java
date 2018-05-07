@@ -32,8 +32,11 @@ public class Joystick {
     }
     public Vector2D getVector()
     {
-        if(isActive)
-        return new Vector2D(dynamicPart.centerX-staticPart.centerX,dynamicPart.centerY-staticPart.centerY);
+        if(isActive) {
+            Vector2D vector = new Vector2D(dynamicPart.centerX - staticPart.centerX, dynamicPart.centerY - staticPart.centerY);
+            vector.normalize();
+            return vector;
+        }
         else return new Vector2D(0,0);
 
     }
@@ -46,6 +49,12 @@ public class Joystick {
         staticPart.setCenter(x,y);
         dynamicPart.setCenter(x,y);
         setActive(true);
+    }
+    public void update(float x, float y)
+    {
+        staticPart.setCenter(x,y);
+        dynamicPart.setCenter(x,y);
+
     }
     public class Stick{
         private float x;

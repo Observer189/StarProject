@@ -63,11 +63,12 @@ public class ConnectToBattle implements Screen {
         player.generateName();
         counter=0;
         getBattleIsFinished=false;
-        getBattleNumber();
+        //getBattleNumber();
 
-        if((battleStatus.getNumber()!=null)&&(battleStatus.getStatus().equals("ready"))) {
+        //if((battleStatus.getNumber()!=null)&&(battleStatus.getStatus().equals("ready"))) {
+            battleStatus.setNumber(1);//убрать
             game.setScreen(new Battle(batch, game, textureAtlas, battleStatus));
-        }
+        //}
     }
 
     @Override
