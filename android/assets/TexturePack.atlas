@@ -66,13 +66,6 @@ Money
   orig: 200, 200
   offset: 0, 0
   index: -1
-Shop2
-  rotate: false
-  xy: 203, 607
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
 Prev-down
   rotate: false
   xy: 203, 405

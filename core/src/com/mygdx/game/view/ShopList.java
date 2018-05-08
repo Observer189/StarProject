@@ -20,9 +20,13 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.utils.TextManager;
 
@@ -33,7 +37,7 @@ import com.mygdx.game.utils.TextManager;
 public class ShopList implements Screen {
     OrthographicCamera camera;
     Game game;
-    Screen ShList2;
+    Screen ShList2,ShShow;
     StageForButton Guns, Ships,Go,Prev;
     Button.ButtonStyle Gstyle, Sstyle,Gostyle,Prevstyle;
     SpriteBatch batch;
@@ -46,6 +50,8 @@ public class ShopList implements Screen {
     BitmapFont font;
     Boolean NeedToMove=false;
     Boolean NeedToMoveBack=false;
+    Viewport VP;
+    int counter=0;
 
 
     public ShopList(Game game, SpriteBatch batch, TextureAtlas textureAtlas) {
@@ -112,7 +118,7 @@ public class ShopList implements Screen {
         //'Hunter' ship
         textManager.displayMessage(batch,font, ct5.name, ct5.x + 200, ct5.y + 175);
                                 //textManager.displayMessage(batch,font, "Price: " + ct5.price,  ct5.x + 200, ct5.y + 75);
-        textManager.displayMessage(batch,font, "Price: " + InformationFrame.getImageX(),  ct5.x + 200, ct5.y + 75);
+        textManager.displayMessage(batch,font, "Price: " + ct5.price,  ct5.x + 200, ct5.y + 75);
         ct5.act(delta);
         ct5.draw();
         //Information bar
@@ -132,34 +138,27 @@ public class ShopList implements Screen {
 
         if (NeedToMove==true) {
 
-            MoveButton(Go,-1);
+
             MoveOld(ct1,-1);
             MoveOld(ct2,-1);
             MoveOld(ct3,-1);
             MoveOld(ct4,-1);
             MoveOld(ct5,-1);
-            MoveButton(Prev,-1);
-            //MoveImage(Money, (int) (InformationFrame.getImageX()+5),-1);
-           // MoveImage(InformationFrame,(int) camera.position.x/400,-1);
-            InformationFrame.setPosition((int) camera.position.x/400,camera.position.y*3 - 293-10);
-            Money.setPosition(InformationFrame.getImageX()+5, (float) (((camera.position.y*3) - 293-10)+(InformationFrame.getHeight()/2.7)));
+
 
         }
+        NeedToMove=false;
         if (NeedToMoveBack==true) {
-            MoveButton(Go,1);
-            MoveButton(Prev,1);
+
             MoveOld(ct1,1);
             MoveOld(ct2,1);
             MoveOld(ct3,1);
             MoveOld(ct4,1);
             MoveOld(ct5,1);
-           // MoveImage(Money, (int) (InformationFrame.getImageX()+5),1);
-          //  MoveImage(InformationFrame,(int) camera.position.x/400,1);
-            InformationFrame.setPosition((int) camera.position.x/400,camera.position.y*3 - 293-10);
-            Money.setPosition(InformationFrame.getImageX()+5, (float) (((camera.position.y*3) - 293-10)+(InformationFrame.getHeight()/2.7)));
+
 
         }
-        NeedToMove=false;
+
         NeedToMoveBack=false;
         batch.begin();
         batch.end();
@@ -190,32 +189,46 @@ public class ShopList implements Screen {
 
     @Override
     public void show() {
+
         camera = new OrthographicCamera();
         camera.position.set(new Vector3(400,240,0));
+      //  VP=new FillViewport((float)(camera.position.x*3.2),camera.position.y*3,camera) ;
+
         ShList2=new ShopList2(game,batch,textureAtlas);
         batch = new SpriteBatch();    //Battle.player.getMoney();
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         skin = new Skin();
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
+        Window.WindowStyle ws=new Window.WindowStyle();
+
         //Creating frame, where player can see his money (Information Bar)
-        InformationFrame=new Image(skin.getDrawable("Frame"));
+       // InformationFrame=new Image(skin.getDrawable("Frame"));
         Money=new Image(skin.getDrawable("Money"));
-        InformationFrame.setSize(480,220);
-        InformationFrame.setPosition((int) camera.position.x/400,camera.position.y*3 - 293-10);
+       // InformationFrame.setSize((float) (Gdx.graphics.getWidth()/3.5), (float) (Gdx.graphics.getHeight()/3.3));
+
+      //  InformationFrame.setPosition(Gdx.graphics.getWidth()/Gdx.graphics.getWidth(),Gdx.graphics.getHeight()/3);
         Money.setSize(75,75);
-        Money.setPosition(InformationFrame.getImageX()+5, (float) (((camera.position.y*3) - 293-10)+(InformationFrame.getHeight()/2.7)));
+        Money.setPosition(Gdx.graphics.getWidth()/Gdx.graphics.getWidth(),Gdx.graphics.getHeight()/3+Gdx.graphics.getHeight()/24);
+
+
+
 
         //--------------------drawing buttons again
         //button for going to the next page
         Gostyle=new Button.ButtonStyle();
         Gostyle.up=skin.getDrawable("Go-up");
         Gostyle.down=skin.getDrawable("Go-down");
-        Go=new StageForButton(Gostyle,(int) (camera.position.x*3.2-210), (int)(camera.position.y*3)/4,200,200);
+        Go=new StageForButton(Gostyle,(Gdx.graphics.getWidth()-210), (int) ((Gdx.graphics.getHeight())/1.8),200,200);
         Go.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                NeedToMove=true;
 
+
+                if (counter==0)
+                Go.btn.setDisabled(true);
+                else{
+                    NeedToMove=true;
+                     counter--;}
 
             }
         });
@@ -223,12 +236,16 @@ public class ShopList implements Screen {
         Prevstyle=new Button.ButtonStyle();
         Prevstyle.up=skin.getDrawable("Prev-up");
         Prevstyle.down=skin.getDrawable("Prev-down");
-        Prev=new StageForButton(Prevstyle,(int) (camera.position.x*3.2+20), (int)(camera.position.y*3)/4,200,200);
+        Prev=new StageForButton(Prevstyle,Go.x, Gdx.graphics.getHeight()/8,200,200);
         Prev.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                NeedToMoveBack=true;
-
+                if (counter==4)
+                    Prev.btn.setDisabled(true);
+                else {
+                    NeedToMoveBack = true;
+                    counter++;
+                }
 
             }
         });
@@ -237,7 +254,8 @@ public class ShopList implements Screen {
         Gstyle = new Button.ButtonStyle();
         Gstyle.up = skin.getDrawable("UnSelectGun");
         Gstyle.down = skin.getDrawable("UnSelectGun");
-        Guns = new StageForButton(Gstyle, (int) camera.position.x/400, (int) (camera.position.y*3 - 51),Gdx.graphics.getWidth() / 2,50);
+
+        Guns = new StageForButton(Gstyle, Gdx.graphics.getWidth()/Gdx.graphics.getWidth(), (int) (Gdx.graphics.getHeight() - 50),Gdx.graphics.getWidth() / 2,50);
         //change scene when 'guns' clicked
         Guns.btn.addListener(new ClickListener() {
             @Override
@@ -253,7 +271,7 @@ public class ShopList implements Screen {
         Sstyle = new Button.ButtonStyle();
         Sstyle.up = skin.getDrawable("SelectShip");
         Sstyle.down = skin.getDrawable("SelectShip");
-        Ships = new StageForButton(Sstyle, (int) (camera.position.x*3.2 / 2), (int) (camera.position.y*3 - 51),Gdx.graphics.getWidth() / 2,50);
+        Ships = new StageForButton(Sstyle, (int) (Gdx.graphics.getWidth() / 2), (int) (Gdx.graphics.getHeight() - 50),Gdx.graphics.getWidth() / 2,50);
         //change scene when 'ships' clicked
         Ships.btn.addListener(new ClickListener() {
             @Override
@@ -270,29 +288,66 @@ public class ShopList implements Screen {
         st1 = new Button.ButtonStyle();
         st1.up = skin.getDrawable("1");
         st1.down = skin.getDrawable("1");
-        ct1 = new CellStage(st1, (int) camera.position.x/400+15, (int) (camera.position.y*3 - 513.6), "Pulsate",  40);
+        ct1 = new CellStage(st1, (int) (Gdx.graphics.getWidth()/4*1.25), Ships.y-212, "Pulsate",  40);
+        ct1.img.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ShShow=new ShipShow(skin.getRegion("1"),200,200,200,200, ct1.name,ct1.price,500,20,100);
+                game.setScreen(ShShow);
+
+            }
+        });
         //place for 'Bat' ship
         st2 = new Button.ButtonStyle();
         st2.up = skin.getDrawable("Bat");
         st2.down = skin.getDrawable("Bat");
-        ct2 = new CellStage(st2, (int) camera.position.x/400+15, (int) (camera.position.y*3 - 735), "Bat",  200);
+        ct2 = new CellStage(st2, ct1.x, (int) (ct1.y-ct1.img.getHeight()-Gdx.graphics.getHeight()/360), "Bat",  200);
+        ct2.img.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+               // game.setScreen(ShList2);
+
+            }
+        });
         //place for 'Dakkar' ship
         st3 = new Button.ButtonStyle();
         st3.up = skin.getDrawable("Dakkar");
         st3.down = skin.getDrawable("Dakkar");
-        ct3 = new CellStage(st3, (int) (ct1.x + ct1.img.getWidth())+1, ct2.y , "Dakkar",  280);
+        ct3 = new CellStage(st3, ct1.x , (int) (ct2.y-ct1.img.getHeight()-Gdx.graphics.getHeight()/360), "Dakkar",  280);
+        ct3.img.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+
+            }
+        });
         //place for 'Mite' ship
         st4 = new Button.ButtonStyle();
         st4.up = skin.getDrawable("Mite");
         st4.down = skin.getDrawable("Mite");
-        ct4 = new CellStage(st4, (int) (ct1.x + ct1.img.getWidth())+1, (int) (camera.position.y*3 - 293), "Mite",  145);
+        ct4 = new CellStage(st4, ct1.x , (int) (ct3.y-ct1.img.getHeight()-Gdx.graphics.getHeight()/360), "Mite",  145);
+        ct4.img.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+
+            }
+        });
         //place for 'Hunter' ship
         st5 = new Button.ButtonStyle();
         st5.up = skin.getDrawable("Hunter");
         st5.down = skin.getDrawable("Hunter");
-        ct5 = new CellStage(st5, ct3.x, ct1.y, "Hunter",  190);
-        ct5.addActor(InformationFrame);
+        ct5 = new CellStage(st5, ct1.x, (int) (ct4.y-ct1.img.getHeight()-Gdx.graphics.getHeight()/360), "Hunter",  190);
         ct5.addActor(Money);
+        ct5.img.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+
+            }
+        });
+
+
 
 
         // join
@@ -300,8 +355,8 @@ public class ShopList implements Screen {
         in.addProcessor(Go);
         in.addProcessor(Prev);
         in.addProcessor(Guns);
-        //  in.addProcessor(ct1);
-        // in.addProcessor(ct2);
+          in.addProcessor(ct1);
+         in.addProcessor(ct2);
         // in.addProcessor(ct3);
         // in.addProcessor(ct4);
         // in.addProcessor(ct5);
@@ -310,50 +365,22 @@ public class ShopList implements Screen {
         font=textManager.fontInitialize(Color.BLACK,40);
     }
     public void MoveOld(CellStage ct,int dir){
-        for (int i=0;i<650;i++){
+
              if (dir<0)
-                ct.x-=2;
+                ct.y-=ct.img.getImageHeight()+Gdx.graphics.getHeight()/360+3;
             else
-                ct.x+=2;
-            ct.btn.setX(ct.x);
-            ct.img.setX(ct.x-15);
+                ct.y+=ct.img.getImageHeight()+Gdx.graphics.getHeight()/360+3;
+            ct.btn.setY(ct.y);
+            ct.img.setY(ct.y-15);
 
 
 
 
-        }
+
 
 
     }
-    public void MoveButton(StageForButton ct,int dir){
-        for (int i=0;i<650;i++){
-            if (dir<0)
-            ct.x-=2;
-            else
-                ct.x+=2;
-            ct.btn.setX(ct.x);
 
-
-
-
-        }
-
-    }
-
-    public void MoveImage(Image img,int Starterx,int dir){
-        img.setX(Starterx);
-        for (int i=0;i<650;i++){
-
-
-            if (dir<0)
-            Starterx-=2;
-            else
-                Starterx+=2;
-            img.setX(Starterx);
-
-        }
-
-    }
 
     static class CellStage extends Stage {
         Button btn;
@@ -386,8 +413,14 @@ public class ShopList implements Screen {
     static class StageForButton extends Stage {
         Button btn;
         int x;
+        int y;
+        int width;
+        int height;
 
         public StageForButton(Button.ButtonStyle btnstyle, int x, int y,int width,int height) {
+            this.height=height;
+            this.width=width;
+            this.y=y;
             this.x=x;
             btn = new Button(btnstyle);
             btn.setBounds(x, y, width, height);
