@@ -135,7 +135,7 @@ public class PreShop implements Screen {
 
 
     }
-    static class StageForButton extends Stage {
+   class StageForButton extends Stage {
         Button btn;
 
         public StageForButton(Button.ButtonStyle btnstyle, int x, int y) {

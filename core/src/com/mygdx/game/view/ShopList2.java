@@ -2,6 +2,7 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -17,13 +18,13 @@ import com.mygdx.game.utils.TextManager;
 //This screen is used to show Shop of Guns
 public class ShopList2 implements Screen{
     Game game;
-    Button.ButtonStyle Gstyle,Sstyle;
-    StageForButton Guns,Ships;
+    Button.ButtonStyle Gstyle,Sstyle,BaStyle;
+    StageForButton Guns,Ships,Back;
     SpriteBatch batch;
     TextureAtlas textureAtlas;
     TextManager textManager;
     Skin skin;
-    Screen ShList;
+    Screen ShList,menu;
     public ShopList2(Game game, SpriteBatch batch, TextureAtlas textureAtlas){
         this.game=game;
         this.batch = batch;
@@ -38,6 +39,7 @@ public class ShopList2 implements Screen{
         skin=new Skin();
         batch=new SpriteBatch();
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
+        menu=new MainMenu(batch,game);
         Gstyle = new Button.ButtonStyle();
         Gstyle.up = skin.getDrawable("SelectGun");
         Gstyle.down = skin.getDrawable("SelectGun");
@@ -64,7 +66,23 @@ public class ShopList2 implements Screen{
 
             }
         });
-        Gdx.input.setInputProcessor(Ships);
+        BaStyle = new Button.ButtonStyle();
+        BaStyle.up = skin.getDrawable("Back-up");
+        BaStyle.down = skin.getDrawable("Back-down");
+        Back = new StageForButton(BaStyle, Gdx.graphics.getHeight()/Gdx.graphics.getHeight(), Gdx.graphics.getWidth()/Gdx.graphics.getWidth(), (int) (Gdx.graphics.getWidth()/8.8), (int) (Gdx.graphics.getHeight()/4.96));
+        System.out.println("Clicker");
+        Back.btn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+                game.setScreen(menu);
+
+            }
+        });
+        InputMultiplexer in=new InputMultiplexer();
+        in.addProcessor(Ships);
+        in.addProcessor(Back);
+        Gdx.input.setInputProcessor(in);
     }
 
     @Override
@@ -77,7 +95,8 @@ public class ShopList2 implements Screen{
         Guns.draw();
         Ships.act(delta);
         Ships.draw();
-
+        Back.act(delta);
+        Back.draw();
         batch.begin();
         batch.end();
 
@@ -122,6 +141,16 @@ public class ShopList2 implements Screen{
 
             btn = new Button(btnstyle);
             btn.setBounds(x, y, Gdx.graphics.getWidth()/2, 50);
+
+
+
+
+            addActor(btn);
+        }
+        public StageForButton(Button.ButtonStyle btnstyle, int x, int y,int width,int height) {
+
+            btn = new Button(btnstyle);
+            btn.setBounds(x, y, width, height);
 
 
 
