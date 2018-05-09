@@ -1,187 +1,195 @@
 
 TexturePack.png
+size: 2048,512
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
-SelectGun
+1
   rotate: false
-  xy: 1, 913
-  size: 400, 50
-  orig: 400, 50
-  offset: 0, 0
-  index: -1
-SelectShip
-  rotate: false
-  xy: 1, 861
-  size: 400, 50
-  orig: 400, 50
-  offset: 0, 0
-  index: -1
-UnSelectGun
-  rotate: false
-  xy: 403, 913
-  size: 400, 50
-  orig: 400, 50
-  offset: 0, 0
-  index: -1
-UnSelectShip
-  rotate: false
-  xy: 1, 809
-  size: 400, 50
-  orig: 400, 50
+  xy: 1930, 360
+  size: 100, 105
+  orig: 100, 105
   offset: 0, 0
   index: -1
 Angar-down
   rotate: false
-  xy: 1, 607
+  xy: 1526, 265
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Angar-up
   rotate: false
-  xy: 1, 405
+  xy: 1122, 265
   size: 200, 200
   orig: 200, 200
-  offset: 0, 0
-  index: -1
-Go-down
-  rotate: false
-  xy: 1, 203
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Go-up
-  rotate: false
-  xy: 1, 1
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Money
-  rotate: false
-  xy: 203, 607
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Shop2
-  rotate: false
-  xy: 203, 607
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Prev-down
-  rotate: false
-  xy: 203, 405
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Prev-up
-  rotate: false
-  xy: 203, 203
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Shop-down
-  rotate: false
-  xy: 203, 1
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Frame
-  rotate: false
-  xy: 403, 810
-  size: 200, 101
-  orig: 200, 101
-  offset: 0, 0
-  index: -1
-Shop-up
-  rotate: false
-  xy: 405, 608
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Start-down
-  rotate: false
-  xy: 405, 406
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Start-up
-  rotate: false
-  xy: 405, 204
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-1
-  rotate: false
-  xy: 405, 97
-  size: 100, 105
-  orig: 100, 105
-  offset: 0, 0
-  index: -1
-Dakkar
-  rotate: false
-  xy: 507, 98
-  size: 100, 104
-  orig: 100, 104
   offset: 0, 0
   index: -1
 Back-down
   rotate: false
-  xy: 605, 811
+  xy: 1830, 163
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 Back-up
   rotate: false
-  xy: 607, 709
+  xy: 204, 3
   size: 100, 100
   orig: 100, 100
-  offset: 0, 0
-  index: -1
-Dj1p2
-  rotate: false
-  xy: 607, 607
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-Mite
-  rotate: false
-  xy: 607, 506
-  size: 100, 99
-  orig: 100, 99
-  offset: 0, 0
-  index: -1
-Hunter
-  rotate: false
-  xy: 607, 407
-  size: 100, 97
-  orig: 100, 97
   offset: 0, 0
   index: -1
 Bat
   rotate: false
-  xy: 405, 1
+  xy: 1830, 67
   size: 100, 94
   orig: 100, 94
   offset: 0, 0
   index: -1
+ClassicSpace
+  rotate: false
+  xy: 2, 209
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
+Dakkar
+  rotate: false
+  xy: 1728, 159
+  size: 100, 104
+  orig: 100, 104
+  offset: 0, 0
+  index: -1
 Dj1p1
   rotate: false
-  xy: 507, 23
+  xy: 1930, 285
   size: 79, 73
   orig: 79, 73
+  offset: 0, 0
+  index: -1
+Dj1p2
+  rotate: false
+  xy: 404, 107
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Frame
+  rotate: false
+  xy: 2, 2
+  size: 200, 101
+  orig: 200, 101
+  offset: 0, 0
+  index: -1
+Go-down
+  rotate: false
+  xy: 1324, 265
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Go-up
+  rotate: false
+  xy: 920, 265
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Hunter
+  rotate: false
+  xy: 1728, 60
+  size: 100, 97
+  orig: 100, 97
+  offset: 0, 0
+  index: -1
+Mite
+  rotate: false
+  xy: 306, 4
+  size: 100, 99
+  orig: 100, 99
+  offset: 0, 0
+  index: -1
+Prev-down
+  rotate: false
+  xy: 1324, 63
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Prev-up
+  rotate: false
+  xy: 1122, 63
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+SelectGun
+  rotate: false
+  xy: 2, 105
+  size: 400, 50
+  orig: 400, 50
+  offset: 0, 0
+  index: -1
+SelectShip
+  rotate: false
+  xy: 516, 415
+  size: 400, 50
+  orig: 400, 50
+  offset: 0, 0
+  index: -1
+Shop-down
+  rotate: false
+  xy: 516, 161
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Shop-up
+  rotate: false
+  xy: 718, 161
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Shop2
+  rotate: false
+  xy: 1526, 63
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Money
+  rotate: false
+  xy: 1526, 63
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Start-down
+  rotate: false
+  xy: 920, 63
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Start-up
+  rotate: false
+  xy: 1728, 265
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+UnSelectGun
+  rotate: false
+  xy: 516, 363
+  size: 400, 50
+  orig: 400, 50
+  offset: 0, 0
+  index: -1
+UnSelectShip
+  rotate: false
+  xy: 2, 157
+  size: 400, 50
+  orig: 400, 50
   offset: 0, 0
   index: -1
