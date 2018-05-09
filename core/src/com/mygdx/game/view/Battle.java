@@ -8,22 +8,24 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.control.BattleProcessor;
 import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Coord;
-import com.mygdx.game.model.Mite;
+import com.mygdx.game.model.Map;
+import com.mygdx.game.model.Ships.Bat;
+import com.mygdx.game.model.Ships.Dakkar;
+import com.mygdx.game.model.Ships.Hunter;
+import com.mygdx.game.model.Ships.Mite;
 import com.mygdx.game.model.Player;
 
+import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.Joystick;
 import com.mygdx.game.utils.TextManager;
-import com.mygdx.game.utils.Vector2D;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,34 +49,39 @@ public class Battle implements Screen {
     servApi request;
     OrthographicCamera camera;
     int counter;
-    BitmapFont blueFont;
+    BitmapFont redFont;
     BattleStatus battleStatus;
     InputProcessor processor;
-    TextureRegion background;
+
     public static float camX;
     public static float camY;
     public static float delta;
     public static float widthCamera;
     public static float heightCamera;
+    int mapWidth;
+    int mapHeight;
     public Joystick joystick;
     final public float AspectRatio;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
-
+    Map classicMap;
     public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,BattleStatus battleStatus) {
         this.batch = batch;
         this.game = game;
         this.textureAtlas = textureAtlas;
         this.battleStatus=battleStatus;
         AspectRatio=(float)Gdx.graphics.getWidth()/Gdx.graphics.getHeight();
+        mapWidth=1000;
+        mapHeight=600;
+        widthCamera=220;
+        heightCamera=220/AspectRatio;
     }
 
     @Override
     public void show() {
-        background=new TextureRegion(textureAtlas.findRegion("ClassicSpace"));
-        player = new Player("unk", 1000, new Mite(textureAtlas.findRegion("Mite"), 15, 15));
+        classicMap=new Map(batch,textureAtlas.findRegion("ClassicSpace"),mapWidth,mapHeight);
+        player = new Player("unk", 1000, new Bat(textureAtlas, 150, 300));
         player.generateName();
-        widthCamera=220;
-        heightCamera=220/AspectRatio;
+
         camera=new OrthographicCamera(widthCamera,heightCamera);
         camera.position.set(new Vector3(player.getShip().getX(),player.getShip().getX(),0));
         coord = new Coord(20, 30);
@@ -82,7 +89,7 @@ public class Battle implements Screen {
         joystick=new Joystick(batch,0,10,textureAtlas.findRegion("Dj1p1"),textureAtlas.findRegion("Dj1p2"));
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        blueFont=textManager.fontInitialize(Color.BLUE,30);
+        redFont=textManager.fontInitialize(Color.RED,0.1f);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -119,12 +126,15 @@ public class Battle implements Screen {
         //System.out.println(" SpeedX: "+player.getShip().getSpeedX()+"SpeedY: "+player.getShip().getSpeedY());
 
         batch.setProjectionMatrix(camera.combined);
-        batch.begin();
-        batch.draw(background,0,0,500,250);
-        batch.end();
+        classicMap.draw();
         player.getShip().setMovementVector(joystick.getVector());
-        player.getShip().move();
+        player.getShip().move(classicMap);
         player.getShip().draw(batch);
+        if(player.getShip().getIsShipInRedZone()){
+            batch.begin();
+            batch.draw(textureAtlas.findRegion("RedZoneAttention"),camX-widthCamera/9,camY-heightCamera/2,70,20);
+            batch.end();
+        }
         joystick.update(BattleProcessor.offsetX,BattleProcessor.offsetY,BattleProcessor.offsetDynamicX,BattleProcessor.offsetDynamicY);//компенсирует смещение камеры смещением джойстика
 
         joystick.draw();

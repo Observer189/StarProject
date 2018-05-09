@@ -389,7 +389,7 @@ public class ShopList implements Screen {
         in.addProcessor(Back);
 
         Gdx.input.setInputProcessor(in);
-        font = textManager.fontInitialize(Color.BLACK, 40);
+        font = textManager.fontInitialize(Color.BLACK, 1);
     }
 
     public void MoveOld(CellStage ct, int dir) {

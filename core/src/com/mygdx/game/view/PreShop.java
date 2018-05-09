@@ -42,7 +42,7 @@ public class PreShop implements Screen {
         textManager=new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         skin=new Skin();
         batch=new SpriteBatch();
-        font=textManager.fontInitialize(Color.BLACK,40);
+        font=textManager.fontInitialize(Color.BLACK,1f);
 
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
         ShList=new ShopList(game,batch,textureAtlas);

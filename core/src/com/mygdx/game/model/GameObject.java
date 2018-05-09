@@ -14,6 +14,7 @@ import java.awt.Image;
 public abstract class GameObject {
     Polygon bounds;
     Sprite sprite;
+    String name;
     private float width;
     private float height;
     public GameObject(TextureRegion textureRegion, float x,float y,float width,float height)

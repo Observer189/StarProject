@@ -1,194 +1,208 @@
 
 TexturePack.png
-size: 2048,512
+size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 1
   rotate: false
-  xy: 1930, 360
+  xy: 1924, 1941
   size: 100, 105
   orig: 100, 105
   offset: 0, 0
   index: -1
 Angar-down
   rotate: false
-  xy: 1526, 265
+  xy: 406, 665
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Angar-up
   rotate: false
-  xy: 1122, 265
+  xy: 204, 204
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Back-down
   rotate: false
-  xy: 1830, 163
+  xy: 608, 354
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 Back-up
   rotate: false
-  xy: 204, 3
+  xy: 1924, 1839
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 Bat
   rotate: false
-  xy: 1830, 67
+  xy: 608, 157
   size: 100, 94
   orig: 100, 94
   offset: 0, 0
   index: -1
+Buy-down
+  rotate: false
+  xy: 2, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+Buy-up
+  rotate: false
+  xy: 2, 406
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
 ClassicSpace
   rotate: false
-  xy: 2, 209
-  size: 512, 256
-  orig: 512, 256
+  xy: 2, 966
+  size: 1920, 1080
+  orig: 1920, 1080
   offset: 0, 0
   index: -1
 Dakkar
   rotate: false
-  xy: 1728, 159
+  xy: 608, 456
   size: 100, 104
   orig: 100, 104
   offset: 0, 0
   index: -1
 Dj1p1
   rotate: false
-  xy: 1930, 285
+  xy: 710, 487
   size: 79, 73
   orig: 79, 73
   offset: 0, 0
   index: -1
 Dj1p2
   rotate: false
-  xy: 404, 107
+  xy: 1924, 1737
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 Frame
   rotate: false
-  xy: 2, 2
+  xy: 608, 562
   size: 200, 101
   orig: 200, 101
   offset: 0, 0
   index: -1
 Go-down
   rotate: false
-  xy: 1324, 265
+  xy: 204, 2
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Go-up
   rotate: false
-  xy: 920, 265
+  xy: 204, 406
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Hunter
   rotate: false
-  xy: 1728, 60
+  xy: 1924, 1638
   size: 100, 97
   orig: 100, 97
   offset: 0, 0
   index: -1
 Mite
   rotate: false
-  xy: 306, 4
+  xy: 608, 253
   size: 100, 99
   orig: 100, 99
   offset: 0, 0
   index: -1
+Money
+  rotate: false
+  xy: 2, 608
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
 Prev-down
   rotate: false
-  xy: 1324, 63
+  xy: 608, 665
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Prev-up
   rotate: false
-  xy: 1122, 63
+  xy: 406, 59
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
+RedZoneAttention
+  rotate: false
+  xy: 404, 867
+  size: 357, 45
+  orig: 357, 45
+  offset: 0, 0
+  index: -1
 SelectGun
   rotate: false
-  xy: 2, 105
+  xy: 2, 810
   size: 400, 50
   orig: 400, 50
   offset: 0, 0
   index: -1
 SelectShip
   rotate: false
-  xy: 516, 415
+  xy: 404, 914
   size: 400, 50
   orig: 400, 50
   offset: 0, 0
   index: -1
 Shop-down
   rotate: false
-  xy: 516, 161
+  xy: 2, 2
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Shop-up
   rotate: false
-  xy: 718, 161
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Shop2
-  rotate: false
-  xy: 1526, 63
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Money
-  rotate: false
-  xy: 1526, 63
+  xy: 204, 608
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Start-down
   rotate: false
-  xy: 920, 63
+  xy: 406, 261
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Start-up
   rotate: false
-  xy: 1728, 265
+  xy: 406, 463
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 UnSelectGun
   rotate: false
-  xy: 516, 363
+  xy: 2, 862
   size: 400, 50
   orig: 400, 50
   offset: 0, 0
   index: -1
 UnSelectShip
   rotate: false
-  xy: 2, 157
+  xy: 2, 914
   size: 400, 50
   orig: 400, 50
   offset: 0, 0

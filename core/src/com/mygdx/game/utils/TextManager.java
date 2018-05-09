@@ -27,16 +27,18 @@ public class TextManager {
 
 
     }
-    public BitmapFont fontInitialize(Color color, int size)
+    public BitmapFont fontInitialize(Color color, float scale)
     {
         BitmapFont font=new BitmapFont();
         fontParameter.color = color;
-        fontParameter.size=size;
+        fontParameter.size=50;
+
         font=gen.generateFont(fontParameter);
+        font.getData().setScale(scale);
         return font;
     }
 
-    public void displayMessage(SpriteBatch batch,BitmapFont font,String str,int x,int y){
+    public void displayMessage(SpriteBatch batch,BitmapFont font,String str,float x,float y){
 
 
         batch.begin();

@@ -90,8 +90,8 @@ public class ShipShow extends Ship implements Screen {
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         ShList=new ShopList(game,batch,textureAtlas);
-        font = textManager.fontInitialize(Color.BLACK, 50);
-        font1 = textManager.fontInitialize(Color.WHITE, 31);
+        font = textManager.fontInitialize(Color.BLACK, 1);
+        font1 = textManager.fontInitialize(Color.WHITE, 1);
         Toast.ToastFactory toastFactory = new Toast.ToastFactory.Builder()
                 .font(font1)
                 .build();
