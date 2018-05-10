@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.control.BattleProcessor;
 import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Coord;
@@ -78,6 +79,7 @@ public class Battle implements Screen {
 
     @Override
     public void show() {
+
         classicMap=new Map(batch,textureAtlas.findRegion("ClassicSpace"),mapWidth,mapHeight);
         player = new Player("unk", 1000, new Hunter(textureAtlas, 150, 300));
         player.generateName();

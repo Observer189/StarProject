@@ -17,8 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-
-
 import com.mygdx.game.model.Ship;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Toast;
@@ -91,7 +89,7 @@ public class ShipShow extends Ship implements Screen {
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         ShList=new ShopList(game,batch,textureAtlas);
         font = textManager.fontInitialize(Color.BLACK, 1);
-        font1 = textManager.fontInitialize(Color.WHITE, 1);
+        font1 = textManager.fontInitialize(Color.WHITE, (float) 0.62);
         Toast.ToastFactory toastFactory = new Toast.ToastFactory.Builder()
                 .font(font1)
                 .build();

@@ -6,25 +6,15 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.async.AsyncTask;
-import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.utils.TextManager;
 
@@ -43,7 +33,7 @@ public class MainMenu implements Screen {
     TextManager textManager;
     public Button.ButtonStyle p_button, sh_button, ang_button;
     Screen CTB;//ConnectToBattle
-    Screen PreShop;
+    Screen PreShop,Angar;
     BitmapFont font;
 
 
@@ -61,9 +51,9 @@ public class MainMenu implements Screen {
         batch = new SpriteBatch();
         CTB=new ConnectToBattle(batch,game,textureAtlas,player);
         player=new Player();
-
+        Angar=new Angar(game,batch);
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        font=textManager.fontInitialize(Color.BLACK,1f);
+        font=textManager.fontInitialize(Color.BLACK,1);
         //game.setScreen(battle);
         Skin skin = new Skin();
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
@@ -108,7 +98,7 @@ public class MainMenu implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
-                // game.setScreen();
+                 game.setScreen(Angar);
 
             }
         });
