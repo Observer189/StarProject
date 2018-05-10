@@ -6,28 +6,20 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-
-
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.model.Player;
 import com.mygdx.game.utils.TextManager;
 
 
@@ -389,7 +381,7 @@ public class ShopList implements Screen {
         in.addProcessor(Back);
 
         Gdx.input.setInputProcessor(in);
-        font = textManager.fontInitialize(Color.BLACK, 1);
+        font = textManager.fontInitialize(Color.BLACK, (float) 0.8);
     }
 
     public void MoveOld(CellStage ct, int dir) {
@@ -421,10 +413,10 @@ public class ShopList implements Screen {
 
             this.price = price;
             btn = new Button(btnstyle);
-            btn.setBounds(x, y, 200, 200);
+            btn.setBounds(x, y, (float) (Gdx.graphics.getHeight()/3.6), (float) (Gdx.graphics.getHeight()/3.6));
             img = new Image(skin.getDrawable("Frame"));
             img.setPosition(x - 15, y - 10);
-            img.setSize(480, 220);
+            img.setSize((float) (Gdx.graphics.getWidth()/2.7), (float) (Gdx.graphics.getHeight()/3.3));
 
 
             addActor(btn);

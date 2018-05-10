@@ -33,7 +33,7 @@ public class ConnectToBattle implements Screen {
     TextureAtlas textureAtlas;
     servApi request;
     BattleStatus battleStatus;
-    Player player;
+    public static Player player;
     TextManager textManager;
     int counter;
     boolean getBattleIsFinished;
