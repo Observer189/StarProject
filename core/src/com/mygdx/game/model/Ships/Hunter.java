@@ -15,6 +15,6 @@ public class Hunter extends Ship {
         super.draw(batch);
     }
     public Hunter(TextureAtlas textureAtlas, float x, float y) {
-        super(textureAtlas.findRegion("Hunter"), x, y, 15, 15, "Hunter", 70000, 700, 0.5f, 45);
+        super(textureAtlas.findRegion("Hunter"), x, y, 25, 25, "Hunter", 70000, 700, 0.5f, 45);
     }
 }

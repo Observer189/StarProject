@@ -72,4 +72,5 @@ public abstract class GameObject {
     public void setWidth(float width) {
         this.width = width;
     }
+
 }

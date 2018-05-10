@@ -19,8 +19,8 @@ public class Joystick {
     Vector2 vector;
     public Joystick(SpriteBatch batch,float x, float y,TextureRegion staticRegion,TextureRegion dynamicRegion)
     {
-       staticPart=new Stick(batch,x,y,10,10,staticRegion);
-       dynamicPart=new Stick(batch,staticPart.centerX-2.5f,staticPart.centerY-2.5f,5,5,dynamicRegion);//установка динамической части в центр статической
+       staticPart=new Stick(batch,x,y,20,20,staticRegion);
+       dynamicPart=new Stick(batch,staticPart.centerX-2.5f,staticPart.centerY-2.5f,10,10,dynamicRegion);//установка динамической части в центр статической
         isActive=false;
         vector = new Vector2(dynamicPart.centerX - staticPart.centerX, dynamicPart.centerY - staticPart.centerY);
     }

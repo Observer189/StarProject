@@ -79,7 +79,7 @@ public class Battle implements Screen {
     @Override
     public void show() {
         classicMap=new Map(batch,textureAtlas.findRegion("ClassicSpace"),mapWidth,mapHeight);
-        player = new Player("unk", 1000, new Bat(textureAtlas, 150, 300));
+        player = new Player("unk", 1000, new Hunter(textureAtlas, 150, 300));
         player.generateName();
 
         camera=new OrthographicCamera(widthCamera,heightCamera);

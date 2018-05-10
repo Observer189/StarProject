@@ -13,14 +13,14 @@ repeat: none
   index: -1
 Angar-down
   rotate: false
-  xy: 406, 665
+  xy: 204, 608
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Angar-up
   rotate: false
-  xy: 204, 204
+  xy: 2, 204
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
@@ -34,7 +34,7 @@ Back-down
   index: -1
 Back-up
   rotate: false
-  xy: 1924, 1839
+  xy: 1924, 1737
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
@@ -48,14 +48,14 @@ Bat
   index: -1
 Buy-down
   rotate: false
-  xy: 2, 204
+  xy: 608, 665
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Buy-up
   rotate: false
-  xy: 2, 406
+  xy: 406, 261
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
@@ -76,14 +76,14 @@ Dakkar
   index: -1
 Dj1p1
   rotate: false
-  xy: 710, 487
+  xy: 1924, 1563
   size: 79, 73
   orig: 79, 73
   offset: 0, 0
   index: -1
 Dj1p2
   rotate: false
-  xy: 1924, 1737
+  xy: 1924, 1839
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
@@ -97,16 +97,30 @@ Frame
   index: -1
 Go-down
   rotate: false
-  xy: 204, 2
+  xy: 2, 2
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Go-up
   rotate: false
-  xy: 204, 406
+  xy: 2, 406
   size: 200, 200
   orig: 200, 200
+  offset: 0, 0
+  index: -1
+GreenLaser
+  rotate: false
+  xy: 710, 432
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+GreenLaserAmmo
+  rotate: false
+  xy: 406, 25
+  size: 8, 32
+  orig: 8, 32
   offset: 0, 0
   index: -1
 Hunter
@@ -125,21 +139,21 @@ Mite
   index: -1
 Money
   rotate: false
-  xy: 2, 608
+  xy: 406, 463
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Prev-down
   rotate: false
-  xy: 608, 665
+  xy: 406, 665
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Prev-up
   rotate: false
-  xy: 406, 59
+  xy: 204, 2
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
@@ -153,56 +167,56 @@ RedZoneAttention
   index: -1
 SelectGun
   rotate: false
-  xy: 2, 810
+  xy: 404, 914
   size: 400, 50
   orig: 400, 50
   offset: 0, 0
   index: -1
 SelectShip
   rotate: false
-  xy: 404, 914
+  xy: 2, 914
   size: 400, 50
   orig: 400, 50
   offset: 0, 0
   index: -1
 Shop-down
   rotate: false
-  xy: 2, 2
+  xy: 2, 608
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Shop-up
   rotate: false
-  xy: 204, 608
+  xy: 406, 59
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Start-down
   rotate: false
-  xy: 406, 261
+  xy: 204, 204
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Start-up
   rotate: false
-  xy: 406, 463
+  xy: 204, 406
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 UnSelectGun
   rotate: false
-  xy: 2, 862
+  xy: 2, 810
   size: 400, 50
   orig: 400, 50
   offset: 0, 0
   index: -1
 UnSelectShip
   rotate: false
-  xy: 2, 914
+  xy: 2, 862
   size: 400, 50
   orig: 400, 50
   offset: 0, 0

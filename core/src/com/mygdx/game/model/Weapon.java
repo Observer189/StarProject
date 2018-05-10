@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class Weapon extends GameObject {
     ArrayList<Ammo> ammos;
-    public Weapon(TextureRegion textureRegion, float x, float y, float width, float height)
+    public Weapon(TextureRegion weaponRegion, float x, float y, float width, float height)
     {
-        super(textureRegion, x, y, width, height);
+        super(weaponRegion, x, y, width, height);
     }
     public void shot()
     {
@@ -20,9 +20,13 @@ public class Weapon extends GameObject {
     }
     public class Ammo extends GameObject
     {
-
-        public Ammo(TextureRegion textureRegion, float x, float y, float width, float height) {
+        private float speed;
+        public Ammo(TextureRegion textureRegion, float x, float y, float width, float height,float speed) {
             super(textureRegion, x, y, width, height);
+        }
+        public void move()
+        {
+            bounds.setPosition(bounds.getX()+speed,bounds.getY());
         }
     }
 }
