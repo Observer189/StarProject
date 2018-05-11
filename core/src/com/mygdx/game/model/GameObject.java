@@ -28,6 +28,9 @@ public abstract class GameObject {
         bounds=new Polygon(new float[]{0.f,0.f,width,0.f,width,height,0.f,height});
         bounds.setPosition(x,y);
         bounds.setOrigin(width/2,height/2);
+
+        this.width=width;
+        this.height=height;
     }
 
 
@@ -62,16 +65,10 @@ public abstract class GameObject {
     }
 
     public float getWidth() {
-        return width;
+        return width ;
     }
 
-    public void setHeight(float height) {
-        this.height = height;
-    }
 
-    public void setWidth(float width) {
-        this.width = width;
-    }
     public float getRotation()
     {
         return bounds.getRotation();

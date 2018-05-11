@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.control.BattleProcessor;
 import com.mygdx.game.model.BattleStatus;
@@ -61,12 +62,16 @@ public class Battle implements Screen {
     public static float delta;
     public static float widthCamera;
     public static float heightCamera;
+    private Integer currentExplosionFrame;
+    private int explosionCounter;
+    TextureRegion explosionRegion;
     int mapWidth;
     int mapHeight;
     public Joystick joystick;
     final public float AspectRatio;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
     Map classicMap;
+    Screen endBattle;
     public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,BattleStatus battleStatus) {
         this.batch = batch;
         this.game = game;
@@ -77,13 +82,20 @@ public class Battle implements Screen {
         mapHeight=600;
         widthCamera=220;
         heightCamera=220/AspectRatio;
+        currentExplosionFrame=0;
+        explosionCounter=100;
     }
 
     @Override
     public void show() {
+
+
+
         classicMap=new Map(batch,textureAtlas.findRegion("ClassicSpace"),mapWidth,mapHeight);
         player = new Player("unk", 1000, new Pulsate(textureAtlas, 150, 300));
         player.generateName();
+
+        explosionRegion=new TextureRegion(textureAtlas.findRegion("Explosion6"));
 
         camera=new OrthographicCamera(widthCamera,heightCamera);
         camera.position.set(new Vector3(player.getShip().getX(),player.getShip().getX(),0));
@@ -102,6 +114,7 @@ public class Battle implements Screen {
         Gdx.input.setInputProcessor(processor);
         player.getShip().setRotation(270);
 
+        endBattle=new EndBattle(player);
 
     }
 
@@ -133,15 +146,22 @@ public class Battle implements Screen {
         player.getShip().setMovementVector(joystick.getVector());
         player.getShip().move(classicMap);
         player.getShip().shot();
-        player.getShip().draw(batch);
+        player.getShip().draw(batch,textureAtlas);
         if(player.getShip().getIsShipInRedZone()){
             batch.begin();
             batch.draw(textureAtlas.findRegion("RedZoneAttention"),camX-widthCamera/9,camY-heightCamera/2,70,20);
             batch.end();
         }
-        joystick.update(BattleProcessor.offsetX,BattleProcessor.offsetY,BattleProcessor.offsetDynamicX,BattleProcessor.offsetDynamicY);//компенсирует смещение камеры смещением джойстика
 
-        joystick.draw();
+        if(player.getShip().getCurrentHp()>0) {
+            joystick.update(BattleProcessor.offsetX, BattleProcessor.offsetY, BattleProcessor.offsetDynamicX, BattleProcessor.offsetDynamicY);//компенсирует смещение камеры смещением джойстика
+            joystick.draw();
+        }
+
+        if(!player.getShip().getIsAlive())
+        {
+            game.setScreen(endBattle);
+        }
 
 
     }

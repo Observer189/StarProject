@@ -1,5 +1,6 @@
 package com.mygdx.game.model;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -18,12 +19,16 @@ public class Ship extends GameObject {
 
     int cost;
     private boolean isShipInRedZone;
+    private boolean isAlive;
     private int maxHp;
     private int currentHp;
     private float speedX;
     private float speedY;
     private float velocity;
     private float maxSpeed;
+    private Integer currentExplosionFrame;
+    private int explosionCounter;
+    TextureRegion explosionRegion;
     Vector2 movementVector;
     FixingPoint[] fixingPoints;
 
@@ -37,6 +42,10 @@ public class Ship extends GameObject {
         this.maxSpeed = maxSpeed;
         this.name = name;
         isShipInRedZone = false;
+        isAlive=true;
+
+        currentExplosionFrame=0;
+        explosionCounter=7;
         movementVector = new Vector2(0, 0);
         this.fixingPoints = fixingPoints;
     }
@@ -49,17 +58,43 @@ public class Ship extends GameObject {
         this.fixingPoints = fixingPoints;
     }
 
-    @Override
-    public void draw(SpriteBatch batch) {
-        for(int i=0;i<fixingPoints.length;i++)
-        {
-            fixingPoints[i].draw(batch);
-        }
-        super.draw(batch);
 
+    public void draw(SpriteBatch batch,TextureAtlas textureAtlas) {
+        if (currentHp>0) {
+            for (int i = 0; i < fixingPoints.length; i++) {
+                fixingPoints[i].draw(batch);
+            }
+
+            super.draw(batch);
+
+        } else
+        {
+            destructShip(batch,textureAtlas);
+        }
 
 
     }
+    public void destructShip(SpriteBatch batch,TextureAtlas textureAtlas)
+    {
+        if(currentExplosionFrame<=17) {
+            if (explosionCounter == 7) {
+                currentExplosionFrame++;
+                explosionRegion = textureAtlas.findRegion("Explosion" + currentExplosionFrame.toString());
+                explosionCounter = 0;
+            }
+            batch.begin();
+            batch.draw(explosionRegion, getX(), getY(), getWidth(), getHeight());
+            batch.end();
+            explosionCounter++;
+        }
+        else
+        {
+            isAlive=false;
+        }
+    }
+
+
+
     public void shot()
     {
         for(int i=0;i<fixingPoints.length;i++)
@@ -69,24 +104,30 @@ public class Ship extends GameObject {
     }
 
     public void move(Map map) {
-        speedX = speedX + velocity * movementVector.x;
-        speedY = speedY + velocity * movementVector.y;
-        //speedX=2;
-        //speedY=2;
-        if (speedX > maxSpeed) speedX = maxSpeed;
-        if (speedX < -maxSpeed) speedX = -maxSpeed;
-        if (speedY > maxSpeed) speedY = maxSpeed;
-        if (speedY < -maxSpeed) speedY = -maxSpeed;
-        bounds.setPosition(bounds.getX() + speedX * Battle.delta, bounds.getY() + speedY * Battle.delta);
+        if(currentHp>0) {
+            speedX = speedX + velocity * movementVector.x;
+            speedY = speedY + velocity * movementVector.y;
+            //speedX=2;
+            //speedY=2;
+            if (speedX > maxSpeed) speedX = maxSpeed;
+            if (speedX < -maxSpeed) speedX = -maxSpeed;
+            if (speedY > maxSpeed) speedY = maxSpeed;
+            if (speedY < -maxSpeed) speedY = -maxSpeed;
+            bounds.setPosition(bounds.getX() + speedX * Battle.delta, bounds.getY() + speedY * Battle.delta);
 
 
-        if ((bounds.getX() > 0 + map.getWidth() * 0.85) || (bounds.getX() < 0 + map.getWidth() * 0.15) || (bounds.getY() > 0 + map.getHeight() * 0.85) || (bounds.getY() < 0 + map.getHeight() * 0.15)) {
-            isShipInRedZone = true;
-        } else isShipInRedZone = false;
+            if ((bounds.getX() > 0 + map.getWidth() * 0.85) || (bounds.getX() < 0 + map.getWidth() * 0.15) || (bounds.getY() > 0 + map.getHeight() * 0.85) || (bounds.getY() < 0 + map.getHeight() * 0.15)) {
+                isShipInRedZone = true;
+            } else isShipInRedZone = false;
 
-        for(int i=0;i<fixingPoints.length;i++)
-        {
-            fixingPoints[i].update(this);
+            for (int i = 0; i < fixingPoints.length; i++) {
+                fixingPoints[i].update(this, map);
+            }
+
+            if ((bounds.getX() > 0 + map.getWidth() * 0.95) || (bounds.getX() < 0 + map.getWidth() * 0.05) || (bounds.getY() > 0 + map.getHeight() * 0.95) || (bounds.getY() < 0 + map.getHeight() * 0.05)) {
+                currentHp = 0;
+            }
+
         }
 
     }
@@ -110,5 +151,11 @@ public class Ship extends GameObject {
         return isShipInRedZone;
     }
 
+    public boolean getIsAlive() {
+        return isAlive;
+    }
 
+    public int getCurrentHp() {
+        return currentHp;
+    }
 }
