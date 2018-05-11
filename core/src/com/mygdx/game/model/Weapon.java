@@ -29,14 +29,20 @@ public class Weapon extends GameObject {
     {
 
     }
-    public void update()
+    public void update(Map map)
     {
           if(ammos.size()!=0) {
-              for(Ammo i:ammos)
-              i.move();
+              for(int i=0;i<ammos.size();i++){
+                  ammos.get(i).move();
+
+                  if ((ammos.get(i).getX() > map.getWidth())||(ammos.get(i).getX() < 0)||(ammos.get(i).getY() > map.getHeight())||(ammos.get(i).getY() < 0))
+                      ammos.remove(i);
+
+
+
+              }
           }
-          System.out.println(GreenLaserAmmo.counter);
-        System.out.println(ammos.size());
+
     }
 
     @Override

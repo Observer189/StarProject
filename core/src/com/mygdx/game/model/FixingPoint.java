@@ -27,11 +27,11 @@ public class FixingPoint  {//Точка крепления оружия
         this.weapon.bounds.setPosition(x,y);
 
     }
-    public void update(Ship ship)
+    public void update(Ship ship,Map map)
     {
         this.weapon.setRotation(ship.getRotation());
         this.weapon.setPosition(ship.getX()+offsetX,ship.getY()+offsetY);
-        this.weapon.update();
+        this.weapon.update(map);
     }
     public void shot()
     {
