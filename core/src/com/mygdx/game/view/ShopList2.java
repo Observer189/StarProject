@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.utils.TextManager;
 
 //This screen is used to show Shop of Guns
-/*public class ShopList2 implements Screen{
+public class ShopList2 implements Screen{
     Game game;
     Button.ButtonStyle Gstyle,Sstyle,BaStyle;
     StageForButton Guns,Ships,Back;
@@ -158,4 +158,4 @@ import com.mygdx.game.utils.TextManager;
             addActor(btn);
         }
     }
-}*/
+}

@@ -23,7 +23,7 @@ import com.mygdx.game.model.Ship;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Toast;
 
-/*public class ShipShow extends Ship implements Screen {
+public class ShipShow implements Screen {
     //for drawing
     OrthographicCamera camera;
     SpriteBatch batch;
@@ -37,12 +37,14 @@ import com.mygdx.game.utils.Toast;
     int yt;
     int dyt;
     Boolean MakeToast=false;
+    Ship ship;
     //Buttons
     StageForButton Back, Buy;
     Button.ButtonStyle BaStyle, BuStyle;
     //Sreens
     Screen ShList;
     Toast toast;
+
     //for ship's params
     Image Shipimg;
     String name;
@@ -54,15 +56,9 @@ import com.mygdx.game.utils.Toast;
     float maxSpeed;
 
 
-    public ShipShow(TextureRegion textureRegion, float x, float y, float width, float height, String name, int cost, int maxHp, float velocity, float maxSpeed, Game game) {
-        super(textureRegion, x, y, width, height, name, cost, maxHp, velocity, maxSpeed);
-        this.name = name;
-        this.cost = cost;
-        this.maxHp = maxHp;
+    public ShipShow(Ship ship, Game game) {
+        this.ship=ship;
 
-        this.velocity = velocity;
-        this.maxSpeed = maxSpeed;
-        this.game = game;
     }
 
 
@@ -74,8 +70,8 @@ import com.mygdx.game.utils.Toast;
         stage = new Stage();
         skin = new Skin();
         skin.addRegions(textureAtlas);
-        if (name == "Pulsate") name = "1";
-        Shipimg = new Image(skin.getDrawable(name));
+
+        Shipimg = new Image(ship.getImg());
         Shipimg.setSize((float) (Gdx.graphics.getWidth() / 4.3), (float) (Gdx.graphics.getHeight() / 2.4));
         Shipimg.setPosition(Gdx.graphics.getWidth() / Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / 2 - Shipimg.getHeight() / 2);
         //used for textManager params
@@ -147,12 +143,12 @@ import com.mygdx.game.utils.Toast;
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (name == "1") name = "Pulsate";
 
-        textManager.displayMessage(batch, font, "" + name, xt, yt);
-        textManager.displayMessage(batch, font, "Price: " + cost, xt, yt - dyt);
-        textManager.displayMessage(batch, font, "HP: " + maxHp, xt, yt - dyt * 2);
-        textManager.displayMessage(batch, font, "Speed: " + maxSpeed, xt, yt - dyt * 3);
-        textManager.displayMessage(batch, font, "Velocity: " + velocity, xt, yt - dyt * 4);
-        textManager.displayMessage(batch, font, "Weapons?!?!?!", xt, yt - dyt * 5);
+        textManager.displayMessage(batch, font, "" + ship.getName(), xt, yt);
+        textManager.displayMessage(batch, font, "Price: " + ship.getCost(), xt, yt - dyt);
+        textManager.displayMessage(batch, font, "HP: " + ship.getMaxHp(), xt, yt - dyt * 2);
+        textManager.displayMessage(batch, font, "Speed: " + ship.getMaxHp(), xt, yt - dyt * 3);
+        textManager.displayMessage(batch, font, "Velocity: " + ship.getVelocity(), xt, yt - dyt * 4);
+        textManager.displayMessage(batch, font, "Weapons: "+ship.getFixingPointsDigit(), xt, yt - dyt * 5);
 
         if (MakeToast==true){
             toast.render(Gdx.graphics.getDeltaTime());
@@ -221,4 +217,4 @@ import com.mygdx.game.utils.Toast;
     }
 
 
-}*/
+}

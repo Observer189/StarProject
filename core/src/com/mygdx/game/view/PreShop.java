@@ -17,7 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.utils.TextManager;
 
-/*public class PreShop implements Screen {
+public class PreShop implements Screen {
     StageForButton Guns,Ships;
     Button.ButtonStyle Gstyle,Sstyle;
     Skin skin;
@@ -149,4 +149,4 @@ import com.mygdx.game.utils.TextManager;
             addActor(btn);
         }
     }
-}*/
+}

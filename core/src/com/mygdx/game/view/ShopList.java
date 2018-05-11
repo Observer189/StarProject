@@ -6,33 +6,28 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-
-
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.model.Player;
+import com.mygdx.game.model.Ship;
+import com.mygdx.game.model.Ships.Bat;
+import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.utils.TextManager;
 
 
 //This screen is used to show Shop of Ships
-/*public class ShopList implements Screen {
+public class ShopList implements Screen {
     OrthographicCamera camera;
     Game game;
     Screen ShList2, ShShow,menu;
@@ -93,11 +88,11 @@ import com.mygdx.game.utils.TextManager;
         // batch.setProjectionMatrix(camera.combined);
         // camera.setToOrtho(false, 800, 480);
 
-        // textManager.displayMessage(batch,"Your money: " /*+ Player.getMoney()*/ //,Color.BLACK,ct1.size,20 , Gdx.graphics.getHeight()-20);
+        // textManager.displayMessage(batch,"Your money: " /*+ Player.getMoney()*/ ,Color.BLACK,ct1.size,20 , Gdx.graphics.getHeight()-20);
         //'1' ship
         // textManager.displayMessage(batch,font, ct1.name, ct1.x + 200, 300);
 
-        /*textManager.displayMessage(batch, font, ct1.name, ct1.x + 200, ct1.y + 175);
+        textManager.displayMessage(batch, font, ct1.name, ct1.x + 200, ct1.y + 175);
         textManager.displayMessage(batch, font, "Price: " + ct1.price, ct1.x + 200, ct1.y + 75);
         ct1.act(delta);
         ct1.draw();
@@ -288,15 +283,17 @@ import com.mygdx.game.utils.TextManager;
 
 
         //place for '1' ship
+        final Ship pulsate=new Pulsate(textureAtlas,0,0);
         st1 = new Button.ButtonStyle();
         st1.up = skin.getDrawable("1");
         st1.down = skin.getDrawable("1");
-        ct1 = new CellStage(st1, (int) (Gdx.graphics.getWidth() / 4 * 1.25), Ships.y - 212, "Pulsate", 40);
+        ct1 = new CellStage(st1, (int) (Gdx.graphics.getWidth() / 4 * 1.25), Ships.y - 212, pulsate.getName(), pulsate.getCost());
         ct1.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ShShow = new ShipShow(skin.getRegion("1"), 0, 0, 0, 0, ct1.name, ct1.price, 500, 20, 100, game);
-                System.out.print("LOL DISABLE");
+
+                ShShow = new ShipShow(pulsate,game);
+
                 game.setScreen(ShShow);
 
                 //  Gdx.input.setInputProcessor(null);
@@ -305,6 +302,7 @@ import com.mygdx.game.utils.TextManager;
             }
         });
         //place for 'Bat' ship
+       // Ship bat=new Bat(textureAtlas,0,0);
         st2 = new Button.ButtonStyle();
         st2.up = skin.getDrawable("Bat");
         st2.down = skin.getDrawable("Bat");
@@ -312,7 +310,7 @@ import com.mygdx.game.utils.TextManager;
         ct2.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ShShow = new ShipShow(skin.getRegion("Bat"), 0, 0, 0, 0, ct2.name, ct2.price, 400, 20, 100, game);
+               // ShShow = new ShipShow(skin.getRegion("Bat"), 0, 0, 0, 0, ct2.name, ct2.price, 400, 20, 100, game);
                 game.setScreen(ShShow);
                 // Gdx.input.setInputProcessor(null);
 
@@ -326,7 +324,7 @@ import com.mygdx.game.utils.TextManager;
         ct3.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ShShow = new ShipShow(skin.getRegion("Dakkar"), 0, 0, 0, 0, ct3.name, ct3.price, 400, 20, 100, game);
+               // ShShow = new ShipShow(skin.getRegion("Dakkar"), 0, 0, 0, 0, ct3.name, ct3.price, 400, 20, 100, game);
                 game.setScreen(ShShow);
                 // Gdx.input.setInputProcessor(null);
 
@@ -340,7 +338,7 @@ import com.mygdx.game.utils.TextManager;
         ct4.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ShShow = new ShipShow(skin.getRegion("Mite"), 0, 0, 0, 0, ct4.name, ct4.price, 400, 20, 100, game);
+              //  ShShow = new ShipShow(skin.getRegion("Mite"), 0, 0, 0, 0, ct4.name, ct4.price, 400, 20, 100, game);
                 game.setScreen(ShShow);
                 // Gdx.input.setInputProcessor(null);
 
@@ -355,7 +353,7 @@ import com.mygdx.game.utils.TextManager;
         ct5.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ShShow = new ShipShow(skin.getRegion("Hunter"), 0, 0, 0, 0, ct5.name, ct5.price, 400, 20, 100, game);
+              //  ShShow = new ShipShow(skin.getRegion("Hunter"), 0, 0, 0, 0, ct5.name, ct5.price, 400, 20, 100, game);
                 game.setScreen(ShShow);
                 // Gdx.input.setInputProcessor(null);
 
@@ -389,7 +387,7 @@ import com.mygdx.game.utils.TextManager;
         in.addProcessor(Back);
 
         Gdx.input.setInputProcessor(in);
-        font = textManager.fontInitialize(Color.BLACK, 1);
+        font = textManager.fontInitialize(Color.BLACK, (float) 0.8);
     }
 
     public void MoveOld(CellStage ct, int dir) {
@@ -421,10 +419,10 @@ import com.mygdx.game.utils.TextManager;
 
             this.price = price;
             btn = new Button(btnstyle);
-            btn.setBounds(x, y, 200, 200);
+            btn.setBounds(x, y, (float) (Gdx.graphics.getHeight()/3.6), (float) (Gdx.graphics.getHeight()/3.6));
             img = new Image(skin.getDrawable("Frame"));
             img.setPosition(x - 15, y - 10);
-            img.setSize(480, 220);
+            img.setSize((float) (Gdx.graphics.getWidth()/2.7), (float) (Gdx.graphics.getHeight()/3.3));
 
 
             addActor(btn);
@@ -452,7 +450,7 @@ import com.mygdx.game.utils.TextManager;
         }
     }
 
-}*/
+}
 
 
 

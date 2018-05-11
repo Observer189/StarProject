@@ -1,9 +1,12 @@
 package com.mygdx.game.model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Vector2D;
 import com.mygdx.game.view.Battle;
@@ -24,6 +27,7 @@ public class Ship extends GameObject {
     private float speedY;
     private float velocity;
     private float maxSpeed;
+    private String name;
     Vector2 movementVector;
     FixingPoint[] fixingPoints;
 
@@ -110,5 +114,25 @@ public class Ship extends GameObject {
         return isShipInRedZone;
     }
 
+    public Drawable getImg(){
+        if (name=="Pulsate"){
+           Skin skin=new Skin();
+           skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
+           return skin.getDrawable("1");
+        } else {
+            Skin skin=new Skin();
+            skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
+            return skin.getDrawable(name);
 
+        }
+
+
+    }
+    public float getMaxSpeed(){return  maxSpeed;}
+    public float getVelocity(){return velocity;}
+    public int getCost(){return cost;}
+    public int getMaxHp(){return maxHp;}
+
+    public String getName() {return name; }
+    public int getFixingPointsDigit(){return fixingPoints.length;}
 }
