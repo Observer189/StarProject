@@ -1,6 +1,7 @@
 package com.mygdx.game.model;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.utils.TextManager;
@@ -24,49 +25,77 @@ public class Ship extends GameObject {
     private float velocity;
     private float maxSpeed;
     Vector2 movementVector;
-    public Ship(TextureRegion textureRegion, float x, float y, float width, float height,String name,int cost,int maxHp,float velocity,float maxSpeed) {
+    FixingPoint[] fixingPoints;
+
+    public Ship(TextureRegion textureRegion, float x, float y, float width, float height, String name, int cost, int maxHp, float velocity, float maxSpeed, FixingPoint[] fixingPoints) {
         super(textureRegion, x, y, width, height);
 
-        this.cost=cost;
-        this.maxHp=maxHp;
-        currentHp=maxHp;
-        this.velocity=velocity;
-        this.maxSpeed=maxSpeed;
-        isShipInRedZone=false;
-        movementVector=new Vector2(0,0);
+        this.cost = cost;
+        this.maxHp = maxHp;
+        currentHp = maxHp;
+        this.velocity = velocity;
+        this.maxSpeed = maxSpeed;
+        this.name = name;
+        isShipInRedZone = false;
+        movementVector = new Vector2(0, 0);
+        this.fixingPoints = fixingPoints;
     }
 
+    public FixingPoint[] getFixingPoints() {
+        return fixingPoints;
+    }
+
+    public void setFixingPoints(FixingPoint[] fixingPoints) {
+        this.fixingPoints = fixingPoints;
+    }
 
     @Override
     public void draw(SpriteBatch batch) {
+        for(int i=0;i<fixingPoints.length;i++)
+        {
+            fixingPoints[i].draw(batch);
+        }
         super.draw(batch);
 
+
+
     }
-    public void move(Map map)
+    public void shot()
     {
-        speedX=speedX+velocity*movementVector.x;
-        speedY=speedY+velocity*movementVector.y;
+        for(int i=0;i<fixingPoints.length;i++)
+        {
+            fixingPoints[i].shot();
+        }
+    }
+
+    public void move(Map map) {
+        speedX = speedX + velocity * movementVector.x;
+        speedY = speedY + velocity * movementVector.y;
         //speedX=2;
         //speedY=2;
-        if(speedX>maxSpeed)speedX=maxSpeed;
-        if(speedX<-maxSpeed)speedX=-maxSpeed;
-        if(speedY>maxSpeed)speedY=maxSpeed;
-        if(speedY<-maxSpeed)speedY=-maxSpeed;
-        bounds.setPosition(bounds.getX()+speedX* Battle.delta,bounds.getY()+speedY*Battle.delta);
+        if (speedX > maxSpeed) speedX = maxSpeed;
+        if (speedX < -maxSpeed) speedX = -maxSpeed;
+        if (speedY > maxSpeed) speedY = maxSpeed;
+        if (speedY < -maxSpeed) speedY = -maxSpeed;
+        bounds.setPosition(bounds.getX() + speedX * Battle.delta, bounds.getY() + speedY * Battle.delta);
 
 
-        if((bounds.getX()>0+map.getWidth()*0.85)||(bounds.getX()<0+map.getWidth()*0.15)||(bounds.getY()>0+map.getHeight()*0.85)||(bounds.getY()<0+map.getHeight()*0.15))
-    {
-        isShipInRedZone=true;
-    }
-    else isShipInRedZone=false;
+        if ((bounds.getX() > 0 + map.getWidth() * 0.85) || (bounds.getX() < 0 + map.getWidth() * 0.15) || (bounds.getY() > 0 + map.getHeight() * 0.85) || (bounds.getY() < 0 + map.getHeight() * 0.15)) {
+            isShipInRedZone = true;
+        } else isShipInRedZone = false;
+
+        for(int i=0;i<fixingPoints.length;i++)
+        {
+            fixingPoints[i].update(this);
+        }
+
     }
 
     public void setMovementVector(Vector2 movementVector) {
 
-        this.movementVector.x=movementVector.x;
+        this.movementVector.x = movementVector.x;
 
-        this.movementVector.y=movementVector.y;
+        this.movementVector.y = movementVector.y;
     }
 
     public float getSpeedX() {
@@ -76,8 +105,10 @@ public class Ship extends GameObject {
     public float getSpeedY() {
         return speedY;
     }
-    public boolean getIsShipInRedZone()
-    {
+
+    public boolean getIsShipInRedZone() {
         return isShipInRedZone;
     }
+
+
 }

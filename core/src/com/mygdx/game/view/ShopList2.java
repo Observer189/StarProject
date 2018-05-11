@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.utils.TextManager;
 
 //This screen is used to show Shop of Guns
-public class ShopList2 implements Screen{
+/*public class ShopList2 implements Screen{
     Game game;
     Button.ButtonStyle Gstyle,Sstyle,BaStyle;
     StageForButton Guns,Ships,Back;
@@ -34,7 +34,7 @@ public class ShopList2 implements Screen{
     }
     @Override
     public void show() {
-        ShList=new ShopList(game,batch,textureAtlas);
+        //ShList=new ShopList(game,batch,textureAtlas);
         textManager=new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         skin=new Skin();
         batch=new SpriteBatch();
@@ -158,4 +158,4 @@ public class ShopList2 implements Screen{
             addActor(btn);
         }
     }
-}
+}*/

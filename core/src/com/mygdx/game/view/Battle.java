@@ -15,7 +15,9 @@ import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.control.BattleProcessor;
 import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Coord;
+import com.mygdx.game.model.FixingPoint;
 import com.mygdx.game.model.Map;
+import com.mygdx.game.model.Ship;
 import com.mygdx.game.model.Ships.Bat;
 import com.mygdx.game.model.Ships.Dakkar;
 import com.mygdx.game.model.Ships.Hunter;
@@ -23,6 +25,7 @@ import com.mygdx.game.model.Ships.Mite;
 import com.mygdx.game.model.Player;
 
 import com.mygdx.game.model.Ships.Pulsate;
+import com.mygdx.game.model.Weapons.GreenImpulseLaser;
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.Joystick;
 import com.mygdx.game.utils.TextManager;
@@ -79,7 +82,7 @@ public class Battle implements Screen {
     @Override
     public void show() {
         classicMap=new Map(batch,textureAtlas.findRegion("ClassicSpace"),mapWidth,mapHeight);
-        player = new Player("unk", 1000, new Hunter(textureAtlas, 150, 300));
+        player = new Player("unk", 1000, new Pulsate(textureAtlas, 150, 300));
         player.generateName();
 
         camera=new OrthographicCamera(widthCamera,heightCamera);
@@ -121,14 +124,15 @@ public class Battle implements Screen {
         camX =camera.position.x;
         camY =camera.position.y;
         camera.update();
-        System.out.println("x="+joystick.getVector().x+" y="+joystick.getVector().y+" shipX:"+player.getShip().getX()+
-                " shipY"+player.getShip().getY());
+        //System.out.println("x="+player.getShip().getFixingPoints()[0].getWeapon().getX()+" y="+player.getShip().getFixingPoints()[0].getWeapon().getY()+" shipX:"+player.getShip().getX()+
+          //      " shipY"+player.getShip().getY());
         //System.out.println(" SpeedX: "+player.getShip().getSpeedX()+"SpeedY: "+player.getShip().getSpeedY());
 
         batch.setProjectionMatrix(camera.combined);
         classicMap.draw();
         player.getShip().setMovementVector(joystick.getVector());
         player.getShip().move(classicMap);
+        player.getShip().shot();
         player.getShip().draw(batch);
         if(player.getShip().getIsShipInRedZone()){
             batch.begin();

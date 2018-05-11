@@ -23,7 +23,7 @@ import com.mygdx.game.model.Ship;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Toast;
 
-public class ShipShow extends Ship implements Screen {
+/*public class ShipShow extends Ship implements Screen {
     //for drawing
     OrthographicCamera camera;
     SpriteBatch batch;
@@ -221,4 +221,4 @@ public class ShipShow extends Ship implements Screen {
     }
 
 
-}
+}*/

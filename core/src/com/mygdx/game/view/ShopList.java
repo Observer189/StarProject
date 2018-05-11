@@ -32,7 +32,7 @@ import com.mygdx.game.utils.TextManager;
 
 
 //This screen is used to show Shop of Ships
-public class ShopList implements Screen {
+/*public class ShopList implements Screen {
     OrthographicCamera camera;
     Game game;
     Screen ShList2, ShShow,menu;
@@ -93,11 +93,11 @@ public class ShopList implements Screen {
         // batch.setProjectionMatrix(camera.combined);
         // camera.setToOrtho(false, 800, 480);
 
-        // textManager.displayMessage(batch,"Your money: " /*+ Player.getMoney()*/ ,Color.BLACK,ct1.size,20 , Gdx.graphics.getHeight()-20);
+        // textManager.displayMessage(batch,"Your money: " /*+ Player.getMoney()*/ //,Color.BLACK,ct1.size,20 , Gdx.graphics.getHeight()-20);
         //'1' ship
         // textManager.displayMessage(batch,font, ct1.name, ct1.x + 200, 300);
 
-        textManager.displayMessage(batch, font, ct1.name, ct1.x + 200, ct1.y + 175);
+        /*textManager.displayMessage(batch, font, ct1.name, ct1.x + 200, ct1.y + 175);
         textManager.displayMessage(batch, font, "Price: " + ct1.price, ct1.x + 200, ct1.y + 75);
         ct1.act(delta);
         ct1.draw();
@@ -452,7 +452,7 @@ public class ShopList implements Screen {
         }
     }
 
-}
+}*/
 
 
 

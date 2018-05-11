@@ -57,7 +57,7 @@ public class MainMenu implements Screen {
 
     @Override
     public void show() {
-        PreShop=new PreShop(game,batch,textureAtlas);
+        //PreShop=new PreShop(game,batch,textureAtlas);
         batch = new SpriteBatch();
         CTB=new ConnectToBattle(batch,game,textureAtlas,player);
         player=new Player();

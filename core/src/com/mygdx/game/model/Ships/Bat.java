@@ -3,6 +3,7 @@ package com.mygdx.game.model.Ships;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.mygdx.game.model.FixingPoint;
 import com.mygdx.game.model.Ship;
 
 /**
@@ -15,7 +16,7 @@ public class Bat extends Ship {
     public void draw(SpriteBatch batch) {
         super.draw(batch);
     }
-    public Bat(TextureAtlas textureAtlas, float x, float y) {
-        super(textureAtlas.findRegion("Bat"), x, y, 15, 15, "Bat", 15000, 220, 1.2f, 60);
+    public Bat(TextureAtlas textureAtlas, float x, float y, FixingPoint[] fixingPoints) {
+        super(textureAtlas.findRegion("Bat"), x, y, 15, 15, "Bat", 15000, 220, 1.2f, 60,fixingPoints);
     }
 }
