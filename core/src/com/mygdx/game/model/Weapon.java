@@ -1,6 +1,9 @@
 package com.mygdx.game.model;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.mygdx.game.model.Ammos.GreenLaserAmmo;
 
 import java.util.ArrayList;
 
@@ -10,23 +13,43 @@ import java.util.ArrayList;
 
 public class Weapon extends GameObject {
     ArrayList<Ammo> ammos;
-    public Weapon(TextureRegion weaponRegion, float x, float y, float width, float height)
+    int counter;
+    TextureRegion ammoRegion;
+    Ammo ammo;
+
+    public Weapon(TextureRegion weaponRegion,  float x, float y, float width,float height,float attackSpeed,Ammo ammo)
     {
         super(weaponRegion, x, y, width, height);
+        this.ammo=new Ammo(ammo);
+
+        ammos=new ArrayList<Ammo>();
+        counter=0;
     }
     public void shot()
     {
 
     }
-    public class Ammo extends GameObject
+    public void update()
     {
-        private float speed;
-        public Ammo(TextureRegion textureRegion, float x, float y, float width, float height,float speed) {
-            super(textureRegion, x, y, width, height);
+          if(ammos.size()!=0) {
+              for(Ammo i:ammos)
+              i.move();
+          }
+          System.out.println(GreenLaserAmmo.counter);
+        System.out.println(ammos.size());
+    }
+
+    @Override
+    public void draw(SpriteBatch batch) {
+        if(ammos.size()!=0) {
+            for(Ammo i:ammos)
+                i.draw(batch);
         }
-        public void move()
-        {
-            bounds.setPosition(bounds.getX()+speed,bounds.getY());
-        }
+        super.draw(batch);
+
+    }
+
+    public ArrayList<Ammo> getAmmos() {
+        return ammos;
     }
 }

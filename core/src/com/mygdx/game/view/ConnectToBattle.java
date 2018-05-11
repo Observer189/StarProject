@@ -119,9 +119,9 @@ public class ConnectToBattle implements Screen {
 
     @Override
     public void dispose() {
-        batch.dispose();
-        textureAtlas.dispose();
-        game.dispose();
+        //batch.dispose();
+        //textureAtlas.dispose();
+        //game.dispose();
     }
     private void getBattleNumber() {
 

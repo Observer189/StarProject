@@ -3,6 +3,7 @@ package com.mygdx.game.model.Ships;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.mygdx.game.model.FixingPoint;
 import com.mygdx.game.model.Ship;
 
 /**
@@ -14,9 +15,9 @@ public class Dakkar extends Ship {
     public void draw(SpriteBatch batch) {
         super.draw(batch);
     }
-    public Dakkar(TextureAtlas textureAtlas, float x, float y)
+    public Dakkar(TextureAtlas textureAtlas, float x, float y,FixingPoint[] fixingPoints)
     {
-        super(textureAtlas.findRegion("Dakkar"),x,y,15,15,"Dakkar",0,250,1f,50);
+        super(textureAtlas.findRegion("Dakkar"),x,y,15,15,"Dakkar",0,250,1f,50,fixingPoints);
 
 
     }

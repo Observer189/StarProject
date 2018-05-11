@@ -56,7 +56,7 @@ public abstract class GameObject {
     public float getHeight() {
         return height;
     }
-    public void setRotation(int degrees)
+    public void setRotation(float degrees)
     {
         bounds.setRotation(degrees);
     }
@@ -72,5 +72,8 @@ public abstract class GameObject {
     public void setWidth(float width) {
         this.width = width;
     }
-
+    public float getRotation()
+    {
+        return bounds.getRotation();
+    }
 }
