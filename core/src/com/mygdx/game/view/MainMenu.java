@@ -44,7 +44,7 @@ public class MainMenu implements Screen {
     public static String text;
     LogListener Log;
     PassListener Pass;
-
+    int ForLogCounter=0;
 
 
 
@@ -73,6 +73,7 @@ public class MainMenu implements Screen {
         };*/
         Log=new LogListener();
         Pass=new PassListener();
+        if (ForLogCounter==0)
         Gdx.input.getTextInput(Log,"Log","","log-in");
 
 
@@ -82,7 +83,7 @@ public class MainMenu implements Screen {
         batch = new SpriteBatch();
         CTB=new ConnectToBattle(batch,game,textureAtlas,player);
         player=new Player();
-        PreShop=new PreShop(game,batch,textureAtlas);
+        PreShop=new PreShop(game,batch,textureAtlas,this);
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         font=textManager.fontInitialize(Color.BLACK,1f);
@@ -100,7 +101,7 @@ public class MainMenu implements Screen {
         sfplaybutton.btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
+                ForLogCounter++;
                 game.setScreen(CTB);
 
             }
@@ -114,8 +115,9 @@ public class MainMenu implements Screen {
         sfshop.btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
+                ForLogCounter++;
                 game.setScreen( PreShop);
+
 
             }
         });
@@ -129,7 +131,7 @@ public class MainMenu implements Screen {
         sfangar.btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
+                ForLogCounter++;
                 // game.setScreen();
 
             }
@@ -153,15 +155,23 @@ public class MainMenu implements Screen {
         camera.setToOrtho(false, 800, 480);
         Gdx.gl.glClearColor(0, 64, 247, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        if (Log.Show==true){
-            Gdx.input.getTextInput(Log,"Log","","Log-in(must be filled)");
-            Log.Show=false;
+        if (ForLogCounter==0) {
 
+            if (Log.Show == true) {
+                Gdx.input.getTextInput(Log, "Log", "", "Log-in(must be filled)");
+                Log.Show = false;
+
+            }
+            if (Log.ShowPass==true)
+
+            if (Pass.Show == true) {
+                Gdx.input.getTextInput(Pass, "Pass", "", "Your password");
+                Pass.Show = false;
+            }
         }
-        if (Log.ShowPass==true && Pass.Show==true){
-            Gdx.input.getTextInput(Pass,"Pass","","Your password");
-            Log.ShowPass=false;
-        }
+        if (Log.Show==false && Pass.Show==false)
+            ForLogCounter++;
+
 
         textManager.displayMessage(batch,font, "Welcome to Star game!",  (int) (Gdx.graphics.getWidth() / 3.5), (int) (Gdx.graphics.getHeight() / 1.3 + 20));
         //textManager.displayMessage(batch,"x= "+Gdx.graphics.getWidth()+" y= "+Gdx.graphics.getHeight() ,Color.BLACK,50, (int) (Gdx.graphics.getWidth()/3.5), (int) (Gdx.graphics.getHeight()/1.3+90));

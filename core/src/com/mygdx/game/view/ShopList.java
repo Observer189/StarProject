@@ -30,7 +30,8 @@ import com.mygdx.game.utils.TextManager;
 public class ShopList implements Screen {
     OrthographicCamera camera;
     Game game;
-    Screen ShList2, ShShow,menu;
+    Screen ShList2, ShShow;
+    MainMenu menu;
     private StageForButton Guns, Ships, Go, Prev, Back;
     Button.ButtonStyle Gstyle, Sstyle, Gostyle, Prevstyle, BaStyle;
     SpriteBatch batch;
@@ -47,10 +48,12 @@ public class ShopList implements Screen {
     int counter = 0;
 
 
-    public ShopList(Game game, SpriteBatch batch, TextureAtlas textureAtlas) {
+
+    public ShopList(Game game, SpriteBatch batch, TextureAtlas textureAtlas,MainMenu menu) {
         this.game = game;
         this.batch = batch;
         this.textureAtlas = textureAtlas;
+        this.menu=menu;
     }
 
     @Override
@@ -192,11 +195,11 @@ public class ShopList implements Screen {
         camera.position.set(new Vector3(400, 240, 0));
         //  VP=new FillViewport((float)(camera.position.x*3.2),camera.position.y*3,camera) ;
 
-        ShList2 = new ShopList2(game, batch, textureAtlas);
+        ShList2 = new ShopList2(game, batch, textureAtlas,menu);
         batch = new SpriteBatch();    //Battle.player.getMoney();
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        menu=new MainMenu(batch,game);
+
         skin = new Skin();
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
         Window.WindowStyle ws = new Window.WindowStyle();

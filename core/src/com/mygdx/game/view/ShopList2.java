@@ -24,11 +24,13 @@ public class ShopList2 implements Screen{
     TextureAtlas textureAtlas;
     TextManager textManager;
     Skin skin;
-    Screen ShList,menu;
-    public ShopList2(Game game, SpriteBatch batch, TextureAtlas textureAtlas){
+    Screen ShList;
+    MainMenu menu;
+    public ShopList2(Game game, SpriteBatch batch, TextureAtlas textureAtlas,MainMenu menu){
         this.game=game;
         this.batch = batch;
         this.textureAtlas=textureAtlas;
+        this.menu=menu;
 
 
     }
@@ -39,7 +41,7 @@ public class ShopList2 implements Screen{
         skin=new Skin();
         batch=new SpriteBatch();
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
-        menu=new MainMenu(batch,game);
+        ShList=new ShopList(game,batch,textureAtlas,menu);
         Gstyle = new Button.ButtonStyle();
         Gstyle.up = skin.getDrawable("SelectGun");
         Gstyle.down = skin.getDrawable("SelectGun");

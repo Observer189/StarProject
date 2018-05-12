@@ -44,6 +44,7 @@ public class ShipShow implements Screen {
     //Sreens
     Screen ShList;
     Toast toast;
+    MainMenu menu;
 
     //for ship's params
     Image Shipimg;
@@ -56,8 +57,11 @@ public class ShipShow implements Screen {
     float maxSpeed;
 
 
+
     public ShipShow(Ship ship, Game game) {
         this.ship=ship;
+        this.game=game;
+
 
     }
 
@@ -85,7 +89,7 @@ public class ShipShow implements Screen {
         camera = new OrthographicCamera();
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        ShList=new ShopList(game,batch,textureAtlas);
+        ShList=new ShopList(game,batch,textureAtlas,menu);
         font = textManager.fontInitialize(Color.BLACK, 1);
         font1 = textManager.fontInitialize(Color.WHITE, 1);
         Toast.ToastFactory toastFactory = new Toast.ToastFactory.Builder()
