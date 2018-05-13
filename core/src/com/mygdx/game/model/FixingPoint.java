@@ -26,7 +26,9 @@ public class FixingPoint  {//Точка крепления оружия
         this.weapon=weapon;
         this.weapon.bounds.setPosition(x,y);
 
+
     }
+
     public void update(Ship ship,Map map)
     {
         this.weapon.setRotation(ship.getRotation());
@@ -44,6 +46,20 @@ public class FixingPoint  {//Точка крепления оружия
         weapon.draw(batch);
 
 
+    }
+
+    public void setOffset(float offsetX,float offsetY)
+    {
+        setOffsetX(offsetX);
+        setOffsetY(offsetY);
+    }
+
+    public void setOffsetX(float offsetX) {
+        this.offsetX = offsetX;
+    }
+
+    public void setOffsetY(float offsetY) {
+        this.offsetY = offsetY;
     }
 
     public void setWeapon(Weapon weapon) {

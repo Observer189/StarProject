@@ -8,15 +8,17 @@ public class BattleStatus { //класс необходимый для расп�
     Integer number;
     String status;
     Integer queueSize;//размер очереди
+    Integer positionNumber; //номер позиции игрока на карте
     public BattleStatus()
     {
 
     }
-    public BattleStatus(Integer number,Integer queueSize,String status)
+    public BattleStatus(Integer number,Integer queueSize,String status,Integer positionNumber)
     {
         this.number=number;
         this.queueSize=queueSize;
         this.status=status;
+        this.positionNumber=positionNumber;
     }
     public BattleStatus(BattleStatus battleStatus)
     {
@@ -44,6 +46,7 @@ public class BattleStatus { //класс необходимый для расп�
         this.setStatus(battleStatus.getStatus());
         this.setQueueSize(battleStatus.getQueueSize());
         this.setNumber(battleStatus.getNumber());
+        this.setPositionNumber(battleStatus.getPositionNumber());
     }
 
     public Integer getQueueSize() {
@@ -52,5 +55,13 @@ public class BattleStatus { //класс необходимый для расп�
 
     public void setQueueSize(Integer queueSize) {
         this.queueSize = queueSize;
+    }
+
+    public void setPositionNumber(Integer positionNumber) {
+        this.positionNumber = positionNumber;
+    }
+
+    public Integer getPositionNumber() {
+        return positionNumber;
     }
 }

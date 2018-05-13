@@ -12,21 +12,17 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.control.BattleProcessor;
 import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Coord;
-import com.mygdx.game.model.FixingPoint;
 import com.mygdx.game.model.Map;
-import com.mygdx.game.model.Ship;
-import com.mygdx.game.model.Ships.Bat;
-import com.mygdx.game.model.Ships.Dakkar;
-import com.mygdx.game.model.Ships.Hunter;
-import com.mygdx.game.model.Ships.Mite;
 import com.mygdx.game.model.Player;
 
 import com.mygdx.game.model.Ships.Pulsate;
-import com.mygdx.game.model.Weapons.GreenImpulseLaser;
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.Joystick;
 import com.mygdx.game.utils.TextManager;
@@ -49,6 +45,7 @@ public class Battle implements Screen {
     Game game;
     TextureAtlas textureAtlas;
     public Player player;
+    Player enemy;
     Coord coord;
     servApi request;
     OrthographicCamera camera;
@@ -62,9 +59,7 @@ public class Battle implements Screen {
     public static float delta;
     public static float widthCamera;
     public static float heightCamera;
-    private Integer currentExplosionFrame;
-    private int explosionCounter;
-    TextureRegion explosionRegion;
+
     int mapWidth;
     int mapHeight;
     public Joystick joystick;
@@ -82,8 +77,7 @@ public class Battle implements Screen {
         mapHeight=600;
         widthCamera=220;
         heightCamera=220/AspectRatio;
-        currentExplosionFrame=0;
-        explosionCounter=100;
+
     }
 
     @Override
@@ -92,13 +86,29 @@ public class Battle implements Screen {
 
 
         classicMap=new Map(batch,textureAtlas.findRegion("ClassicSpace"),mapWidth,mapHeight);
-        player = new Player("unk", 1000, new Pulsate(textureAtlas, 150, 300));
+
+        player = new Player("unk", new Pulsate(textureAtlas, 0, 0));
+        enemy = new Player("unk", new Pulsate(textureAtlas, 0, 0));
+        if(battleStatus.getPositionNumber()==1)
+        {
+            player.getCurrentShip().setPosition(200,300);
+            player.getCurrentShip().setRotationPosition(1);
+            enemy.getCurrentShip().setPosition(800,300);
+            enemy.getCurrentShip().setRotationPosition(2);
+        }
+        else if (battleStatus.getPositionNumber()==2)
+        {
+            player.getCurrentShip().setPosition(800,300);
+            player.getCurrentShip().setRotationPosition(2);
+            enemy.getCurrentShip().setPosition(200,300);
+            enemy.getCurrentShip().setRotationPosition(1);
+        }
         player.generateName();
 
-        explosionRegion=new TextureRegion(textureAtlas.findRegion("Explosion6"));
+
 
         camera=new OrthographicCamera(widthCamera,heightCamera);
-        camera.position.set(new Vector3(player.getShip().getX(),player.getShip().getX(),0));
+        camera.position.set(new Vector3(player.getCurrentShip().getX(),player.getCurrentShip().getX(),0));
         coord = new Coord(20, 30);
         counter = 0;
         joystick=new Joystick(batch,0,10,textureAtlas.findRegion("Dj1p1"),textureAtlas.findRegion("Dj1p2"));
@@ -112,7 +122,7 @@ public class Battle implements Screen {
         request = retrofit.create(servApi.class);
         processor=new BattleProcessor(joystick);
         Gdx.input.setInputProcessor(processor);
-        player.getShip().setRotation(270);
+
 
         endBattle=new EndBattle(player);
 
@@ -127,38 +137,39 @@ public class Battle implements Screen {
         this.delta=delta;
         //getCoord();
         /*if ((coord.getX() != null) && (coord.getY() != null)) {
-            player.getShip().setPosition(coord.getX(), coord.getY());
+            player.getCurrentShip().setPosition(coord.getX(), coord.getY());
 
         }*/
         //System.out.println(coord.getX() + " " + coord.getY() + " " + "count:" + counter + "number:" + battleStatus.getNumber());
 
-        camera.position.x=player.getShip().getX();
-        camera.position.y=player.getShip().getY();
+        camera.position.x=player.getCurrentShip().getX();
+        camera.position.y=player.getCurrentShip().getY();
         camX =camera.position.x;
         camY =camera.position.y;
         camera.update();
-        //System.out.println("x="+player.getShip().getFixingPoints()[0].getWeapon().getX()+" y="+player.getShip().getFixingPoints()[0].getWeapon().getY()+" shipX:"+player.getShip().getX()+
-          //      " shipY"+player.getShip().getY());
-        //System.out.println(" SpeedX: "+player.getShip().getSpeedX()+"SpeedY: "+player.getShip().getSpeedY());
+        System.out.println("x="+player.getCurrentShip().getFixingPoints()[0].getWeapon().getX()+" y="+player.getCurrentShip().getFixingPoints()[0].getWeapon().getY()+" shipX:"+player.getCurrentShip().getX()+
+                " shipY"+player.getCurrentShip().getY());
+        //System.out.println(" SpeedX: "+player.getCurrentShip().getSpeedX()+"SpeedY: "+player.getCurrentShip().getSpeedY());
 
         batch.setProjectionMatrix(camera.combined);
         classicMap.draw();
-        player.getShip().setMovementVector(joystick.getVector());
-        player.getShip().move(classicMap);
-        player.getShip().shot();
-        player.getShip().draw(batch,textureAtlas);
-        if(player.getShip().getIsShipInRedZone()){
+        player.getCurrentShip().act(classicMap,joystick.getVector());
+        enemy.getCurrentShip().act(classicMap,new Vector2(0,0));
+
+        player.getCurrentShip().draw(batch,textureAtlas);
+        enemy.getCurrentShip().draw(batch,textureAtlas);
+        if(player.getCurrentShip().getIsShipInRedZone()){
             batch.begin();
             batch.draw(textureAtlas.findRegion("RedZoneAttention"),camX-widthCamera/9,camY-heightCamera/2,70,20);
             batch.end();
         }
 
-        if(player.getShip().getCurrentHp()>0) {
+        if(player.getCurrentShip().getCurrentHp()>0) {
             joystick.update(BattleProcessor.offsetX, BattleProcessor.offsetY, BattleProcessor.offsetDynamicX, BattleProcessor.offsetDynamicY);//компенсирует смещение камеры смещением джойстика
             joystick.draw();
         }
 
-        if(!player.getShip().getIsAlive())
+        if(!player.getCurrentShip().getIsAlive())
         {
             game.setScreen(endBattle);
         }

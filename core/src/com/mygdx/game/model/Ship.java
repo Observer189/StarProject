@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.mygdx.game.utils.Joystick;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Vector2D;
 import com.mygdx.game.view.Battle;
@@ -33,6 +34,8 @@ public class Ship extends GameObject {
     private float velocity;
     private float maxSpeed;
 
+    private int rotationPosition;
+
     private Integer currentExplosionFrame;
     private int explosionCounter;
     TextureRegion explosionRegion;
@@ -53,7 +56,8 @@ public class Ship extends GameObject {
         this.name = name;
         isShipInRedZone = false;
         isAlive=true;
-
+        rotationPosition=1;
+        setRotation(270);
         currentExplosionFrame=0;
         explosionCounter=7;
         movementVector = new Vector2(0, 0);
@@ -141,13 +145,40 @@ public class Ship extends GameObject {
         }
 
     }
-
     public void setMovementVector(Vector2 movementVector) {
 
         this.movementVector.x = movementVector.x;
 
         this.movementVector.y = movementVector.y;
     }
+
+
+
+    public void act(Map map, Vector2 vector)
+    {
+        setMovementVector(vector);
+        shot();
+        move(map);
+    }
+
+    public void setRotationPosition(int rotationPosition) {
+        this.rotationPosition = rotationPosition;
+        if(rotationPosition==1)
+        {
+            setRotation(270);
+            for (int i = 0; i < fixingPoints.length; i++) {
+                fixingPoints[i].weapon.setRotationPosition(1);
+            }
+        }
+        if(rotationPosition==2)
+        {
+            setRotation(90);
+            for (int i = 0; i < fixingPoints.length; i++) {
+                fixingPoints[i].weapon.setRotationPosition(2);
+            }
+        }
+    }
+
 
     public float getSpeedX() {
         return speedX;

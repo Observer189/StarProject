@@ -68,6 +68,9 @@ public abstract class GameObject {
         return width ;
     }
 
+    public Polygon getBounds() {
+        return bounds;
+    }
 
     public float getRotation()
     {

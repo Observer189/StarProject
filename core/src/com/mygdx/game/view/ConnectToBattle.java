@@ -58,17 +58,17 @@ public class ConnectToBattle implements Screen {
         processor=new ConnectToBattleProcessor();
         Gdx.input.setInputProcessor(processor);
         textManager=new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        blueFont=textManager.fontInitialize(Color.BLUE,30);
-        battleStatus=new BattleStatus(null,null,"add");
+        blueFont=textManager.fontInitialize(Color.BLUE,1);
+        battleStatus=new BattleStatus(null,null,"add",null);
         player.generateName();
         counter=0;
         getBattleIsFinished=false;
-        //getBattleNumber();
+        getBattleNumber();
 
-        //if((battleStatus.getNumber()!=null)&&(battleStatus.getStatus().equals("ready"))) {
+        if((battleStatus.getNumber()!=null)&&(battleStatus.getStatus().equals("ready"))) {
             battleStatus.setNumber(1);//убрать
             game.setScreen(new Battle(batch, game, textureAtlas, battleStatus));
-        //}
+        }
     }
 
     @Override

@@ -12,11 +12,20 @@ public class Ammo extends GameObject
     private float speed;
     private float damage;
     private TextureRegion textureRegion;
+    private int rotationPosition;
     public Ammo(TextureRegion textureRegion, float x, float y, float width, float height, float speed, float damage) {
         super(textureRegion, x, y, width, height);
         this.speed=speed;
         this.damage=damage;
         this.textureRegion=textureRegion;
+        rotationPosition=1;
+    }
+    public Ammo(TextureRegion textureRegion, float x, float y, float width, float height, float speed, float damage,int rotationPosition) {
+        super(textureRegion, x, y, width, height);
+        this.speed=speed;
+        this.damage=damage;
+        this.textureRegion=textureRegion;
+        this.rotationPosition=rotationPosition;
     }
     public Ammo(Ammo ammo)
     {
@@ -27,7 +36,13 @@ public class Ammo extends GameObject
     }
     public void move()
     {
-        bounds.setPosition(bounds.getX()+speed,bounds.getY());
+        if(rotationPosition==1) {
+            bounds.setPosition(bounds.getX() + speed, bounds.getY());
+        }
+        if(rotationPosition==2) {
+            bounds.setPosition(bounds.getX() - speed, bounds.getY());
+        }
+
     }
 
     public float getSpeed() {
@@ -42,6 +57,18 @@ public class Ammo extends GameObject
     public void draw(SpriteBatch batch) {
         super.draw(batch);
 
+    }
+
+    public void setRotationPosition(int rotationPosition) {
+        this.rotationPosition = rotationPosition;
+        if(rotationPosition==1)
+        {
+            setRotation(270);
+        }
+        if(rotationPosition==2)
+        {
+            setRotation(90);
+        }
     }
 
     public TextureRegion getTextureRegion() {

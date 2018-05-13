@@ -20,9 +20,21 @@ public class Pulsate extends Ship {
     }
     public Pulsate(TextureAtlas textureAtlas, float x, float y) {
         super(textureAtlas.findRegion("1"), x, y, 15, 15, "Pulsate", 50000, 170,
-                2.5f, 70,new FixingPoint[]{new FixingPoint(150,300,7.5f,0f,new GreenImpulseLaser(textureAtlas,150,300)),
-                        new FixingPoint(150,300,7.5f,8.2f,new GreenImpulseLaser(textureAtlas,150,300))});
+                2.5f, 70,new FixingPoint[]{new FixingPoint(x,y,7.5f,0f,new GreenImpulseLaser(textureAtlas,x,y)),
+                        new FixingPoint(x,y,7.5f,8.2f,new GreenImpulseLaser(textureAtlas,x,y))});
 
     }
 
+    @Override
+    public void setRotationPosition(int rotationPosition) {
+        super.setRotationPosition(rotationPosition);
+        if(rotationPosition==1) {
+            getFixingPoints()[0].setOffset(7.5f, 0f);
+            getFixingPoints()[1].setOffset(7.5f, 8.2f);
+        }
+        if(rotationPosition==2) {
+            getFixingPoints()[0].setOffset(5f, 0f);
+            getFixingPoints()[1].setOffset(5f, 8.2f);
+        }
+    }
 }
