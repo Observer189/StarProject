@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.model.Player;
 
+import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.utils.LogListener;
 import com.mygdx.game.utils.PassListener;
 import com.mygdx.game.utils.TextManager;
@@ -33,12 +34,12 @@ public class MainMenu implements Screen {
     StageForButton sfplaybutton, sfshop, sfangar;
     SpriteBatch batch;
     Game game;
-    Player player;
+    public Player player;
     public TextureAtlas textureAtlas;
     TextManager textManager;
     public Button.ButtonStyle p_button, sh_button, ang_button;
-    Screen CTB;//ConnectToBattle
-    Screen PreShop;
+    public Screen CTB;//ConnectToBattle
+    Screen PreShop,angar;
     BitmapFont font;
     Input.TextInputListener LogIn;
     public static String text;
@@ -48,9 +49,10 @@ public class MainMenu implements Screen {
 
 
 
-    public MainMenu(SpriteBatch batch, Game game) {
+    public MainMenu(SpriteBatch batch, Game game,Player player) {
         this.batch = batch;
         this.game = game;
+        this.player=player;
     }
 
 
@@ -82,9 +84,10 @@ public class MainMenu implements Screen {
         //PreShop=new PreShop(game,batch,textureAtlas);
         batch = new SpriteBatch();
         CTB=new ConnectToBattle(batch,game,textureAtlas,player);
-        player=new Player();
-        PreShop=new PreShop(game,batch,textureAtlas,this);
 
+        PreShop=new PreShop(game,batch,textureAtlas,this,player);
+
+        angar=new Angar(game,batch,this,player);
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         font=textManager.fontInitialize(Color.BLACK,1f);
         //game.setScreen(battle);
@@ -132,7 +135,7 @@ public class MainMenu implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ForLogCounter++;
-                // game.setScreen();
+                 game.setScreen(angar);
 
             }
         });
@@ -162,16 +165,18 @@ public class MainMenu implements Screen {
                 Log.Show = false;
 
             }
+        }
+        if (ForLogCounter==0) {
             if (Log.ShowPass==true)
 
-            if (Pass.Show == true) {
-                Gdx.input.getTextInput(Pass, "Pass", "", "Your password");
-                Pass.Show = false;
-            }
+                if (Pass.Show == true) {
+                    Gdx.input.getTextInput(Pass, "Pass", "", "Your password");
+                    Log.ShowPass=false;
+                }
         }
+
         if (Log.Show==false && Pass.Show==false)
             ForLogCounter++;
-
 
         textManager.displayMessage(batch,font, "Welcome to Star game!",  (int) (Gdx.graphics.getWidth() / 3.5), (int) (Gdx.graphics.getHeight() / 1.3 + 20));
         //textManager.displayMessage(batch,"x= "+Gdx.graphics.getWidth()+" y= "+Gdx.graphics.getHeight() ,Color.BLACK,50, (int) (Gdx.graphics.getWidth()/3.5), (int) (Gdx.graphics.getHeight()/1.3+90));

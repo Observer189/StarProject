@@ -19,9 +19,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 
+import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ship;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Toast;
+
+import java.awt.Menu;
 
 public class ShipShow implements Screen {
     //for drawing
@@ -45,7 +48,7 @@ public class ShipShow implements Screen {
     Screen ShList;
     Toast toast;
     MainMenu menu;
-
+    Player player;
     //for ship's params
     Image Shipimg;
     String name;
@@ -58,10 +61,12 @@ public class ShipShow implements Screen {
 
 
 
-    public ShipShow(Ship ship, Game game) {
+    public ShipShow(Ship ship, Game game,MainMenu menu,Player player) {
+
         this.ship=ship;
         this.game=game;
-
+        this.menu=menu;
+        this.player=player;
 
     }
 
@@ -89,7 +94,7 @@ public class ShipShow implements Screen {
         camera = new OrthographicCamera();
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        ShList=new ShopList(game,batch,textureAtlas,menu);
+        ShList=new ShopList(game,batch,textureAtlas,menu,player);
         font = textManager.fontInitialize(Color.BLACK, 1);
         font1 = textManager.fontInitialize(Color.WHITE, 1);
         Toast.ToastFactory toastFactory = new Toast.ToastFactory.Builder()
@@ -109,7 +114,9 @@ public class ShipShow implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 MakeToast=true;
-                //game.setScreen(ShList);
+                ShList=new ShopList(game,batch,textureAtlas,menu,player);
+                player.resources.shipList.add(ship);
+             
 
             }
         });
@@ -124,6 +131,7 @@ public class ShipShow implements Screen {
             public void clicked(InputEvent event, float x, float y) {
 
                 game.setScreen(ShList);
+                System.out.println( player.resources.shipList);
 
             }
         });

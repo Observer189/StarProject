@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.model.Player;
 import com.mygdx.game.utils.TextManager;
 
 //This screen is used to show Shop of Guns
@@ -26,11 +27,13 @@ public class ShopList2 implements Screen{
     Skin skin;
     Screen ShList;
     MainMenu menu;
-    public ShopList2(Game game, SpriteBatch batch, TextureAtlas textureAtlas,MainMenu menu){
+    Player player;
+    public ShopList2(Game game, SpriteBatch batch, TextureAtlas textureAtlas, MainMenu menu, Player player){
         this.game=game;
         this.batch = batch;
         this.textureAtlas=textureAtlas;
         this.menu=menu;
+        this.player=player;
 
 
     }
@@ -41,7 +44,7 @@ public class ShopList2 implements Screen{
         skin=new Skin();
         batch=new SpriteBatch();
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
-        ShList=new ShopList(game,batch,textureAtlas,menu);
+        ShList=new ShopList(game,batch,textureAtlas,menu,player);
         Gstyle = new Button.ButtonStyle();
         Gstyle.up = skin.getDrawable("SelectGun");
         Gstyle.down = skin.getDrawable("SelectGun");
