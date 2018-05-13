@@ -28,10 +28,12 @@ public class PreShop implements Screen {
     OrthographicCamera camera;
     TextManager textManager;
     BitmapFont font;
-    public PreShop(Game game,SpriteBatch batch, TextureAtlas textureAtlas){
+    MainMenu menu;
+    public PreShop(Game game,SpriteBatch batch, TextureAtlas textureAtlas,MainMenu menu){
         this.game=game;
         this.batch = batch;
         this.textureAtlas=textureAtlas;
+        this.menu=menu;
 
 
 
@@ -45,8 +47,8 @@ public class PreShop implements Screen {
         font=textManager.fontInitialize(Color.BLACK,1f);
 
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
-        ShList=new ShopList(game,batch,textureAtlas);
-        ShList2=new ShopList2(game,batch,textureAtlas);
+        ShList=new ShopList(game,batch,textureAtlas,menu);
+        ShList2=new ShopList2(game,batch,textureAtlas,menu);
         //creating button with guns image
         Gstyle = new Button.ButtonStyle();
         Gstyle.up = skin.getDrawable("UnSelectGun");
