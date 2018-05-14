@@ -11,9 +11,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.control.BattleProcessor;
@@ -63,21 +61,23 @@ public class Battle implements Screen {
     int mapWidth;
     int mapHeight;
     public Joystick joystick;
+    boolean getCoordIsFinished;
     final public float AspectRatio;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
     Map classicMap;
     Screen endBattle;
-    public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,BattleStatus battleStatus) {
+    public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,BattleStatus battleStatus,Player player) {
         this.batch = batch;
         this.game = game;
         this.textureAtlas = textureAtlas;
         this.battleStatus=battleStatus;
+        this.player = player;
         AspectRatio=(float)Gdx.graphics.getWidth()/Gdx.graphics.getHeight();
         mapWidth=1000;
         mapHeight=600;
         widthCamera=220;
         heightCamera=220/AspectRatio;
-
+        getCoordIsFinished=false;
     }
 
     @Override
@@ -87,8 +87,8 @@ public class Battle implements Screen {
 
         classicMap=new Map(batch,textureAtlas.findRegion("ClassicSpace"),mapWidth,mapHeight);
 
-        player = new Player("unk", new Pulsate(textureAtlas, 0, 0));
-        enemy = new Player("unk", new Pulsate(textureAtlas, 0, 0));
+
+        enemy = new Player(battleStatus.getName(), new Pulsate(textureAtlas, 0, 0));
         if(battleStatus.getPositionNumber()==1)
         {
             player.getCurrentShip().setPosition(200,300);
@@ -109,7 +109,7 @@ public class Battle implements Screen {
 
         camera=new OrthographicCamera(widthCamera,heightCamera);
         camera.position.set(new Vector3(player.getCurrentShip().getX(),player.getCurrentShip().getX(),0));
-        coord = new Coord(20, 30);
+        coord = new Coord(0f,0f);
         counter = 0;
         joystick=new Joystick(batch,0,10,textureAtlas.findRegion("Dj1p1"),textureAtlas.findRegion("Dj1p2"));
 
@@ -125,7 +125,7 @@ public class Battle implements Screen {
 
 
         endBattle=new EndBattle(player);
-
+        getCoord();
     }
 
     @Override
@@ -135,7 +135,9 @@ public class Battle implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.delta=delta;
-        //getCoord();
+        if(getCoordIsFinished) {
+            getCoord();
+        }
         /*if ((coord.getX() != null) && (coord.getY() != null)) {
             player.getCurrentShip().setPosition(coord.getX(), coord.getY());
 
@@ -147,17 +149,24 @@ public class Battle implements Screen {
         camX =camera.position.x;
         camY =camera.position.y;
         camera.update();
-        System.out.println("x="+player.getCurrentShip().getFixingPoints()[0].getWeapon().getX()+" y="+player.getCurrentShip().getFixingPoints()[0].getWeapon().getY()+" shipX:"+player.getCurrentShip().getX()+
-                " shipY"+player.getCurrentShip().getY());
-        //System.out.println(" SpeedX: "+player.getCurrentShip().getSpeedX()+"SpeedY: "+player.getCurrentShip().getSpeedY());
+        //System.out.println("x="+coord.getX()+"y="+coord.getY());
+
+        //System.out.println(" Player: "+player.getName()+"Enemy: "+enemy.getName());
 
         batch.setProjectionMatrix(camera.combined);
         classicMap.draw();
-        player.getCurrentShip().act(classicMap,joystick.getVector());
-        enemy.getCurrentShip().act(classicMap,new Vector2(0,0));
+        player.getCurrentShip().act(enemy.getCurrentShip(),classicMap,joystick.getVector());
+        enemy.getCurrentShip().act(player.getCurrentShip(),classicMap,new Vector2(0,0));
 
         player.getCurrentShip().draw(batch,textureAtlas);
         enemy.getCurrentShip().draw(batch,textureAtlas);
+
+
+        if(Intersector.overlapConvexPolygons(player.getCurrentShip().getBounds(), enemy.getCurrentShip().getBounds()))
+        {
+            player.getCurrentShip().setCurrentHp(0);
+            enemy.getCurrentShip().setCurrentHp(0);
+        }
         if(player.getCurrentShip().getIsShipInRedZone()){
             batch.begin();
             batch.draw(textureAtlas.findRegion("RedZoneAttention"),camX-widthCamera/9,camY-heightCamera/2,70,20);
@@ -207,21 +216,27 @@ public class Battle implements Screen {
     private void getCoord() {
 
 
-        Call<Coord> call = request.get(battleStatus.getNumber(), "10", "150");
-
+        Call<Coord> call = request.get(battleStatus.getNumber(),player.getName(),enemy.getName(), player.getCurrentShip().getX(),player.getCurrentShip().getY());
+        //System.out.println(player.getCurrentShip().getX()+" "+player.getCurrentShip().getY());
+        //System.out.println(enemy.getName()+" "+player.getName()+" c="+counter);
         call.enqueue(new Callback<Coord>() {
 
             @Override
             public void onResponse(Call<Coord> call, Response<Coord> response) {
                 //coord=response.body();
                 counter++;
-                coord.setX(Integer.valueOf(response.body().getX()));
-                coord.setY(Integer.valueOf(response.body().getY()));
+                coord.setX(Float.valueOf(response.body().getX()));
+                coord.setY(Float.valueOf(response.body().getY()));
+                System.out.println(coord.getX()+" "+coord.getY());
+                if(coord.getX()!=null)
+                enemy.getCurrentShip().setPosition(coord.getX(),coord.getY());
+                //System.out.println(enemy.getCurrentShip().getX()+" "+enemy.getCurrentShip().getY());
+                getCoordIsFinished=true;
             }
 
             @Override
             public void onFailure(Call<Coord> call, Throwable t) {
-
+                getCoordIsFinished=true;
             }
         });
 

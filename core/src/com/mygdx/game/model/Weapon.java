@@ -3,6 +3,7 @@ package com.mygdx.game.model;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Intersector;
 import com.mygdx.game.model.Ammos.GreenLaserAmmo;
 
 import java.util.ArrayList;
@@ -32,15 +33,20 @@ public class Weapon extends GameObject {
     {
 
     }
-    public void update(Map map)
+    public void update(Ship playerShip,Ship enemyShip,Map map)
     {
           if(ammos.size()!=0) {
               for(int i=0;i<ammos.size();i++){
                   ammos.get(i).move();
 
-                  if ((ammos.get(i).getX() > map.getWidth())||(ammos.get(i).getX() < 0)||(ammos.get(i).getY() > map.getHeight())||(ammos.get(i).getY() < 0))
+                  if ((ammos.get(i).getX() > map.getWidth())||(ammos.get(i).getX() < 0)||(ammos.get(i).getY() > map.getHeight())||(ammos.get(i).getY() < 0)) {
                       ammos.remove(i);
-
+                  }
+                  else if(Intersector.overlapConvexPolygons(ammos.get(i).getBounds(),enemyShip.getBounds()))
+                  {
+                      playerShip.setCurrentHp(playerShip.getCurrentHp()-ammos.get(i).getDamage());
+                      ammos.remove(i);
+                  }
 
 
               }

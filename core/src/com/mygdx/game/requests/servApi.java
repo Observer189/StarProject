@@ -14,13 +14,11 @@ import retrofit2.http.Query;
  */
 
 public interface servApi {
-    @POST("sash")
-    Call<Coord> getCoord(@Query("x") String x, @Query("y") String y);
 
     @GET("battle")
     Call<BattleStatus> getBattleNumber(@Query("name")String name,@Query("status") String status);
 
     @POST("battle/{battleNumber}")
-    Call<Coord> get(@Path("battleNumber") Integer number,@Query("x") String x, @Query("y") String y);
+    Call<Coord> get(@Path("battleNumber") Integer number,@Query("name")String name,@Query("enemyName")String enemyName,@Query("x") Float x, @Query("y") Float y);
 
 }

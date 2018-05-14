@@ -5,31 +5,31 @@ package com.mygdx.game.model;
  */
 
 public class Coord {
-    private Integer x;
-    private Integer y;
+    private Float x;
+    private Float y;
     public Coord()
     {
 
     }
-    public Coord(Integer x,Integer y)
+    public Coord(Float x,Float y)
     {
         this.x=x;
         this.y=y;
     }
-    public void setX(int x)
+    public void setX(float x)
     {
         this.x=x;
     }
-    public void setY(int y)
+    public void setY(float y)
     {
         this.y=y;
     }
 
-    public Integer getX() {
+    public Float getX() {
         return x;
     }
 
-    public Integer getY() {
+    public Float getY() {
         return y;
     }
 }

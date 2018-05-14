@@ -7,16 +7,18 @@ package com.mygdx.game.model;
 public class BattleStatus { //класс необходимый для распределения игроков по боям
     Integer number;
     String status;
+    String name;
     Integer queueSize;//размер очереди
     Integer positionNumber; //номер позиции игрока на карте
     public BattleStatus()
     {
 
     }
-    public BattleStatus(Integer number,Integer queueSize,String status,Integer positionNumber)
+    public BattleStatus(Integer number,Integer queueSize,String name,String status,Integer positionNumber)
     {
         this.number=number;
         this.queueSize=queueSize;
+        this.name=name;
         this.status=status;
         this.positionNumber=positionNumber;
     }
@@ -45,6 +47,7 @@ public class BattleStatus { //класс необходимый для расп�
     {
         this.setStatus(battleStatus.getStatus());
         this.setQueueSize(battleStatus.getQueueSize());
+        this.name=battleStatus.getName();
         this.setNumber(battleStatus.getNumber());
         this.setPositionNumber(battleStatus.getPositionNumber());
     }
@@ -63,5 +66,13 @@ public class BattleStatus { //класс необходимый для расп�
 
     public Integer getPositionNumber() {
         return positionNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

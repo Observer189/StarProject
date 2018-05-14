@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.control.ConnectToBattleProcessor;
 import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Player;
+import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.TextManager;
 
@@ -49,7 +50,8 @@ public class ConnectToBattle implements Screen {
     @Override
     public void show() {
 
-
+        player = new Player("player", new Pulsate(textureAtlas, 0, 0));
+        player.generateName();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -59,15 +61,15 @@ public class ConnectToBattle implements Screen {
         Gdx.input.setInputProcessor(processor);
         textManager=new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         blueFont=textManager.fontInitialize(Color.BLUE,1);
-        battleStatus=new BattleStatus(null,null,"add",null);
-        player.generateName();
+        battleStatus=new BattleStatus(null,null,null,"add",null);
+
         counter=0;
         getBattleIsFinished=false;
         getBattleNumber();
 
         if((battleStatus.getNumber()!=null)&&(battleStatus.getStatus().equals("ready"))) {
-            battleStatus.setNumber(1);//убрать
-            game.setScreen(new Battle(batch, game, textureAtlas, battleStatus));
+
+            game.setScreen(new Battle(batch, game, textureAtlas, battleStatus,player));
         }
     }
 
@@ -93,7 +95,7 @@ public class ConnectToBattle implements Screen {
             textManager.displayMessage(batch,blueFont,"Players in queue:"+" "+battleStatus.getQueueSize(),300,350);
         }
         if(battleStatus.getNumber()!=null) {
-            game.setScreen(new Battle(batch, game, textureAtlas, battleStatus));
+            game.setScreen(new Battle(batch, game, textureAtlas, battleStatus,player));
         }
     }
 

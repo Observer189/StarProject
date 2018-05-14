@@ -1,8 +1,6 @@
 package com.mygdx.game.model;
 
 
-import com.badlogic.gdx.graphics.Texture;
-
 import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,12 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.mygdx.game.utils.Joystick;
-import com.mygdx.game.utils.TextManager;
-import com.mygdx.game.utils.Vector2D;
 import com.mygdx.game.view.Battle;
-
-import static java.lang.Float.NaN;
 
 /**
  * Created by Sash on 01.05.2018.
@@ -27,8 +20,8 @@ public class Ship extends GameObject {
     int cost;
     private boolean isShipInRedZone;
     private boolean isAlive;
-    private int maxHp;
-    private int currentHp;
+    private float maxHp;
+    private float currentHp;
     private float speedX;
     private float speedY;
     private float velocity;
@@ -45,7 +38,7 @@ public class Ship extends GameObject {
     Vector2 movementVector;
     FixingPoint[] fixingPoints;
 
-    public Ship(TextureRegion textureRegion, float x, float y, float width, float height, String name, int cost, int maxHp, float velocity, float maxSpeed, FixingPoint[] fixingPoints) {
+    public Ship(TextureRegion textureRegion, float x, float y, float width, float height, String name, int cost, float maxHp, float velocity, float maxSpeed, FixingPoint[] fixingPoints) {
         super(textureRegion, x, y, width, height);
 
         this.cost = cost;
@@ -117,7 +110,7 @@ public class Ship extends GameObject {
         }
     }
 
-    public void move(Map map) {
+    public void move(Ship enemyShip,Map map) {
         if(currentHp>0) {
             speedX = speedX + velocity * movementVector.x;
             speedY = speedY + velocity * movementVector.y;
@@ -135,7 +128,7 @@ public class Ship extends GameObject {
             } else isShipInRedZone = false;
 
             for (int i = 0; i < fixingPoints.length; i++) {
-                fixingPoints[i].update(this, map);
+                fixingPoints[i].update(this,enemyShip, map);
             }
 
             if ((bounds.getX() > 0 + map.getWidth() * 0.95) || (bounds.getX() < 0 + map.getWidth() * 0.05) || (bounds.getY() > 0 + map.getHeight() * 0.95) || (bounds.getY() < 0 + map.getHeight() * 0.05)) {
@@ -154,11 +147,11 @@ public class Ship extends GameObject {
 
 
 
-    public void act(Map map, Vector2 vector)
+    public void act(Ship enemyShip,Map map, Vector2 vector)
     {
         setMovementVector(vector);
         shot();
-        move(map);
+        move(enemyShip,map);
     }
 
     public void setRotationPosition(int rotationPosition) {
@@ -197,7 +190,7 @@ public class Ship extends GameObject {
         return isAlive;
     }
 
-    public int getCurrentHp() {
+    public float getCurrentHp() {
         return currentHp;
     }
 
@@ -218,9 +211,16 @@ public class Ship extends GameObject {
     public float getMaxSpeed(){return  maxSpeed;}
     public float getVelocity(){return velocity;}
     public int getCost(){return cost;}
-    public int getMaxHp(){return maxHp;}
+    public float getMaxHp(){return maxHp;}
+
+    public void setCurrentHp(float currentHp) {
+        this.currentHp = currentHp;
+    }
 
     public String getName() {return name; }
     public int getFixingPointsDigit(){return fixingPoints.length;}
 
+    public Vector2 getMovementVector() {
+        return movementVector;
+    }
 }
