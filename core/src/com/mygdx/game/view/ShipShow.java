@@ -40,13 +40,14 @@ public class ShipShow implements Screen {
     int yt;
     int dyt;
     Boolean MakeToast=false;
+    Boolean MakeToast1=false;
     Ship ship;
     //Buttons
     StageForButton Back, Buy;
     Button.ButtonStyle BaStyle, BuStyle;
     //Sreens
     Screen ShList;
-    Toast toast;
+    Toast toast,toast1;
     MainMenu menu;
     Player player;
     //for ship's params
@@ -101,21 +102,26 @@ public class ShipShow implements Screen {
                 .font(font1)
                 .build();
         toast = toastFactory.create("Successfully bought" , Toast.Length.LONG);
-
+        toast1 = toastFactory.create("Already bought" , Toast.Length.LONG);
 
 
         //Buy button
         BuStyle = new Button.ButtonStyle();
         BuStyle.up = skin.getDrawable("Buy-up");
         BuStyle.down = skin.getDrawable("Buy-down");
-        Buy = new StageForButton(BuStyle,(int) ( Gdx.graphics.getWidth()-Shipimg.getHeight()), (int) ((Gdx.graphics.getHeight()) /2-Shipimg.getHeight()/2) , 200, 200);
+        Buy = new StageForButton(BuStyle,(int) ( Gdx.graphics.getWidth()-Shipimg.getHeight()), (int) ((Gdx.graphics.getHeight()) /2-Shipimg.getHeight()/2) , (int) (Gdx.graphics.getHeight()/3.6), (int) (Gdx.graphics.getHeight()/3.6));
 
         Buy.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+
+               // ShList=new ShopList(game,batch,textureAtlas,menu,player);
+                if (!player.resources.shipList.contains(ship)){
                 MakeToast=true;
-                ShList=new ShopList(game,batch,textureAtlas,menu,player);
-                player.resources.shipList.add(ship);
+                player.resources.shipList.add(ship);}
+                else
+                    MakeToast1=true;
+
              
 
             }
@@ -124,7 +130,7 @@ public class ShipShow implements Screen {
         BaStyle = new Button.ButtonStyle();
         BaStyle.up = skin.getDrawable("Back-up");
         BaStyle.down = skin.getDrawable("Back-down");
-        Back = new StageForButton(BaStyle, (int) Shipimg.getX(), (int) (Gdx.graphics.getHeight()/Gdx.graphics.getHeight()), 200, 200);
+        Back = new StageForButton(BaStyle, (int) Shipimg.getX(), (int) (Gdx.graphics.getHeight()/Gdx.graphics.getHeight()), (int) (Gdx.graphics.getHeight()/3.6), (int) (Gdx.graphics.getHeight()/3.6));
         System.out.println("Clicker");
         Back.btn.addListener(new ClickListener(){
             @Override
@@ -158,12 +164,17 @@ public class ShipShow implements Screen {
         textManager.displayMessage(batch, font, "" + ship.getName(), xt, yt);
         textManager.displayMessage(batch, font, "Price: " + ship.getCost(), xt, yt - dyt);
         textManager.displayMessage(batch, font, "HP: " + ship.getMaxHp(), xt, yt - dyt * 2);
-        textManager.displayMessage(batch, font, "Speed: " + ship.getMaxHp(), xt, yt - dyt * 3);
+        textManager.displayMessage(batch, font, "Speed: " + ship.getMaxSpeed(), xt, yt - dyt * 3);
         textManager.displayMessage(batch, font, "Velocity: " + ship.getVelocity(), xt, yt - dyt * 4);
         textManager.displayMessage(batch, font, "Weapons: "+ship.getFixingPointsDigit(), xt, yt - dyt * 5);
 
         if (MakeToast==true){
             toast.render(Gdx.graphics.getDeltaTime());
+
+        }
+        if (MakeToast1==true){
+            toast1.render(Gdx.graphics.getDeltaTime());
+
 
         }
         Buy.act(delta);

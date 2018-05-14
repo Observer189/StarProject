@@ -49,7 +49,7 @@ public class ShopList implements Screen {
     int counter = 0;
 
     //ships
-   Ship pulsate;
+   Ship pulsate,bat,dakkar,hunter,mite;
     Player player;
 
 
@@ -227,7 +227,7 @@ public class ShopList implements Screen {
         Gostyle = new Button.ButtonStyle();
         Gostyle.up = skin.getDrawable("Go-up");
         Gostyle.down = skin.getDrawable("Go-down");
-        Go = new StageForButton(Gostyle, (Gdx.graphics.getWidth() - 210), (int) ((Gdx.graphics.getHeight()) / 1.8), 200, 200);
+        Go = new StageForButton(Gostyle, (int) (Gdx.graphics.getWidth() - Gdx.graphics.getWidth()/6.0952381), (int) ((Gdx.graphics.getHeight()) / 1.8), (int) (Gdx.graphics.getHeight()/3.6), (int) (Gdx.graphics.getHeight()/3.6));
         Go.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -246,7 +246,7 @@ public class ShopList implements Screen {
         Prevstyle = new Button.ButtonStyle();
         Prevstyle.up = skin.getDrawable("Prev-up");
         Prevstyle.down = skin.getDrawable("Prev-down");
-        Prev = new StageForButton(Prevstyle, Go.x, Gdx.graphics.getHeight() / 8, 200, 200);
+        Prev = new StageForButton(Prevstyle, Go.x, Gdx.graphics.getHeight() / 8, (int) (Gdx.graphics.getHeight()/3.6), (int) (Gdx.graphics.getHeight()/3.6));
         Prev.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -264,7 +264,7 @@ public class ShopList implements Screen {
         Gstyle.up = skin.getDrawable("UnSelectGun");
         Gstyle.down = skin.getDrawable("UnSelectGun");
 
-        Guns = new StageForButton(Gstyle, Gdx.graphics.getWidth() / Gdx.graphics.getWidth(), (int) (Gdx.graphics.getHeight() - 50), Gdx.graphics.getWidth() / 2, 50);
+        Guns = new StageForButton(Gstyle, Gdx.graphics.getWidth() / Gdx.graphics.getWidth(), (int) (Gdx.graphics.getHeight() - 50), Gdx.graphics.getWidth() / 2, (int) (Gdx.graphics.getHeight()/14.4));
         //change scene when 'guns' clicked
         Guns.btn.addListener(new ClickListener() {
             @Override
@@ -280,7 +280,7 @@ public class ShopList implements Screen {
         Sstyle = new Button.ButtonStyle();
         Sstyle.up = skin.getDrawable("SelectShip");
         Sstyle.down = skin.getDrawable("SelectShip");
-        Ships = new StageForButton(Sstyle, (int) (Gdx.graphics.getWidth() / 2), (int) (Gdx.graphics.getHeight() - 50), Gdx.graphics.getWidth() / 2, 50);
+        Ships = new StageForButton(Sstyle, (int) (Gdx.graphics.getWidth() / 2), (int) (Gdx.graphics.getHeight() - 50), Gdx.graphics.getWidth() / 2, (int) (Gdx.graphics.getHeight()/14.4));
         //change scene when 'ships' clicked
         Ships.btn.addListener(new ClickListener() {
             @Override
