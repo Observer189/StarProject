@@ -46,6 +46,7 @@ public class MainMenu implements Screen {
     LogListener Log;
     PassListener Pass;
     int ForLogCounter=0;
+    InputMultiplexer in;
 
 
 
@@ -100,7 +101,7 @@ public class MainMenu implements Screen {
 
 
 
-        sfplaybutton = new StageForButton(p_button, 300, 150);
+        sfplaybutton = new StageForButton(p_button, (int) (Gdx.graphics.getWidth()/4.3), (int) (Gdx.graphics.getHeight()/4.8));
         sfplaybutton.btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -114,12 +115,14 @@ public class MainMenu implements Screen {
         sh_button = new Button.ButtonStyle();
         sh_button.up = skin.getDrawable("Shop-up");
         sh_button.down = skin.getDrawable("Shop-down");
-        sfshop = new StageForButton(sh_button, 600, 150);
+        sfshop = new StageForButton(sh_button, (int) (Gdx.graphics.getWidth()/2.13), (int) (Gdx.graphics.getHeight()/4.8));
         sfshop.btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ForLogCounter++;
+                DisableBtn(true);
                 game.setScreen( PreShop);
+
 
 
             }
@@ -130,29 +133,35 @@ public class MainMenu implements Screen {
         ang_button = new Button.ButtonStyle();
         ang_button.up = skin.getDrawable("Angar-up");
         ang_button.down = skin.getDrawable("Angar-down");
-        sfangar = new StageForButton(ang_button, 900, 150);
+        sfangar = new StageForButton(ang_button, (int) (Gdx.graphics.getWidth()/1.42), (int) (Gdx.graphics.getHeight()/4.8));
         sfangar.btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ForLogCounter++;
+                DisableBtn(true);
                  game.setScreen(angar);
+
+
 
             }
         });
 
 
-        InputMultiplexer in=new InputMultiplexer();
+       in=new InputMultiplexer();
 
         in.addProcessor(sfplaybutton);
         in.addProcessor(sfshop);
         in.addProcessor(sfangar);
 
+
             Gdx.input.setInputProcessor(in);
+
     }
 
 
     @Override
     public void render(float delta) {
+
 
         OrthographicCamera camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
@@ -204,6 +213,8 @@ public class MainMenu implements Screen {
 
     @Override
     public void resize(int width, int height) {
+        System.out.println("Resumed");
+        DisableBtn(false);
 
     }
 
@@ -211,15 +222,31 @@ public class MainMenu implements Screen {
     public void pause() {
 
 
+
     }
 
     @Override
     public void resume() {
 
+
     }
 
     @Override
     public void hide() {
+        System.out.println("Hided");
+        DisableBtn(true);
+
+
+    }
+    public void DisableBtn(Boolean b){
+        if (b==true){
+        in.removeProcessor(sfangar);
+        in.removeProcessor(sfshop);
+        in.removeProcessor(sfplaybutton);}
+        else{
+            in.addProcessor(sfplaybutton);
+        in.addProcessor(sfshop);
+        in.addProcessor(sfangar);}
 
     }
 
