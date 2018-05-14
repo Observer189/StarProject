@@ -207,7 +207,14 @@ public class Ship extends GameObject {
         }
 
 
+
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
+
     public float getMaxSpeed(){return  maxSpeed;}
     public float getVelocity(){return velocity;}
     public int getCost(){return cost;}

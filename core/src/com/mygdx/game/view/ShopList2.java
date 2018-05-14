@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.model.Player;
 import com.mygdx.game.utils.TextManager;
 
 //This screen is used to show Shop of Guns
@@ -26,11 +27,13 @@ public class ShopList2 implements Screen{
     Skin skin;
     Screen ShList;
     MainMenu menu;
-    public ShopList2(Game game, SpriteBatch batch, TextureAtlas textureAtlas,MainMenu menu){
+    Player player;
+    public ShopList2(Game game, SpriteBatch batch, TextureAtlas textureAtlas, MainMenu menu, Player player){
         this.game=game;
         this.batch = batch;
         this.textureAtlas=textureAtlas;
         this.menu=menu;
+        this.player=player;
 
 
     }
@@ -41,11 +44,11 @@ public class ShopList2 implements Screen{
         skin=new Skin();
         batch=new SpriteBatch();
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
-        ShList=new ShopList(game,batch,textureAtlas,menu);
+        ShList=new ShopList(game,batch,textureAtlas,menu,player);
         Gstyle = new Button.ButtonStyle();
         Gstyle.up = skin.getDrawable("SelectGun");
         Gstyle.down = skin.getDrawable("SelectGun");
-        Guns=new StageForButton(Gstyle,0,Gdx.graphics.getHeight()-51);
+        Guns=new StageForButton(Gstyle,0,Gdx.graphics.getHeight()-(int) (Gdx.graphics.getHeight()/14.117));
         //change scene when 'guns' clicked
         Guns.btn.addListener(new ClickListener(){
             @Override
@@ -58,7 +61,7 @@ public class ShopList2 implements Screen{
         Sstyle = new Button.ButtonStyle();
         Sstyle.up = skin.getDrawable("UnSelectShip");
         Sstyle.down = skin.getDrawable("UnSelectShip");
-        Ships=new StageForButton(Sstyle,Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()-51);
+        Ships=new StageForButton(Sstyle,Gdx.graphics.getWidth()/2, (int) (Gdx.graphics.getHeight()-Gdx.graphics.getHeight()/14.117));
         //change scene when 'ships' clicked
         Ships.btn.addListener(new ClickListener(){
             @Override
@@ -142,7 +145,7 @@ public class ShopList2 implements Screen{
         public StageForButton(Button.ButtonStyle btnstyle, int x, int y) {
 
             btn = new Button(btnstyle);
-            btn.setBounds(x, y, Gdx.graphics.getWidth()/2, 50);
+            btn.setBounds(x, y, Gdx.graphics.getWidth()/2, (int) (Gdx.graphics.getHeight()/14.4));
 
 
 

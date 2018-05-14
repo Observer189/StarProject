@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Player {
     private String name;
-    Resources resources;
+    public Resources resources;
     private Ship currentShip;
     public Player()
     {
@@ -31,7 +31,7 @@ public class Player {
     }
 
     public int getMoney() {
-        return resources.getMoney();
+        return this.resources.getMoney();
     }
 
     public Ship getCurrentShip() {
@@ -54,11 +54,18 @@ public class Player {
         this.currentShip = currentShip;
     }
 
-    private class Resources
+    public ArrayList<Ship> getShipList() {
+        return resources.getShipList();
+    }
+    public void setShipList(ArrayList<Ship> shipList) {
+        resources.shipList = shipList;
+    }
+
+    public class Resources
     {
         private int money;
-        ArrayList<Ship> shipList;
-        ArrayList<Weapon> weaponList;
+        public ArrayList<Ship> shipList;
+        public ArrayList<Weapon> weaponList;
 
         public Resources()
         {
@@ -66,6 +73,7 @@ public class Player {
             shipList=new ArrayList<Ship>();
             weaponList=new ArrayList<Weapon>();
         }
+        public void ShipAdd(Ship ship){shipList.add(ship);}
 
         public ArrayList<Ship> getShipList() {
             return shipList;
@@ -82,6 +90,7 @@ public class Player {
         public void setWeaponList(ArrayList<Weapon> weaponList) {
             this.weaponList = weaponList;
         }
+        //public void addShip(Ship ship){shipList.add(ship);}
 
         public int getMoney() {
             return money;
@@ -90,5 +99,6 @@ public class Player {
         public void setMoney(int money) {
             this.money = money;
         }
+
     }
 }

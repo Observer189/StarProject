@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.model.Player;
 import com.mygdx.game.utils.TextManager;
 
 public class PreShop implements Screen {
@@ -29,11 +30,13 @@ public class PreShop implements Screen {
     TextManager textManager;
     BitmapFont font;
     MainMenu menu;
-    public PreShop(Game game,SpriteBatch batch, TextureAtlas textureAtlas,MainMenu menu){
+    Player player;
+    public PreShop(Game game,SpriteBatch batch, TextureAtlas textureAtlas,MainMenu menu,Player player){
         this.game=game;
         this.batch = batch;
         this.textureAtlas=textureAtlas;
         this.menu=menu;
+        this.player=player;
 
 
 
@@ -47,8 +50,8 @@ public class PreShop implements Screen {
         font=textManager.fontInitialize(Color.BLACK,1f);
 
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
-        ShList=new ShopList(game,batch,textureAtlas,menu);
-        ShList2=new ShopList2(game,batch,textureAtlas,menu);
+        ShList=new ShopList(game,batch,textureAtlas,menu,player);
+        ShList2=new ShopList2(game,batch,textureAtlas,menu,player);
         //creating button with guns image
         Gstyle = new Button.ButtonStyle();
         Gstyle.up = skin.getDrawable("UnSelectGun");
@@ -101,6 +104,7 @@ public class PreShop implements Screen {
         Guns.draw();
         Ships.act(delta);
         Ships.draw();
+
         batch.begin();
         batch.end();
 

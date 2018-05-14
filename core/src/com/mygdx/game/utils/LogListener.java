@@ -8,20 +8,20 @@ public class LogListener implements Input.TextInputListener {
     public Boolean ShowPass=false;
 
 
-@Override
-public void input(String text){
-    this.text=text;
-    if (this.text.equals(null)||this.text.contains(" ")||this.text.length()<4){
+    @Override
+    public void input(String text){
+        this.text=text;
+        if (this.text.equals(null)||this.text.contains(" ")||this.text.length()<4){
+            Show=true;
+
+        }else ShowPass=true;
+
+    }
+
+    @Override
+    public void canceled(){
         Show=true;
-
-    }else ShowPass=true;
-
-        }
-
-@Override
-public void canceled(){
-    Show=true;
-        }
+    }
 
 
 

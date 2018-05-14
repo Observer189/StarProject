@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.model.Player;
 
+import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.utils.LogListener;
 import com.mygdx.game.utils.PassListener;
 import com.mygdx.game.utils.TextManager;
@@ -33,24 +34,26 @@ public class MainMenu implements Screen {
     StageForButton sfplaybutton, sfshop, sfangar;
     SpriteBatch batch;
     Game game;
-    Player player;
+    public Player player;
     public TextureAtlas textureAtlas;
     TextManager textManager;
     public Button.ButtonStyle p_button, sh_button, ang_button;
-    Screen CTB;//ConnectToBattle
-    Screen PreShop;
+    public Screen CTB;//ConnectToBattle
+    Screen PreShop,angar;
     BitmapFont font;
     Input.TextInputListener LogIn;
     public static String text;
     LogListener Log;
     PassListener Pass;
     int ForLogCounter=0;
+    InputMultiplexer in;
 
 
 
-    public MainMenu(SpriteBatch batch, Game game) {
+    public MainMenu(SpriteBatch batch, Game game,Player player) {
         this.batch = batch;
         this.game = game;
+        this.player=player;
     }
 
 
@@ -82,9 +85,10 @@ public class MainMenu implements Screen {
         //PreShop=new PreShop(game,batch,textureAtlas);
         batch = new SpriteBatch();
         CTB=new ConnectToBattle(batch,game,textureAtlas,player);
-        player=new Player();
-        PreShop=new PreShop(game,batch,textureAtlas,this);
 
+        PreShop=new PreShop(game,batch,textureAtlas,this,player);
+
+        angar=new Angar(game,batch,this,player);
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         font=textManager.fontInitialize(Color.BLACK,1f);
         //game.setScreen(battle);
@@ -97,7 +101,7 @@ public class MainMenu implements Screen {
 
 
 
-        sfplaybutton = new StageForButton(p_button, 300, 150);
+        sfplaybutton = new StageForButton(p_button, (int) (Gdx.graphics.getWidth()/4.3), (int) (Gdx.graphics.getHeight()/4.8));
         sfplaybutton.btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -111,12 +115,14 @@ public class MainMenu implements Screen {
         sh_button = new Button.ButtonStyle();
         sh_button.up = skin.getDrawable("Shop-up");
         sh_button.down = skin.getDrawable("Shop-down");
-        sfshop = new StageForButton(sh_button, 600, 150);
+        sfshop = new StageForButton(sh_button, (int) (Gdx.graphics.getWidth()/2.13), (int) (Gdx.graphics.getHeight()/4.8));
         sfshop.btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ForLogCounter++;
+                DisableBtn(true);
                 game.setScreen( PreShop);
+
 
 
             }
@@ -127,29 +133,35 @@ public class MainMenu implements Screen {
         ang_button = new Button.ButtonStyle();
         ang_button.up = skin.getDrawable("Angar-up");
         ang_button.down = skin.getDrawable("Angar-down");
-        sfangar = new StageForButton(ang_button, 900, 150);
+        sfangar = new StageForButton(ang_button, (int) (Gdx.graphics.getWidth()/1.42), (int) (Gdx.graphics.getHeight()/4.8));
         sfangar.btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ForLogCounter++;
-                // game.setScreen();
+                DisableBtn(true);
+                 game.setScreen(angar);
+
+
 
             }
         });
 
 
-        InputMultiplexer in=new InputMultiplexer();
+       in=new InputMultiplexer();
 
         in.addProcessor(sfplaybutton);
         in.addProcessor(sfshop);
         in.addProcessor(sfangar);
 
+
             Gdx.input.setInputProcessor(in);
+
     }
 
 
     @Override
     public void render(float delta) {
+
 
         OrthographicCamera camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
@@ -162,16 +174,18 @@ public class MainMenu implements Screen {
                 Log.Show = false;
 
             }
+        }
+        if (ForLogCounter==0) {
             if (Log.ShowPass==true)
 
-            if (Pass.Show == true) {
-                Gdx.input.getTextInput(Pass, "Pass", "", "Your password");
-                Pass.Show = false;
-            }
+                if (Pass.Show == true) {
+                    Gdx.input.getTextInput(Pass, "Pass", "", "Your password");
+                    Log.ShowPass=false;
+                }
         }
+
         if (Log.Show==false && Pass.Show==false)
             ForLogCounter++;
-
 
         textManager.displayMessage(batch,font, "Welcome to Star game!",  (int) (Gdx.graphics.getWidth() / 3.5), (int) (Gdx.graphics.getHeight() / 1.3 + 20));
         //textManager.displayMessage(batch,"x= "+Gdx.graphics.getWidth()+" y= "+Gdx.graphics.getHeight() ,Color.BLACK,50, (int) (Gdx.graphics.getWidth()/3.5), (int) (Gdx.graphics.getHeight()/1.3+90));
@@ -199,6 +213,8 @@ public class MainMenu implements Screen {
 
     @Override
     public void resize(int width, int height) {
+        System.out.println("Resumed");
+        DisableBtn(false);
 
     }
 
@@ -206,15 +222,31 @@ public class MainMenu implements Screen {
     public void pause() {
 
 
+
     }
 
     @Override
     public void resume() {
 
+
     }
 
     @Override
     public void hide() {
+        System.out.println("Hided");
+        DisableBtn(true);
+
+
+    }
+    public void DisableBtn(Boolean b){
+        if (b==true){
+        in.removeProcessor(sfangar);
+        in.removeProcessor(sfshop);
+        in.removeProcessor(sfplaybutton);}
+        else{
+            in.addProcessor(sfplaybutton);
+        in.addProcessor(sfshop);
+        in.addProcessor(sfangar);}
 
     }
 
