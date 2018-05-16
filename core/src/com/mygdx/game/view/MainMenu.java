@@ -169,23 +169,24 @@ public class MainMenu implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (ForLogCounter==0) {
 
-            if (Log.Show == true) {
+            if (Log.Show) {
                 Gdx.input.getTextInput(Log, "Log", "", "Log-in(must be filled)");
+                System.out.println(Log.Show+"1");
                 Log.Show = false;
-
+                System.out.println(Log.Show+"2");
             }
         }
-        if (ForLogCounter==0) {
-            if (Log.ShowPass==true)
+      /*  if (ForLogCounter==0) {
+            if (Log.ShowPass)
 
-                if (Pass.Show == true) {
+                if (Pass.Show) {
                     Gdx.input.getTextInput(Pass, "Pass", "", "Your password");
+
                     Log.ShowPass=false;
                 }
-        }
+        }*/
 
-        if (Log.Show==false && Pass.Show==false)
-            ForLogCounter++;
+
 
         textManager.displayMessage(batch,font, "Welcome to Star game!",  (int) (Gdx.graphics.getWidth() / 3.5), (int) (Gdx.graphics.getHeight() / 1.3 + 20));
         //textManager.displayMessage(batch,"x= "+Gdx.graphics.getWidth()+" y= "+Gdx.graphics.getHeight() ,Color.BLACK,50, (int) (Gdx.graphics.getWidth()/3.5), (int) (Gdx.graphics.getHeight()/1.3+90));

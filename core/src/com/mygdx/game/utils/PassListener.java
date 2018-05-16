@@ -4,7 +4,7 @@ import com.badlogic.gdx.Input;
 
 public class PassListener implements Input.TextInputListener {
         String text;
-        public Boolean Show=true;
+        public Boolean Show=false;
 
 
         @Override
