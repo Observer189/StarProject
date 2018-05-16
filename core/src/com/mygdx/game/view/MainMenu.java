@@ -84,7 +84,7 @@ public class MainMenu implements Screen {
 
         //PreShop=new PreShop(game,batch,textureAtlas);
         batch = new SpriteBatch();
-        CTB=new ConnectToBattle(batch,game,textureAtlas,player);
+        CTB=new ConnectToBattle(batch,game,textureAtlas,player,this);
 
         PreShop=new PreShop(game,batch,textureAtlas,this,player);
 

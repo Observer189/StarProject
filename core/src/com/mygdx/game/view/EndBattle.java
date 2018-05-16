@@ -1,5 +1,6 @@
 package com.mygdx.game.view;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -10,11 +11,15 @@ import com.mygdx.game.model.Player;
  */
 
 public class EndBattle implements Screen {
+    Screen mainMenu;
+    Game game;
     Player player;
-    public EndBattle(Player player)
-    {
-        this.player=player;
-    }
+    public EndBattle(Player player,Game game,Screen mainMenu)
+        {
+            this.mainMenu=mainMenu;
+            this.game=game;
+            this.player=player;
+        }
     @Override
     public void show() {
 

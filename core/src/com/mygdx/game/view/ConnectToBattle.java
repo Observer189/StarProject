@@ -29,6 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ConnectToBattle implements Screen {
+    Screen mainMenu;
     SpriteBatch batch;
     Game game;
     TextureAtlas textureAtlas;
@@ -41,7 +42,8 @@ public class ConnectToBattle implements Screen {
     InputProcessor processor;
     BitmapFont blueFont;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
-    public ConnectToBattle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,Player player) {
+    public ConnectToBattle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,Player player,Screen mainMenu) {
+        this.mainMenu=mainMenu;
         this.batch = batch;
         this.game = game;
         this.textureAtlas = textureAtlas;
@@ -69,7 +71,7 @@ public class ConnectToBattle implements Screen {
 
         if((battleStatus.getNumber()!=null)&&(battleStatus.getStatus().equals("ready"))) {
 
-            game.setScreen(new Battle(batch, game, textureAtlas, battleStatus,player));
+            game.setScreen(new Battle(batch, game, textureAtlas, battleStatus,player,mainMenu));
         }
     }
 
@@ -95,7 +97,7 @@ public class ConnectToBattle implements Screen {
             textManager.displayMessage(batch,blueFont,"Players in queue:"+" "+battleStatus.getQueueSize(),300,350);
         }
         if(battleStatus.getNumber()!=null) {
-            game.setScreen(new Battle(batch, game, textureAtlas, battleStatus,player));
+            game.setScreen(new Battle(batch, game, textureAtlas, battleStatus,player,mainMenu));
         }
     }
 
