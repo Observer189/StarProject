@@ -42,7 +42,7 @@ public class Battle implements Screen {
     SpriteBatch batch;
     Game game;
     TextureAtlas textureAtlas;
-    public  Player player;
+    Player player;
     Player enemy;
     Coord coord;
     servApi request;
@@ -66,13 +66,14 @@ public class Battle implements Screen {
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
     Map classicMap;
     Screen endBattle;
-    public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,BattleStatus battleStatus,Player player,Screen mainMenu) {
+    public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,BattleStatus battleStatus,Player player,Player enemy,Screen mainMenu) {
         this.mainMenu=mainMenu;
         this.batch = batch;
         this.game = game;
         this.textureAtlas = textureAtlas;
         this.battleStatus=battleStatus;
         this.player = player;
+        this.enemy=enemy;
         AspectRatio=(float)Gdx.graphics.getWidth()/Gdx.graphics.getHeight();
         mapWidth=1000;
         mapHeight=600;
@@ -89,7 +90,7 @@ public class Battle implements Screen {
         classicMap=new Map(batch,textureAtlas.findRegion("ClassicSpace"),mapWidth,mapHeight);
 
 
-        enemy = new Player(battleStatus.getName(), new Pulsate(textureAtlas, 0, 0));
+        //enemy = new Player(battleStatus.getName(), new Pulsate(textureAtlas, 0, 0));
         if(battleStatus.getPositionNumber()==1)
         {
             player.getCurrentShip().setPosition(200,300);
@@ -183,7 +184,7 @@ public class Battle implements Screen {
         {
             game.setScreen(endBattle);
         }
-
+        //System.out.println(enemy.getCurrentShip().getName());
 
     }
 
@@ -219,7 +220,7 @@ public class Battle implements Screen {
 
         Call<Coord> call = request.get(battleStatus.getNumber(),player.getName(),enemy.getName(), player.getCurrentShip().getX(),player.getCurrentShip().getY());
         //System.out.println(player.getCurrentShip().getX()+" "+player.getCurrentShip().getY());
-        //System.out.println(enemy.getName()+" "+player.getName()+" c="+counter);
+        System.out.println(enemy.getName()+" "+player.getName()+" c="+counter);
         call.enqueue(new Callback<Coord>() {
 
             @Override
@@ -232,6 +233,11 @@ public class Battle implements Screen {
                 if(coord.getX()!=null)
                 enemy.getCurrentShip().setPosition(coord.getX(),coord.getY());
                 //System.out.println(enemy.getCurrentShip().getX()+" "+enemy.getCurrentShip().getY());
+                try {
+                    sleep(20);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 getCoordIsFinished=true;
             }
 

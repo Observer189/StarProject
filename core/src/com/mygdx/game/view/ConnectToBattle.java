@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.control.ConnectToBattleProcessor;
 import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Player;
+import com.mygdx.game.model.Ship;
 import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.TextManager;
@@ -23,6 +24,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static java.lang.Thread.sleep;
 
 /**
  * Created by Sash on 03.05.2018.
@@ -52,7 +55,7 @@ public class ConnectToBattle implements Screen {
     @Override
     public void show() {
 
-        player = new Player("player", new Pulsate(textureAtlas, 0, 0));
+        player = new Player("player", new Pulsate(textureAtlas,0,0));
         player.generateName();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
@@ -63,16 +66,16 @@ public class ConnectToBattle implements Screen {
         Gdx.input.setInputProcessor(processor);
         textManager=new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         blueFont=textManager.fontInitialize(Color.BLUE,1);
-        battleStatus=new BattleStatus(null,null,null,"add",null);
+        battleStatus=new BattleStatus(null,null,null,null,"add",null);
 
         counter=0;
         getBattleIsFinished=false;
         getBattleNumber();
 
-        if((battleStatus.getNumber()!=null)&&(battleStatus.getStatus().equals("ready"))) {
+        /*if((battleStatus.getNumber()!=null)&&(battleStatus.getStatus().equals("ready"))) {
 
             game.setScreen(new Battle(batch, game, textureAtlas, battleStatus,player,mainMenu));
-        }
+        }*/
     }
 
     @Override
@@ -86,7 +89,8 @@ public class ConnectToBattle implements Screen {
             getBattleIsFinished=false;
             getBattleNumber();
         }
-        System.out.println(battleStatus.getNumber()+" "+battleStatus.getStatus()+"QueueSize:"+battleStatus.getQueueSize());
+        //System.out.println(battleStatus.getNumber()+" "+battleStatus.getStatus()+"QueueSize:"+battleStatus.getQueueSize());
+
         if(battleStatus.getStatus().equals("add"))
         {
             textManager.displayMessage(batch,blueFont,"Connection to server...",300,300);
@@ -96,8 +100,11 @@ public class ConnectToBattle implements Screen {
             textManager.displayMessage(batch,blueFont,"Search enemy...",300,300);
             textManager.displayMessage(batch,blueFont,"Players in queue:"+" "+battleStatus.getQueueSize(),300,350);
         }
-        if(battleStatus.getNumber()!=null) {
-            game.setScreen(new Battle(batch, game, textureAtlas, battleStatus,player,mainMenu));
+        if((battleStatus.getNumber()!=null)&&(battleStatus.getStatus().equals("ready"))&&(battleStatus.getShipName()!=null)) {
+            System.out.println("CTB:"+battleStatus.getShipName());
+
+            Player enemy=new Player(battleStatus.getName(),setShipByName("Pulsate"));
+            game.setScreen(new Battle(batch, game, textureAtlas, battleStatus,player,enemy,mainMenu));
         }
     }
 
@@ -137,11 +144,16 @@ public class ConnectToBattle implements Screen {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-        Call<BattleStatus> call = request.getBattleNumber(player.getName(),battleStatus.getStatus());
+        Call<BattleStatus> call = request.getBattleNumber(player.getName(),player.getCurrentShip().getName(),battleStatus.getStatus());
         call.enqueue(new Callback<BattleStatus>() {
             @Override
             public void onResponse(Call<BattleStatus> call, Response<BattleStatus> response) {
                 battleStatus.setBattleStatus(response.body());
+                try {
+                    sleep(20);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 getBattleIsFinished=true;
             }
 
@@ -150,6 +162,15 @@ public class ConnectToBattle implements Screen {
                 getBattleIsFinished=true;
             }
         });
-
+    }
+    public Ship setShipByName(String name)
+    {
+        if(name=="Pulsate")
+            return new Pulsate(textureAtlas, 0, 0);
+        else
+        {
+            System.out.println("Ship is not exist");
+            return null;
+        }
     }
 }
