@@ -66,7 +66,7 @@ public class Battle implements Screen {
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
     Map classicMap;
     Screen endBattle;
-    public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,BattleStatus battleStatus,Player player,Player enemy,Screen mainMenu) {
+    public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,BattleStatus battleStatus,Player player,Player enemy,MainMenu mainMenu) {
         this.mainMenu=mainMenu;
         this.batch = batch;
         this.game = game;
