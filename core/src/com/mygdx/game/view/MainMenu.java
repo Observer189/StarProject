@@ -42,11 +42,12 @@ public class MainMenu implements Screen {
     Screen PreShop,angar;
     BitmapFont font;
     Input.TextInputListener LogIn;
-    public static String text;
-    LogListener Log;
+
+    public LogListener Log;
     PassListener Pass;
     int ForLogCounter=0;
     InputMultiplexer in;
+    String first;
 
 
 
@@ -74,10 +75,12 @@ public class MainMenu implements Screen {
 
             }
         };*/
+        first="Your password";
         Log=new LogListener();
         Pass=new PassListener();
         if (ForLogCounter==0)
         Gdx.input.getTextInput(Log,"Log","","log-in");
+
 
 
 
@@ -176,15 +179,21 @@ public class MainMenu implements Screen {
                 System.out.println(Log.Show+"2");
             }
         }
-      /*  if (ForLogCounter==0) {
-            if (Log.ShowPass)
+        if (ForLogCounter==0) {
+            if (Log.ShowPass&&Pass.Show) {
 
-                if (Pass.Show) {
-                    Gdx.input.getTextInput(Pass, "Pass", "", "Your password");
+                Gdx.input.getTextInput(Pass, "Pass", "", first);
+                Pass.Show=false;
+                if (Pass.Success)
+                    Pass.canceled();
+                else first="Something wrong. Check your password";
 
-                    Log.ShowPass=false;
-                }
-        }*/
+            }
+
+
+
+
+        }
 
 
 

@@ -210,10 +210,7 @@ public class Ship extends GameObject {
 
     }
 
-    @Override
-    public String toString() {
-        return getName();
-    }
+
 
     public float getMaxSpeed(){return  maxSpeed;}
     public float getVelocity(){return velocity;}
@@ -225,9 +222,22 @@ public class Ship extends GameObject {
     }
 
     public String getName() {return name; }
+
+
+
     public int getFixingPointsDigit(){return fixingPoints.length;}
 
     public Vector2 getMovementVector() {
         return movementVector;
+    }
+
+    @Override
+    public String toString() {
+
+        return getName();
+    }
+    @Override
+    public boolean equals(Object o) {
+        return getName().equals(o.toString());
     }
 }

@@ -64,8 +64,9 @@ public class Angar implements Screen {
         textureAtlas=new TextureAtlas(Gdx.files.internal("TexturePack.atlas"));
         skin.addRegions(textureAtlas);
         stage=new Stage();
-
-        Shimg=new Image(skin.getDrawable("1"));
+        String shipname=player.getCurrentShip().getName();
+        if (shipname.equals("Pulsate")  )shipname="1";
+        Shimg=new Image(skin.getDrawable(shipname));
         Shimg.setSize((float) (Gdx.graphics.getHeight()/3.6), (float) (Gdx.graphics.getHeight()/3.6));
         Shimg.setPosition((float) (Gdx.graphics.getWidth()/Gdx.graphics.getWidth()+Gdx.graphics.getWidth()/85.3), (float) (Gdx.graphics.getHeight()-Gdx.graphics.getHeight()/3.44));
 
@@ -92,12 +93,13 @@ public class Angar implements Screen {
 
         guns=new Image[player.getCurrentShip().getFixingPointsDigit()];
         float x=Frameimg.getX()+Gdx.graphics.getHeight()/8/2;
-        float y=Frameimg.getY()-Gdx.graphics.getHeight()/6;
+        float y=Frameimg.getY()-Gdx.graphics.getHeight()/5;
         for (int i=0;i<guns.length;i++){
 
             Image img= new Image(skin.getDrawable("Frame"));
-            img.setSize(85,85);
+            img.setSize(120,130);
             img.setPosition(x,y);
+
             guns[i]=img;
             guns[i].addListener(new ClickListener(){
                 @Override
@@ -105,13 +107,21 @@ public class Angar implements Screen {
 
 
 
+
+
+
                 }
             });
-
+            Image gun=new Image(skin.getDrawable("GreenLaser"));
+            gun.setSize(34,128);
+            gun.setPosition(guns[i].getX()+guns[i].getWidth()/2-gun.getWidth()/2,guns[i].getY());
 
             x+=img.getWidth()+img.getWidth()/2;
             stage.addActor(guns[i]);
+            stage.addActor(gun);
+
         }
+
         BaStyle = new Button.ButtonStyle();
         BaStyle.up = skin.getDrawable("Back-up");
         BaStyle.down = skin.getDrawable("Back-down");
