@@ -23,6 +23,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ship;
 import com.mygdx.game.model.Ships.Bat;
+import com.mygdx.game.model.Ships.Dakkar;
 import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.utils.TextManager;
 
@@ -307,13 +308,14 @@ public class ShopList implements Screen {
 
                 game.setScreen(ShShow);
 
-                //  Gdx.input.setInputProcessor(null);
+
 
 
             }
         });
         //place for 'Bat' ship
        // Ship bat=new Bat(textureAtlas,0,0);
+
         st2 = new Button.ButtonStyle();
         st2.up = skin.getDrawable("Bat");
         st2.down = skin.getDrawable("Bat");
@@ -321,23 +323,22 @@ public class ShopList implements Screen {
         ct2.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-               // ShShow = new ShipShow(skin.getRegion("Bat"), 0, 0, 0, 0, ct2.name, ct2.price, 400, 20, 100, game);
-             //   game.setScreen(ShShow);
-                // Gdx.input.setInputProcessor(null);
+
 
             }
         });
         //place for 'Dakkar' ship
+        dakkar=new Dakkar(textureAtlas,0,0);
         st3 = new Button.ButtonStyle();
         st3.up = skin.getDrawable("Dakkar");
         st3.down = skin.getDrawable("Dakkar");
-        ct3 = new CellStage(st3, ct1.x, (int) (ct2.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Dakkar", 280);
+        ct3 = new CellStage(st3, ct1.x, (int) (ct2.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), dakkar.getName(), dakkar.getCost());
         ct3.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-               // ShShow = new ShipShow(skin.getRegion("Dakkar"), 0, 0, 0, 0, ct3.name, ct3.price, 400, 20, 100, game);
-               // game.setScreen(ShShow);
-                // Gdx.input.setInputProcessor(null);
+                ShShow = new ShipShow(dakkar,game,menu,player);
+
+                game.setScreen(ShShow);
 
             }
         });
