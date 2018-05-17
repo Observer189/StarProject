@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Weapon extends GameObject {
     ArrayList<Ammo> ammos;
     int counter;
-
+    String name;
     Ammo ammo;
     private int rotationPosition;
 
@@ -90,5 +90,9 @@ public class Weapon extends GameObject {
 
     public int getRotationPosition() {
         return rotationPosition;
+    }
+
+    public String getName() {
+        return name;
     }
 }

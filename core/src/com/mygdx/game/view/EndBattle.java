@@ -20,7 +20,7 @@ import com.mygdx.game.utils.TextManager;
  */
 
 public class EndBattle implements Screen {
-    Screen mainMenu;
+    MainMenu mainMenu;
     Game game;
     Player player;
     Stage stage;
@@ -28,7 +28,7 @@ public class EndBattle implements Screen {
     Button btn;
     BitmapFont font;
     TextManager textManager;
-    public EndBattle(Player player,Game game,Screen mainMenu)
+    public EndBattle(Player player,Game game,MainMenu mainMenu)
         {
             this.mainMenu=mainMenu;
             this.game=game;
@@ -44,14 +44,19 @@ public class EndBattle implements Screen {
         btnStyle.up=skin.getDrawable("Back-up");
         btnStyle.down=skin.getDrawable("Back-down");
         btn=new Button(btnStyle);
+        btn.setSize(Gdx.graphics.getWidth()/3,Gdx.graphics.getWidth()/3);
+        btn.setPosition(Gdx.graphics.getWidth()/2-btn.getWidth()/2,Gdx.graphics.getHeight()/2-btn.getHeight()/2);
+        
          btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
+                mainMenu.music.play();
                 game.setScreen(mainMenu);
+
 
             }
         });
+
         stage=new Stage();
         stage.addActor(btn);
         Gdx.input.setInputProcessor(stage);

@@ -116,13 +116,12 @@ public class ShipShow implements Screen {
             public void clicked(InputEvent event, float x, float y) {
 
                // ShList=new ShopList(game,batch,textureAtlas,menu,player);
-                if (!player.resources.shipList.contains(ship)){
+                if (player.resources.shipList.contains(ship)) {
+                    MakeToast1=true;
+                } else {
                 MakeToast=true;
                 player.resources.shipList.add(ship);}
-                else
-                    MakeToast1=true;
 
-             
 
             }
         });

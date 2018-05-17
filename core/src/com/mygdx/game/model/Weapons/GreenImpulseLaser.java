@@ -11,6 +11,7 @@ import com.mygdx.game.model.Weapon;
  */
 
 public class GreenImpulseLaser extends Weapon {
+    String name;
     TextureAtlas textureAtlas;
     int counter;
     private float attackSpeed;
@@ -20,6 +21,7 @@ public class GreenImpulseLaser extends Weapon {
         this.textureAtlas=textureAtlas;
         counter=0;
         attackSpeed=25;
+        name="GreenLaser";
     }
 
     @Override
