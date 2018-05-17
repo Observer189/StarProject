@@ -20,6 +20,8 @@ import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ship;
 import com.mygdx.game.model.Ships.Pulsate;
+import com.mygdx.game.model.Weapon;
+import com.mygdx.game.model.Weapons.GreenImpulseLaser;
 import com.mygdx.game.utils.TextManager;
 
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class Angar implements Screen {
     BitmapFont font;
     Player player;
     DrawStageForShips DSFS;
+    DrawStageForGuns DSFG;
     Button.ButtonStyle BaStyle;
     StageForButton Back;
 
@@ -74,7 +77,8 @@ public class Angar implements Screen {
         Frameimg.setSize((float) (Gdx.graphics.getWidth()/2.7), (float) (Gdx.graphics.getHeight()/3.3));
         Frameimg.setPosition((float) (Shimg.getX()-Gdx.graphics.getWidth()/85.3),Shimg.getY()-Gdx.graphics.getHeight()/72);
         DSFS=new DrawStageForShips(Gdx.graphics.getWidth()+100, 400,player.resources.shipList);
-
+        player.resources.weaponList.add(new GreenImpulseLaser(textureAtlas,400,400));
+     //   DSFG=new DrawStageForGuns(Gdx.graphics.getWidth()+100, 400,player.resources.getWeaponList());
 
         Frameimg.addListener(new ClickListener(){
             @Override
@@ -92,7 +96,7 @@ public class Angar implements Screen {
         //frames for guns
 
         guns=new Image[player.getCurrentShip().getFixingPointsDigit()];
-        float x=Frameimg.getX()+Gdx.graphics.getHeight()/8/2;
+        float x=Frameimg.getX();
         float y=Frameimg.getY()-Gdx.graphics.getHeight()/5;
         for (int i=0;i<guns.length;i++){
 
@@ -174,12 +178,13 @@ public class Angar implements Screen {
 
     @Override
     public void pause() {
+        menu.music.stop();
 
     }
 
     @Override
     public void resume() {
-
+        menu.music.play();
     }
 
     @Override
@@ -245,6 +250,44 @@ public class Angar implements Screen {
 
             }
         }
+
+    }
+    class DrawStageForGuns extends Stage{
+        int x;
+        int y;
+        ArrayList<Weapon> list;
+        ArrayList<Image> gu=new ArrayList<Image>();
+        ArrayList<Image> frame=new ArrayList<Image>();
+        public DrawStageForGuns(int x,int y,ArrayList<Weapon> list){
+            this.x=x;
+            this.y=y;
+            this.list=list;
+            int deltay;
+            deltay = Gdx.graphics.getHeight() / 9;
+            for (int i=0;i<list.size();i++){
+                String drawname= list.get(i).getName();
+
+                gu.add(new Image(skin.getDrawable(drawname)));
+                gu.get(i).setSize((float) (Gdx.graphics.getHeight()/3.6), (float) (Gdx.graphics.getHeight()/3.6));
+                gu.get(i).setPosition((float) (x), (float) (y-deltay*(i+1)));
+
+                frame.add( new Image(skin.getDrawable("Frame")));
+                frame.get(i).setSize((float) (Gdx.graphics.getWidth()/2.7), (float) (Gdx.graphics.getHeight()/3.3));
+                frame.get(i).setPosition((float) (gu.get(i).getX()-Gdx.graphics.getWidth()/85.3),gu.get(i).getY()-Gdx.graphics.getHeight()/72);
+                addActor(gu.get(i));
+                addActor(frame.get(i));
+            }
+
+
+        }
+        public  void ViewMove(int x,int y){
+            for (int i=0;i<list.size();i++){
+                gu.get(i).setPosition(x,y);
+                frame.get(i).setPosition((float) (gu.get(i).getX()-Gdx.graphics.getWidth()/85.3),gu.get(i).getY()-Gdx.graphics.getHeight()/72);
+
+            }
+        }
+
 
     }
 

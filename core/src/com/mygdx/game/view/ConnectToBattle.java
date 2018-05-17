@@ -29,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ConnectToBattle implements Screen {
-    Screen mainMenu;
+    MainMenu mainMenu;
     SpriteBatch batch;
     Game game;
     TextureAtlas textureAtlas;
@@ -42,7 +42,7 @@ public class ConnectToBattle implements Screen {
     InputProcessor processor;
     BitmapFont blueFont;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
-    public ConnectToBattle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,Player player,Screen mainMenu) {
+    public ConnectToBattle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,Player player,MainMenu mainMenu) {
         this.mainMenu=mainMenu;
         this.batch = batch;
         this.game = game;

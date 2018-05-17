@@ -6,6 +6,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -48,6 +50,7 @@ public class MainMenu implements Screen {
     int ForLogCounter=0;
     InputMultiplexer in;
     String first;
+    public Music music;
 
 
 
@@ -60,6 +63,8 @@ public class MainMenu implements Screen {
 
     @Override
     public void show() {
+        music = Gdx.audio.newMusic(Gdx.files.internal("MenuMusic.mp3"));
+
        /* LogIn = new Input.TextInputListener() {
 
 
@@ -78,10 +83,11 @@ public class MainMenu implements Screen {
         first="Your password";
         Log=new LogListener();
         Pass=new PassListener();
-        if (ForLogCounter==0)
-        Gdx.input.getTextInput(Log,"Log","","log-in");
-
-
+        if (ForLogCounter==0) {
+            Gdx.input.getTextInput(Log, "Log", "", "log-in");
+            music.setLooping(true);
+            music.play();
+        }
 
 
 
@@ -109,6 +115,8 @@ public class MainMenu implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ForLogCounter++;
+
+                music.stop();
                 game.setScreen(CTB);
 
             }
@@ -230,6 +238,7 @@ public class MainMenu implements Screen {
 
     @Override
     public void pause() {
+        music.stop();
 
 
 
@@ -237,7 +246,7 @@ public class MainMenu implements Screen {
 
     @Override
     public void resume() {
-
+    music.play();
 
     }
 

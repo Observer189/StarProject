@@ -51,7 +51,7 @@ public class Battle implements Screen {
     BitmapFont redFont;
     BattleStatus battleStatus;
     InputProcessor processor;
-    Screen mainMenu;
+    MainMenu mainMenu;
     public static float camX;
     public static float camY;
     public static float delta;
@@ -66,7 +66,7 @@ public class Battle implements Screen {
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
     Map classicMap;
     Screen endBattle;
-    public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,BattleStatus battleStatus,Player player,Screen mainMenu) {
+    public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,BattleStatus battleStatus,Player player,MainMenu mainMenu) {
         this.mainMenu=mainMenu;
         this.batch = batch;
         this.game = game;
