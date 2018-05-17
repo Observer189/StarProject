@@ -43,6 +43,7 @@ public class Angar implements Screen {
     DrawStageForGuns DSFG;
     Button.ButtonStyle BaStyle;
     StageForButton Back;
+    Ship thisShip;
 
 
 
@@ -147,6 +148,7 @@ public class Angar implements Screen {
         InputMultiplexer in=new InputMultiplexer();
         in.addProcessor(stage);
         in.addProcessor(Back);
+        in.addProcessor(DSFS);
         Gdx.input.setInputProcessor(in);
 
     }
@@ -156,9 +158,11 @@ public class Angar implements Screen {
         camera.setToOrtho(false, 800, 480);
         Gdx.gl.glClearColor(0, 64, 247, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        textManager.displayMessage(batch,font,player.getCurrentShip().getName(), (float) (Shimg.getX()+Shimg.getWidth()*1.2),Shimg.getY()+Shimg.getHeight()/2);
         textManager.displayMessage(batch,font," "+player.resources.shipList,200,200);
         for (int i=0;i<DSFS.list.size();i++) {
-            textManager.displayMessage(batch, font, player.getCurrentShip().getName(), DSFS.sh.get(i).getX()+DSFS.sh.get(i).getWidth(),DSFS.sh.get(i).getY()+DSFS.frame.get(i).getHeight()/2);
+            textManager.displayMessage(batch, font, player.resources.shipList.get(i).getName(), DSFS.sh.get(i).getX()+DSFS.sh.get(i).getWidth(),DSFS.sh.get(i).getY()+DSFS.frame.get(i).getHeight()/2);
+
         }
         stage.act(delta);
         stage.draw();
@@ -166,6 +170,7 @@ public class Angar implements Screen {
         DSFS.draw();
         Back.act(delta);
         Back.draw();
+        //System.out.println("SHIP: "+player.getCurrentShip());
         batch.begin();
         batch.end();
 
@@ -221,31 +226,69 @@ public class Angar implements Screen {
         ArrayList<Ship> list;
         ArrayList<Image> sh=new ArrayList<Image>();
         ArrayList<Image> frame=new ArrayList<Image>();
-        public DrawStageForShips(int x,int y,ArrayList<Ship> list){
+        public DrawStageForShips(int x, int y, final ArrayList<Ship> list){
             this.x=x;
             this.y=y;
             this.list=list;
             int deltay;
             deltay = Gdx.graphics.getHeight() / 9;
             for (int i=0;i<list.size();i++){
+
                 String drawname= list.get(i).getName();
                 if (drawname=="Pulsate") drawname="1";
                 sh.add(new Image(skin.getDrawable(drawname)));
                 sh.get(i).setSize((float) (Gdx.graphics.getHeight()/3.6), (float) (Gdx.graphics.getHeight()/3.6));
                 sh.get(i).setPosition((float) (x), (float) (y-deltay*(i+1)));
-
+                System.out.println("This X: "+sh.get(i).getY());
                 frame.add( new Image(skin.getDrawable("Frame")));
                 frame.get(i).setSize((float) (Gdx.graphics.getWidth()/2.7), (float) (Gdx.graphics.getHeight()/3.3));
-                frame.get(i).setPosition((float) (sh.get(i).getX()-Gdx.graphics.getWidth()/85.3),sh.get(i).getY()-Gdx.graphics.getHeight()/72);
+                frame.get(i).setPosition((float) (sh.get(i).getX()-Gdx.graphics.getWidth()/85.3),(float) (y-deltay*(i+1)));//sh.get(i).getY()-Gdx.graphics.getHeight()/72
+
+
                 addActor(sh.get(i));
                 addActor(frame.get(i));
             }
+            if (list.size()>0)
+                frame.get(0).addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+
+                        player.setCurrentShip(list.get(0));
+                        String ImgName=player.getCurrentShip().getName();
+                        if (ImgName.equals("Pulsate")) ImgName="1";
+                        Shimg.setDrawable(skin.getDrawable(ImgName));
+                    }
+                });
+            if (list.size()>1)
+                frame.get(1).addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+
+                        player.setCurrentShip(list.get(1));
+                        String ImgName=player.getCurrentShip().getName();
+                        if (ImgName.equals("Pulsate")) ImgName="1";
+                        Shimg.setDrawable(skin.getDrawable(ImgName));
+
+                    }
+                });
+            if (list.size()>2)
+                frame.get(2).addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+
+                        player.setCurrentShip(list.get(2));
+                        String ImgName=player.getCurrentShip().getName();
+                        if (ImgName.equals("Pulsate")) ImgName="1";
+                        Shimg.setDrawable(skin.getDrawable(ImgName));
+                    }
+                });
 
 
         }
         public  void ViewMove(int x,int y){
+
             for (int i=0;i<list.size();i++){
-                sh.get(i).setPosition(x,y);
+                sh.get(i).setPosition(x, (float) (Shimg.getY()-sh.get(i).getHeight()*i*1.13));
                 frame.get(i).setPosition((float) (sh.get(i).getX()-Gdx.graphics.getWidth()/85.3),sh.get(i).getY()-Gdx.graphics.getHeight()/72);
 
             }
