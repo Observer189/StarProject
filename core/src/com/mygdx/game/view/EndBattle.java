@@ -43,9 +43,10 @@ public class EndBattle implements Screen {
         btnStyle=new Button.ButtonStyle();
         btnStyle.up=skin.getDrawable("Back-up");
         btnStyle.down=skin.getDrawable("Back-down");
+        btn=new Button(btnStyle);
         btn.setSize(Gdx.graphics.getWidth()/3,Gdx.graphics.getWidth()/3);
         btn.setPosition(Gdx.graphics.getWidth()/2-btn.getWidth()/2,Gdx.graphics.getHeight()/2-btn.getHeight()/2);
-        btn=new Button(btnStyle);
+        
          btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
