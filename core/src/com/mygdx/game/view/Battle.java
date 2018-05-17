@@ -105,7 +105,7 @@ public class Battle implements Screen {
             enemy.getCurrentShip().setPosition(200,300);
             enemy.getCurrentShip().setRotationPosition(1);
         }
-        player.generateName();
+
 
 
 
@@ -233,11 +233,11 @@ public class Battle implements Screen {
                 if(coord.getX()!=null)
                 enemy.getCurrentShip().setPosition(coord.getX(),coord.getY());
                 //System.out.println(enemy.getCurrentShip().getX()+" "+enemy.getCurrentShip().getY());
-                try {
+                /*try {
                     sleep(20);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
+                }*/
                 getCoordIsFinished=true;
             }
 

@@ -13,6 +13,7 @@ import com.mygdx.game.control.ConnectToBattleProcessor;
 import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ship;
+import com.mygdx.game.model.Ships.Dakkar;
 import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.TextManager;
@@ -55,7 +56,7 @@ public class ConnectToBattle implements Screen {
     @Override
     public void show() {
 
-        player = new Player("player", new Pulsate(textureAtlas,0,0));
+        player = new Player("player", new Dakkar(textureAtlas,0,0));
         player.generateName();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
