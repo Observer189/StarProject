@@ -70,7 +70,7 @@ public class Player {
 
         public Resources()
         {
-            money=1000;
+            money=50000;
             shipList=new ArrayList<Ship>();
             weaponList=new ArrayList<Weapon>();
         }

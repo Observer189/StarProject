@@ -22,6 +22,7 @@ import com.mygdx.game.model.Player;
 
 import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.requests.servApi;
+import com.mygdx.game.utils.ButtonForProcessor;
 import com.mygdx.game.utils.Joystick;
 import com.mygdx.game.utils.TextManager;
 
@@ -64,6 +65,8 @@ public class Battle implements Screen {
     int mapWidth;
     int mapHeight;
     public Joystick joystick;
+    ButtonForProcessor turnLeft;
+    ButtonForProcessor turnRight;
     boolean getCoordIsFinished;
     final public float AspectRatio;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
@@ -117,9 +120,13 @@ public class Battle implements Screen {
 
         camera=new OrthographicCamera(widthCamera,heightCamera);
         camera.position.set(new Vector3(player.getCurrentShip().getX(),player.getCurrentShip().getX(),0));
+        camX =camera.position.x;
+        camY =camera.position.y;
         coord = new Coord(0f,0f);
         counter = 0;
         joystick=new Joystick(batch,0,10,textureAtlas.findRegion("Dj1p1"),textureAtlas.findRegion("Dj1p2"));
+        //turnLeft=new ButtonForProcessor(batch,camX+widthCamera/5,camY,20,20,textureAtlas.findRegion("TurnLeft"));
+        //turnRight=new ButtonForProcessor(batch,camX+widthCamera/5+30,camY,20,20,textureAtlas.findRegion("TurnRight"));
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         redFont=textManager.fontInitialize(Color.RED,0.1f);
@@ -128,7 +135,7 @@ public class Battle implements Screen {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         request = retrofit.create(servApi.class);
-        processor=new BattleProcessor(joystick);
+        processor=new BattleProcessor(joystick,player.getCurrentShip());
         Gdx.input.setInputProcessor(processor);
 
 
@@ -156,6 +163,10 @@ public class Battle implements Screen {
         camera.position.y=player.getCurrentShip().getY();
         camX =camera.position.x;
         camY =camera.position.y;
+        /*turnLeft.setX(camX+widthCamera/5);
+        turnLeft.setY(camY-heightCamera/3);
+        turnRight.setX(camX+widthCamera/5+30);
+        turnRight.setY(camY-heightCamera/3);*/
         camera.update();
         //System.out.println("x="+coord.getX()+"y="+coord.getY());
 
@@ -163,6 +174,8 @@ public class Battle implements Screen {
 
         batch.setProjectionMatrix(camera.combined);
         classicMap.draw();
+        //turnLeft.draw();
+        //turnRight.draw();
         player.getCurrentShip().act(enemy.getCurrentShip(),classicMap,joystick.getVector());
         enemy.getCurrentShip().act(player.getCurrentShip(),classicMap,new Vector2(0,0));
 

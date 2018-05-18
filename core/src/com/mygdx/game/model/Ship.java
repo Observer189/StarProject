@@ -234,6 +234,10 @@ public void nullify()
     public int getCost(){return cost;}
     public float getMaxHp(){return maxHp;}
 
+    public int getRotationPosition() {
+        return rotationPosition;
+    }
+
     public void setCurrentHp(float currentHp) {
         this.currentHp = currentHp;
     }
