@@ -37,6 +37,7 @@ public class EndBattle implements Screen {
     Map map;
     String status;
     int appliedDamage;
+    int reward;
 
     BitmapFont bigBlueFont;
     BitmapFont bigRedFont;
@@ -89,6 +90,8 @@ public class EndBattle implements Screen {
         stage=new Stage();
         stage.addActor(btn);
         Gdx.input.setInputProcessor(stage);
+        reward=generateReward(status);
+        player.setMoney(player.getMoney()+reward);
     }
 
     @Override
@@ -104,13 +107,13 @@ public class EndBattle implements Screen {
         {
             System.out.println("V");
             textManager.displayMessage(batch,bigBlueFont,"Victory!!!",Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.8f);
-            textManager.displayMessage(batch,smallBlueFont,"Reward: "+generateReward(status),Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.6f);
+            textManager.displayMessage(batch,smallBlueFont,"Reward: "+reward,Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.6f);
         }
         if(status.equals("Failure"))
         {
             System.out.println("F");
             textManager.displayMessage(batch,bigRedFont,"Failure",Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.8f);
-            textManager.displayMessage(batch,smallRedFont,"Reward: "+generateReward(status),Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.6f);
+            textManager.displayMessage(batch,smallRedFont,"Reward: "+reward,Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.6f);
         }
         System.out.println(status);
 
@@ -143,6 +146,14 @@ public class EndBattle implements Screen {
 
     public int generateReward(String status)
     {
-        return appliedDamage;
+        if(status.equals("Failure")) {
+            return appliedDamage;
+        }
+        if (status.equals("Victory"))
+        {
+            double aD=appliedDamage;
+            return (int)(aD*(4+Math.random()));
+        }
+        else return 0;
     }
 }
