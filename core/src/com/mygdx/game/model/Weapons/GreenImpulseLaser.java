@@ -1,8 +1,6 @@
 package com.mygdx.game.model.Weapons;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.mygdx.game.model.Ammo;
 import com.mygdx.game.model.Ammos.GreenLaserAmmo;
 import com.mygdx.game.model.Weapon;
 
@@ -11,6 +9,7 @@ import com.mygdx.game.model.Weapon;
  */
 
 public class GreenImpulseLaser extends Weapon {
+    int cost;
     String name;
     TextureAtlas textureAtlas;
     int counter;
@@ -22,6 +21,7 @@ public class GreenImpulseLaser extends Weapon {
         counter=0;
         attackSpeed=25;
         name="GreenLaser";
+        cost=0;
     }
 
     @Override
@@ -38,5 +38,19 @@ public class GreenImpulseLaser extends Weapon {
 
             counter = 0;
         }
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

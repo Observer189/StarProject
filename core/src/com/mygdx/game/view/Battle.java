@@ -7,7 +7,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -19,8 +18,6 @@ import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Coord;
 import com.mygdx.game.model.Map;
 import com.mygdx.game.model.Player;
-
-import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.Joystick;
 import com.mygdx.game.utils.TextManager;
@@ -30,8 +27,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import static java.lang.Thread.sleep;
 
 /**
  * Created by Sash on 27.04.2018.
@@ -70,7 +65,7 @@ public class Battle implements Screen {
     Map classicMap;
     Screen endBattle;
 
-    public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas,BattleStatus battleStatus,Player player,Player enemy,MainMenu mainMenu) {
+    public Battle(SpriteBatch batch, Game game, TextureAtlas textureAtlas, BattleStatus battleStatus, Player player, Player enemy, MainMenu mainMenu) {
         this.mainMenu=mainMenu;
         this.batch = batch;
         this.game = game;

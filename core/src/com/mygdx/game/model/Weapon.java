@@ -1,10 +1,8 @@
 package com.mygdx.game.model;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Intersector;
-import com.mygdx.game.model.Ammos.GreenLaserAmmo;
 
 import java.util.ArrayList;
 
@@ -19,7 +17,7 @@ public class Weapon extends GameObject {
     Ammo ammo;
     private int rotationPosition;
 
-    public Weapon(TextureRegion weaponRegion,  float x, float y, float width,float height,float attackSpeed,Ammo ammo)
+    public Weapon(TextureRegion weaponRegion, float x, float y, float width, float height, float attackSpeed, Ammo ammo)
     {
         super(weaponRegion, x, y, width, height);
         this.ammo=new Ammo(ammo);
@@ -33,7 +31,7 @@ public class Weapon extends GameObject {
     {
 
     }
-    public void update(Ship playerShip,Ship enemyShip,Map map)
+    public void update(Ship playerShip, Ship enemyShip, Map map)
     {
           if(ammos.size()!=0) {
               for(int i=0;i<ammos.size();i++){
@@ -44,7 +42,7 @@ public class Weapon extends GameObject {
                   }
                   else if(Intersector.overlapConvexPolygons(ammos.get(i).getBounds(),enemyShip.getBounds()))
                   {
-                      enemyShip.setCurrentHp(enemyShip.getCurrentHp()-ammos.get(i).getDamage());
+                      playerShip.setCurrentHp(playerShip.getCurrentHp()-ammos.get(i).getDamage());
                       ammos.remove(i);
                   }
 
@@ -82,6 +80,11 @@ public class Weapon extends GameObject {
                 ammos.get(i).setRotationPosition(rotationPosition);
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 
     public ArrayList<Ammo> getAmmos() {

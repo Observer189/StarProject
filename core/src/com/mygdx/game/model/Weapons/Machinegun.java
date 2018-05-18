@@ -1,10 +1,7 @@
 package com.mygdx.game.model.Weapons;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.mygdx.game.model.Ammo;
 import com.mygdx.game.model.Ammos.Bullet;
-import com.mygdx.game.model.Ammos.GreenLaserAmmo;
 import com.mygdx.game.model.Weapon;
 
 /**
@@ -12,16 +9,18 @@ import com.mygdx.game.model.Weapon;
  */
 
 public class Machinegun extends Weapon {
+    int cost;
     String name;
     TextureAtlas textureAtlas;
     int counter;
     private float attackSpeed;
     public Machinegun(TextureAtlas textureAtlas, float x, float y) {
-        super(textureAtlas.findRegion("Machinegun"), x, y, 3f, 5f,50,
+        super(textureAtlas.findRegion("Machinegun"), x, y, 3f, 5f,10,
                 new Bullet(textureAtlas.findRegion("Bullet"),x+2/2,y+7/2));
         this.textureAtlas=textureAtlas;
         counter=0;
-        attackSpeed=50;
+        attackSpeed=10;
+        cost=1250;
         name="Machinegun";
     }
 
@@ -39,5 +38,19 @@ public class Machinegun extends Weapon {
 
             counter = 0;
         }
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

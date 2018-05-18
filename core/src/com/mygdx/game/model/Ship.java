@@ -2,7 +2,6 @@ package com.mygdx.game.model;
 
 
 import com.badlogic.gdx.Gdx;
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -110,7 +109,7 @@ public class Ship extends GameObject {
         }
     }
 
-    public void move(Ship enemyShip,Map map) {
+    public void move(Ship enemyShip, Map map) {
         if(currentHp>0) {
             speedX = speedX + velocity * movementVector.x;
             speedY = speedY + velocity * movementVector.y;
@@ -147,7 +146,7 @@ public class Ship extends GameObject {
 
 
 
-    public void act(Ship enemyShip,Map map, Vector2 vector)
+    public void act(Ship enemyShip, Map map, Vector2 vector)
     {
         setMovementVector(vector);
         shot();

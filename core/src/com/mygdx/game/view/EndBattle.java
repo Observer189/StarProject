@@ -28,7 +28,7 @@ public class EndBattle implements Screen {
     Button btn;
     BitmapFont font;
     TextManager textManager;
-    public EndBattle(Player player,Game game,MainMenu mainMenu)
+    public EndBattle(Player player, Game game, MainMenu mainMenu)
         {
             this.mainMenu=mainMenu;
             this.game=game;
