@@ -52,8 +52,6 @@ public class MainMenu implements Screen {
     String first;
     public Music music;
 
-
-
     public MainMenu(SpriteBatch batch, Game game,Player player) {
         this.batch = batch;
         this.game = game;

@@ -85,7 +85,7 @@ public class ConnectToBattle implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if(counter==100)counter=0;
         counter++;
-        if((battleStatus.getStatus().equals("wait"))&&(getBattleIsFinished))
+        if(getBattleIsFinished)
         {
             getBattleIsFinished=false;
             getBattleNumber();
@@ -104,7 +104,7 @@ public class ConnectToBattle implements Screen {
         if((battleStatus.getNumber()!=null)&&(battleStatus.getStatus().equals("ready"))&&(battleStatus.getShipName()!=null)) {
             System.out.println("CTB:"+battleStatus.getShipName());
 
-            Player enemy=new Player(battleStatus.getName(),setShipByName("Pulsate"));
+            Player enemy=new Player(battleStatus.getName(),setShipByName(battleStatus.getShipName()));
             game.setScreen(new Battle(batch, game, textureAtlas, battleStatus,player,enemy,mainMenu));
         }
     }
@@ -161,13 +161,17 @@ public class ConnectToBattle implements Screen {
             @Override
             public void onFailure(Call<BattleStatus> call, Throwable t) {
                 getBattleIsFinished=true;
+                System.out.println("Connection failure");
             }
         });
     }
     public Ship setShipByName(String name)
     {
-        if(name=="Pulsate")
+        System.out.println("!"+name+"!");
+        if(name.equals("Pulsate"))
             return new Pulsate(textureAtlas, 0, 0);
+        else if(name.equals("Dakkar"))
+            return new Dakkar(textureAtlas, 0, 0);
         else
         {
             System.out.println("Ship is not exist");

@@ -57,6 +57,9 @@ public class Battle implements Screen {
     public static float delta;
     public static float widthCamera;
     public static float heightCamera;
+    long ping;
+    long startTime;
+    long estimatedTime;
 
     int mapWidth;
     int mapHeight;
@@ -81,6 +84,8 @@ public class Battle implements Screen {
         widthCamera=220;
         heightCamera=220/AspectRatio;
         getCoordIsFinished=false;
+        ping =0;
+
     }
 
     @Override
@@ -185,6 +190,8 @@ public class Battle implements Screen {
         {
             game.setScreen(endBattle);
         }
+
+
         //System.out.println(enemy.getCurrentShip().getName());
 
     }
@@ -218,10 +225,10 @@ public class Battle implements Screen {
 
     private void getCoord() {
 
-
+        startTime = System.currentTimeMillis();
         Call<Coord> call = request.get(battleStatus.getNumber(),player.getName(),enemy.getName(), player.getCurrentShip().getX(),player.getCurrentShip().getY());
         //System.out.println(player.getCurrentShip().getX()+" "+player.getCurrentShip().getY());
-        System.out.println(enemy.getName()+" "+player.getName()+" c="+counter);
+        //System.out.println(enemy.getName()+" "+player.getName()+" c="+counter);
         call.enqueue(new Callback<Coord>() {
 
             @Override
@@ -230,25 +237,39 @@ public class Battle implements Screen {
                 counter++;
                 coord.setX(Float.valueOf(response.body().getX()));
                 coord.setY(Float.valueOf(response.body().getY()));
-                System.out.println(coord.getX()+" "+coord.getY());
+                //System.out.println(coord.getX()+" "+coord.getY());
                 if(coord.getX()!=null)
                 enemy.getCurrentShip().setPosition(coord.getX(),coord.getY());
+
                 //System.out.println(enemy.getCurrentShip().getX()+" "+enemy.getCurrentShip().getY());
-                /*try {
-                    sleep(20);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }*/
-                getCoordIsFinished=true;
+               while (!getCoordIsFinished)
+               {
+                   if(System.currentTimeMillis() - startTime>=20)
+                   {
+                       getCoordIsFinished=true;
+                   }
+               }
+                System.out.println("getCoord succes!!!");
+                //getCoordIsFinished=true;
+                estimatedTime = System.currentTimeMillis() - startTime;
+                ping=estimatedTime;
+
+                System.out.println("Ping:"+ping);
+
             }
 
             @Override
             public void onFailure(Call<Coord> call, Throwable t) {
                 getCoordIsFinished=true;
+                System.out.println("getCoord failure");
             }
         });
 
     }
+
+
+
+
 
 
 }
