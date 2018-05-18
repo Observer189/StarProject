@@ -13,6 +13,7 @@ import com.mygdx.game.model.Weapon;
 
 public class Machinegun extends Weapon {
     String name;
+    int cost;
     TextureAtlas textureAtlas;
     int counter;
     private float attackSpeed;
@@ -21,6 +22,7 @@ public class Machinegun extends Weapon {
                 new Bullet(textureAtlas.findRegion("Bullet"),x+2/2,y+7/2));
         this.textureAtlas=textureAtlas;
         counter=0;
+        cost=1250;
         attackSpeed=50;
         name="Machinegun";
     }
@@ -39,5 +41,18 @@ public class Machinegun extends Weapon {
 
             counter = 0;
         }
+    }
+    public int getCost() {
+        return cost;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

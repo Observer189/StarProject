@@ -41,6 +41,7 @@ public class Angar implements Screen {
     DrawStageForGuns DSFG;
     Button.ButtonStyle BaStyle;
     StageForButton Back;
+    int counter=1;
 
 
 
@@ -82,6 +83,9 @@ public class Angar implements Screen {
         Frameimg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (counter%2==0)
+                    DSFS.ViewMove(Gdx.graphics.getWidth()*2, (int) Shimg.getY());
+                    else
             DSFS.ViewMove((int) (Frameimg.getX()+Frameimg.getWidth()+Frameimg.getWidth()/10), (int) Shimg.getY());
             System.out.println("I CLICKED");
 
@@ -153,11 +157,11 @@ public class Angar implements Screen {
 
     @Override
     public void render(float delta) {
-        camera.setToOrtho(false, 800, 480);
+        camera.setToOrtho(false, (float) (Gdx.graphics.getWidth()/1.6), (float) (Gdx.graphics.getHeight()/1.5));
         Gdx.gl.glClearColor(0, 64, 247, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         textManager.displayMessage(batch,font,player.getCurrentShip().getName(), (float) (Shimg.getX()+Shimg.getWidth()*1.2),Shimg.getY()+Shimg.getHeight()/2);
-        textManager.displayMessage(batch,font," "+player.resources.shipList,200,200);
+       // textManager.displayMessage(batch,font," "+player.resources.shipList,200,200);
         for (int i=0;i<DSFS.list.size();i++) {
             textManager.displayMessage(batch, font, player.resources.shipList.get(i).getName(), DSFS.sh.get(i).getX()+DSFS.sh.get(i).getWidth(),DSFS.sh.get(i).getY()+DSFS.frame.get(i).getHeight()/2);
 
