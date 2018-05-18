@@ -132,7 +132,7 @@ public class Battle implements Screen {
         Gdx.input.setInputProcessor(processor);
 
 
-        endBattle=new EndBattle(player,game,mainMenu);
+
         getCoord();
     }
 
@@ -186,9 +186,18 @@ public class Battle implements Screen {
             joystick.draw();
         }
 
-        if((!player.getCurrentShip().getIsAlive())||(!enemy.getCurrentShip().getIsAlive()))
+        if(!player.getCurrentShip().getIsAlive())
         {
+            joystick.setActive(false);
             player.getCurrentShip().nullify();
+            endBattle=new EndBattle(player,batch,game,mainMenu,classicMap,"Failure");
+            game.setScreen(endBattle);
+        }
+        if(!enemy.getCurrentShip().getIsAlive())
+        {
+            joystick.setActive(false);
+            player.getCurrentShip().nullify();
+            endBattle=new EndBattle(player,batch,game,mainMenu,classicMap,"Victory");
             game.setScreen(endBattle);
         }
 

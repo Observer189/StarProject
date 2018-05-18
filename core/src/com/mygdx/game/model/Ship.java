@@ -28,7 +28,7 @@ public class Ship extends GameObject {
     private float maxSpeed;
 
     private int rotationPosition;
-
+    private int appliedDamage;//нанесенный урон
     private Integer currentExplosionFrame;
     private int explosionCounter;
     TextureRegion explosionRegion;
@@ -55,6 +55,7 @@ public class Ship extends GameObject {
         explosionCounter=7;
         movementVector = new Vector2(0, 0);
         this.fixingPoints = fixingPoints;
+        appliedDamage=0;
     }
 
     public FixingPoint[] getFixingPoints() {
@@ -195,6 +196,14 @@ public class Ship extends GameObject {
 
     public float getCurrentHp() {
         return currentHp;
+    }
+
+    public int getAppliedDamage() {
+        return appliedDamage;
+    }
+
+    public void setAppliedDamage(int appliedDamage) {
+        this.appliedDamage = appliedDamage;
     }
 
     public Drawable getImg(){
