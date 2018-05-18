@@ -22,7 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ship;
-import com.mygdx.game.model.Ships.Bat;
+import com.mygdx.game.model.Ships.Dakkar;
 import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.utils.TextManager;
 
@@ -54,7 +54,7 @@ public class ShopList implements Screen {
 
 
 
-    public ShopList(Game game, SpriteBatch batch, TextureAtlas textureAtlas,MainMenu menu,Player player) {
+    public ShopList(Game game, SpriteBatch batch, TextureAtlas textureAtlas, MainMenu menu, Player player) {
         this.game = game;
         this.batch = batch;
         this.textureAtlas = textureAtlas;
@@ -100,31 +100,33 @@ public class ShopList implements Screen {
         // textManager.displayMessage(batch,"Your money: " /*+ Player.getMoney()*/ ,Color.BLACK,ct1.size,20 , Gdx.graphics.getHeight()-20);
         //'1' ship
         // textManager.displayMessage(batch,font, ct1.name, ct1.x + 200, 300);
-
-        textManager.displayMessage(batch, font, ct1.name, ct1.x + 200, ct1.y + 175);
-        textManager.displayMessage(batch, font, "Price: " + ct1.price, ct1.x + 200, ct1.y + 75);
+        int x200= (int) (Gdx.graphics.getWidth()/6.4);
+        int y175= (int) (Gdx.graphics.getHeight()/4.11428);
+        int y75=(int) (Gdx.graphics.getHeight()/9.6);
+        textManager.displayMessage(batch, font, ct1.name, ct1.x + x200, ct1.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct1.price, ct1.x + x200, ct1.y + y75);
         ct1.act(delta);
         ct1.draw();
 
         //'Bat' ship
-        textManager.displayMessage(batch, font, ct2.name, ct2.x + 200, ct2.y + 175);
-        textManager.displayMessage(batch, font, "Price: " + ct2.price, ct2.x + 200, ct2.y + 75);
+        textManager.displayMessage(batch, font, ct2.name, ct2.x + x200, ct2.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct2.price, ct2.x + x200, ct2.y + y75);
         ct2.act(delta);
         ct2.draw();
         //'Dakkar' ship
-        textManager.displayMessage(batch, font, ct3.name, ct3.x + 200, ct3.y + 175);
-        textManager.displayMessage(batch, font, "Price: " + ct3.price, ct3.x + 200, ct3.y + 75);
+        textManager.displayMessage(batch, font, ct3.name, ct3.x + x200, ct3.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct3.price, ct3.x + x200, ct3.y + y75);
         ct3.act(delta);
         ct3.draw();
         //'Mite' ship
-        textManager.displayMessage(batch, font, ct4.name, ct4.x + 200, ct4.y + 175);
-        textManager.displayMessage(batch, font, "Price: " + ct4.price, ct4.x + 200, ct4.y + 75);
+        textManager.displayMessage(batch, font, ct4.name, ct4.x + x200, ct4.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct4.price, ct4.x + x200, ct4.y + y75);
         ct4.act(delta);
         ct4.draw();
         //'Hunter' ship
-        textManager.displayMessage(batch, font, ct5.name, ct5.x + 200, ct5.y + 175);
+        textManager.displayMessage(batch, font, ct5.name, ct5.x + x200, ct5.y + y175);
         //textManager.displayMessage(batch,font, "Price: " + ct5.price,  ct5.x + 200, ct5.y + 75);
-        textManager.displayMessage(batch, font, "Price: " + ct5.price, ct5.x + 200, ct5.y + 75);
+        textManager.displayMessage(batch, font, "Price: " + ct5.price, ct5.x + x200, ct5.y + y75);
         ct5.act(delta);
         ct5.draw();
         //Information bar
@@ -180,13 +182,16 @@ public class ShopList implements Screen {
 
     @Override
     public void pause() {
+        menu.music.pause();
 
 
     }
 
     @Override
-    public void resume() {
-        System.out.println( player.resources.shipList);
+    public void resume()
+    {
+        menu.music.play();
+
     }
 
     @Override
@@ -307,13 +312,14 @@ public class ShopList implements Screen {
 
                 game.setScreen(ShShow);
 
-                //  Gdx.input.setInputProcessor(null);
+
 
 
             }
         });
         //place for 'Bat' ship
        // Ship bat=new Bat(textureAtlas,0,0);
+
         st2 = new Button.ButtonStyle();
         st2.up = skin.getDrawable("Bat");
         st2.down = skin.getDrawable("Bat");
@@ -321,23 +327,22 @@ public class ShopList implements Screen {
         ct2.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-               // ShShow = new ShipShow(skin.getRegion("Bat"), 0, 0, 0, 0, ct2.name, ct2.price, 400, 20, 100, game);
-             //   game.setScreen(ShShow);
-                // Gdx.input.setInputProcessor(null);
+
 
             }
         });
         //place for 'Dakkar' ship
+        dakkar=new Dakkar(textureAtlas,0,0);
         st3 = new Button.ButtonStyle();
         st3.up = skin.getDrawable("Dakkar");
         st3.down = skin.getDrawable("Dakkar");
-        ct3 = new CellStage(st3, ct1.x, (int) (ct2.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Dakkar", 280);
+        ct3 = new CellStage(st3, ct1.x, (int) (ct2.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), dakkar.getName(), dakkar.getCost());
         ct3.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-               // ShShow = new ShipShow(skin.getRegion("Dakkar"), 0, 0, 0, 0, ct3.name, ct3.price, 400, 20, 100, game);
-               // game.setScreen(ShShow);
-                // Gdx.input.setInputProcessor(null);
+                ShShow = new ShipShow(dakkar,game,menu,player);
+
+                game.setScreen(ShShow);
 
             }
         });
@@ -398,7 +403,7 @@ public class ShopList implements Screen {
         in.addProcessor(Back);
 
         Gdx.input.setInputProcessor(in);
-        font = textManager.fontInitialize(Color.BLACK, (float) 0.8);
+        font = textManager.fontInitialize(Color.BLACK, 0.8f);
     }
 
     public void MoveOld(CellStage ct, int dir) {
