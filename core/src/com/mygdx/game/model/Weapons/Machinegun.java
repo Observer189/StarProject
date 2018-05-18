@@ -17,11 +17,11 @@ public class Machinegun extends Weapon {
     int counter;
     private float attackSpeed;
     public Machinegun(TextureAtlas textureAtlas, float x, float y) {
-        super(textureAtlas.findRegion("Machinegun"), x, y, 3f, 5f,10,
+        super(textureAtlas.findRegion("Machinegun"), x, y, 3f, 5f,50,
                 new Bullet(textureAtlas.findRegion("Bullet"),x+2/2,y+7/2));
         this.textureAtlas=textureAtlas;
         counter=0;
-        attackSpeed=10;
+        attackSpeed=50;
         name="Machinegun";
     }
 

@@ -19,7 +19,7 @@ public class Pulsate extends Ship {
         super.draw(batch);
     }
     public Pulsate(TextureAtlas textureAtlas, float x, float y) {
-        super(textureAtlas.findRegion("1"), x, y, 15, 15, "Pulsate", 50000, 170,
+        super(textureAtlas.findRegion("1"), x, y, 15, 15, "Pulsate", 50000, 780,
                 2.5f, 70,new FixingPoint[]{new FixingPoint(x,y,7.5f,0f,new GreenImpulseLaser(textureAtlas,x,y)),
                         new FixingPoint(x,y,7.5f,8.2f,new GreenImpulseLaser(textureAtlas,x,y))});
 

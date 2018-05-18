@@ -186,13 +186,13 @@ public class Battle implements Screen {
             joystick.draw();
         }
 
-        if(!player.getCurrentShip().getIsAlive())
+        if((!player.getCurrentShip().getIsAlive())||(!enemy.getCurrentShip().getIsAlive()))
         {
             game.setScreen(endBattle);
         }
 
 
-        //System.out.println(enemy.getCurrentShip().getName());
+        System.out.println("Player:"+player.getCurrentShip().getCurrentHp()+"Enemy:"+enemy.getCurrentShip().getCurrentHp());
 
     }
 
@@ -249,7 +249,7 @@ public class Battle implements Screen {
                        getCoordIsFinished=true;
                    }
                }
-                System.out.println("getCoord succes!!!");
+                //System.out.println("getCoord succes!!!");
                 //getCoordIsFinished=true;
                 estimatedTime = System.currentTimeMillis() - startTime;
                 ping=estimatedTime;
@@ -261,7 +261,7 @@ public class Battle implements Screen {
             @Override
             public void onFailure(Call<Coord> call, Throwable t) {
                 getCoordIsFinished=true;
-                System.out.println("getCoord failure");
+                //System.out.println("getCoord failure");
             }
         });
 
