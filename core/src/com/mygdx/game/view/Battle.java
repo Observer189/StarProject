@@ -188,6 +188,7 @@ public class Battle implements Screen {
 
         if((!player.getCurrentShip().getIsAlive())||(!enemy.getCurrentShip().getIsAlive()))
         {
+            player.getCurrentShip().nullify();
             game.setScreen(endBattle);
         }
 

@@ -36,6 +36,8 @@ public class EndBattle implements Screen {
         }
     @Override
     public void show() {
+        //player.getCurrentShip().setCurrentHp(player.getCurrentShip().getMaxHp());
+        //player.getCurrentShip().setIsAlive(true);
         textManager=new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         font=textManager.fontInitialize(Color.BLUE,1);
         Skin skin = new Skin();

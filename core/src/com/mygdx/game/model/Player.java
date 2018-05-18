@@ -23,6 +23,7 @@ public class Player {
         this.name = name;
         this.resources=new Resources();
         this.currentShip = currentShip;
+        resources.shipList.add(currentShip);
     }
        public void generateName()
     {

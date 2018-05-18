@@ -189,6 +189,9 @@ public class Ship extends GameObject {
     public boolean getIsAlive() {
         return isAlive;
     }
+    public void setIsAlive(boolean b) {
+        isAlive=b;
+    }
 
     public float getCurrentHp() {
         return currentHp;
@@ -210,7 +213,12 @@ public class Ship extends GameObject {
 
     }
 
-
+public void nullify()
+{
+    setCurrentHp(getMaxHp());
+    setIsAlive(true);
+    setMovementVector(new Vector2(0,0));
+}
 
     public float getMaxSpeed(){return  maxSpeed;}
     public float getVelocity(){return velocity;}
