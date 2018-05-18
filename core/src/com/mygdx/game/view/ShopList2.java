@@ -114,13 +114,18 @@ public class ShopList2 implements Screen{
 
     @Override
     public void pause() {
+        menu.music.pause();
+
 
     }
 
     @Override
-    public void resume() {
+    public void resume()
+    {
+        menu.music.play();
 
     }
+
 
     @Override
     public void hide() {
