@@ -18,10 +18,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ship;
+import com.mygdx.game.model.Weapon;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Toast;
 
-public class ShipShow implements Screen {
+public class GunShow implements Screen {
     //for drawing
     OrthographicCamera camera;
     SpriteBatch batch;
@@ -36,18 +37,17 @@ public class ShipShow implements Screen {
     int dyt;
     Boolean MakeToast=false;
     Boolean MakeToast1=false;
-    Boolean MakeToast2=false;
-    Ship ship;
+    Weapon weapon;
     //Buttons
     StageForButton Back, Buy;
     Button.ButtonStyle BaStyle, BuStyle;
     //Sreens
     Screen ShList;
-    Toast toast,toast1,toast2;
+    Toast toast,toast1;
     MainMenu menu;
     Player player;
     //for ship's params
-    Image Shipimg;
+    Image Gunimg;
     String name;
     int cost;
     int maxHp;
@@ -58,9 +58,9 @@ public class ShipShow implements Screen {
 
 
 
-    public ShipShow(Ship ship, Game game, MainMenu menu, Player player) {
+    public GunShow(Weapon weapon, Game game, MainMenu menu, Player player) {
 
-        this.ship=ship;
+        this.weapon=weapon;
         this.game=game;
         this.menu=menu;
         this.player=player;
@@ -77,21 +77,21 @@ public class ShipShow implements Screen {
         skin = new Skin();
         skin.addRegions(textureAtlas);
 
-        Shipimg = new Image(ship.getImg());
-        Shipimg.setSize((float) (Gdx.graphics.getWidth() / 4.3), (float) (Gdx.graphics.getHeight() / 2.4));
-        Shipimg.setPosition(Gdx.graphics.getWidth() / Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / 2 - Shipimg.getHeight() / 2);
+        Gunimg = new Image(weapon.getImg());
+        Gunimg.setSize((float) (Gdx.graphics.getWidth() / 14.3), (float) (Gdx.graphics.getHeight() / 1.96669));
+        Gunimg.setPosition((float) (Gdx.graphics.getWidth() / Gdx.graphics.getWidth()*0.4), Gdx.graphics.getHeight() / 2 - Gunimg.getHeight() / 2);
         //used for textManager params
 
-        xt = (int) (Shipimg.getX() + Shipimg.getWidth() * 1.2);
-        yt = (int) ((Shipimg.getY() + Shipimg.getHeight()) * 1.1);
-        stage.addActor(Shipimg);
+        xt = (int) (Gunimg.getX() + Gunimg.getWidth() * 1.2);
+        yt = (int) ((Gunimg.getY() + Gunimg.getHeight()) * 1.1);
+        stage.addActor(Gunimg);
         dyt = Gdx.graphics.getHeight() / 9;
 
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        ShList=new ShopList(game,batch,textureAtlas,menu,player);
+        ShList=new ShopList2(game,batch,textureAtlas,menu,player);
         font = textManager.fontInitialize(Color.BLACK, 1);
         font1 = textManager.fontInitialize(Color.WHITE, 1);
         Toast.ToastFactory toastFactory = new Toast.ToastFactory.Builder()
@@ -99,32 +99,24 @@ public class ShipShow implements Screen {
                 .build();
         toast = toastFactory.create("Successfully bought" , Toast.Length.LONG);
         toast1 = toastFactory.create("Already bought" , Toast.Length.LONG);
-        toast2=toastFactory.create("Not enough money!" , Toast.Length.LONG);
 
 
         //Buy button
         BuStyle = new Button.ButtonStyle();
         BuStyle.up = skin.getDrawable("Buy-up");
         BuStyle.down = skin.getDrawable("Buy-down");
-        Buy = new StageForButton(BuStyle,(int) ( Gdx.graphics.getWidth()-Shipimg.getHeight()), (int) ((Gdx.graphics.getHeight()) /2-Shipimg.getHeight()/2) , (int) (Gdx.graphics.getHeight()/3.6), (int) (Gdx.graphics.getHeight()/3.6));
+        Buy = new StageForButton(BuStyle,(int) ( Gdx.graphics.getWidth()- Gunimg.getHeight()), (int) ((Gdx.graphics.getHeight()) /2- Gunimg.getHeight()/2) , (int) (Gdx.graphics.getHeight()/3.6), (int) (Gdx.graphics.getHeight()/3.6));
 
         Buy.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
-               // ShList=new ShopList(game,batch,textureAtlas,menu,player);
-                if (player.resources.shipList.contains(ship)) {
+                // ShList=new ShopList(game,batch,textureAtlas,menu,player);
+                if (player.resources.weaponList.contains(weapon)) {
                     MakeToast1=true;
                 } else {
-                    if (player.resources.shipList.contains(ship)&& menu.player.getMoney()>ship.getCost()){
-                MakeToast=true;
-                int mon=menu.player.getMoney()-ship.getCost();
-                menu.player.setMoney(mon);
-                player.resources.shipList.add(ship);
-
-                    }else MakeToast2=true;
-
-                }
+                    MakeToast=true;
+                    player.resources.weaponList.add(weapon);}
 
 
             }
@@ -133,7 +125,7 @@ public class ShipShow implements Screen {
         BaStyle = new Button.ButtonStyle();
         BaStyle.up = skin.getDrawable("Back-up");
         BaStyle.down = skin.getDrawable("Back-down");
-        Back = new StageForButton(BaStyle, (int) Shipimg.getX(), (int) (Gdx.graphics.getHeight()/Gdx.graphics.getHeight()), (int) (Gdx.graphics.getHeight()/3.6), (int) (Gdx.graphics.getHeight()/3.6));
+        Back = new StageForButton(BaStyle, (int) Gunimg.getX(), (int) (Gdx.graphics.getHeight()/Gdx.graphics.getHeight()), (int) (Gdx.graphics.getHeight()/3.6), (int) (Gdx.graphics.getHeight()/3.6));
         System.out.println("Clicker");
         Back.btn.addListener(new ClickListener(){
             @Override
@@ -162,14 +154,12 @@ public class ShipShow implements Screen {
         camera.setToOrtho(false, 800, 480);
         Gdx.gl.glClearColor(0, 64, 247, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        if (name == "1") name = "Pulsate";
 
-        textManager.displayMessage(batch, font, "" + ship.getName(), xt, yt);
-        textManager.displayMessage(batch, font, "Price: " + ship.getCost(), xt, yt - dyt);
-        textManager.displayMessage(batch, font, "HP: " + ship.getMaxHp(), xt, yt - dyt * 2);
-        textManager.displayMessage(batch, font, "Speed: " + ship.getMaxSpeed(), xt, yt - dyt * 3);
-        textManager.displayMessage(batch, font, "Velocity: " + ship.getVelocity(), xt, yt - dyt * 4);
-        textManager.displayMessage(batch, font, "Weapons: "+ship.getFixingPointsDigit(), xt, yt - dyt * 5);
+
+        textManager.displayMessage(batch, font, "" + weapon.getName(), xt, yt);
+        textManager.displayMessage(batch, font, "Price: " + weapon.getCost(), xt, yt - dyt);
+        textManager.displayMessage(batch, font, "Speed: " + weapon.getAttackSpeed(), xt, yt - dyt * 3);
+
 
         if (MakeToast==true){
             toast.render(Gdx.graphics.getDeltaTime());
@@ -177,11 +167,6 @@ public class ShipShow implements Screen {
         }
         if (MakeToast1==true){
             toast1.render(Gdx.graphics.getDeltaTime());
-
-
-        }
-        if (MakeToast2==true){
-            toast2.render(Gdx.graphics.getDeltaTime());
 
 
         }

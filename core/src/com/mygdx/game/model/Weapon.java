@@ -1,9 +1,12 @@
 package com.mygdx.game.model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.mygdx.game.model.Ammos.GreenLaserAmmo;
 
 import java.util.ArrayList;
@@ -17,13 +20,15 @@ public class Weapon extends GameObject {
     int counter;
     String name;
     Ammo ammo;
+    int cost;
     private int rotationPosition;
+    private float attackSpeed;
 
     public Weapon(TextureRegion weaponRegion,  float x, float y, float width,float height,float attackSpeed,Ammo ammo)
     {
         super(weaponRegion, x, y, width, height);
         this.ammo=new Ammo(ammo);
-
+        cost=0;
         ammos=new ArrayList<Ammo>();
         counter=0;
         rotationPosition=1;
@@ -95,5 +100,18 @@ public class Weapon extends GameObject {
 
     public String getName() {
         return name;
+    }
+    public Drawable getImg(){
+        Skin skin=new Skin();
+        skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
+        return skin.getDrawable(getName());
+    }
+
+    public float getAttackSpeed() {
+        return attackSpeed;
+    }
+
+    public int getCost() {
+        return cost;
     }
 }

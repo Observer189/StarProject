@@ -31,7 +31,7 @@ public class PreShop implements Screen {
     BitmapFont font;
     MainMenu menu;
     Player player;
-    public PreShop(Game game,SpriteBatch batch, TextureAtlas textureAtlas,MainMenu menu,Player player){
+    public PreShop(Game game, SpriteBatch batch, TextureAtlas textureAtlas, MainMenu menu, Player player){
         this.game=game;
         this.batch = batch;
         this.textureAtlas=textureAtlas;
@@ -90,12 +90,13 @@ public class PreShop implements Screen {
 
 
         Gdx.input.setInputProcessor(in);
+        camera = new OrthographicCamera();
     }
 
     @Override
     public void render(float delta) {
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
+
+        camera.setToOrtho(false, (float) (Gdx.graphics.getWidth()/1.6), (float) (Gdx.graphics.getHeight()/1.5));
         Gdx.gl.glClearColor(0, 64, 247, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         textManager.displayMessage(batch,font,"Guns " , (int) (Gdx.graphics.getWidth()/4.6), Gdx.graphics.getHeight()-60);
