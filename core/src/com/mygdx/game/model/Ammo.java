@@ -26,6 +26,7 @@ public class Ammo extends GameObject
         this.damage=damage;
         this.textureRegion=textureRegion;
         this.rotationPosition=rotationPosition;
+        setRotationPosition(rotationPosition);
     }
     public Ammo(Ammo ammo)
     {

@@ -6,343 +6,357 @@ filter: Linear,Linear
 repeat: none
 1
   rotate: false
-  xy: 2, 695
+  xy: 2, 180
   size: 256, 269
   orig: 256, 269
   offset: 0, 0
   index: -1
 Angar-down
   rotate: false
-  xy: 260, 608
+  xy: 1170, 554
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Angar-up
   rotate: false
-  xy: 2, 493
+  xy: 968, 455
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Back-down
   rotate: false
-  xy: 738, 460
+  xy: 1924, 1938
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 Back-up
   rotate: false
-  xy: 1924, 1738
+  xy: 1924, 1734
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 Bat
   rotate: false
-  xy: 1924, 1442
+  xy: 1704, 530
   size: 100, 94
   orig: 100, 94
   offset: 0, 0
   index: -1
+Bullet
+  rotate: false
+  xy: 1924, 1416
+  size: 60, 116
+  orig: 60, 116
+  offset: 0, 0
+  index: -1
 Buy-down
   rotate: false
-  xy: 406, 2
+  xy: 362, 398
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Buy-up
   rotate: false
-  xy: 664, 665
+  xy: 362, 600
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 ClassicSpace
   rotate: false
-  xy: 2, 966
+  xy: 2, 958
   size: 1920, 1080
   orig: 1920, 1080
   offset: 0, 0
   index: -1
 Dakkar
   rotate: false
-  xy: 1924, 1942
+  xy: 260, 345
   size: 100, 104
   orig: 100, 104
   offset: 0, 0
   index: -1
 Dj1p1
   rotate: false
-  xy: 2, 14
+  xy: 2, 2
   size: 79, 73
   orig: 79, 73
   offset: 0, 0
   index: -1
 Dj1p2
   rotate: false
-  xy: 1924, 1840
+  xy: 1924, 1836
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 Explosion1
   rotate: false
-  xy: 868, 275
+  xy: 1430, 294
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion10
   rotate: false
-  xy: 608, 302
+  xy: 390, 268
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion11
   rotate: false
-  xy: 608, 432
+  xy: 520, 268
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion12
   rotate: false
-  xy: 608, 172
+  xy: 650, 268
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion13
   rotate: false
-  xy: 608, 42
+  xy: 780, 325
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion14
   rotate: false
-  xy: 738, 330
+  xy: 910, 325
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion15
   rotate: false
-  xy: 738, 200
+  xy: 260, 215
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion16
   rotate: false
-  xy: 738, 70
+  xy: 1040, 325
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion17
   rotate: false
-  xy: 996, 535
+  xy: 1170, 424
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion18
   rotate: false
-  xy: 868, 405
+  xy: 1300, 294
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion2
   rotate: false
-  xy: 866, 535
+  xy: 1430, 424
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion3
   rotate: false
-  xy: 868, 145
+  xy: 1574, 496
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion4
   rotate: false
-  xy: 998, 405
+  xy: 1560, 366
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion5
   rotate: false
-  xy: 998, 275
+  xy: 1704, 626
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion6
   rotate: false
-  xy: 998, 145
+  xy: 1776, 828
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion7
   rotate: false
-  xy: 868, 15
+  xy: 1300, 424
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion8
   rotate: false
-  xy: 998, 15
+  xy: 1574, 626
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion9
   rotate: false
-  xy: 1068, 836
+  xy: 1170, 294
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Frame
   rotate: false
-  xy: 664, 562
+  xy: 2, 77
   size: 200, 101
   orig: 200, 101
   offset: 0, 0
   index: -1
 Go-down
   rotate: false
-  xy: 2, 89
+  xy: 1574, 756
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Go-up
   rotate: false
-  xy: 204, 406
+  xy: 968, 657
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 GreenLaser
   rotate: false
-  xy: 1924, 1312
+  xy: 1924, 1286
   size: 34, 128
   orig: 34, 128
   offset: 0, 0
   index: -1
 GreenLaserAmmo
   rotate: false
-  xy: 204, 661
+  xy: 1123, 872
   size: 8, 32
   orig: 8, 32
   offset: 0, 0
   index: -1
 Hunter
   rotate: false
-  xy: 1924, 1538
+  xy: 1924, 1534
   size: 100, 97
   orig: 100, 97
   offset: 0, 0
   index: -1
+Machinegun
+  rotate: false
+  xy: 2, 451
+  size: 358, 505
+  orig: 358, 505
+  offset: 0, 0
+  index: -1
 Mite
   rotate: false
-  xy: 1924, 1637
+  xy: 1924, 1633
   size: 100, 99
   orig: 100, 99
   offset: 0, 0
   index: -1
 Money
   rotate: false
-  xy: 204, 2
+  xy: 766, 455
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Prev-down
   rotate: false
-  xy: 204, 204
+  xy: 564, 600
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Prev-up
   rotate: false
-  xy: 406, 406
+  xy: 1170, 756
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 RedZoneAttention
   rotate: false
-  xy: 662, 867
+  xy: 764, 859
   size: 357, 45
   orig: 357, 45
   offset: 0, 0
   index: -1
 SelectGun
   rotate: false
-  xy: 260, 914
+  xy: 362, 802
   size: 400, 50
   orig: 400, 50
   offset: 0, 0
   index: -1
 SelectShip
   rotate: false
-  xy: 260, 810
+  xy: 764, 906
   size: 400, 50
   orig: 400, 50
   offset: 0, 0
   index: -1
 Shop-down
   rotate: false
-  xy: 866, 665
+  xy: 766, 657
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Shop-up
   rotate: false
-  xy: 406, 204
+  xy: 564, 398
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Start-down
   rotate: false
-  xy: 2, 291
+  xy: 1372, 554
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Start-up
   rotate: false
-  xy: 462, 608
+  xy: 1372, 756
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 UnSelectGun
   rotate: false
-  xy: 662, 914
+  xy: 362, 906
   size: 400, 50
   orig: 400, 50
   offset: 0, 0
   index: -1
 UnSelectShip
   rotate: false
-  xy: 260, 862
+  xy: 362, 854
   size: 400, 50
   orig: 400, 50
   offset: 0, 0
