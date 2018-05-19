@@ -37,13 +37,14 @@ public class GunShow implements Screen {
     int dyt;
     Boolean MakeToast=false;
     Boolean MakeToast1=false;
+    Boolean MakeToast2=false;
     Weapon weapon;
     //Buttons
     StageForButton Back, Buy;
     Button.ButtonStyle BaStyle, BuStyle;
     //Sreens
     Screen ShList;
-    Toast toast,toast1;
+    Toast toast,toast1,toast2;
     MainMenu menu;
     Player player;
     //for ship's params
@@ -51,15 +52,16 @@ public class GunShow implements Screen {
     String name;
     int cost;
     int maxHp;
-
+    float width,height;
 
     float velocity;
     float maxSpeed;
 
 
 
-    public GunShow(Weapon weapon, Game game, MainMenu menu, Player player) {
-
+    public GunShow(Weapon weapon, Game game, MainMenu menu, Player player, float width,float height) {
+        this.width=width;
+        this.height=height;
         this.weapon=weapon;
         this.game=game;
         this.menu=menu;
@@ -76,9 +78,9 @@ public class GunShow implements Screen {
         stage = new Stage();
         skin = new Skin();
         skin.addRegions(textureAtlas);
-
+       // (float) (Gdx.graphics.getWidth() / 14.3), (float) (Gdx.graphics.getHeight() / 1.96669)
         Gunimg = new Image(weapon.getImg());
-        Gunimg.setSize((float) (Gdx.graphics.getWidth() / 14.3), (float) (Gdx.graphics.getHeight() / 1.96669));
+        Gunimg.setSize(width,height);
         Gunimg.setPosition((float) (Gdx.graphics.getWidth() / Gdx.graphics.getWidth()*0.4), Gdx.graphics.getHeight() / 2 - Gunimg.getHeight() / 2);
         //used for textManager params
 
@@ -99,6 +101,7 @@ public class GunShow implements Screen {
                 .build();
         toast = toastFactory.create("Successfully bought" , Toast.Length.LONG);
         toast1 = toastFactory.create("Already bought" , Toast.Length.LONG);
+        toast2=toastFactory.create("Not enough money!" , Toast.Length.LONG);
 
 
         //Buy button
@@ -112,11 +115,18 @@ public class GunShow implements Screen {
             public void clicked(InputEvent event, float x, float y) {
 
                 // ShList=new ShopList(game,batch,textureAtlas,menu,player);
-                if (player.resources.weaponList.contains(weapon)) {
+                if (menu.player.resources.weaponList.contains(weapon)) {
                     MakeToast1=true;
                 } else {
-                    MakeToast=true;
-                    player.resources.weaponList.add(weapon);}
+                    if (!menu.player.resources.weaponList.contains(weapon)&& (menu.player.resources.getMoney()>=weapon.getCost())){
+                        MakeToast=true;
+                        int mon=menu.player.getMoney()-weapon.getCost();
+                        menu.player.setMoney(mon);
+                        player.resources.weaponList.add(weapon);
+
+                    }else MakeToast2=true;
+
+                }
 
 
             }
@@ -156,8 +166,8 @@ public class GunShow implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
-        textManager.displayMessage(batch, font, "" + weapon.getName(), xt, yt);
-        textManager.displayMessage(batch, font, "Price: " + weapon.getCost(), xt, yt - dyt);
+        textManager.displayMessage(batch, font, "" + weapon.getName(), xt, yt-dyt*1);
+        textManager.displayMessage(batch, font, "Price: " + weapon.getCost(), xt, yt - dyt*2);
         textManager.displayMessage(batch, font, "Speed: " + weapon.getAttackSpeed(), xt, yt - dyt * 3);
 
 
@@ -167,6 +177,11 @@ public class GunShow implements Screen {
         }
         if (MakeToast1==true){
             toast1.render(Gdx.graphics.getDeltaTime());
+
+
+        }
+        if (MakeToast2==true){
+            toast2.render(Gdx.graphics.getDeltaTime());
 
 
         }
