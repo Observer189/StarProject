@@ -13,7 +13,7 @@ public class Machinegun extends Weapon {
     int cost;
     TextureAtlas textureAtlas;
     int counter;
-    int height,width;
+
     private float attackSpeed;
     public Machinegun(TextureAtlas textureAtlas, float x, float y) {
         super(textureAtlas.findRegion("Machinegun"), x, y, 3f, 5f,50,
@@ -22,8 +22,7 @@ public class Machinegun extends Weapon {
         counter=0;
         cost=1250;
         attackSpeed=50;
-        height= (int) (200);
-        width= (int) (160);
+
         name="Machinegun";
     }
 
@@ -55,13 +54,5 @@ public class Machinegun extends Weapon {
     public String toString() {
         return getName();
     }
-    @Override
-    public float getHeight() {
-        return height;
-    }
 
-    @Override
-    public float getWidth() {
-        return width;
-    }
 }

@@ -112,7 +112,7 @@ public class ShopList2 implements Screen{
         Money.setPosition(Gdx.graphics.getWidth() / Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 24);
 
          Laser=new GreenImpulseLaser(textureAtlas,(int) (Gdx.graphics.getWidth() / 4 * 1.25),(int) (Gdx.graphics.getHeight() - 212-50));
-        g1=new CellStage((int) Laser.getX(), (int) Laser.getY(),Laser.getName(),Laser.getCost(),60,200 );
+        g1=new CellStage((int) Laser.getX(), (int) Laser.getY(),Laser.getName(),Laser.getCost(), (int) (Gdx.graphics.getWidth()/21.333333), (int) (Gdx.graphics.getHeight()/3.6));
        // laser=new GreenImpulseLaser(textureAtlas,0,0);
         g1.img.addListener(new ClickListener() {
             @Override
@@ -126,7 +126,7 @@ public class ShopList2 implements Screen{
             }
         });
          multigun=new Machinegun(textureAtlas,g1.x,(int) (g1.y - g1.img.getHeight() - Gdx.graphics.getHeight() / 360));
-        g2=new CellStage((int) multigun.getX(),(int)multigun.getY(),multigun.getName(),multigun.getCost(),160,200);
+        g2=new CellStage((int) multigun.getX(),(int)multigun.getY(),multigun.getName(),multigun.getCost(),Gdx.graphics.getWidth()/8,(int) (Gdx.graphics.getHeight()/3.6));
         g2.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
