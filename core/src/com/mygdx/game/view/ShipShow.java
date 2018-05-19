@@ -116,7 +116,7 @@ public class ShipShow implements Screen {
                 if (player.resources.shipList.contains(ship)) {
                     MakeToast1=true;
                 } else {
-                    if (player.resources.shipList.contains(ship)&& menu.player.getMoney()>ship.getCost()){
+                    if (!player.resources.shipList.contains(ship)&& (menu.player.resources.getMoney()>=ship.getCost())){
                 MakeToast=true;
                 int mon=menu.player.getMoney()-ship.getCost();
                 menu.player.setMoney(mon);

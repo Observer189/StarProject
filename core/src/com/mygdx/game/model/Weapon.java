@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.mygdx.game.model.Ammos.GreenLaserAmmo;
 
 import java.util.ArrayList;
 
@@ -21,6 +20,7 @@ public class Weapon extends GameObject {
     String name;
     Ammo ammo;
     int cost;
+    int width,height;
     private int rotationPosition;
     private float attackSpeed;
 
@@ -29,6 +29,8 @@ public class Weapon extends GameObject {
         super(weaponRegion, x, y, width, height);
         this.ammo=new Ammo(ammo);
         cost=0;
+        width=0;
+        height=0;
         ammos=new ArrayList<Ammo>();
         counter=0;
         rotationPosition=1;
@@ -107,11 +109,26 @@ public class Weapon extends GameObject {
         return skin.getDrawable(getName());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        return getName().equals(o.toString());
+    }
+
     public float getAttackSpeed() {
         return attackSpeed;
     }
 
     public int getCost() {
         return cost;
+    }
+
+    @Override
+    public float getHeight() {
+        return height;
+    }
+
+    @Override
+    public float getWidth() {
+        return width;
     }
 }

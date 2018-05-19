@@ -118,7 +118,7 @@ public class ShopList2 implements Screen{
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
-                GuShow = new GunShow(Laser, game, menu, player);
+                GuShow = new GunShow(Laser, game, menu, player,(float) (g1.width*1.7),(float) (g1.height*1.7));
 
                 game.setScreen(GuShow);
 
@@ -131,7 +131,7 @@ public class ShopList2 implements Screen{
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
-                GuShow = new GunShow(multigun, game, menu, player);
+                GuShow = new GunShow(multigun, game, menu, player, (float) (g2.width*1.7), (float) (g2.height*1.7));
 
                 game.setScreen(GuShow);
 
@@ -309,6 +309,7 @@ public class ShopList2 implements Screen{
         int y;
         String name;
         Image img;
+        int width,height;
 
         int price;
 
@@ -316,6 +317,8 @@ public class ShopList2 implements Screen{
             this.x = x;
             this.y = y;
             this.name = name;
+            this.width=width;
+            this.height=height;
 
             this.price = price;
             gun=new Image(skin.getDrawable(name));
