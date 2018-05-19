@@ -20,7 +20,7 @@ public class Weapon extends GameObject {
     String name;
     Ammo ammo;
     int cost;
-    int width,height;
+
     private int rotationPosition;
     private float attackSpeed;
 
@@ -29,8 +29,7 @@ public class Weapon extends GameObject {
         super(weaponRegion, x, y, width, height);
         this.ammo=new Ammo(ammo);
         cost=0;
-        width=0;
-        height=0;
+
         ammos=new ArrayList<Ammo>();
         counter=0;
         rotationPosition=1;
@@ -122,13 +121,5 @@ public class Weapon extends GameObject {
         return cost;
     }
 
-    @Override
-    public float getHeight() {
-        return height;
-    }
 
-    @Override
-    public float getWidth() {
-        return width;
-    }
 }

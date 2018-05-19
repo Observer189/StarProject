@@ -13,7 +13,7 @@ public class GreenImpulseLaser extends Weapon {
     String name;
     TextureAtlas textureAtlas;
     int counter;
-    int width,height;
+
     private float attackSpeed;
     public GreenImpulseLaser(TextureAtlas textureAtlas, float x, float y) {
         super(textureAtlas.findRegion("GreenLaser"), x, y, 2f, 7f,25,
@@ -22,8 +22,7 @@ public class GreenImpulseLaser extends Weapon {
         counter=0;
         attackSpeed=25;
         cost=0;
-        width= (int) (60);
-        height=(int)(200);
+
         name="GreenLaser";
     }
 
@@ -62,14 +61,6 @@ public class GreenImpulseLaser extends Weapon {
         return getName();
     }
 
-    @Override
-    public float getHeight() {
-        return height;
-    }
 
-    @Override
-    public float getWidth() {
-        return width;
-    }
 }
 
