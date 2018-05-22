@@ -61,31 +61,10 @@ public class MainMenu implements Screen {
 
     @Override
     public void show() {
-        music = Gdx.audio.newMusic(Gdx.files.internal("MenuMusic.mp3"));
+        this.music=LoginView.music;
         Gdx.input.setCatchBackKey(true);
-       /* LogIn = new Input.TextInputListener() {
+        textureAtlas=new TextureAtlas(Gdx.files.internal("TexturePack.atlas"));
 
-
-            @Override
-            public void input(String text) {
-                MainMenu.text=text;
-
-            }
-
-            @Override
-            public void canceled() {
-
-
-            }
-        };*/
-        first="Your password";
-        Log=new LogListener();
-        Pass=new PassListener();
-        if (ForLogCounter==0) {
-            Gdx.input.getTextInput(Log, "Log", "", "log-in");
-            music.setLooping(true);
-            music.play();
-        }
 
 
 
@@ -100,7 +79,7 @@ public class MainMenu implements Screen {
         font=textManager.fontInitialize(Color.BLACK,1f);
         //game.setScreen(battle);
         Skin skin = new Skin();
-        skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
+        skin.addRegions(textureAtlas);
 
                 p_button = new Button.ButtonStyle();
         p_button.up = skin.getDrawable("Start-up");
@@ -176,30 +155,7 @@ public class MainMenu implements Screen {
         camera.setToOrtho(false, 800, 480);
         Gdx.gl.glClearColor(0, 64, 247, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        if (ForLogCounter==0) {
 
-            if (Log.Show) {
-                Gdx.input.getTextInput(Log, "Log", "", "Log-in(must be filled)");
-                System.out.println(Log.Show+"1");
-                Log.Show = false;
-                System.out.println(Log.Show+"2");
-            }
-        }
-        if (ForLogCounter==0) {
-            if (Log.ShowPass&&Pass.Show) {
-
-                Gdx.input.getTextInput(Pass, "Pass", "", first);
-                Pass.Show=false;
-                if (Pass.Success)
-                    Pass.canceled();
-                else first="Something wrong. Check your password";
-
-            }
-
-
-
-
-        }
 
 
 
