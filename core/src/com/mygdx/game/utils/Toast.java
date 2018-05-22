@@ -19,7 +19,7 @@ import com.badlogic.gdx.utils.Align;
             SHORT(2),
             LONG(3.5f);
 
-            private final float duration; // in seconds
+            public final float duration; // in seconds
 
             Length(float duration) {
                 this.duration = duration;

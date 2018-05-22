@@ -9,6 +9,7 @@ import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ships.Dakkar;
 import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.utils.Assets;
+import com.mygdx.game.view.LoginView;
 import com.mygdx.game.view.MainMenu;
 
 public class StarGame extends Game {
@@ -26,12 +27,13 @@ public class StarGame extends Game {
 
 
 		((MainMenu)menu).setTextureAtlas(assets.getManager().get("TexturePack.atlas", TextureAtlas.class));
-		setScreen(menu);
+		log=new LoginView(batch,this,player);
+		setScreen(log);
 		batch=new SpriteBatch();
 	}
 
 
-	
+
 	@Override
 	public void dispose () {
 		menu.dispose();
