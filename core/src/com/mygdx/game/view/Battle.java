@@ -102,16 +102,16 @@ public class Battle implements Screen {
         //enemy = new Player(battleStatus.getName(), new Pulsate(textureAtlas, 0, 0));
         if(battleStatus.getPositionNumber()==1)
         {
-            player.getCurrentShip().setPosition(200,300);
+            player.getCurrentShip().setPosition(200,400);
             player.getCurrentShip().setRotationPosition(1);
-            enemy.getCurrentShip().setPosition(800,300);
+            enemy.getCurrentShip().setPosition(800,200);
             enemy.getCurrentShip().setRotationPosition(2);
         }
         else if (battleStatus.getPositionNumber()==2)
         {
-            player.getCurrentShip().setPosition(800,300);
+            player.getCurrentShip().setPosition(800,200);
             player.getCurrentShip().setRotationPosition(2);
-            enemy.getCurrentShip().setPosition(200,300);
+            enemy.getCurrentShip().setPosition(200,400);
             enemy.getCurrentShip().setRotationPosition(1);
         }
 

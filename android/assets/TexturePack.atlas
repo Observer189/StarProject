@@ -97,28 +97,28 @@ Dj1p2
   index: -1
 Explosion1
   rotate: false
-  xy: 1743, 576
+  xy: 1555, 836
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion10
   rotate: false
-  xy: 1483, 576
+  xy: 1613, 706
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion11
   rotate: false
-  xy: 1743, 706
+  xy: 1743, 576
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion12
   rotate: false
-  xy: 1613, 706
+  xy: 1613, 576
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -132,7 +132,7 @@ Explosion13
   index: -1
 Explosion14
   rotate: false
-  xy: 1613, 576
+  xy: 1743, 706
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -153,7 +153,7 @@ Explosion16
   index: -1
 Explosion17
   rotate: false
-  xy: 1483, 706
+  xy: 1483, 576
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -167,49 +167,49 @@ Explosion18
   index: -1
 Explosion2
   rotate: false
-  xy: 1555, 836
+  xy: 1685, 836
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion3
   rotate: false
-  xy: 1685, 836
+  xy: 1815, 836
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion4
   rotate: false
-  xy: 1815, 836
+  xy: 1223, 634
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion5
   rotate: false
-  xy: 1223, 634
+  xy: 1223, 504
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion6
   rotate: false
-  xy: 1223, 504
+  xy: 1483, 706
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion7
   rotate: false
-  xy: 1353, 576
+  xy: 1353, 706
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion8
   rotate: false
-  xy: 1353, 706
+  xy: 1353, 576
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -230,7 +230,7 @@ Frame
   index: -1
 Go-down
   rotate: false
-  xy: 689, 463
+  xy: 689, 665
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
@@ -286,14 +286,14 @@ Money
   index: -1
 Prev-down
   rotate: false
-  xy: 1093, 764
+  xy: 891, 463
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 Prev-up
   rotate: false
-  xy: 891, 463
+  xy: 891, 665
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
@@ -328,7 +328,7 @@ Shop-down
   index: -1
 Shop-up
   rotate: false
-  xy: 689, 665
+  xy: 1093, 764
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
@@ -342,7 +342,7 @@ Start-down
   index: -1
 Start-up
   rotate: false
-  xy: 891, 665
+  xy: 689, 463
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
