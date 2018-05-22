@@ -169,7 +169,7 @@ public class Battle implements Screen {
         turnRight.setY(camY-heightCamera/3);*/
         camera.update();
         //System.out.println("x="+coord.getX()+"y="+coord.getY());
-
+             Gdx.input.setCatchBackKey(true);
         //System.out.println(" Player: "+player.getName()+"Enemy: "+enemy.getName());
 
         batch.setProjectionMatrix(camera.combined);

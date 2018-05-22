@@ -62,7 +62,7 @@ public class MainMenu implements Screen {
     @Override
     public void show() {
         music = Gdx.audio.newMusic(Gdx.files.internal("MenuMusic.mp3"));
-
+        Gdx.input.setCatchBackKey(true);
        /* LogIn = new Input.TextInputListener() {
 
 
