@@ -18,6 +18,7 @@ import com.mygdx.game.control.BattleProcessor;
 import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Coord;
 import com.mygdx.game.model.Map;
+import com.mygdx.game.model.Maps.ClassicSpace;
 import com.mygdx.game.model.Player;
 
 import com.mygdx.game.model.Ships.Pulsate;
@@ -96,7 +97,7 @@ public class Battle implements Screen {
 
 
 
-        classicMap=new Map(batch,textureAtlas.findRegion("ClassicSpace"),mapWidth,mapHeight);
+        classicMap=Map.generateMap(batch,textureAtlas);
 
 
         //enemy = new Player(battleStatus.getName(), new Pulsate(textureAtlas, 0, 0));
