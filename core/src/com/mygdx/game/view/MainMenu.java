@@ -61,30 +61,17 @@ public class MainMenu implements Screen {
 
     @Override
     public void show() {
-        music = Gdx.audio.newMusic(Gdx.files.internal("MenuMusic.mp3"));
+        this.music=LoginView.music;
 
-       /* LogIn = new Input.TextInputListener() {
-
-
-            @Override
-            public void input(String text) {
-                MainMenu.text=text;
-
-            }
-
-            @Override
-            public void canceled() {
-
-
-            }
-        };*/
-        first="Your password";
+      /*  first="Your password";
         Log=new LogListener();
         Pass=new PassListener();
+        */
+      textureAtlas=new TextureAtlas(Gdx.files.internal("TexturePack.atlas"));
         if (ForLogCounter==0) {
-            Gdx.input.getTextInput(Log, "Log", "", "log-in");
-            music.setLooping(true);
-            music.play();
+
+           // music.setLooping(true);
+          //  music.play();
         }
 
 
@@ -176,7 +163,7 @@ public class MainMenu implements Screen {
         camera.setToOrtho(false, 800, 480);
         Gdx.gl.glClearColor(0, 64, 247, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        if (ForLogCounter==0) {
+        /*if (ForLogCounter==0) {
 
             if (Log.Show) {
                 Gdx.input.getTextInput(Log, "Log", "", "Log-in(must be filled)");
@@ -199,7 +186,7 @@ public class MainMenu implements Screen {
 
 
 
-        }
+        }*/
 
 
 
