@@ -153,8 +153,7 @@ public class MainMenu implements Screen {
 
         OrthographicCamera camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
-        Gdx.gl.glClearColor(0, 64, 247, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        LoginView.textrure.draw();
 
 
 
