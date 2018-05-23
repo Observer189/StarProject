@@ -6,17 +6,23 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.model.Map;
 import com.mygdx.game.model.Player;
+import com.mygdx.game.utils.StarGen;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Toast;
 
@@ -28,18 +34,22 @@ public class LoginView implements Screen {
     BitmapFont font,font1;
     TextManager textManager;
     TextField.TextFieldStyle txtStyle;
-    TextField textFieldLog,textFieldPass;
+    TextField textFieldLog,textFieldPass,textFieldConfirm;
     Stage stage;
     Boolean KBisActive=false;
-    TextureRegion textrure;
+    static Map textrure;
     TextButton.TextButtonStyle btnstyle,btnstyle1;
     TextButton button,button1;
     Toast toast;
     Boolean MakeToast=false;
     OrthographicCamera camera = new OrthographicCamera();
+    Boolean ShowConfirm=false;
+
+    Array<TextureAtlas.AtlasRegion> array;
+    StarGen star;
 
 
-TextureAtlas textureAtlas;
+    TextureAtlas textureAtlas;
     public LoginView(SpriteBatch batch, Game game, Player player){
         this.batch=batch;
         this.game=game;
@@ -54,11 +64,19 @@ TextureAtlas textureAtlas;
         music.play();
         batch=new SpriteBatch();
         textureAtlas=new TextureAtlas(Gdx.files.internal("TexturePack.atlas"));
-        textrure=new TextureRegion(textureAtlas.findRegion("ClassicSpace"));
+        textrure= Map.generateMap(batch,textureAtlas);
+        textrure.setHeight(Gdx.graphics.getHeight()); textrure.setWidth(Gdx.graphics.getWidth());
+
         stage=new Stage();
         Skin skin = new Skin();
         skin.addRegions(textureAtlas);
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        array=new Array<TextureAtlas.AtlasRegion>();
+       for (int i=0;i<17;i++)
+           array.add(textureAtlas.findRegion("Explosion"+(i+1)));
+
+
+
         font=textManager.fontInitialize(Color.BLACK,1f);
         font1=textManager.fontInitialize(Color.WHITE,1f);
 
@@ -102,10 +120,22 @@ TextureAtlas textureAtlas;
             }
         });
         stage.addActor(textFieldPass);
+        textFieldConfirm=new TextField("",txtStyle);
+        textFieldConfirm.setMessageText("Confirm your password");
+        textFieldConfirm.setSize(textFieldPass.getWidth(),textFieldPass.getHeight());
+        textFieldConfirm.setPosition(textFieldPass.getX(),textFieldPass.getY()-textFieldConfirm.getHeight()-20);
+        textFieldConfirm.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                KBisActive=true;
+                textFieldConfirm.getOnscreenKeyboard().show(true);
+
+            }
+        });
+
         btnstyle=new TextButton.TextButtonStyle();
         btnstyle.font=font1;
-       // btnstyle.up=skin.getDrawable("Frame");
-       // btnstyle.down=skin.getDrawable("Frame");
+
         button=new TextButton("Sign in",btnstyle);
         button.setPosition(textFieldLog.getX()-20,200);
         button.setSize(300,100);
@@ -127,6 +157,12 @@ TextureAtlas textureAtlas;
         button1=new TextButton("Sign up",btnstyle1);
         button1.setSize(300,100);
         button1.setPosition(textFieldLog.getX()+textFieldLog.getWidth()-button1.getWidth(),200);
+        button1.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+               ShowConfirm=true;
+            }
+        });
 
 
         stage.addActor(button1);
@@ -140,6 +176,8 @@ TextureAtlas textureAtlas;
 
 
         Gdx.input.setInputProcessor(stage);
+        star=new StarGen(textureAtlas,batch);
+
 
     }
 
@@ -147,18 +185,22 @@ TextureAtlas textureAtlas;
     public void render(float delta) {
 
         camera.setToOrtho(false, 800, 480);
-
+        if (ShowConfirm) {
+            stage.addActor(textFieldConfirm);
+            ShowConfirm=false;
+        }
         if (Gdx.input.isTouched()&&KBisActive)
         {
             textFieldLog.getOnscreenKeyboard().show(false);
             textFieldPass.getOnscreenKeyboard().show(false);
+            textFieldConfirm.getOnscreenKeyboard().show(false);
             KBisActive=false;
         }
 
-        batch.begin();
-        batch.draw(textrure,0f,0f);
 
-        batch.end();
+        textrure.draw();
+        star.draw();
+
         stage.act(delta);
         stage.draw();
         if (MakeToast){
@@ -184,6 +226,8 @@ TextureAtlas textureAtlas;
 
 
     }
+
+   
 
     @Override
     public void resume() {
