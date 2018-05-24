@@ -159,9 +159,9 @@ public class ShipShow implements Screen {
 
     @Override
     public void render(float delta) {
-        camera.setToOrtho(false, 800, 480);
-        Gdx.gl.glClearColor(0, 64, 247, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        camera.setToOrtho(false, (float) (Gdx.graphics.getWidth()/1.6), (float) (Gdx.graphics.getHeight()/1.5));
+        LoginView.textrure.draw();
+        LoginView.star.draw();
         if (name == "1") name = "Pulsate";
 
         textManager.displayMessage(batch, font, "" + ship.getName(), xt, yt);

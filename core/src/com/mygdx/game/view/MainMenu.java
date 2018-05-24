@@ -51,6 +51,7 @@ public class MainMenu implements Screen {
     InputMultiplexer in;
     String first;
     public Music music;
+    OrthographicCamera camera = new OrthographicCamera();
 
     public MainMenu(SpriteBatch batch, Game game,Player player) {
         this.batch = batch;
@@ -151,9 +152,10 @@ public class MainMenu implements Screen {
     public void render(float delta) {
 
 
-        OrthographicCamera camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
+
+        camera.setToOrtho(false, (float) (Gdx.graphics.getWidth()/1.6), (float) (Gdx.graphics.getHeight()/1.5));
         LoginView.textrure.draw();
+        LoginView.star.draw();
 
 
 

@@ -46,7 +46,7 @@ public class LoginView implements Screen {
     Boolean ShowConfirm=false;
 
     Array<TextureAtlas.AtlasRegion> array;
-    StarGen star;
+    public static StarGen star;
 
 
     TextureAtlas textureAtlas;
@@ -91,12 +91,17 @@ public class LoginView implements Screen {
         txtStyle.fontColor=Color.BLACK;
         txtStyle.background=skin.getDrawable("FrameInput");
         txtStyle.cursor=skin.getDrawable("GreenLaserAmmo");
+        txtStyle.background.setLeftWidth(40);
+        txtStyle.background.setRightWidth(45);
+        txtStyle.background.setBottomHeight(5);
+
+
 
         textFieldLog =new TextField("",txtStyle);
         textFieldLog.setMessageText("Your log-in");
         textFieldLog.setSize(Gdx.graphics.getWidth()/2,100);
         textFieldLog.setPosition(Gdx.graphics.getWidth()/2-textFieldLog.getWidth()/2,540);
-        textFieldLog.getStyle().background.setLeftWidth(20);
+
         stage.addActor(textFieldLog);
         textFieldLog.addListener(new ClickListener(){
             @Override
@@ -122,8 +127,10 @@ public class LoginView implements Screen {
         stage.addActor(textFieldPass);
         textFieldConfirm=new TextField("",txtStyle);
         textFieldConfirm.setMessageText("Confirm your password");
+
         textFieldConfirm.setSize(textFieldPass.getWidth(),textFieldPass.getHeight());
         textFieldConfirm.setPosition(textFieldPass.getX(),textFieldPass.getY()-textFieldConfirm.getHeight()-20);
+
         textFieldConfirm.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -134,7 +141,8 @@ public class LoginView implements Screen {
         });
 
         btnstyle=new TextButton.TextButtonStyle();
-        btnstyle.font=font1;
+        btnstyle.font=font;
+        btnstyle.up=skin.getDrawable("FrameInput");
 
         button=new TextButton("Sign in",btnstyle);
         button.setPosition(textFieldLog.getX()-20,200);
@@ -153,7 +161,9 @@ public class LoginView implements Screen {
         });
         stage.addActor(button);
         btnstyle1=new TextButton.TextButtonStyle();
-        btnstyle1.font=font1;
+        btnstyle1.font=font;
+        btnstyle1.up=skin.getDrawable("FrameInput");
+
         button1=new TextButton("Sign up",btnstyle1);
         button1.setSize(300,100);
         button1.setPosition(textFieldLog.getX()+textFieldLog.getWidth()-button1.getWidth(),200);
@@ -184,7 +194,7 @@ public class LoginView implements Screen {
     @Override
     public void render(float delta) {
 
-        camera.setToOrtho(false, 800, 480);
+        camera.setToOrtho(false, (float) (Gdx.graphics.getWidth()/1.6), (float) (Gdx.graphics.getHeight()/1.5));
         if (ShowConfirm) {
             stage.addActor(textFieldConfirm);
             ShowConfirm=false;
@@ -227,7 +237,7 @@ public class LoginView implements Screen {
 
     }
 
-   
+
 
     @Override
     public void resume() {
