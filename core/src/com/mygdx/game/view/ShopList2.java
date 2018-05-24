@@ -66,8 +66,8 @@ public class ShopList2 implements Screen{
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
         ShList=new ShopList(game,batch,textureAtlas,menu,player);
         Gstyle = new Button.ButtonStyle();
-        Gstyle.up = skin.getDrawable("SelectGun");
-        Gstyle.down = skin.getDrawable("SelectGun");
+        Gstyle.up = skin.getDrawable("UnSelectGun");
+        Gstyle.down = skin.getDrawable("UnSelectGun");
         Guns=new StageForButton(Gstyle,0,Gdx.graphics.getHeight()-(int) (Gdx.graphics.getHeight()/14.117));
         //change scene when 'guns' clicked
         Guns.btn.addListener(new ClickListener(){
