@@ -97,8 +97,8 @@ public class PreShop implements Screen {
     public void render(float delta) {
 
         camera.setToOrtho(false, (float) (Gdx.graphics.getWidth()/1.6), (float) (Gdx.graphics.getHeight()/1.5));
-        Gdx.gl.glClearColor(0, 64, 247, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        LoginView.textrure.draw();
+        LoginView.star.draw();
         textManager.displayMessage(batch,font,"Guns " , (int) (Gdx.graphics.getWidth()/4.6), Gdx.graphics.getHeight()-60);
         textManager.displayMessage(batch,font,"Ships" , (Gdx.graphics.getWidth())-(int) (Gdx.graphics.getWidth()/3.4), Gdx.graphics.getHeight()-60);
         Guns.act(delta);

@@ -31,7 +31,7 @@ public class TextManager {
     {
         BitmapFont font=new BitmapFont();
         fontParameter.color = color;
-        fontParameter.size=50;
+        fontParameter.size= (int) (Gdx.graphics.getWidth()/25.6);
 
         font=gen.generateFont(fontParameter);
         font.getData().setScale(scale);

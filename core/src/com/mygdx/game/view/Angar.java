@@ -43,7 +43,7 @@ public class Angar implements Screen {
     StageForButton Back;
     int counter=1;
     int counterg=1;
-    Image gun[];
+
 
 
 
@@ -73,22 +73,22 @@ public class Angar implements Screen {
         if (shipname.equals("Pulsate")  )shipname="1";
         Shimg=new Image(skin.getDrawable(shipname));
         Shimg.setSize((float) (Gdx.graphics.getHeight()/3.6), (float) (Gdx.graphics.getHeight()/3.6));
-        Shimg.setPosition((float) (Gdx.graphics.getWidth()/Gdx.graphics.getWidth()+Gdx.graphics.getWidth()/85.3), (float) (Gdx.graphics.getHeight()-Gdx.graphics.getHeight()/3.44));
+        Shimg.setPosition((float) (Gdx.graphics.getWidth()/2-Shimg.getWidth()/2), (float) (Gdx.graphics.getHeight()/2-Shimg.getHeight()/2));
 
-        Frameimg=new Image(skin.getDrawable("Frame"));
-        Frameimg.setSize((float) (Gdx.graphics.getWidth()/2.7), (float) (Gdx.graphics.getHeight()/3.3));
-        Frameimg.setPosition((float) (Shimg.getX()-Gdx.graphics.getWidth()/85.3),Shimg.getY()-Gdx.graphics.getHeight()/72);
+       // Frameimg=new Image(skin.getDrawable("Frame"));
+      //  Frameimg.setSize((float) (Gdx.graphics.getWidth()/2.7), (float) (Gdx.graphics.getHeight()/3.3));
+       // Frameimg.setPosition((float) (Shimg.getX()-Gdx.graphics.getWidth()/85.3),Shimg.getY()-Gdx.graphics.getHeight()/72);
         DSFS=new DrawStageForShips(Gdx.graphics.getWidth()+100, 400,player.resources.shipList);
        // DSFG=new DrawStageForGuns(Gdx.graphics.getWidth()+100, 400,menu.player.resources.weaponList,menu.player.getCurrentShip().getFixingPointsDigit());
 
 
-        Frameimg.addListener(new ClickListener(){
+        Shimg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (counter%2==0)
                     DSFS.ViewMove(Gdx.graphics.getWidth()*2, (int) Shimg.getY());
                     else {
-                    DSFS.ViewMove((int) (Frameimg.getX() + Frameimg.getWidth() + Frameimg.getWidth() / 10), (int) Shimg.getY());
+                    DSFS.ViewMove((int) (Shimg.getX() + Shimg.getWidth() + Shimg.getWidth() / 10), (int) Shimg.getY());
                   //  DSFG.ViewMove(Gdx.graphics.getWidth()*2, (int) Shimg.getY());
                 }
             System.out.println("I CLICKED");
@@ -97,74 +97,7 @@ public class Angar implements Screen {
 
             }
         });
-        for (int i=0;i<player.resources.shipList.size();i++){
 
-        }
-
-        //frames for guns
-
-        guns=new Image[player.getCurrentShip().getFixingPointsDigit()];
-        gun=new Image[player.getCurrentShip().getFixingPointsDigit()];
-        float x=Frameimg.getX();
-        float y=Frameimg.getY()-Gdx.graphics.getHeight()/5;
-        for (int i=0;i<guns.length;i++){
-
-            Image img= new Image(skin.getDrawable("Frame"));
-            img.setSize((float) (Gdx.graphics.getWidth()/10.666666), (float) (Gdx.graphics.getHeight()/5.53846));
-            img.setPosition(x,y);
-
-           guns[i]=img;
-
-            gun[i]=new Image(skin.getDrawable(menu.player.getCurrentShip().getFixingPoints()[i].getWeapon().getName()));
-            if (menu.player.getCurrentShip().getFixingPoints()[i].getWeapon().getName().equals("GreenLaser"))
-            gun[i].setSize((float) (Gdx.graphics.getWidth()/37.64705882),(float) (Gdx.graphics.getHeight()/5.625));
-            else gun[i].setSize((float) (Gdx.graphics.getWidth()/16.41025641),(float) (Gdx.graphics.getHeight()/5.71428));
-            gun[i].setPosition(guns[i].getX()+guns[i].getWidth()/2-gun[i].getWidth()/2,guns[i].getY());
-
-            x+=img.getWidth()+img.getWidth()/2;
-
-            stage.addActor(gun[i]);
-
-        }
-
-        if (guns.length>0)stage.addActor(guns[0]);
-        if (guns.length>1)stage.addActor(guns[1]);
-       /* if (menu.player.resources.weaponList.size()>0){
-
-           guns[0].addListener(new ClickListener(){
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (counterg%2==0)
-                       // DSFG.ViewMove(Gdx.graphics.getWidth()*2, (int) Shimg.getY());
-                   else {
-                      //  DSFG.ViewMove((int) (Frameimg.getX() + Frameimg.getWidth() + Frameimg.getWidth() / 10), (int) Shimg.getY());
-                        DSFS.ViewMove(Gdx.graphics.getWidth()*2, (int) Shimg.getY());
-                       // DSFG.setNewGun(0);
-                   }
-                    System.out.println("I CLICKED");
-                    System.out.println(menu.player.resources.weaponList);
-                    counterg++;
-
-                }
-            });
-        }
-        if (menu.player.resources.weaponList.size()>0){
-            stage.addActor(guns[1]);
-            guns[1].addListener(new ClickListener(){
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (counterg%2==0)
-                        DSFG.ViewMove(Gdx.graphics.getWidth()*2, (int) Shimg.getY());
-                    else{
-                        DSFG.ViewMove((int) (Frameimg.getX()+Frameimg.getWidth()+Frameimg.getWidth()/10), (int) Shimg.getY());
-                        DSFS.ViewMove(Gdx.graphics.getWidth()*2, (int) Shimg.getY());
-                    }
-                    System.out.println("I CLICKED");
-                    counterg++;
-
-                }
-            });
-        }*/
 
         BaStyle = new Button.ButtonStyle();
         BaStyle.up = skin.getDrawable("Back-up");
@@ -196,27 +129,21 @@ public class Angar implements Screen {
     @Override
     public void render(float delta) {
         camera.setToOrtho(false, (float) (Gdx.graphics.getWidth()/1.6), (float) (Gdx.graphics.getHeight()/1.5));
-        Gdx.gl.glClearColor(0, 64, 247, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        LoginView.textrure.draw();
+        LoginView.star.draw();
         textManager.displayMessage(batch,font,player.getCurrentShip().getName(), (float) (Shimg.getX()+Shimg.getWidth()*1.2),Shimg.getY()+Shimg.getHeight()/2);
-       // textManager.displayMessage(batch,font," "+player.resources.shipList,200,200);
+
         for (int i=0;i<DSFS.list.size();i++) {
             textManager.displayMessage(batch, font, player.resources.shipList.get(i).getName(), DSFS.sh.get(i).getX()+DSFS.sh.get(i).getWidth(),DSFS.sh.get(i).getY()+DSFS.frame.get(i).getHeight()/2);
 
         }
-     //   for (int i=0;i<DSFG.list.size();i++) {
-     //       textManager.displayMessage(batch, font, player.resources.weaponList.get(i).getName(), DSFG.gu.get(i).getX()+DSFG.gu.get(i).getWidth(),DSFG.gu.get(i).getY()+DSFG.frame.get(i).getHeight()/2);
-//
-      //  }
         stage.act(delta);
         stage.draw();
         DSFS.act(delta);
         DSFS.draw();
         Back.act(delta);
         Back.draw();
-     //   DSFG.act(delta);
-       // DSFG.draw();
-        //System.out.println("SHIP: "+player.getCurrentShip());
+
         batch.begin();
         batch.end();
 
@@ -379,93 +306,9 @@ public class Angar implements Screen {
                 addActor(gu.get(i));
                 addActor(frame.get(i));
             }
-            if (FramesDidgit>0) {
-                if (list.size() > 0)
-                frame.get(0).addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-
-                        player.getCurrentShip().getFixingPoints()[0].setWeapon(list.get(0));
-                        String ImgName = player.getCurrentShip().getFixingPoints()[0].getWeapon().getName();
-                        if (ImgName.equals("GreenLaser")) gun[0].setSize(34,128);
-                        else gun[0].setSize(78,126);
-                        gun[0].setDrawable(skin.getDrawable(ImgName));
-
-                    }
-                });
-                if (list.size() > 1)
-                frame.get(1).addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-
-                        player.getCurrentShip().getFixingPoints()[0].setWeapon(list.get(1));
-                        String ImgName = player.getCurrentShip().getFixingPoints()[0].getWeapon().getName();
-                        if (ImgName.equals("GreenLaser")) gun[0].setSize(34,128);
-                        else gun[0].setSize(78,126);
-                        gun[0].setDrawable(skin.getDrawable(ImgName));
-
-                    }
-                });}
-
-
-
-            if (FramesDidgit>1) {
-                if (list.size() > 0)
-                    frame.get(0).addListener(new ClickListener() {
-                        @Override
-                        public void clicked(InputEvent event, float x, float y) {
-
-                            player.getCurrentShip().getFixingPoints()[1].setWeapon(list.get(0));
-                            String ImgName = player.getCurrentShip().getFixingPoints()[1].getWeapon().getName();
-                            if (ImgName.equals("GreenLaser")) gun[1].setSize(34,128);
-                            else gun[1].setSize(78,126);
-                            gun[1].setDrawable(skin.getDrawable(ImgName));
-                        }
-                    });
-                if (list.size() > 1)
-                    frame.get(1).addListener(new ClickListener() {
-                        @Override
-                        public void clicked(InputEvent event, float x, float y) {
-
-                            player.getCurrentShip().getFixingPoints()[1].setWeapon(list.get(1));
-                            String ImgName = player.getCurrentShip().getFixingPoints()[1].getWeapon().getName();
-                            if (ImgName.equals("GreenLaser")) gun[1].setSize(34,128);
-                            else gun[1].setSize(78,126);
-
-                            gun[1].setDrawable(skin.getDrawable(ImgName));
-
-                        }
-                    });
-
-            }
 
         }
-        public void setNewGun(final int pos){
 
-                if (list.size() > 0)
-                    frame.get(0).addListener(new ClickListener() {
-                        @Override
-                        public void clicked(InputEvent event, float x, float y) {
-
-                            player.getCurrentShip().getFixingPoints()[0].setWeapon(list.get(0));
-                            String ImgName = player.getCurrentShip().getFixingPoints()[0].getWeapon().getName();
-                            gun[pos].setDrawable(skin.getDrawable(ImgName));
-                        }
-                    });
-                if (list.size() > 1)
-                    frame.get(1).addListener(new ClickListener() {
-                        @Override
-                        public void clicked(InputEvent event, float x, float y) {
-
-                            player.getCurrentShip().getFixingPoints()[0].setWeapon(list.get(1));
-                            String ImgName = player.getCurrentShip().getFixingPoints()[0].getWeapon().getName();
-
-                            gun[pos].setDrawable(skin.getDrawable(ImgName));
-
-                        }
-                    });
-
-            }
 
 
 

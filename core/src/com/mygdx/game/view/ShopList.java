@@ -89,16 +89,11 @@ public class ShopList implements Screen {
     public void render(float delta) {
 
 
-        Gdx.gl.glClearColor(0, 64, 247, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.update();
         camera.setToOrtho(false, (float) (Gdx.graphics.getWidth()/1.6), (float) (Gdx.graphics.getHeight()/1.5));
-        // batch.setProjectionMatrix(camera.combined);
-        // camera.setToOrtho(false, 800, 480);
+        LoginView.textrure.draw();
+        LoginView.star.draw();
+        camera.update();
 
-        // textManager.displayMessage(batch,"Your money: " /*+ Player.getMoney()*/ ,Color.BLACK,ct1.size,20 , Gdx.graphics.getHeight()-20);
-        //'1' ship
-        // textManager.displayMessage(batch,font, ct1.name, ct1.x + 200, 300);
         int x200 = (int) (Gdx.graphics.getWidth() / 6.3);
         int y175 = (int) (Gdx.graphics.getHeight() / 4.11428);
         int y75 = (int) (Gdx.graphics.getHeight() / 9.6);
