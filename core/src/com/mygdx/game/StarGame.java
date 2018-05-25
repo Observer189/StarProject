@@ -27,7 +27,7 @@ public class StarGame extends Game {
 
 
 		((MainMenu)menu).setTextureAtlas(assets.getManager().get("TexturePack.atlas", TextureAtlas.class));
-		log=new LoginView(batch,this,player);
+		log=new LoginView(batch,this);
 		setScreen(log);
 		batch=new SpriteBatch();
 	}

@@ -24,10 +24,18 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.model.Map;
 import com.mygdx.game.model.Player;
+import com.mygdx.game.model.Ships.Dakkar;
+import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.Assets;
 import com.mygdx.game.utils.StarGen;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Toast;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginView implements Screen {
     public static Music music;
@@ -52,11 +60,13 @@ public class LoginView implements Screen {
     public static StarGen star;
     Boolean isRegistration=false;
     int RegisterCounter=0;
+    servApi request;
+    public final String baseURL = "https://star-project-serv.herokuapp.com/";
     TextureAtlas textureAtlas;
-    public LoginView(SpriteBatch batch, Game game, Player player){
+    public LoginView(SpriteBatch batch, Game game){
         this.batch=batch;
         this.game=game;
-        this.player=player;
+
 
 
     }
@@ -76,6 +86,11 @@ public class LoginView implements Screen {
         stage=new Stage();
         Skin skin = new Skin();
         skin.addRegions(textureAtlas);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        request = retrofit.create(servApi.class);
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         array=new Array<TextureAtlas.AtlasRegion>();
        for (int i=0;i<17;i++)
@@ -197,6 +212,8 @@ public class LoginView implements Screen {
                             textFieldConfirm.getText().toString().equals(textFieldPass.getText().toString())
                             ){
                         save();
+                        createPlayer();
+                        player=new Player(textFieldLog.getText(),new Dakkar(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")),0,0));
                         game.setScreen(new MainMenu(batch,game,player));}
                     else {MakeToast=true;
                     }
@@ -305,5 +322,14 @@ public class LoginView implements Screen {
     public void dispose() {
 
     }
+    private void createPlayer()
+    {
+        Call<Integer> call=request.createPlayer(textFieldLog.getText(),textFieldPass.getText(),1000);
 
+        try {
+            call.execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
