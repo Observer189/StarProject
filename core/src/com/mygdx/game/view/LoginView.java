@@ -42,7 +42,7 @@ public class LoginView implements Screen {
     Boolean KBisActive=false;
     static Map textrure;
     TextButton.TextButtonStyle btnstyle,btnstyle1;
-    TextButton button,button1;
+    TextButton SignInBtn,SignUpBtn;
     Toast toast;
     Boolean MakeToast=false;
     OrthographicCamera camera = new OrthographicCamera();
@@ -132,7 +132,7 @@ public class LoginView implements Screen {
         });
         stage.addActor(textFieldPass);
         textFieldConfirm=new TextField("",txtStyle);
-        textFieldConfirm.setMessageText("Confirm your password");
+        textFieldConfirm.setMessageText("Confirm your pass");
 
         textFieldConfirm.setSize(textFieldPass.getWidth(),textFieldPass.getHeight());
         textFieldConfirm.setPosition(textFieldPass.getX(),textFieldPass.getY()-textFieldConfirm.getHeight()-20);
@@ -150,38 +150,48 @@ public class LoginView implements Screen {
         btnstyle.font=font;
         btnstyle.up=skin.getDrawable("FrameInput");
 
-        button=new TextButton("Sign in",btnstyle);
-        button.setPosition(textFieldLog.getX()-20,200);
-        button.setSize(300,100);
-        button.addListener(new ClickListener(){
+        SignInBtn=new TextButton("Sign in",btnstyle);
+        SignInBtn.setPosition(textFieldLog.getX()-20,200);
+        SignInBtn.setSize(300,100);
+        SignInBtn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (!textFieldLog.getText().equals(null)&& !textFieldLog.getText().contains(" ")&& !(textFieldLog.getText().length()<3)&&
-                !textFieldPass.getText().equals(null)&& !textFieldPass.getText().contains(" ")&& !(textFieldPass.getText().length()<3)
+                if (SignInBtn.getText().toString().equals("Sign in")){
+                     if (!textFieldLog.getText().equals(null)&& !textFieldLog.getText().contains(" ")&& !(textFieldLog.getText().length()<3)&&
+                      !textFieldPass.getText().equals(null)&& !textFieldPass.getText().contains(" ")&& !(textFieldPass.getText().length()<3)
                         ){
-                save();
-                game.setScreen(new MainMenu(batch,game,player));}
-                else {MakeToast=true;
+                             save();
+                             game.setScreen(new MainMenu(batch,game,player));}
+                     else {MakeToast=true;
+                                     }
+                    System.out.println("YEAH? "+SignInBtn.getText());
+                    }
+                if (SignInBtn.getText().toString().equals("Cancel")) {
+                    SignInBtn.setText("Sign in");
+
+                    textFieldConfirm.setVisible(false);
+
                 }
             }
         });
-        stage.addActor(button);
+        stage.addActor(SignInBtn);
         btnstyle1=new TextButton.TextButtonStyle();
         btnstyle1.font=font;
         btnstyle1.up=skin.getDrawable("FrameInput");
 
-        button1=new TextButton("Sign up",btnstyle1);
-        button1.setSize(300,100);
-        button1.setPosition(textFieldLog.getX()+textFieldLog.getWidth()-button1.getWidth(),200);
-        button1.addListener(new ClickListener(){
+        SignUpBtn=new TextButton("Sign up",btnstyle1);
+        SignUpBtn.setSize(300,100);
+        SignUpBtn.setPosition(textFieldLog.getX()+textFieldLog.getWidth()-SignUpBtn.getWidth(),200);
+        SignUpBtn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                ShowConfirm=true;
+                SignInBtn.setText("Cancel");
             }
         });
 
 
-        stage.addActor(button1);
+        stage.addActor(SignUpBtn);
 
 
 
@@ -203,6 +213,7 @@ public class LoginView implements Screen {
         camera.setToOrtho(false, (float) (Gdx.graphics.getWidth()/1.6), (float) (Gdx.graphics.getHeight()/1.5));
         if (ShowConfirm) {
             stage.addActor(textFieldConfirm);
+            textFieldConfirm.setVisible(true);
             ShowConfirm=false;
         }
         if (Gdx.input.isTouched()&&KBisActive)
@@ -210,6 +221,7 @@ public class LoginView implements Screen {
             textFieldLog.getOnscreenKeyboard().show(false);
             textFieldPass.getOnscreenKeyboard().show(false);
             textFieldConfirm.getOnscreenKeyboard().show(false);
+
             KBisActive=false;
         }
 
