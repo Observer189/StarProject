@@ -2,8 +2,10 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,6 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.model.Map;
 import com.mygdx.game.model.Player;
+import com.mygdx.game.utils.Assets;
 import com.mygdx.game.utils.StarGen;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Toast;
@@ -44,7 +47,7 @@ public class LoginView implements Screen {
     Boolean MakeToast=false;
     OrthographicCamera camera = new OrthographicCamera();
     Boolean ShowConfirm=false;
-
+    Boolean Saved=false;
     Array<TextureAtlas.AtlasRegion> array;
     public static StarGen star;
 
@@ -59,6 +62,9 @@ public class LoginView implements Screen {
     }
     @Override
     public void show() {
+        Assets.load();
+
+
         music = Gdx.audio.newMusic(Gdx.files.internal("MenuMusic.mp3"));
         music.setLooping(true);
         music.play();
@@ -97,7 +103,7 @@ public class LoginView implements Screen {
 
 
 
-        textFieldLog =new TextField("",txtStyle);
+        textFieldLog =new TextField(Assets.preferences.getString("Log"),txtStyle);
         textFieldLog.setMessageText("Your log-in");
         textFieldLog.setSize(Gdx.graphics.getWidth()/2,100);
         textFieldLog.setPosition(Gdx.graphics.getWidth()/2-textFieldLog.getWidth()/2,540);
@@ -111,7 +117,7 @@ public class LoginView implements Screen {
             }
         });
 
-        textFieldPass =new TextField("",txtStyle);
+        textFieldPass =new TextField(Assets.preferences.getString("Pass"),txtStyle);
         textFieldPass.setMessageText("Your password");
         textFieldPass.setSize(Gdx.graphics.getWidth()/2,100);
         textFieldPass.setPosition(Gdx.graphics.getWidth()/2-textFieldLog.getWidth()/2,420);
@@ -153,7 +159,7 @@ public class LoginView implements Screen {
                 if (!textFieldLog.getText().equals(null)&& !textFieldLog.getText().contains(" ")&& !(textFieldLog.getText().length()<3)&&
                 !textFieldPass.getText().equals(null)&& !textFieldPass.getText().contains(" ")&& !(textFieldPass.getText().length()<3)
                         ){
-
+                save();
                 game.setScreen(new MainMenu(batch,game,player));}
                 else {MakeToast=true;
                 }
@@ -244,6 +250,21 @@ public class LoginView implements Screen {
         music.play();
 
     }
+    public void save(){
+      //  FileHandle fh=new FileHandle("text");
+
+        /*FileHandle fileHandle = Gdx.files.internal("data/LogPass.xml");
+        fileHandle.writeString("",true);
+
+        String str= textFieldLog.getText()+" "+textFieldPass.getText();
+        fileHandle.writeString(str,true);*/
+
+        Assets.preferences.putString("Log",textFieldLog.getText());
+        Assets.preferences.putString("Pass",textFieldPass.getText());
+        Assets.preferences.flush();
+
+    }
+
 
 
     @Override

@@ -43,6 +43,8 @@ public class Angar implements Screen {
     StageForButton Back;
     int counter=1;
     int counterg=1;
+    StationAnim animka;
+
 
 
 
@@ -69,11 +71,13 @@ public class Angar implements Screen {
         textureAtlas=new TextureAtlas(Gdx.files.internal("TexturePack.atlas"));
         skin.addRegions(textureAtlas);
         stage=new Stage();
+        animka=new StationAnim(textureAtlas,batch);
         String shipname=player.getCurrentShip().getName();
         if (shipname.equals("Pulsate")  )shipname="1";
         Shimg=new Image(skin.getDrawable(shipname));
-        Shimg.setSize((float) (Gdx.graphics.getHeight()/3.6), (float) (Gdx.graphics.getHeight()/3.6));
-        Shimg.setPosition((float) (Gdx.graphics.getWidth()/2-Shimg.getWidth()/2), (float) (Gdx.graphics.getHeight()/2-Shimg.getHeight()/2));
+        Shimg.setSize((float) (Gdx.graphics.getHeight()/4.6), (float) (Gdx.graphics.getHeight()/4.6));
+        Shimg.setPosition((float) (Gdx.graphics.getWidth()/2-Shimg.getWidth()/2), 40);
+
 
        // Frameimg=new Image(skin.getDrawable("Frame"));
       //  Frameimg.setSize((float) (Gdx.graphics.getWidth()/2.7), (float) (Gdx.graphics.getHeight()/3.3));
@@ -88,7 +92,7 @@ public class Angar implements Screen {
                 if (counter%2==0)
                     DSFS.ViewMove(Gdx.graphics.getWidth()*2, (int) Shimg.getY());
                     else {
-                    DSFS.ViewMove((int) (Shimg.getX() + Shimg.getWidth() + Shimg.getWidth() / 10), (int) Shimg.getY());
+                  //  DSFS.ViewMove((int) (Shimg.getX() + Shimg.getWidth() + Shimg.getWidth() / 10), (int) Shimg.getY());
                   //  DSFG.ViewMove(Gdx.graphics.getWidth()*2, (int) Shimg.getY());
                 }
             System.out.println("I CLICKED");
@@ -116,13 +120,14 @@ public class Angar implements Screen {
         // stage.addActor(guns[1]);
 
         stage.addActor(Shimg);
-        stage.addActor(Frameimg);
+
         InputMultiplexer in=new InputMultiplexer();
         in.addProcessor(stage);
         in.addProcessor(Back);
         in.addProcessor(DSFS);
        // in.addProcessor(DSFG);
         Gdx.input.setInputProcessor(in);
+
 
     }
 
@@ -137,6 +142,8 @@ public class Angar implements Screen {
             textManager.displayMessage(batch, font, player.resources.shipList.get(i).getName(), DSFS.sh.get(i).getX()+DSFS.sh.get(i).getWidth(),DSFS.sh.get(i).getY()+DSFS.frame.get(i).getHeight()/2);
 
         }
+
+        animka.draw();
         stage.act(delta);
         stage.draw();
         DSFS.act(delta);
@@ -144,8 +151,8 @@ public class Angar implements Screen {
         Back.act(delta);
         Back.draw();
 
-        batch.begin();
-        batch.end();
+      //  batch.begin();
+        //batch.end();
 
     }
 
@@ -274,54 +281,6 @@ public class Angar implements Screen {
         }
 
     }
-    // sooooooon.....
-    class DrawStageForGuns extends Stage{
-        int x;
-        int y;
-        int FrameDigit;
-        ArrayList<Weapon> list;
-        ArrayList<Image> gu=new ArrayList<Image>();
-        ArrayList<Image> frame=new ArrayList<Image>();
-        public DrawStageForGuns(int x, int y, final ArrayList<Weapon> list,int FramesDidgit){
-            this.x=x;
-            this.y=y;
-            this.list=list;
-            int deltay;
-            this.FrameDigit=FramesDidgit;
-            deltay = Gdx.graphics.getHeight() / 9;
 
-            System.out.println("SIZE "+list.size());
-
-            for (int i=0;i<list.size();i++){
-                String drawname= list.get(i).getName();
-
-                gu.add(new Image(skin.getDrawable(drawname)));
-             //   gu.get(i).setSize((float) (Gdx.graphics.getHeight()/3.6), (float) (Gdx.graphics.getHeight()/3.6));
-                gu.get(i).setSize(list.get(i).getWidth(),list.get(i).getHeight());
-                gu.get(i).setPosition((float) (x), (float) (y-deltay*(i+1)));
-                System.out.println("This Y: "+gu.get(i).getY());
-                frame.add( new Image(skin.getDrawable("Frame")));
-                frame.get(i).setSize((float) (Gdx.graphics.getWidth()/2.7), (float) (Gdx.graphics.getHeight()/3.3));
-                frame.get(i).setPosition((float) (gu.get(i).getX()-Gdx.graphics.getWidth()/85.3),(float) (y-deltay*(i+1)));
-                addActor(gu.get(i));
-                addActor(frame.get(i));
-            }
-
-        }
-
-
-
-
-
-        public  void ViewMove(int x,int y){
-            for (int i=0;i<list.size();i++){
-                gu.get(i).setPosition(x, (float) (Shimg.getY()-gu.get(i).getHeight()*i*1.13));
-                frame.get(i).setPosition((float) (gu.get(i).getX()-Gdx.graphics.getWidth()/85.3),gu.get(i).getY()-Gdx.graphics.getHeight()/72);
-
-            }
-        }
-
-
-    }
 
 }

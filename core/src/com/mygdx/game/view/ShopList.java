@@ -97,32 +97,35 @@ public class ShopList implements Screen {
         int x200 = (int) (Gdx.graphics.getWidth() / 6.3);
         int y175 = (int) (Gdx.graphics.getHeight() / 4.11428);
         int y75 = (int) (Gdx.graphics.getHeight() / 9.6);
-        textManager.displayMessage(batch, font, ct1.name, ct1.x + x200, ct1.y + y175);
-        textManager.displayMessage(batch, font, "Price: " + ct1.price, ct1.x + x200, ct1.y + y75);
+
         ct1.act(delta);
         ct1.draw();
-
+        textManager.displayMessage(batch, font, ct1.name, ct1.x + x200, ct1.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct1.price, ct1.x + x200, ct1.y + y75);
         //'Bat' ship
-        textManager.displayMessage(batch, font, ct2.name, ct2.x + x200, ct2.y + y175);
-        textManager.displayMessage(batch, font, "Price: " + ct2.price, ct2.x + x200, ct2.y + y75);
+
         ct2.act(delta);
         ct2.draw();
+        textManager.displayMessage(batch, font, ct2.name, ct2.x + x200, ct2.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct2.price, ct2.x + x200, ct2.y + y75);
         //'Dakkar' ship
-        textManager.displayMessage(batch, font, ct3.name, ct3.x + x200, ct3.y + y175);
-        textManager.displayMessage(batch, font, "Price: " + ct3.price, ct3.x + x200, ct3.y + y75);
         ct3.act(delta);
         ct3.draw();
+        textManager.displayMessage(batch, font, ct3.name, ct3.x + x200, ct3.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct3.price, ct3.x + x200, ct3.y + y75);
+
         //'Mite' ship
-        textManager.displayMessage(batch, font, ct4.name, ct4.x + x200, ct4.y + y175);
-        textManager.displayMessage(batch, font, "Price: " + ct4.price, ct4.x + x200, ct4.y + y75);
+
         ct4.act(delta);
         ct4.draw();
+        textManager.displayMessage(batch, font, ct4.name, ct4.x + x200, ct4.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct4.price, ct4.x + x200, ct4.y + y75);
         //'Hunter' ship
-        textManager.displayMessage(batch, font, ct5.name, ct5.x + x200, ct5.y + y175);
-        //textManager.displayMessage(batch,font, "Price: " + ct5.price,  ct5.x + 200, ct5.y + 75);
-        textManager.displayMessage(batch, font, "Price: " + ct5.price, ct5.x + x200, ct5.y + y75);
+
         ct5.act(delta);
         ct5.draw();
+        textManager.displayMessage(batch, font, ct5.name, ct5.x + x200, ct5.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct5.price, ct5.x + x200, ct5.y + y75);
         //Information bar
         //int a=menu.
         textManager.displayMessage(batch, font, "" +menu.player.getMoney(), Money.getX() + Money.getWidth(), Money.getY() + Money.getHeight() / 2);
@@ -276,8 +279,8 @@ public class ShopList implements Screen {
 
         //creating button with ships image
         Sstyle = new Button.ButtonStyle();
-        Sstyle.up = skin.getDrawable("SelectShip");
-        Sstyle.down = skin.getDrawable("SelectShip");
+        Sstyle.up = skin.getDrawable("UnSelectShip");
+        Sstyle.down = skin.getDrawable("UnSelectShip");
         Ships = new StageForButton(Sstyle, (int) (Gdx.graphics.getWidth() / 2), (int) (Gdx.graphics.getHeight() - 50), Gdx.graphics.getWidth() / 2, (int) (Gdx.graphics.getHeight() / 14.4));
         //change scene when 'ships' clicked
         Ships.btn.addListener(new ClickListener() {
@@ -432,8 +435,9 @@ public class ShopList implements Screen {
             img.setSize((float) (Gdx.graphics.getWidth() / 2.7), (float) (Gdx.graphics.getHeight() / 3.3));
 
 
-            addActor(btn);
+
             addActor(img);
+            addActor(btn);
         }
     }
 
