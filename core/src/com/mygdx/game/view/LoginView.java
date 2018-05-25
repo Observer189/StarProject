@@ -22,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.ServModels.ServPlayer;
 import com.mygdx.game.model.Map;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ships.Dakkar;
@@ -62,6 +63,7 @@ public class LoginView implements Screen {
     int RegisterCounter=0;
     servApi request;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
+    ServPlayer servPlayer;
     TextureAtlas textureAtlas;
     public LoginView(SpriteBatch batch, Game game){
         this.batch=batch;
@@ -91,6 +93,7 @@ public class LoginView implements Screen {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         request = retrofit.create(servApi.class);
+        servPlayer=new ServPlayer();
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         array=new Array<TextureAtlas.AtlasRegion>();
        for (int i=0;i<17;i++)
@@ -176,6 +179,9 @@ public class LoginView implements Screen {
                       !textFieldPass.getText().equals(null)&& !textFieldPass.getText().contains(" ")&& !(textFieldPass.getText().length()<3)
                         ){
                              save();
+                             getPlayer();
+                             System.out.println("!!!!!"+servPlayer.getMoney()+"!!!!!!!");
+                             player=new Player(servPlayer);
                              game.setScreen(new MainMenu(batch,game,player));}
                      else {MakeToast=true;
                                      }
@@ -332,4 +338,18 @@ public class LoginView implements Screen {
             e.printStackTrace();
         }
     }
+    private void getPlayer()
+    {
+
+
+        Call<ServPlayer> call=request.getPlayer(textFieldLog.getText());
+        try {
+           servPlayer.setServPlayer(call.execute().body());
+           //System.out.println(servPlayer.getMoney());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

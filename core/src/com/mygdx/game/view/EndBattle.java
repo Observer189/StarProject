@@ -17,7 +17,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.model.Map;
 import com.mygdx.game.model.Player;
+import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.TextManager;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Sash on 11.05.2018.
@@ -38,6 +45,8 @@ public class EndBattle implements Screen {
     String status;
     int appliedDamage;
     int reward;
+    public final String baseURL = "https://star-project-serv.herokuapp.com/";
+    servApi request;
 
     BitmapFont bigBlueFont;
     BitmapFont bigRedFont;
@@ -59,7 +68,11 @@ public class EndBattle implements Screen {
         }
     @Override
     public void show() {
-
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        request = retrofit.create(servApi.class);
         camera=new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         camera.position.set(new Vector3(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2,0));
         textManager=new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -92,6 +105,7 @@ public class EndBattle implements Screen {
         Gdx.input.setInputProcessor(stage);
         reward=generateReward(status);
         player.setMoney(player.getMoney()+reward);
+        updatePlayerMoney();
     }
 
     @Override
@@ -155,5 +169,14 @@ public class EndBattle implements Screen {
             return (int)(aD*(4+Math.random()));
         }
         else return 0;
+    }
+    private void updatePlayerMoney()
+    {
+        Call<Integer> call=request.updateMoney(player.getName(),player.getMoney());
+        try {
+            call.execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

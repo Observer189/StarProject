@@ -1,5 +1,6 @@
 package com.mygdx.game.requests;
 
+import com.mygdx.game.ServModels.ServPlayer;
 import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Coord;
 
@@ -24,5 +25,11 @@ public interface servApi {
 
     @PUT("players/create")
     Call<Integer> createPlayer(@Query("name") String name,@Query("password") String password,@Query("money")int money);
+
+    @POST("players/update")
+    Call<Integer> updateMoney(@Query("name")String name,@Query("money") int money);
+
+    @GET("players/getPlayer")
+    Call<ServPlayer> getPlayer(@Query("name") String name);
 
 }

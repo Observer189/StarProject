@@ -1,5 +1,10 @@
 package com.mygdx.game.model;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.mygdx.game.ServModels.ServPlayer;
+import com.mygdx.game.model.Ships.Dakkar;
+
 import java.util.ArrayList;
 
 /**
@@ -23,6 +28,15 @@ public class Player {
         this.name = name;
         this.resources=new Resources();
         this.currentShip = currentShip;
+        resources.shipList.add(currentShip);
+    }
+    public Player(ServPlayer servPlayer)
+    {
+        name=servPlayer.getName();
+        resources=new Resources();
+        setMoney(servPlayer.getMoney());
+        currentShip=new Dakkar(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")),0,0);
+
         resources.shipList.add(currentShip);
     }
        public void generateName()
