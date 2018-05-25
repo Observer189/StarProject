@@ -50,8 +50,8 @@ public class LoginView implements Screen {
     Boolean Saved=false;
     Array<TextureAtlas.AtlasRegion> array;
     public static StarGen star;
-
-
+    Boolean isRegistration=false;
+    int RegisterCounter=0;
     TextureAtlas textureAtlas;
     public LoginView(SpriteBatch batch, Game game, Player player){
         this.batch=batch;
@@ -164,7 +164,7 @@ public class LoginView implements Screen {
                              game.setScreen(new MainMenu(batch,game,player));}
                      else {MakeToast=true;
                                      }
-                    System.out.println("YEAH? "+SignInBtn.getText());
+
                     }
                 if (SignInBtn.getText().toString().equals("Cancel")) {
                     SignInBtn.setText("Sign in");
@@ -185,8 +185,25 @@ public class LoginView implements Screen {
         SignUpBtn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (!isRegistration){
                ShowConfirm=true;
                 SignInBtn.setText("Cancel");
+                isRegistration=true;
+                }
+                else {
+                    if (!textFieldLog.getText().equals(null)&& !textFieldLog.getText().contains(" ")&& !(textFieldLog.getText().length()<3)&&
+                            !textFieldPass.getText().equals(null)&& !textFieldPass.getText().contains(" ")&& !(textFieldPass.getText().length()<3)&&
+                                 !textFieldConfirm.getText().equals(null)&& !textFieldConfirm.getText().contains(" ")&& !(textFieldConfirm.getText().length()<3)&&
+                            textFieldConfirm.getText().toString().equals(textFieldPass.getText().toString())
+                            ){
+                        save();
+                        game.setScreen(new MainMenu(batch,game,player));}
+                    else {MakeToast=true;
+                    }
+
+
+                }
+                //System.out.println(" "+isRegistration);
             }
         });
 
