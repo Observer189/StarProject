@@ -40,12 +40,14 @@ public class ShopList implements Screen {
     Button.ButtonStyle st1, st2, st3, st4, st5; // Styles for 5 ships
     CellStage ct1, ct2, ct3, ct4, ct5; // 5 Stages for 5 ships
     public static Skin skin;
-    Image InformationFrame, Money;
+    Image InformationTube, Money;
     BitmapFont font;
     Boolean NeedToMove = false;
     Boolean NeedToMoveBack = false;
     Viewport VP;
     int counter = 0;
+    int digits[];
+    String MoneyStr="";
 
     //ships
     Ship pulsate, bat, dakkar, hunter, mite;
@@ -100,35 +102,35 @@ public class ShopList implements Screen {
 
         ct1.act(delta);
         ct1.draw();
-        textManager.displayMessage(batch, font, ct1.name, ct1.x + x200, ct1.y + y175);
-        textManager.displayMessage(batch, font, "Price: " + ct1.price, ct1.x + x200, ct1.y + y75);
+        textManager.displayMessage(batch, font, ct1.name, (float) (ct1.x + x200*1.5),  (ct1.y + y175));
+        textManager.displayMessage(batch, font, "Price: " + ct1.price, (float) (ct1.x + x200*1.5), (float) (ct1.y + y75*0.915));
         //'Bat' ship
 
         ct2.act(delta);
         ct2.draw();
-        textManager.displayMessage(batch, font, ct2.name, ct2.x + x200, ct2.y + y175);
-        textManager.displayMessage(batch, font, "Price: " + ct2.price, ct2.x + x200, ct2.y + y75);
+        textManager.displayMessage(batch, font, ct2.name, (float) (ct2.x + x200*1.5), ct2.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct2.price, (float) (ct2.x + x200*1.5), (float) (ct2.y + y75*0.915));
         //'Dakkar' ship
         ct3.act(delta);
         ct3.draw();
-        textManager.displayMessage(batch, font, ct3.name, ct3.x + x200, ct3.y + y175);
-        textManager.displayMessage(batch, font, "Price: " + ct3.price, ct3.x + x200, ct3.y + y75);
+        textManager.displayMessage(batch, font, ct3.name, (float) (ct3.x + x200*1.5), ct3.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct3.price, (float) (ct3.x + x200*1.5), (float) (ct3.y + y75*0.915));
 
         //'Mite' ship
 
         ct4.act(delta);
         ct4.draw();
-        textManager.displayMessage(batch, font, ct4.name, ct4.x + x200, ct4.y + y175);
-        textManager.displayMessage(batch, font, "Price: " + ct4.price, ct4.x + x200, ct4.y + y75);
+        textManager.displayMessage(batch, font, ct4.name, (float) (ct4.x + x200*1.5), ct4.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct4.price, (float) (ct4.x + x200*1.5), (float) (ct4.y + y75*0.915));
         //'Hunter' ship
 
         ct5.act(delta);
         ct5.draw();
-        textManager.displayMessage(batch, font, ct5.name, ct5.x + x200, ct5.y + y175);
-        textManager.displayMessage(batch, font, "Price: " + ct5.price, ct5.x + x200, ct5.y + y75);
+        textManager.displayMessage(batch, font, ct5.name, (float) (ct5.x + x200*1.5), ct5.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct5.price, (float) (ct5.x + x200*1.5), (float) (ct5.y + y75*0.915));
         //Information bar
         //int a=menu.
-        textManager.displayMessage(batch, font, "" +menu.player.getMoney(), Money.getX() + Money.getWidth(), Money.getY() + Money.getHeight() / 2);
+        textManager.displayMessage(batch, font, MoneyStr,  Money.getX()+60 , InformationTube.getY()+InformationTube.getHeight()-25);
 
 
         //Top buutons for swithing
@@ -213,14 +215,6 @@ public class ShopList implements Screen {
         skin.addRegions(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")));
 
 
-        //Creating frame, where player can see his money (Information Bar)
-        // InformationFrame=new Image(skin.getDrawable("Frame"));
-        Money = new Image(skin.getDrawable("Money"));
-        // InformationFrame.setSize((float) (Gdx.graphics.getWidth()/3.5), (float) (Gdx.graphics.getHeight()/3.3));
-
-        //  InformationFrame.setPosition(Gdx.graphics.getWidth()/Gdx.graphics.getWidth(),Gdx.graphics.getHeight()/3);
-        Money.setSize((float) (Gdx.graphics.getWidth() / 8.8), (float) (Gdx.graphics.getHeight() / 4.96));
-        Money.setPosition(Gdx.graphics.getWidth() / Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 24);
 
 
         //--------------------drawing buttons again
@@ -292,6 +286,33 @@ public class ShopList implements Screen {
             }
         });
         //-----------------------end
+        //Creating frame, where player can see his money (Information Bar)
+
+        Money = new Image(skin.getDrawable("Money"));
+
+
+
+        Money.setSize((float) (Gdx.graphics.getWidth() / 8.8), (float) (Gdx.graphics.getHeight() / 4.96));
+        Money.setPosition(Gdx.graphics.getWidth() / Gdx.graphics.getWidth(), (float) (Gdx.graphics.getHeight() -Money.getHeight()-(int) (Gdx.graphics.getHeight() / 14.4)));
+        menu.player.setMoney(50123);
+        Integer mon=menu.player.getMoney();
+        int heightOfTube=0;
+        digits=new int[mon.toString().length()];
+        int restDigits=mon;
+        for (int i=mon.toString().length()-1;i>=0;i--) {
+            heightOfTube += (int) (Gdx.graphics.getWidth() / 25.6);
+            digits[i] = restDigits % 10;
+            restDigits = restDigits / 10;
+        }
+
+        for (int i=0;i<mon.toString().length();i++){
+            MoneyStr+=digits[i]+"\n";
+
+        }
+        System.out.print("Fkng string: "+MoneyStr);
+        InformationTube=new Image(skin.getDrawable("Tube2"));
+        InformationTube.setSize((float) (Gdx.graphics.getWidth() / 8.8),heightOfTube);
+        InformationTube.setPosition(Money.getX(), (float) (Money.getY()-InformationTube.getHeight()));
 
 
         //place for '1' ship
@@ -299,7 +320,7 @@ public class ShopList implements Screen {
         st1 = new Button.ButtonStyle();
         st1.up = skin.getDrawable("1");
         st1.down = skin.getDrawable("1");
-        ct1 = new CellStage(st1, (float) (Gdx.graphics.getWidth() / 4 * 1.25), (float) (Ships.y - Gdx.graphics.getHeight()/3.39622642), pulsate.getName(), pulsate.getCost());
+        ct1 = new CellStage(st1, (float) (Gdx.graphics.getWidth() / 5 * 1), (float) (Ships.y - Gdx.graphics.getHeight()/3.39622642), pulsate.getName(), pulsate.getCost());
         ct1.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -360,6 +381,8 @@ public class ShopList implements Screen {
         st5.down = skin.getDrawable("Hunter");
         ct5 = new CellStage(st5, ct1.x,  (ct4.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Hunter", 190);
         ct5.addActor(Money);
+        ct4.addActor(InformationTube);
+
         ct5.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -396,8 +419,9 @@ public class ShopList implements Screen {
         in.addProcessor(ct5);
         in.addProcessor(Back);
 
+
         Gdx.input.setInputProcessor(in);
-        font = textManager.fontInitialize(Color.BLACK, 0.8f);
+        font = textManager.fontInitialize(Color.WHITE, 0.8f);
     }
 
     public void MoveOld(CellStage ct, int dir) {
@@ -407,7 +431,7 @@ public class ShopList implements Screen {
         else
             ct.y +=( ct.img.getImageHeight() + Gdx.graphics.getHeight() / 360 + 3);
         ct.btn.setY(ct.y);
-        ct.img.setY(ct.y - 15);
+        ct.img.setY(ct.y - 10);
 
 
     }
@@ -430,8 +454,8 @@ public class ShopList implements Screen {
             this.price = price;
             btn = new Button(btnstyle);
             btn.setBounds(x, y, (float) (Gdx.graphics.getHeight() / 3.8), (float) (Gdx.graphics.getHeight() / 3.8));
-            img = new Image(skin.getDrawable("Frame"));
-            img.setPosition(x - 15, y - 10);
+            img = new Image(skin.getDrawable("InfoFrame"));
+            img.setPosition(x +btn.getWidth()+15, y - 10);
             img.setSize((float) (Gdx.graphics.getWidth() / 2.7), (float) (Gdx.graphics.getHeight() / 3.3));
 
 
