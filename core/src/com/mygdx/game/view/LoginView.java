@@ -189,7 +189,7 @@ public class LoginView implements Screen {
                     }
                 if (SignInBtn.getText().toString().equals("Cancel")) {
                     SignInBtn.setText("Sign in");
-
+                    isRegistration=false;
                     textFieldConfirm.setVisible(false);
 
                 }
