@@ -22,6 +22,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.mygdx.game.ServModels.ServPlayer;
 import com.mygdx.game.model.Map;
 import com.mygdx.game.model.Player;
@@ -63,8 +65,9 @@ public class LoginView implements Screen {
     int RegisterCounter=0;
     servApi request;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
-    ServPlayer servPlayer;
+
     TextureAtlas textureAtlas;
+
     public LoginView(SpriteBatch batch, Game game){
         this.batch=batch;
         this.game=game;
@@ -88,12 +91,16 @@ public class LoginView implements Screen {
         stage=new Stage();
         Skin skin = new Skin();
         skin.addRegions(textureAtlas);
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         request = retrofit.create(servApi.class);
-        servPlayer=new ServPlayer();
+
+
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         array=new Array<TextureAtlas.AtlasRegion>();
        for (int i=0;i<17;i++)
@@ -179,10 +186,17 @@ public class LoginView implements Screen {
                       !textFieldPass.getText().equals(null)&& !textFieldPass.getText().contains(" ")&& !(textFieldPass.getText().length()<3)
                         ){
                              save();
-                             getPlayer();
-                             System.out.println("!!!!!"+servPlayer.getMoney()+"!!!!!!!");
-                             player=new Player(servPlayer);
-                             game.setScreen(new MainMenu(batch,game,player));}
+
+
+                             if((getPlayer()!=null)&&(getPlayer().getPassword().equals(textFieldPass.getText())))
+                             {
+                             player=new Player(getPlayer());
+                             game.setScreen(new MainMenu(batch,game,player));
+                             }
+                             else{
+                                 System.out.println("Вы ввели неверное имя пользователя или пароль!");
+                             }
+                     }
                      else {MakeToast=true;
                                      }
 
@@ -216,11 +230,22 @@ public class LoginView implements Screen {
                             !textFieldPass.getText().equals(null)&& !textFieldPass.getText().contains(" ")&& !(textFieldPass.getText().length()<3)&&
                                  !textFieldConfirm.getText().equals(null)&& !textFieldConfirm.getText().contains(" ")&& !(textFieldConfirm.getText().length()<3)&&
                             textFieldConfirm.getText().toString().equals(textFieldPass.getText().toString())
-                            ){
+                            ) {
                         save();
-                        createPlayer();
-                        player=new Player(textFieldLog.getText(),new Dakkar(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")),0,0));
-                        game.setScreen(new MainMenu(batch,game,player));}
+
+                        if (createPlayer() == 1) {
+                            player = new Player(textFieldLog.getText(), new Dakkar(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")), 0, 0));
+                            game.setScreen(new MainMenu(batch, game, player));
+                        }
+                        else if(createPlayer()==0)
+                        {
+                            System.out.println("Игрок с таким именем уже существует");
+                        }
+                        else
+                        {
+                            System.out.println("Не удалось подключится к серверу");
+                        }
+                    }
                     else {MakeToast=true;
                     }
 
@@ -328,27 +353,32 @@ public class LoginView implements Screen {
     public void dispose() {
 
     }
-    private void createPlayer()
+    private int createPlayer()
     {
+        int result = -1;
         Call<Integer> call=request.createPlayer(textFieldLog.getText(),textFieldPass.getText(),1000);
 
         try {
-            call.execute();
+
+            result=Integer.valueOf(call.execute().body());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return result;
     }
-    private void getPlayer()
+    private ServPlayer getPlayer()
     {
 
-
+         ServPlayer servPlayer=new ServPlayer();
         Call<ServPlayer> call=request.getPlayer(textFieldLog.getText());
         try {
            servPlayer.setServPlayer(call.execute().body());
-           //System.out.println(servPlayer.getMoney());
+           return servPlayer;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
 
     }
 
