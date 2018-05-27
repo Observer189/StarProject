@@ -121,5 +121,7 @@ public class Weapon extends GameObject {
         return cost;
     }
 
-
+    public Ammo getAmmo() {
+        return ammo;
+    }
 }

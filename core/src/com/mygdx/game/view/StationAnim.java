@@ -19,14 +19,16 @@ public class StationAnim {
     TextureRegion explosionRegion;
     Stage stage;
     Image img;
-
-    public StationAnim(TextureAtlas textureAtlas, SpriteBatch batch){
+    float x;
+    float y;
+    public StationAnim(TextureAtlas textureAtlas, SpriteBatch batch,float x,float y){
         this.textureAtlas=textureAtlas;
-
+        this.x=x;
+        this.y=y;
         this.batch  =batch;
         img=new Image(textureAtlas.findRegion("WB_baseu2_d0"));
-        img.setSize(550,550);
-        img.setPosition(Gdx.graphics.getWidth()/2-img.getWidth()/2,Gdx.graphics.getHeight()/2-img.getHeight()/2);
+        img.setSize(420,420);
+        img.setPosition(x,y);
         }
 
 
@@ -43,8 +45,11 @@ public class StationAnim {
                 explosionCounter = 0;
             }
             batch.begin();
+            img.setPosition(x,y);
+
+
+            batch.draw(explosionRegion, img.getX()+img.getWidth()/2-100, img.getY()+img.getHeight()/2-100, 200, 200);
             img.draw(batch,1);
-            batch.draw(explosionRegion, Gdx.graphics.getWidth()/2-100, Gdx.graphics.getHeight()/2-100, 200, 200);
             batch.end();
             explosionCounter++;
         }

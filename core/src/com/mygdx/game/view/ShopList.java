@@ -294,7 +294,7 @@ public class ShopList implements Screen {
 
         Money.setSize((float) (Gdx.graphics.getWidth() / 8.8), (float) (Gdx.graphics.getHeight() / 4.96));
         Money.setPosition(Gdx.graphics.getWidth() / Gdx.graphics.getWidth(), (float) (Gdx.graphics.getHeight() -Money.getHeight()-(int) (Gdx.graphics.getHeight() / 14.4)));
-        menu.player.setMoney(50123);
+
         Integer mon=menu.player.getMoney();
         int heightOfTube=0;
         digits=new int[mon.toString().length()];
