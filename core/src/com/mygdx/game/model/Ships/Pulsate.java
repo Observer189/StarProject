@@ -25,7 +25,7 @@ public class Pulsate extends Ship {
 
     }
 
-    @Override
+    /*@Override
     public void setRotationPosition(int rotationPosition) {
         super.setRotationPosition(rotationPosition);
         if(rotationPosition==1) {
@@ -36,5 +36,5 @@ public class Pulsate extends Ship {
             getFixingPoints()[0].setOffset(5f, 0f);
             getFixingPoints()[1].setOffset(5f, 8.2f);
         }
-    }
+    }*/
 }

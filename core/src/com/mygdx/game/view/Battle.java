@@ -99,21 +99,20 @@ public class Battle implements Screen {
 
         classicMap=Map.generateMap(batch,textureAtlas);
 
-
         //enemy = new Player(battleStatus.getName(), new Pulsate(textureAtlas, 0, 0));
         if(battleStatus.getPositionNumber()==1)
         {
             player.getCurrentShip().setPosition(200,400);
-            player.getCurrentShip().setRotationPosition(1);
+            player.getCurrentShip().setRotation(270);
             enemy.getCurrentShip().setPosition(800,200);
-            enemy.getCurrentShip().setRotationPosition(2);
+            enemy.getCurrentShip().setRotation(90);
         }
         else if (battleStatus.getPositionNumber()==2)
         {
             player.getCurrentShip().setPosition(800,200);
-            player.getCurrentShip().setRotationPosition(2);
+            player.getCurrentShip().setRotation(90);
             enemy.getCurrentShip().setPosition(200,400);
-            enemy.getCurrentShip().setRotationPosition(1);
+            enemy.getCurrentShip().setRotation(270);
         }
 
 
@@ -126,8 +125,8 @@ public class Battle implements Screen {
         coord = new Coord(0f,0f);
         counter = 0;
         joystick=new Joystick(batch,0,10,textureAtlas.findRegion("Dj1p1"),textureAtlas.findRegion("Dj1p2"));
-        //turnLeft=new ButtonForProcessor(batch,camX+widthCamera/5,camY,20,20,textureAtlas.findRegion("TurnLeft"));
-        //turnRight=new ButtonForProcessor(batch,camX+widthCamera/5+30,camY,20,20,textureAtlas.findRegion("TurnRight"));
+        turnLeft=new ButtonForProcessor(batch,camX+widthCamera/5,camY,20,20,textureAtlas.findRegion("TurnLeft"));
+        turnRight=new ButtonForProcessor(batch,camX+widthCamera/5+30,camY,20,20,textureAtlas.findRegion("TurnRight"));
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         redFont=textManager.fontInitialize(Color.RED,0.1f);
@@ -164,19 +163,19 @@ public class Battle implements Screen {
         camera.position.y=player.getCurrentShip().getY();
         camX =camera.position.x;
         camY =camera.position.y;
-        /*turnLeft.setX(camX+widthCamera/5);
+        turnLeft.setX(camX+widthCamera/5);
         turnLeft.setY(camY-heightCamera/3);
         turnRight.setX(camX+widthCamera/5+30);
-        turnRight.setY(camY-heightCamera/3);*/
+        turnRight.setY(camY-heightCamera/3);
         camera.update();
         //System.out.println("x="+coord.getX()+"y="+coord.getY());
-             Gdx.input.setCatchBackKey(true);
+
         //System.out.println(" Player: "+player.getName()+"Enemy: "+enemy.getName());
 
         batch.setProjectionMatrix(camera.combined);
         classicMap.draw();
-        //turnLeft.draw();
-        //turnRight.draw();
+        turnLeft.draw();
+        turnRight.draw();
         player.getCurrentShip().act(enemy.getCurrentShip(),classicMap,joystick.getVector());
         enemy.getCurrentShip().act(player.getCurrentShip(),classicMap,new Vector2(0,0));
 
@@ -215,8 +214,8 @@ public class Battle implements Screen {
             game.setScreen(endBattle);
         }
 
-
-        System.out.println("Player:"+player.getCurrentShip().getCurrentHp()+"Enemy:"+enemy.getCurrentShip().getCurrentHp());
+        //System.out.println(player.getCurrentShip().getFixingPoints()[0].getWeapon().getX()+"!"+player.getCurrentShip().getFixingPoints()[0].getWeapon().getY());
+       // System.out.println("Player:"+player.getCurrentShip().getCurrentHp()+"Enemy:"+enemy.getCurrentShip().getCurrentHp());
 
     }
 
@@ -278,7 +277,7 @@ public class Battle implements Screen {
                 estimatedTime = System.currentTimeMillis() - startTime;
                 ping=estimatedTime;
 
-                System.out.println("Ping:"+ping);
+                //System.out.println("Ping:"+ping);
 
             }
 

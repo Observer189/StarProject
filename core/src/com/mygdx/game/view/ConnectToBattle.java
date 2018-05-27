@@ -13,6 +13,7 @@ import com.mygdx.game.control.ConnectToBattleProcessor;
 import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ship;
+import com.mygdx.game.model.Ships.Axe;
 import com.mygdx.game.model.Ships.Dakkar;
 import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.requests.servApi;
@@ -51,7 +52,8 @@ public class ConnectToBattle implements Screen {
         this.batch = batch;
         this.game = game;
         this.textureAtlas = textureAtlas;
-        this.player=player;
+        //this.player=player;
+        this.player=new Player("player", new Axe(textureAtlas,0,0));
     }
     @Override
     public void show() {
@@ -172,6 +174,8 @@ public class ConnectToBattle implements Screen {
             return new Pulsate(textureAtlas, 0, 0);
         else if(name.equals("Dakkar"))
             return new Dakkar(textureAtlas, 0, 0);
+        else if(name.equals("Axe"))
+            return new Axe(textureAtlas, 0, 0);
         else
         {
             System.out.println("Ship is not exist");

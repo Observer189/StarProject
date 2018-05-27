@@ -15,6 +15,10 @@ import java.util.ArrayList;
  */
 
 public class Weapon extends GameObject {
+    private float centerX;
+    private float centerY;
+    private float width;
+    private float height;
     ArrayList<Ammo> ammos;
     int counter;
     String name;
@@ -29,7 +33,10 @@ public class Weapon extends GameObject {
         super(weaponRegion, x, y, width, height);
         this.ammo=new Ammo(ammo);
         cost=0;
-
+        this.width=width;
+        this.height=height;
+        centerX=x+width/2;
+        centerY=y+height/2;
         ammos=new ArrayList<Ammo>();
         counter=0;
         rotationPosition=1;
@@ -72,7 +79,7 @@ public class Weapon extends GameObject {
 
     }
 
-    public void setRotationPosition(int rotationPosition) {
+    /*public void setRotationPosition(int rotationPosition) {
         this.rotationPosition = rotationPosition;
         if(rotationPosition==1)
         {
@@ -83,13 +90,8 @@ public class Weapon extends GameObject {
         {
             setRotation(90);
         }
-        if(ammos.size()!=0) {
-            for(int i=0;i<ammos.size();i++) {
-                ammos.get(i).move();
-                ammos.get(i).setRotationPosition(rotationPosition);
-            }
-        }
-    }
+
+    }*/
 
     public ArrayList<Ammo> getAmmos() {
         return ammos;
@@ -121,5 +123,21 @@ public class Weapon extends GameObject {
         return cost;
     }
 
+
+
+    public float getCenterX() {
+        return centerX;
+    }
+
+    public float getCenterY() {
+        return centerY;
+    }
+
+    public void setCenter(float centerX,float centerY)
+    {
+        bounds.setPosition(centerX-width/2,centerY-height/2);
+        this.centerX=centerX;
+        this.centerY=centerY;
+    }
 
 }

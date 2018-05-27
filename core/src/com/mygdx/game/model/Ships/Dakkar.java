@@ -19,10 +19,10 @@ public class Dakkar extends Ship {
     }
     public Dakkar(TextureAtlas textureAtlas, float x, float y)
     {
-        super(textureAtlas.findRegion("Dakkar"),x,y,15,15,"Dakkar",0,1020,1f,50,new FixingPoint[]{new FixingPoint(x,y,7.5f,0f,new Machinegun(textureAtlas,x,y)),
+        super(textureAtlas.findRegion("Dakkar"),x,y,15,25,"Dakkar",0,1020,1f,50,new FixingPoint[]{new FixingPoint(x,y,7.5f,0f,new Machinegun(textureAtlas,x,y)),
                 new FixingPoint(x,y,7.5f,8.2f,new Machinegun(textureAtlas,x,y))});
     }
-    @Override
+    /*@Override
     public void setRotationPosition(int rotationPosition) {
         super.setRotationPosition(rotationPosition);
         if(rotationPosition==1) {
@@ -33,5 +33,5 @@ public class Dakkar extends Ship {
             getFixingPoints()[0].setOffset(5f, 3.5f);
             getFixingPoints()[1].setOffset(5f, 6.5f);
         }
-    }
+    }*/
 }

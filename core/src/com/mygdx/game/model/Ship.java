@@ -26,8 +26,9 @@ public class Ship extends GameObject {
     private float speedY;
     private float velocity;
     private float maxSpeed;
+    private int rotationDirection;//-1-влево 1-вправо 0-без вращения
 
-    private int rotationPosition;
+
     private int appliedDamage;//нанесенный урон
     private Integer currentExplosionFrame;
     private int explosionCounter;
@@ -49,13 +50,14 @@ public class Ship extends GameObject {
         this.name = name;
         isShipInRedZone = false;
         isAlive=true;
-        rotationPosition=1;
+
         setRotation(270);
         currentExplosionFrame=0;
         explosionCounter=7;
         movementVector = new Vector2(0, 0);
         this.fixingPoints = fixingPoints;
         appliedDamage=0;
+        rotationDirection=0;
     }
 
     public FixingPoint[] getFixingPoints() {
@@ -135,6 +137,8 @@ public class Ship extends GameObject {
             if ((bounds.getX() > 0 + map.getWidth() * 0.95) || (bounds.getX() < 0 + map.getWidth() * 0.05) || (bounds.getY() > 0 + map.getHeight() * 0.95) || (bounds.getY() < 0 + map.getHeight() * 0.05)) {
                 currentHp = 0;
             }
+            if(rotationDirection==-1) bounds.rotate(1);
+            if(rotationDirection==1) bounds.rotate(-1);
 
         }
 
@@ -155,23 +159,7 @@ public class Ship extends GameObject {
         move(enemyShip,map);
     }
 
-    public void setRotationPosition(int rotationPosition) {
-        this.rotationPosition = rotationPosition;
-        if(rotationPosition==1)
-        {
-            setRotation(270);
-            for (int i = 0; i < fixingPoints.length; i++) {
-                fixingPoints[i].weapon.setRotationPosition(1);
-            }
-        }
-        if(rotationPosition==2)
-        {
-            setRotation(90);
-            for (int i = 0; i < fixingPoints.length; i++) {
-                fixingPoints[i].weapon.setRotationPosition(2);
-            }
-        }
-    }
+
 
 
     public float getSpeedX() {
@@ -234,9 +222,7 @@ public void nullify()
     public int getCost(){return cost;}
     public float getMaxHp(){return maxHp;}
 
-    public int getRotationPosition() {
-        return rotationPosition;
-    }
+    
 
     public void setCurrentHp(float currentHp) {
         this.currentHp = currentHp;
@@ -245,6 +231,13 @@ public void nullify()
     public String getName() {return name; }
 
 
+    public void setRotationDirection(int rotationDirection) {
+        this.rotationDirection = rotationDirection;
+    }
+
+    public int getRotationDirection() {
+        return rotationDirection;
+    }
 
     public int getFixingPointsDigit(){return fixingPoints.length;}
 

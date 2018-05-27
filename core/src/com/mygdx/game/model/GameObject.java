@@ -42,6 +42,7 @@ public abstract class GameObject {
         batch.begin();
         sprite.draw(batch);
         batch.end();
+
     }
     public float getX()
     {

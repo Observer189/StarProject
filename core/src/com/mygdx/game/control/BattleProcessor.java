@@ -53,23 +53,31 @@ public class BattleProcessor implements InputProcessor {
             offsetX = joystick.staticPart.getCenterX() - (Battle.camX - Battle.widthCamera / 2);
             offsetY = joystick.staticPart.getCenterY() - (Battle.camY - heightCamera / 2);
         }
-        /*if((screenX / convX + (Battle.camX - Battle.widthCamera / 2)>=Battle.camX+Battle.widthCamera/5)&&((screenX / convX + (Battle.camX - Battle.widthCamera / 2)<=Battle.camX+Battle.widthCamera/5+20)))
+        if((screenX / convX + (Battle.camX - Battle.widthCamera / 2)>=Battle.camX+Battle.widthCamera/5)&&((screenX / convX + (Battle.camX - Battle.widthCamera / 2)<=Battle.camX+Battle.widthCamera/5+20)))//1-я кнопка x
         {
-            if(ship.getRotationPosition()==1)ship.setRotationPosition(2);
-            if(ship.getRotationPosition()==2)ship.setRotationPosition(1);
-            if((heightCamera - screenY / convY + (Battle.camY - heightCamera / 2)>=Battle.camY-heightCamera/3)&&(heightCamera - screenY / convY + (Battle.camY - heightCamera / 2)<=Battle.camY-heightCamera/3+20))
+
+            if((heightCamera - screenY / convY + (Battle.camY - heightCamera / 2)>=Battle.camY-heightCamera/3)&&(heightCamera - screenY / convY + (Battle.camY - heightCamera / 2)<=Battle.camY-heightCamera/3+20))//1-я кнопка y
             {
-                if(ship.getRotationPosition()==1)ship.setRotationPosition(2);
-                if(ship.getRotationPosition()==2)ship.setRotationPosition(1);
+               ship.setRotationDirection(-1);
             }
 
-        }*/
+        }
+        if((screenX / convX + (Battle.camX - Battle.widthCamera / 2)>=Battle.camX+Battle.widthCamera/5+30)&&((screenX / convX + (Battle.camX - Battle.widthCamera / 2)<=Battle.camX+Battle.widthCamera/5+20+30)))//1-я кнопка x
+        {
+
+            if((heightCamera - screenY / convY + (Battle.camY - heightCamera / 2)>=Battle.camY-heightCamera/3)&&(heightCamera - screenY / convY + (Battle.camY - heightCamera / 2)<=Battle.camY-heightCamera/3+20))//1-я кнопка y
+            {
+                ship.setRotationDirection(1);
+            }
+
+        }
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         joystick.setActive(false);
+        ship.setRotationDirection(0);
         return false;
     }
 

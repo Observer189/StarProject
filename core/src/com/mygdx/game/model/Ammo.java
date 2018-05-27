@@ -13,6 +13,7 @@ public class Ammo extends GameObject
     private float damage;
     private TextureRegion textureRegion;
     private int rotationPosition;
+    private float rotation;
     public Ammo(TextureRegion textureRegion, float x, float y, float width, float height, float speed, float damage) {
         super(textureRegion, x, y, width, height);
         this.speed=speed;
@@ -20,12 +21,13 @@ public class Ammo extends GameObject
         this.textureRegion=textureRegion;
         rotationPosition=1;
     }
-    public Ammo(TextureRegion textureRegion, float x, float y, float width, float height, float speed, float damage,int rotationPosition) {
+    public Ammo(TextureRegion textureRegion, float x, float y, float width, float height, float speed, float damage,float rotation) {
         super(textureRegion, x, y, width, height);
         this.speed=speed;
         this.damage=damage;
         this.textureRegion=textureRegion;
-        this.rotationPosition=rotationPosition;
+        this.rotation=rotation;
+        setRotation(rotation);
         setRotationPosition(rotationPosition);
     }
     public Ammo(Ammo ammo)
@@ -37,12 +39,8 @@ public class Ammo extends GameObject
     }
     public void move()
     {
-        if(rotationPosition==1) {
-            bounds.setPosition(bounds.getX() + speed, bounds.getY());
-        }
-        if(rotationPosition==2) {
-            bounds.setPosition(bounds.getX() - speed, bounds.getY());
-        }
+
+        bounds.setPosition(bounds.getX() - (float)(speed*Math.sin(Math.toRadians(rotation))), bounds.getY()+(float) (speed*Math.cos(Math.toRadians(rotation))));
 
     }
 
