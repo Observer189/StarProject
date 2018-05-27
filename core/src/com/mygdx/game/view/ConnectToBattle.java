@@ -52,8 +52,9 @@ public class ConnectToBattle implements Screen {
         this.batch = batch;
         this.game = game;
         this.textureAtlas = textureAtlas;
-        //this.player=player;
-        this.player=new Player("player", new Axe(textureAtlas,0,0));
+        this.player=player;
+
+
     }
     @Override
     public void show() {

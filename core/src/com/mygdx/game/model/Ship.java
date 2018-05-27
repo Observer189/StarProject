@@ -222,7 +222,7 @@ public void nullify()
     public int getCost(){return cost;}
     public float getMaxHp(){return maxHp;}
 
-    
+
 
     public void setCurrentHp(float currentHp) {
         this.currentHp = currentHp;
