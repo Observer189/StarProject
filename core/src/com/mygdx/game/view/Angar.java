@@ -38,7 +38,10 @@ public class Angar implements Screen {
     StageForButton Back;
     int counter=1;
     int counterg=1;
-    StationAnim station1,station2;
+    StationAnim station1;
+    Image hp,speed,velocity,dmg,attackSpeed;
+    float xX= (float) 1.2;
+    float yY= (float) 1.68;
 
 
 
@@ -67,16 +70,16 @@ public class Angar implements Screen {
         textureAtlas=new TextureAtlas(Gdx.files.internal("TexturePack.atlas"));
         skin.addRegions(textureAtlas);
         stage=new Stage();
-        station1=new StationAnim(textureAtlas,batch,(float) (Gdx.graphics.getWidth()/3-550/1.63),Gdx.graphics.getHeight()/2-550/2);
-        station2=new StationAnim(textureAtlas,batch,(float)(station1.img.getX()+station1.img.getWidth()*0.88467),station1.img.getY());
-        String shname=player.getCurrentShip().getName();
-        if (shname.equals("1"))shname="Pulsate";
-        CurrentShipImg=new Image(skin.getDrawable(shname));
-        CurrentShipImg.setSize(160,160);
-        CurrentShipImg.setPosition((float) (Gdx.graphics.getWidth()-CurrentShipImg.getWidth()*1.06), (float) (Gdx.graphics.getHeight()-CurrentShipImg.getWidth()*1.06));
+
+
+
+
         ShipInfo=new Image(skin.getDrawable("GrayFrame"));
         ShipInfo.setSize(190,270);
-        ShipInfo.setPosition(Gdx.graphics.getWidth()-ShipInfo.getWidth(),Gdx.graphics.getHeight()-ShipInfo.getHeight()-CurrentShipImg.getHeight()-10);
+        ShipInfo.setPosition(Gdx.graphics.getWidth()-ShipInfo.getWidth(),Gdx.graphics.getHeight()-ShipInfo.getHeight()-160-10);
+
+
+
 
         BaStyle = new Button.ButtonStyle();
         BaStyle.up = skin.getDrawable("Back-up");
@@ -90,8 +93,34 @@ public class Angar implements Screen {
 
             }
         });
+        station1=new StationAnim(textureAtlas,batch,(float) (Gdx.graphics.getWidth()/100),Back.y+Back.btn.getHeight(),player);
+
+        hp=new Image((skin.getDrawable("Tube")));
+        hp.setSize(250,100);
+        hp.setPosition(station1.img.getX()+station1.img.getWidth()/2-hp.getWidth()/2, (float) (station1.img.getY()+station1.img.getHeight()*0.95));
+
+        speed=new Image((skin.getDrawable("Tube")));
+        speed.setSize(250,100);
+        speed.setPosition(station1.img.getX(), (float) (station1.img.getY()+station1.img.getHeight()*0.78));
+
+        velocity=new Image((skin.getDrawable("Tube")));
+        velocity.setSize(250,100);
+        velocity.setPosition(station1.img.getX()+speed.getWidth(), speed.getY());
+
+        attackSpeed=new Image(skin.getDrawable("Tube"));
+        attackSpeed.setSize(250,100);
+        attackSpeed.setPosition(speed.getX(),station1.img.getY());
+
+        dmg=new Image(skin.getDrawable("Tube"));
+        dmg.setSize(250,100);
+        dmg.setPosition(velocity.getX(),attackSpeed.getY());
+
         Back.addActor(ShipInfo);
-        Back.addActor(CurrentShipImg);
+        stage.addActor(hp);
+        stage.addActor(speed);
+        stage.addActor(velocity);
+        stage.addActor(attackSpeed);
+        stage.addActor(dmg);
 
 
 
@@ -99,7 +128,7 @@ public class Angar implements Screen {
         if (player.resources.shipList.size()>0){
             String name=player.resources.shipList.get(0).getName();
             if (name.equals("1"))name="Pulsate";
-            dos1=new DrawOneShip(name,0,station1.img.getX()+station1.img.getWidth()/2,station1.img.getY());
+         //   dos1=new DrawOneShip(name,0,station1.img.getX()+station1.img.getWidth()/2,station1.img.getY());
 
         }
         if (player.resources.shipList.size()>1){
@@ -134,6 +163,7 @@ public class Angar implements Screen {
         in.addProcessor(stage);
         in.addProcessor(Back);
 
+
         Gdx.input.setInputProcessor(in);
 
 
@@ -146,15 +176,16 @@ public class Angar implements Screen {
         LoginView.star.draw();
 
         Back.act(delta);
-        Back.draw();
-        textManager.displayMessage(batch,font,"HP: \n"+player.getCurrentShip().getMaxHp(),CurrentShipImg.getX(),CurrentShipImg.getY()-25);
-        textManager.displayMessage(batch,font,"Speed: \n"+player.getCurrentShip().getMaxSpeed(),CurrentShipImg.getX(),CurrentShipImg.getY()-26*2*2);
-        textManager.displayMessage(batch,font,"Velocity: \n"+player.getCurrentShip().getVelocity(),CurrentShipImg.getX(),CurrentShipImg.getY()-29*3*2);
-        station1.draw();
-        station2.draw();
+        Back.draw(); station1.draw();
         stage.act(delta);
         stage.draw();
-        DrawDrawStage(dos1);
+        textManager.displayMessage(batch,font,"HP: "+player.getCurrentShip().getMaxHp(), (hp.getX()*xX), (float) (hp.getY()+hp.getHeight()/yY));
+        textManager.displayMessage(batch,font,"Speed: "+player.getCurrentShip().getMaxSpeed(), (float) (speed.getX()*xX*2.2),speed.getY()+speed.getHeight()/yY);
+        textManager.displayMessage(batch,font,"Velocity: "+player.getCurrentShip().getVelocity(), (float) (velocity.getX()*xX/1.16),velocity.getY()+speed.getHeight()/yY);
+
+
+
+//        DrawDrawStage(dos1);
 
       //  batch.begin();
         //batch.end();
