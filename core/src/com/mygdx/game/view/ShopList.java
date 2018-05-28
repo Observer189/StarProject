@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ship;
+import com.mygdx.game.model.Ships.Axe;
 import com.mygdx.game.model.Ships.Dakkar;
 import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.utils.TextManager;
@@ -48,7 +49,7 @@ public class ShopList implements Screen {
     String MoneyStr="";
 
     //ships
-    Ship pulsate, bat, dakkar, hunter, mite;
+    Ship pulsate, bat, dakkar, hunter, mite,axe;
     Player player;
 
 
@@ -80,7 +81,7 @@ public class ShopList implements Screen {
         ct4.dispose();
 
         textureAtlas.dispose();
-        System.out.println("DISPOSED");
+
 
 
     }
@@ -318,7 +319,7 @@ public class ShopList implements Screen {
         st1 = new Button.ButtonStyle();
         st1.up = skin.getDrawable("1");
         st1.down = skin.getDrawable("1");
-        ct1 = new CellStage(st1, (float) (Gdx.graphics.getWidth() / 5 * 1), (float) (Ships.y - Gdx.graphics.getHeight()/3.39622642), pulsate.getName(), pulsate.getCost());
+        ct1 = new CellStage(st1, (float) (Gdx.graphics.getWidth() / 5 * 1), (float) (Ships.y - Gdx.graphics.getHeight()/3.39622642), pulsate.getName(), pulsate.getCost(),Width.DEFAULTWIDTH,Height.DEFAULTHEIGHT);
         ct1.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -336,7 +337,7 @@ public class ShopList implements Screen {
         st2 = new Button.ButtonStyle();
         st2.up = skin.getDrawable("Bat");
         st2.down = skin.getDrawable("Bat");
-        ct2 = new CellStage(st2, ct1.x,  (ct1.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Bat", 200);
+        ct2 = new CellStage(st2, ct1.x,  (ct1.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Bat", 200,Width.DEFAULTWIDTH,Height.DEFAULTHEIGHT);
         ct2.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -349,7 +350,7 @@ public class ShopList implements Screen {
         st3 = new Button.ButtonStyle();
         st3.up = skin.getDrawable("Dakkar");
         st3.down = skin.getDrawable("Dakkar");
-        ct3 = new CellStage(st3, ct1.x,  (ct2.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), dakkar.getName(), dakkar.getCost());
+        ct3 = new CellStage(st3, ct1.x,  (ct2.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), dakkar.getName(), dakkar.getCost(),Width.DEFAULTWIDTH,Height.DEFAULTHEIGHT);
         ct3.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -363,7 +364,7 @@ public class ShopList implements Screen {
         st4 = new Button.ButtonStyle();
         st4.up = skin.getDrawable("Mite");
         st4.down = skin.getDrawable("Mite");
-        ct4 = new CellStage(st4, ct1.x,  (ct3.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Mite", 145);
+        ct4 = new CellStage(st4, ct1.x+(Width.DEFAULTWIDTH.getWidth()-Width.SHORTWIDTH.getWidth()),  (ct3.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Mite", 145,Width.SHORTWIDTH,Height.DEFAULTHEIGHT);
         ct4.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -373,20 +374,21 @@ public class ShopList implements Screen {
 
             }
         });
-        //place for 'Hunter' ship
+        //place for 'Axe' ship
+        axe=new Axe(textureAtlas,0,0);
         st5 = new Button.ButtonStyle();
-        st5.up = skin.getDrawable("Hunter");
-        st5.down = skin.getDrawable("Hunter");
-        ct5 = new CellStage(st5, ct1.x,  (ct4.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Hunter", 190);
+        st5.up = skin.getDrawable("Axe");
+        st5.down = skin.getDrawable("Axe");
+        ct5 = new CellStage(st5, ct1.x+(Width.DEFAULTWIDTH.getWidth()-Width.SHORTWIDTH.getWidth()),  (ct4.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), axe.getName(), axe.getCost(),Width.SHORTWIDTH,Height.DEFAULTHEIGHT);
         ct5.addActor(Money);
         ct4.addActor(InformationTube);
 
         ct5.img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //  ShShow = new ShipShow(skin.getRegion("Hunter"), 0, 0, 0, 0, ct5.name, ct5.price, 400, 20, 100, game);
-                //  game.setScreen(ShShow);
-                // Gdx.input.setInputProcessor(null);
+                ShShow = new ShipShow(axe, game, menu, player);
+
+                game.setScreen(ShShow);
 
             }
         });
@@ -444,14 +446,14 @@ public class ShopList implements Screen {
 
         int price;
 
-        public CellStage(Button.ButtonStyle btnstyle, float x, float y, String name, int price) {
+        public CellStage(Button.ButtonStyle btnstyle, float x, float y, String name, int price,Width width,Height height) {
             this.x = x;
             this.y = y;
             this.name = name;
 
             this.price = price;
             btn = new Button(btnstyle);
-            btn.setBounds(x, y, (float) (Gdx.graphics.getHeight() / 3.8), (float) (Gdx.graphics.getHeight() / 3.8));
+            btn.setBounds(x, y, width.i, height.v);
             img = new Image(skin.getDrawable("InfoFrame"));
             img.setPosition(x +btn.getWidth()+15, y - 10);
             img.setSize((float) (Gdx.graphics.getWidth() / 2.7), (float) (Gdx.graphics.getHeight() / 3.3));
@@ -463,12 +465,41 @@ public class ShopList implements Screen {
         }
     }
 
+
+        enum Width {
+            SHORTWIDTH((float)(Gdx.graphics.getHeight()/5.14285714)),
+            DEFAULTWIDTH((float) (Gdx.graphics.getHeight() / 3.8)),;
+            public float i;
+            Width(float i) {
+                this.i=i;
+            }
+
+            public float getWidth() {
+                return i;
+            }
+        }
+        enum Height{
+            //SHORTHEIGHT( (float) (Gdx.graphics.getHeight() / 3.8)),
+            DEFAULTHEIGHT((float) (Gdx.graphics.getHeight() / 3.8));
+            float v;
+
+            Height(float v) {
+                this.v=v;
+            }
+
+            public float getHeight() {
+                return v;
+            }
+        }
+
+    }
     class StageForButton extends Stage {
         Button btn;
         int x;
         int y;
         int width;
         int height;
+
 
         public StageForButton(Button.ButtonStyle btnstyle, int x, int y, int width, int height) {
             this.height = height;
@@ -483,7 +514,7 @@ public class ShopList implements Screen {
         }
     }
 
-}
+
 
 
 
