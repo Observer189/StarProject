@@ -10,11 +10,11 @@ import com.mygdx.game.model.Ammo;
 public class BlueLaserAmmo extends Ammo {
     public static int counter=0;
     public BlueLaserAmmo(TextureRegion textureRegion, float x, float y) {
-        super(textureRegion, x, y, 1, 10, 7f, 15);
+        super(textureRegion, x, y, 1, 10, 0.5f, 15);
         counter++;
     }
     public BlueLaserAmmo(TextureRegion textureRegion, float x, float y,float rotation) {
-        super(textureRegion, x, y, 1, 10, 7f, 15,rotation);
+        super(textureRegion, x, y, 1, 10, 0.1f, 15,rotation);
         counter++;
     }
 }

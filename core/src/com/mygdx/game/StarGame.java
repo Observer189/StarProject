@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ships.Dakkar;
+import com.mygdx.game.model.Ships.Dashing;
 import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.utils.Assets;
 import com.mygdx.game.view.LoginView;
@@ -22,7 +23,7 @@ public class StarGame extends Game {
 	@Override
 	public void create () {
 		assets=new Assets();
-		player=new Player("NaN",new Dakkar(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")),0,0));
+		player=new Player("NaN",new Dashing(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")),0,0));
 		menu = new MainMenu(batch,this,player);
 
 

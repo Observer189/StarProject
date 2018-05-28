@@ -15,6 +15,7 @@ import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ship;
 import com.mygdx.game.model.Ships.Axe;
 import com.mygdx.game.model.Ships.Dakkar;
+import com.mygdx.game.model.Ships.Dashing;
 import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.TextManager;
@@ -177,6 +178,8 @@ public class ConnectToBattle implements Screen {
             return new Dakkar(textureAtlas, 0, 0);
         else if(name.equals("Axe"))
             return new Axe(textureAtlas, 0, 0);
+        else if(name.equals("Dashing"))
+            return new Dashing(textureAtlas, 0, 0);
         else
         {
             System.out.println("Ship is not exist");

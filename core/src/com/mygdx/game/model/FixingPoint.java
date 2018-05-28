@@ -36,15 +36,15 @@ public class FixingPoint  {//Точка крепления оружия
 
     }
     public FixingPoint( float x, float y,float shipWidth,float shipHeight,float offsetX,float offsetY,Weapon weapon) {
-        this.x=x+offsetX;
-        this.y=y+offsetY;
+        this.x=x+shipWidth/2+offsetX;
+        this.y=y+shipHeight/2+offsetY;
         this.offsetX=offsetX;
         this.offsetY=offsetY;
         this.weapon=weapon;
         this.weapon.setCenter(x+shipWidth/2+offsetX,y+shipHeight/2+offsetY);
         lastShipX=x;
         lastShipY=y;
-        System.out.println(shipWidth+"!!!"+shipHeight);
+        //System.out.println(shipWidth+"!!!"+shipHeight);
         //this.weapon.bounds.setOrigin(0,0);
     }
 

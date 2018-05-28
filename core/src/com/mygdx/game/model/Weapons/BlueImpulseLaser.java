@@ -18,10 +18,10 @@ public class BlueImpulseLaser extends Weapon {
     private float attackSpeed;
     public BlueImpulseLaser(TextureAtlas textureAtlas, float x, float y) {
         super(textureAtlas.findRegion("BlueImpulseLaser"), x, y, 2f, 7f,25,
-                new BlueLaserAmmo(textureAtlas.findRegion("BlueLaserAmmo"),x+2/2,y+7/2));
+                new BlueLaserAmmo(textureAtlas.findRegion("BlueLaserAmmo"),x,y));
         this.textureAtlas=textureAtlas;
         counter=0;
-        attackSpeed=25;
+        attackSpeed=10;
         cost=0;
 
         name="BlueLaser";
@@ -33,8 +33,14 @@ public class BlueImpulseLaser extends Weapon {
         if(counter==1000/attackSpeed)
         {
 
-                getAmmos().add(new BlueLaserAmmo(textureAtlas.findRegion("BlueLaserAmmo"), getX() +getHeight(), getY() - 1, getRotation()));
-
+                getAmmos().add(new BlueLaserAmmo(textureAtlas.findRegion("BlueLaserAmmo"),
+                        getX()+Math.abs((float)((getWidth()/2-getAmmo().getWidth()/2)*Math.cos(Math.toRadians(getRotation())))) -(float)( getHeight()*Math.sin(Math.toRadians(getRotation()))),
+                        getY()-Math.abs((float)((getWidth()-getAmmo().getWidth()/2)*Math.sin(Math.toRadians(getRotation())))) +(float)(getHeight()*Math.cos(Math.toRadians(getRotation()))),
+                           getRotation()));
+            /*getAmmos().add(new BlueLaserAmmo(textureAtlas.findRegion("BlueLaserAmmo"),
+                    getX()+Math.abs((float)((getWidth()/2-0.5)*Math.cos(Math.toRadians(getRotation())))) -(float)( Math.sqrt(Math.pow(getWidth()/2-0.5f,2)+Math.pow(getHeight(),2))*Math.sin(Math.toRadians(getRotation()))),
+                    getY()-Math.abs((float)((getWidth()-0.5f)*Math.sin(Math.toRadians(getRotation())))) +(float)(Math.sqrt(Math.pow(getWidth()/2-0.5f,2)+Math.pow(getHeight(),2))*Math.cos(Math.toRadians(getRotation()))),
+                    getRotation()));*/
 
             counter = 0;
         }
