@@ -17,7 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.model.Player;
-import com.mygdx.game.model.Ship;
 import com.mygdx.game.model.Weapon;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Toast;
@@ -59,7 +58,7 @@ public class GunShow implements Screen {
 
 
 
-    public GunShow(Weapon weapon, Game game, MainMenu menu, Player player, float width,float height) {
+    public GunShow(Weapon weapon, Game game, MainMenu menu, Player player, float width, float height) {
         this.width=width;
         this.height=height;
         this.weapon=weapon;

@@ -7,9 +7,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,8 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.model.Player;
-
-import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.utils.LogListener;
 import com.mygdx.game.utils.PassListener;
 import com.mygdx.game.utils.TextManager;
@@ -62,7 +58,7 @@ public class MainMenu implements Screen {
 
     @Override
     public void show() {
-        this.music=LoginView.music;
+        this.music= LoginView.music;
         Gdx.input.setCatchBackKey(true);
         textureAtlas=new TextureAtlas(Gdx.files.internal("TexturePack.atlas"));
 
