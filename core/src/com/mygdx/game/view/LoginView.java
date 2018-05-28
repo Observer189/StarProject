@@ -2,21 +2,15 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
@@ -54,8 +48,10 @@ public class LoginView implements Screen {
     static Map textrure;
     TextButton.TextButtonStyle btnstyle,btnstyle1;
     TextButton SignInBtn,SignUpBtn;
-    Toast toast;
+    Toast toast,alreadyExist,NoConnection;
     Boolean MakeToast=false;
+    Boolean MakeToastExist=false;
+    Boolean MakeToastConnetion=false;
     OrthographicCamera camera = new OrthographicCamera();
     Boolean ShowConfirm=false;
     Boolean Saved=false;
@@ -115,7 +111,8 @@ public class LoginView implements Screen {
                 .font(font1)
                 .build();
         toast = toastFactory.create("Can't be empty/more than 3 letter" , Toast.Length.LONG);
-
+        alreadyExist=toastFactory.create("This name is alredy taken", Toast.Length.LONG);
+        NoConnection=toastFactory.create("Check your connection!", Toast.Length.LONG);
 
         txtStyle=new TextField.TextFieldStyle();
         txtStyle.font=font;
@@ -240,10 +237,12 @@ public class LoginView implements Screen {
                         else if(createPlayer()==0)
                         {
                             System.out.println("Игрок с таким именем уже существует");
+                            MakeToastExist=true;
                         }
                         else
                         {
                             System.out.println("Не удалось подключится к серверу");
+                            MakeToastConnetion=true;
                         }
                     }
                     else {MakeToast=true;
@@ -304,6 +303,24 @@ public class LoginView implements Screen {
                 toast.timeToLive= Toast.Length.LONG.duration;
                 toast.opacity=1f;
             }
+        }
+        if (MakeToastExist){
+            alreadyExist.render(delta);
+            if (alreadyExist.timeToLive<=0) {
+                MakeToastExist = false;
+                alreadyExist.timeToLive= Toast.Length.LONG.duration;
+                alreadyExist.opacity=1f;
+            }
+
+        }
+        if (MakeToastConnetion){
+            NoConnection.render(delta);
+            if ( NoConnection.timeToLive<=0) {
+                MakeToastConnetion = false;
+                NoConnection.timeToLive= Toast.Length.LONG.duration;
+                NoConnection.opacity=1f;
+            }
+
         }
     }
 
