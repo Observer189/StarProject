@@ -3,7 +3,6 @@ package com.mygdx.game.model;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.ServModels.ServPlayer;
-import com.mygdx.game.model.Ships.Dakkar;
 import com.mygdx.game.model.Ships.Dashing;
 
 import java.util.ArrayList;

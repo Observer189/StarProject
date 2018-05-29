@@ -523,42 +523,42 @@ Start-down
   index: -1
 Dashing
   rotate: false
-  xy: 1778, 49
-  size: 87, 142
-  orig: 87, 142
+  xy: 1778, 50
+  size: 83, 141
+  orig: 83, 141
   offset: 0, 0
   index: -1
 Star12
   rotate: false
-  xy: 1867, 3
+  xy: 1863, 3
   size: 144, 142
   orig: 144, 142
   offset: 0, 0
   index: -1
 Star13
   rotate: false
-  xy: 2013, 3
+  xy: 2009, 3
   size: 144, 142
   orig: 144, 142
   offset: 0, 0
   index: -1
 Star14
   rotate: false
-  xy: 2159, 51
+  xy: 2155, 51
   size: 144, 142
   orig: 144, 142
   offset: 0, 0
   index: -1
 Star15
   rotate: false
-  xy: 2305, 51
+  xy: 2301, 51
   size: 144, 142
   orig: 144, 142
   offset: 0, 0
   index: -1
 Star16
   rotate: false
-  xy: 2451, 51
+  xy: 2447, 51
   size: 144, 142
   orig: 144, 142
   offset: 0, 0
@@ -619,18 +619,11 @@ Star9
   orig: 144, 142
   offset: 0, 0
   index: -1
-Explosion1
+Shotgun
   rotate: false
-  xy: 3511, 131
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-Explosion10
-  rotate: false
-  xy: 3511, 1
-  size: 128, 128
-  orig: 128, 128
+  xy: 3511, 109
+  size: 112, 150
+  orig: 112, 150
   offset: 0, 0
   index: -1
 GrayFrame
@@ -647,60 +640,81 @@ GreenLaser
   orig: 34, 128
   offset: 0, 0
   index: -1
-Explosion11
-  rotate: false
-  xy: 2597, 14
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-Explosion12
-  rotate: false
-  xy: 2727, 14
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-Explosion13
-  rotate: false
-  xy: 2857, 14
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-Bat
-  rotate: false
-  xy: 2987, 1
-  size: 100, 94
-  orig: 100, 94
-  offset: 0, 0
-  index: -1
-Explosion14
+Explosion1
   rotate: false
   xy: 3581, 707
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
-Explosion15
+Explosion10
   rotate: false
   xy: 3581, 577
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
-Explosion16
+Explosion11
   rotate: false
   xy: 3581, 447
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
-Explosion17
+Explosion12
   rotate: false
   xy: 3581, 317
   size: 128, 128
   orig: 128, 128
+  offset: 0, 0
+  index: -1
+Explosion13
+  rotate: false
+  xy: 3625, 187
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+Explosion14
+  rotate: false
+  xy: 3625, 57
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+Bullet
+  rotate: false
+  xy: 2593, 65
+  size: 24, 128
+  orig: 24, 128
+  offset: 0, 0
+  index: -1
+Explosion15
+  rotate: false
+  xy: 2619, 14
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+Explosion16
+  rotate: false
+  xy: 2749, 14
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+Explosion17
+  rotate: false
+  xy: 2879, 14
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+Bat
+  rotate: false
+  xy: 3009, 1
+  size: 100, 94
+  orig: 100, 94
   offset: 0, 0
   index: -1
 Dj1p1
@@ -710,44 +724,37 @@ Dj1p1
   orig: 79, 73
   offset: 0, 0
   index: -1
-Bullet
-  rotate: false
-  xy: 3592, 1145
-  size: 24, 128
-  orig: 24, 128
-  offset: 0, 0
-  index: -1
 Explosion18
   rotate: false
-  xy: 3618, 1161
+  xy: 3592, 1145
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion2
   rotate: false
-  xy: 3618, 1031
+  xy: 3609, 1015
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion3
   rotate: false
-  xy: 3609, 901
+  xy: 3609, 885
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion4
   rotate: false
-  xy: 3641, 187
+  xy: 3722, 1161
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion5
   rotate: false
-  xy: 3641, 57
+  xy: 3739, 1031
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -761,65 +768,72 @@ Explosion6
   index: -1
 Explosion7
   rotate: false
-  xy: 3711, 771
+  xy: 3852, 1162
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion8
   rotate: false
-  xy: 3711, 641
+  xy: 3869, 1032
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion9
   rotate: false
-  xy: 3711, 511
+  xy: 3869, 902
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Mite
   rotate: false
-  xy: 3711, 382
+  xy: 3982, 1205
   size: 83, 127
   orig: 83, 127
   offset: 0, 0
   index: -1
 Dakkar
   rotate: false
-  xy: 3796, 405
+  xy: 3739, 795
   size: 100, 104
   orig: 100, 104
   offset: 0, 0
   index: -1
 Dj1p2
   rotate: false
-  xy: 3954, 1232
+  xy: 3711, 693
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 TurnLeft
   rotate: false
-  xy: 3841, 799
+  xy: 3711, 591
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 TurnRight
   rotate: false
-  xy: 3841, 697
+  xy: 3711, 489
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 Hunter
   rotate: false
-  xy: 3841, 598
+  xy: 3711, 390
   size: 100, 97
   orig: 100, 97
+  offset: 0, 0
+  index: -1
+GreenLaserAmmo
+  rotate: false
+  xy: 2145, 161
+  size: 8, 32
+  orig: 8, 32
   offset: 0, 0
   index: -1
 BlueLaserAmmo
@@ -827,12 +841,5 @@ BlueLaserAmmo
   xy: 2325, 969
   size: 2, 50
   orig: 2, 50
-  offset: 0, 0
-  index: -1
-GreenLaserAmmo
-  rotate: false
-  xy: 2027, 677
-  size: 8, 32
-  orig: 8, 32
   offset: 0, 0
   index: -1

@@ -46,7 +46,7 @@ public class Weapon extends GameObject {
     {
 
     }
-    public void update(Ship playerShip,Ship enemyShip,Map map)
+    public void update(Ship playerShip, Ship enemyShip, Map map)
     {
           if(ammos.size()!=0) {
               for(int i=0;i<ammos.size();i++){

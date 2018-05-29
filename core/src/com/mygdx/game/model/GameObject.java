@@ -5,8 +5,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
 
-import java.awt.Image;
-
 /**
  * Created by Sash on 01.05.2018.
  */
@@ -17,6 +15,21 @@ public abstract class GameObject {
     String name;
     private float width;
     private float height;
+    public GameObject(TextureRegion textureRegion, float x,float y,float width,float height,float originX,float originY)
+    {
+
+        sprite = new Sprite(textureRegion);
+        sprite.setSize(width,height);
+        sprite.setOrigin(originX,originY);
+        sprite.setPosition(x,y);
+
+        bounds=new Polygon(new float[]{0.f,0.f,width,0.f,width,height,0.f,height});
+        bounds.setPosition(x,y);
+        bounds.setOrigin(originX,originY);
+
+        this.width=width;
+        this.height=height;
+    }
     public GameObject(TextureRegion textureRegion, float x,float y,float width,float height)
     {
 
