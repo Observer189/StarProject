@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.model.FixingPoint;
 import com.mygdx.game.model.Ship;
+import com.mygdx.game.model.Weapons.BlueImpulseLaser;
+import com.mygdx.game.model.Weapons.Machinegun;
 import com.mygdx.game.model.Weapons.Shotgun;
 
 /**
