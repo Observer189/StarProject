@@ -9,26 +9,36 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Ammo extends GameObject
 {
+    private float centerX;
+    private float centerY;
+    private float width;
+    private float height;
+
     private float speed;
     private float damage;
     private TextureRegion textureRegion;
-    private int rotationPosition;
+
     private float rotation;
-    public Ammo(TextureRegion textureRegion, float x, float y, float width, float height, float speed, float damage) {
+    /*public Ammo(TextureRegion textureRegion, float x, float y, float width, float height, float speed, float damage) {
         super(textureRegion, x, y, width, height);
         this.speed=speed;
         this.damage=damage;
         this.textureRegion=textureRegion;
-        rotationPosition=1;
-    }
+
+    }*/
     public Ammo(TextureRegion textureRegion, float x, float y, float width, float height, float speed, float damage,float rotation) {
         super(textureRegion, x, y, width, height);
         this.speed=speed;
         this.damage=damage;
+        this.width=width;
+        this.height=height;
+        centerX=x+width/2;
+        centerY=y+height/2;
         this.textureRegion=textureRegion;
         this.rotation=rotation;
+
         setRotation(rotation);
-        setRotationPosition(rotationPosition);
+
     }
     public Ammo(Ammo ammo)
     {
@@ -57,18 +67,22 @@ public class Ammo extends GameObject
         super.draw(batch);
 
     }
-
-    public void setRotationPosition(int rotationPosition) {
-        this.rotationPosition = rotationPosition;
-        if(rotationPosition==1)
-        {
-            setRotation(270);
-        }
-        if(rotationPosition==2)
-        {
-            setRotation(90);
-        }
+    public float getCenterX() {
+        return centerX;
     }
+
+    public float getCenterY() {
+        return centerY;
+    }
+
+    public void setCenter(float centerX,float centerY)
+    {
+        bounds.setPosition(centerX-width/2,centerY-height/2);
+        this.centerX=centerX;
+        this.centerY=centerY;
+    }
+
+
 
     public TextureRegion getTextureRegion() {
         return textureRegion;

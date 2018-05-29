@@ -24,6 +24,8 @@ public class BattleProcessor implements InputProcessor {
     public static float offsetDynamicX;//переменные определяющие смещение динамической части относительно статичной
     public static float offsetDynamicY;
 
+    int joystickPointer;
+    int turnPointer;
     public BattleProcessor(Joystick joystick,Ship ship)
     {
         this.joystick=joystick;
@@ -52,6 +54,7 @@ public class BattleProcessor implements InputProcessor {
             joystick.create(screenX / convX + (Battle.camX - Battle.widthCamera / 2), heightCamera - screenY / convY + (Battle.camY - heightCamera / 2));//конвертация координат получаемых с InputProcessor в координаты экрана
             offsetX = joystick.staticPart.getCenterX() - (Battle.camX - Battle.widthCamera / 2);
             offsetY = joystick.staticPart.getCenterY() - (Battle.camY - heightCamera / 2);
+            joystickPointer=pointer;
         }
         if((screenX / convX + (Battle.camX - Battle.widthCamera / 2)>=Battle.camX+Battle.widthCamera/5)&&((screenX / convX + (Battle.camX - Battle.widthCamera / 2)<=Battle.camX+Battle.widthCamera/5+20)))//1-я кнопка x
         {
@@ -59,6 +62,7 @@ public class BattleProcessor implements InputProcessor {
             if((heightCamera - screenY / convY + (Battle.camY - heightCamera / 2)>=Battle.camY-heightCamera/3)&&(heightCamera - screenY / convY + (Battle.camY - heightCamera / 2)<=Battle.camY-heightCamera/3+20))//1-я кнопка y
             {
                ship.setRotationDirection(-1);
+               turnPointer=pointer;
             }
 
         }
@@ -68,6 +72,7 @@ public class BattleProcessor implements InputProcessor {
             if((heightCamera - screenY / convY + (Battle.camY - heightCamera / 2)>=Battle.camY-heightCamera/3)&&(heightCamera - screenY / convY + (Battle.camY - heightCamera / 2)<=Battle.camY-heightCamera/3+20))//1-я кнопка y
             {
                 ship.setRotationDirection(1);
+                turnPointer=pointer;
             }
 
         }
@@ -76,17 +81,25 @@ public class BattleProcessor implements InputProcessor {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        joystick.setActive(false);
-        ship.setRotationDirection(0);
+        if(pointer==joystickPointer) {
+            joystick.setActive(false);
+            joystickPointer=0;
+        }
+        if(pointer==turnPointer) {
+            ship.setRotationDirection(0);
+            turnPointer=0;
+        }
         return false;
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         //joystick.staticPart.setCenter((Battle.camX-Battle.widthCamera/2)+offsetX,(Battle.camY-Battle.heightCamera/2)+offsetY);
-        joystick.dynamicPart.setCenter(screenX/convX+ (Battle.camX-Battle.widthCamera/2), heightCamera-screenY/convY+ (Battle.camY- heightCamera/2));//смещение динамической части относительно статичной
-        offsetDynamicX=joystick.dynamicPart.getCenterX()-joystick.staticPart.getCenterX();
-        offsetDynamicY=joystick.dynamicPart.getCenterY()-joystick.staticPart.getCenterY();
+        if(pointer==joystickPointer) {
+            joystick.dynamicPart.setCenter(screenX / convX + (Battle.camX - Battle.widthCamera / 2), heightCamera - screenY / convY + (Battle.camY - heightCamera / 2));//смещение динамической части относительно статичной
+            offsetDynamicX = joystick.dynamicPart.getCenterX() - joystick.staticPart.getCenterX();
+            offsetDynamicY = joystick.dynamicPart.getCenterY() - joystick.staticPart.getCenterY();
+        }
         return false;
     }
 

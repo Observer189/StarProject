@@ -122,7 +122,7 @@ public class Battle implements Screen {
         camera.position.set(new Vector3(player.getCurrentShip().getX(),player.getCurrentShip().getX(),0));
         camX =camera.position.x;
         camY =camera.position.y;
-        coord = new Coord(0f,0f);
+        coord = new Coord(0f,0f,0f);
         counter = 0;
         joystick=new Joystick(batch,0,10,textureAtlas.findRegion("Dj1p1"),textureAtlas.findRegion("Dj1p2"));
         turnLeft=new ButtonForProcessor(batch,camX+widthCamera/5,camY,20,20,textureAtlas.findRegion("TurnLeft"));
@@ -178,9 +178,11 @@ public class Battle implements Screen {
         turnRight.draw();
         player.getCurrentShip().act(enemy.getCurrentShip(),classicMap,joystick.getVector());
         enemy.getCurrentShip().act(player.getCurrentShip(),classicMap,new Vector2(0,0));
+        enemy.getCurrentShip().setRotation(coord.getRotation());
 
         player.getCurrentShip().draw(batch,textureAtlas);
         enemy.getCurrentShip().draw(batch,textureAtlas);
+
 
 
         if(Intersector.overlapConvexPolygons(player.getCurrentShip().getBounds(), enemy.getCurrentShip().getBounds()))
@@ -249,7 +251,7 @@ public class Battle implements Screen {
     private void getCoord() {
 
         startTime = System.currentTimeMillis();
-        Call<Coord> call = request.get(battleStatus.getNumber(),player.getName(),enemy.getName(), player.getCurrentShip().getX(),player.getCurrentShip().getY());
+        Call<Coord> call = request.get(battleStatus.getNumber(),player.getName(),enemy.getName(), player.getCurrentShip().getX(),player.getCurrentShip().getY(),player.getCurrentShip().getRotation());
         //System.out.println(player.getCurrentShip().getX()+" "+player.getCurrentShip().getY());
         //System.out.println(enemy.getName()+" "+player.getName()+" c="+counter);
         call.enqueue(new Callback<Coord>() {
@@ -260,6 +262,7 @@ public class Battle implements Screen {
                 counter++;
                 coord.setX(Float.valueOf(response.body().getX()));
                 coord.setY(Float.valueOf(response.body().getY()));
+                coord.setRotation(Float.valueOf(response.body().getRotation()));
                 //System.out.println(coord.getX()+" "+coord.getY());
                 if(coord.getX()!=null)
                 enemy.getCurrentShip().setPosition(coord.getX(),coord.getY());

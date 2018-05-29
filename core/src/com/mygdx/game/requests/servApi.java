@@ -21,7 +21,7 @@ public interface servApi {
     Call<BattleStatus> getBattleNumber(@Query("name")String name,@Query("shipName") String shipName,@Query("status") String status);
 
     @POST("battle/{battleNumber}")
-    Call<Coord> get(@Path("battleNumber") Integer number,@Query("name")String name,@Query("enemyName")String enemyName,@Query("x") Float x, @Query("y") Float y);
+    Call<Coord> get(@Path("battleNumber") Integer number,@Query("name")String name,@Query("enemyName")String enemyName,@Query("x") Float x, @Query("y") Float y,@Query("rotation") Float rotation);
 
     @PUT("players/create")
     Call<Integer> createPlayer(@Query("name") String name,@Query("password") String password,@Query("money")int money);

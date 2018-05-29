@@ -63,6 +63,7 @@ public abstract class GameObject {
     public void setRotation(float degrees)
     {
         bounds.setRotation(degrees);
+        sprite.setRotation(degrees);
     }
 
     public float getWidth() {

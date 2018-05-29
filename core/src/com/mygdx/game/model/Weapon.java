@@ -25,7 +25,7 @@ public class Weapon extends GameObject {
     Ammo ammo;
     int cost;
 
-    private int rotationPosition;
+
     private float attackSpeed;
 
     public Weapon(TextureRegion weaponRegion,  float x, float y, float width,float height,float attackSpeed,Ammo ammo)
@@ -39,8 +39,8 @@ public class Weapon extends GameObject {
         centerY=y+height/2;
         ammos=new ArrayList<Ammo>();
         counter=0;
-        rotationPosition=1;
-        setRotation(270);
+
+        //setRotation(270);
     }
     public void shot()
     {
@@ -97,9 +97,7 @@ public class Weapon extends GameObject {
         return ammos;
     }
 
-    public int getRotationPosition() {
-        return rotationPosition;
-    }
+
 
     public String getName() {
         return name;

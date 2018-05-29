@@ -18,7 +18,7 @@ public class BlueImpulseLaser extends Weapon {
     private float attackSpeed;
     public BlueImpulseLaser(TextureAtlas textureAtlas, float x, float y) {
         super(textureAtlas.findRegion("BlueImpulseLaser"), x, y, 2f, 7f,25,
-                new BlueLaserAmmo(textureAtlas.findRegion("BlueLaserAmmo"),x,y));
+                new BlueLaserAmmo(textureAtlas.findRegion("BlueLaserAmmo"),x,y,0));
         this.textureAtlas=textureAtlas;
         counter=0;
         attackSpeed=10;

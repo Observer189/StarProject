@@ -215,6 +215,8 @@ public void nullify()
     setCurrentHp(getMaxHp());
     setIsAlive(true);
     setMovementVector(new Vector2(0,0));
+    speedX=0;
+    speedY=0;
 }
 
     public float getMaxSpeed(){return  maxSpeed;}

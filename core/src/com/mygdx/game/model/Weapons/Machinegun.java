@@ -18,7 +18,7 @@ public class Machinegun extends Weapon {
     private float attackSpeed;
     public Machinegun(TextureAtlas textureAtlas, float x, float y) {
         super(textureAtlas.findRegion("Machinegun"), x, y, 3f, 6f,50,
-                new Bullet(textureAtlas.findRegion("Bullet"),x,y));
+                new Bullet(textureAtlas.findRegion("Bullet"),x,y,0));
         this.textureAtlas=textureAtlas;
         counter=0;
         cost=1250;
@@ -33,11 +33,14 @@ public class Machinegun extends Weapon {
         if(counter==1000/attackSpeed)
         {
 
-            getAmmos().add(new Bullet(textureAtlas.findRegion("Bullet"),
+            /*getAmmos().add(new Bullet(textureAtlas.findRegion("Bullet"),
                     getX()+Math.abs((float)((getWidth()/2-0.5)*Math.cos(Math.toRadians(getRotation())))) -(float)( Math.sqrt(Math.pow(getWidth()/2-0.5f,2)+Math.pow(getHeight(),2))*Math.sin(Math.toRadians(getRotation()))),
                     getY()-Math.abs((float)((getWidth()-0.5f)*Math.sin(Math.toRadians(getRotation())))) +(float)(Math.sqrt(Math.pow(getWidth()/2-0.5f,2)+Math.pow(getHeight(),2))*Math.cos(Math.toRadians(getRotation()))),
-                    getRotation()));
-
+                    getRotation()));*/
+                 getAmmos().add(new Bullet(textureAtlas.findRegion("Bullet"),
+                         getCenterX(),
+                         getCenterY()-getWidth()/2,
+                         getRotation()));
 
             counter = 0;
         }
