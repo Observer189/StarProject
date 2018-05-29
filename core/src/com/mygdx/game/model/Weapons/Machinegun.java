@@ -12,6 +12,8 @@ import com.mygdx.game.model.Weapon;
 public class Machinegun extends Weapon {
     String name;
     int cost;
+    private float bulletRotation;
+    private float spread;
     TextureAtlas textureAtlas;
     int counter;
 
@@ -25,6 +27,7 @@ public class Machinegun extends Weapon {
         attackSpeed=50;
 
         name="Machinegun";
+        spread=5;
     }
 
     @Override
@@ -32,15 +35,16 @@ public class Machinegun extends Weapon {
         counter++;
         if(counter==1000/attackSpeed)
         {
-
+             bulletRotation=(float)(Math.random()*spread-spread/2+getRotation());
             /*getAmmos().add(new Bullet(textureAtlas.findRegion("Bullet"),
                     getX()+Math.abs((float)((getWidth()/2-0.5)*Math.cos(Math.toRadians(getRotation())))) -(float)( Math.sqrt(Math.pow(getWidth()/2-0.5f,2)+Math.pow(getHeight(),2))*Math.sin(Math.toRadians(getRotation()))),
                     getY()-Math.abs((float)((getWidth()-0.5f)*Math.sin(Math.toRadians(getRotation())))) +(float)(Math.sqrt(Math.pow(getWidth()/2-0.5f,2)+Math.pow(getHeight(),2))*Math.cos(Math.toRadians(getRotation()))),
                     getRotation()));*/
+
                  getAmmos().add(new Bullet(textureAtlas.findRegion("Bullet"),
-                         getCenterX(),
-                         getCenterY()-getWidth()/2,
-                         getRotation()));
+                         getCenterX()-(float)(getAmmo().getWidth()/2*Math.cos(Math.toRadians(bulletRotation))),
+                         getCenterY()-(float)(getAmmo().getWidth()/2*Math.sin(Math.toRadians(bulletRotation))),
+                         bulletRotation));
 
             counter = 0;
         }

@@ -17,6 +17,21 @@ public abstract class GameObject {
     String name;
     private float width;
     private float height;
+    public GameObject(TextureRegion textureRegion, float x,float y,float width,float height,float originX,float originY)
+    {
+
+        sprite = new Sprite(textureRegion);
+        sprite.setSize(width,height);
+        sprite.setOrigin(originX,originY);
+        sprite.setPosition(x,y);
+
+        bounds=new Polygon(new float[]{0.f,0.f,width,0.f,width,height,0.f,height});
+        bounds.setPosition(x,y);
+        bounds.setOrigin(originX,originY);
+
+        this.width=width;
+        this.height=height;
+    }
     public GameObject(TextureRegion textureRegion, float x,float y,float width,float height)
     {
 

@@ -27,7 +27,7 @@ public class Ammo extends GameObject
 
     }*/
     public Ammo(TextureRegion textureRegion, float x, float y, float width, float height, float speed, float damage,float rotation) {
-        super(textureRegion, x, y, width, height);
+        super(textureRegion, x, y, width, height,0,0);
         this.speed=speed;
         this.damage=damage;
         this.width=width;
