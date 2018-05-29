@@ -179,7 +179,7 @@ public class Battle implements Screen {
         player.getCurrentShip().act(enemy.getCurrentShip(),classicMap,joystick.getVector());
         enemy.getCurrentShip().act(player.getCurrentShip(),classicMap,new Vector2(0,0));
         enemy.getCurrentShip().setRotation(coord.getRotation());
-
+        
         player.getCurrentShip().draw(batch,textureAtlas);
         enemy.getCurrentShip().draw(batch,textureAtlas);
 
