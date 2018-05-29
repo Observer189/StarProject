@@ -21,6 +21,8 @@ import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ship;
 import com.mygdx.game.model.Ships.Axe;
 import com.mygdx.game.model.Ships.Dakkar;
+import com.mygdx.game.model.Ships.Dashing;
+import com.mygdx.game.model.Ships.Mite;
 import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.utils.TextManager;
 
@@ -36,8 +38,8 @@ public class ShopList implements Screen {
     SpriteBatch batch;
     TextureAtlas textureAtlas;
     TextManager textManager;
-    Button.ButtonStyle st1, st2, st3, st4, st5; // Styles for 5 ships
-    CellStage ct1, ct2, ct3, ct4, ct5; // 5 Stages for 5 ships
+    Button.ButtonStyle st1, st2, st3, st4, st5, st6, st7; // Styles for 5 ships
+    CellStage ct1, ct2, ct3, ct4, ct5, ct6, ct7; // 5 Stages for 5 ships
     public static Skin skin;
     Image InformationTube, Money;
     BitmapFont font;
@@ -49,7 +51,7 @@ public class ShopList implements Screen {
     String MoneyStr="";
 
     //ships
-    Ship pulsate, bat, dakkar, hunter, mite,axe;
+    Ship pulsate, bat, dakkar, hunter, mite,axe,dashing;
     Player player;
 
 
@@ -125,7 +127,7 @@ public class ShopList implements Screen {
 
         ct5.act(delta);
         ct5.draw();
-        textManager.displayMessage(batch, font, ct5.name, (float) (ct5.x + x200*1.5), ct5.y + y175);
+        textManager.displayMessage(batch, font, ct5.name, (float) (ct5.btn.getX() + x200*1.5), ct5.y + y175);
         textManager.displayMessage(batch, font, "Price: " + ct5.price, (float) (ct5.x + x200*1.5), (float) (ct5.y + y75*0.915));
         //Information bar
         //int a=menu.
@@ -319,29 +321,32 @@ public class ShopList implements Screen {
         st1 = new Button.ButtonStyle();
         st1.up = skin.getDrawable("1");
         st1.down = skin.getDrawable("1");
-        ct1 = new CellStage(st1, (float) (Gdx.graphics.getWidth() / 5 * 1), (float) (Ships.y - Gdx.graphics.getHeight()/3.39622642), pulsate.getName(), pulsate.getCost(),Width.DEFAULTWIDTH,Height.DEFAULTHEIGHT);
-        ct1.img.addListener(new ClickListener() {
+        ct1 = new CellStage(st1, (float) (Gdx.graphics.getWidth() / 5 * 1), (float) (Ships.y - Gdx.graphics.getHeight()/3.39622642), pulsate.getName(), pulsate.getCost(),Width.SHORTWIDTH,Height.DEFAULTHEIGHT);
+        ct1.btn.setPosition(ct1.x+(Width.DEFAULTWIDTH.getWidth()-Width.SHORTWIDTH.getWidth()),ct1.y);
+        ct1.img.setPosition(ct1.btn.getX() +ct1.btn.getWidth()+15, ct1.y - 10);
+        ct1.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
-                ShShow = new ShipShow(pulsate, game, menu, player);
+                ShShow = new ShipShow(pulsate, game, menu, player,ct1.width,ct1.height);
 
                 game.setScreen(ShShow);
 
 
             }
         });
-        //place for 'Bat' ship
+        //place for 'Dashing' ship
         // Ship bat=new Bat(textureAtlas,0,0);
-
+        dashing=new Dashing(textureAtlas,0,0);
         st2 = new Button.ButtonStyle();
-        st2.up = skin.getDrawable("Bat");
-        st2.down = skin.getDrawable("Bat");
-        ct2 = new CellStage(st2, ct1.x,  (ct1.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Bat", 200,Width.DEFAULTWIDTH,Height.DEFAULTHEIGHT);
-        ct2.img.addListener(new ClickListener() {
+        st2.up = skin.getDrawable("Dashing");
+        st2.down = skin.getDrawable("Dashing");
+        ct2 = new CellStage(st2, ct1.x+(Width.DEFAULTWIDTH.getWidth()-Width.SHORTWIDTH.getWidth()),  (ct1.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Dashing", 200,Width.SHORTWIDTH,Height.DEFAULTHEIGHT);
+        ct2.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
+                ShShow = new ShipShow(dashing, game, menu, player,ct2.width,ct2.height);
+                game.setScreen(ShShow);
 
             }
         });
@@ -351,24 +356,25 @@ public class ShopList implements Screen {
         st3.up = skin.getDrawable("Dakkar");
         st3.down = skin.getDrawable("Dakkar");
         ct3 = new CellStage(st3, ct1.x,  (ct2.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), dakkar.getName(), dakkar.getCost(),Width.DEFAULTWIDTH,Height.DEFAULTHEIGHT);
-        ct3.img.addListener(new ClickListener() {
+        ct3.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ShShow = new ShipShow(dakkar, game, menu, player);
+                ShShow = new ShipShow(dakkar, game, menu, player,ct3.width,ct3.height);
 
                 game.setScreen(ShShow);
 
             }
         });
         //place for 'Mite' ship
+
         st4 = new Button.ButtonStyle();
         st4.up = skin.getDrawable("Mite");
         st4.down = skin.getDrawable("Mite");
         ct4 = new CellStage(st4, ct1.x+(Width.DEFAULTWIDTH.getWidth()-Width.SHORTWIDTH.getWidth()),  (ct3.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Mite", 145,Width.SHORTWIDTH,Height.DEFAULTHEIGHT);
-        ct4.img.addListener(new ClickListener() {
+        ct4.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //  ShShow = new ShipShow(skin.getRegion("Mite"), 0, 0, 0, 0, ct4.name, ct4.price, 400, 20, 100, game);
+               // ShShow = new ShipShow(mite, game, menu, player,ct4.width,ct4.height);
                 //  game.setScreen(ShShow);
                 // Gdx.input.setInputProcessor(null);
 
@@ -383,10 +389,10 @@ public class ShopList implements Screen {
         ct5.addActor(Money);
         ct4.addActor(InformationTube);
 
-        ct5.img.addListener(new ClickListener() {
+        ct5.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ShShow = new ShipShow(axe, game, menu, player);
+                ShShow = new ShipShow(axe, game, menu, player,ct5.width,ct5.height);
 
                 game.setScreen(ShShow);
 
@@ -443,14 +449,16 @@ public class ShopList implements Screen {
         float y;
         String name;
         Image img;
-
+        float width;
+        float height;
         int price;
 
         public CellStage(Button.ButtonStyle btnstyle, float x, float y, String name, int price,Width width,Height height) {
             this.x = x;
             this.y = y;
             this.name = name;
-
+            this.width=width.i;
+            this.height=height.v;
             this.price = price;
             btn = new Button(btnstyle);
             btn.setBounds(x, y, width.i, height.v);
@@ -466,7 +474,7 @@ public class ShopList implements Screen {
     }
 
 
-        enum Width {
+        public enum Width {
             SHORTWIDTH((float)(Gdx.graphics.getHeight()/5.14285714)),
             DEFAULTWIDTH((float) (Gdx.graphics.getHeight() / 3.8)),;
             public float i;
@@ -478,7 +486,7 @@ public class ShopList implements Screen {
                 return i;
             }
         }
-        enum Height{
+       public enum Height{
             //SHORTHEIGHT( (float) (Gdx.graphics.getHeight() / 3.8)),
             DEFAULTHEIGHT((float) (Gdx.graphics.getHeight() / 3.8));
             float v;
@@ -492,7 +500,7 @@ public class ShopList implements Screen {
             }
         }
 
-    }
+
     class StageForButton extends Stage {
         Button btn;
         int x;
@@ -514,7 +522,7 @@ public class ShopList implements Screen {
         }
     }
 
-
+}
 
 
 

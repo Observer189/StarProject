@@ -1,7 +1,6 @@
 package com.mygdx.game.model.Weapons;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.mygdx.game.model.Ammos.BlueLaserAmmo;
 import com.mygdx.game.model.Ammos.Bullet;
 import com.mygdx.game.model.Weapon;
 

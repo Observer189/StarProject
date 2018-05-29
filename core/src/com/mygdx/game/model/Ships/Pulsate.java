@@ -2,7 +2,6 @@ package com.mygdx.game.model.Ships;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.model.FixingPoint;
 import com.mygdx.game.model.Ship;
 import com.mygdx.game.model.Weapons.GreenImpulseLaser;

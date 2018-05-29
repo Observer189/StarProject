@@ -2,7 +2,6 @@ package com.mygdx.game.model.Ammos;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.model.Ammo;
-import com.mygdx.game.model.Weapon;
 
 /**
  * Created by Sash on 11.05.2018.

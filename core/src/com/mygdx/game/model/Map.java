@@ -60,7 +60,7 @@ public class Map {
                 return null;
         }
     }
-    public static Map generateMap(SpriteBatch batch, TextureAtlas textureAtlas,int rand)//функция с заданной картой для отладки
+    public static Map generateMap(SpriteBatch batch, TextureAtlas textureAtlas, int rand)//функция с заданной картой для отладки
     {
 
         switch (rand) {

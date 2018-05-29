@@ -50,20 +50,21 @@ public class ShipShow implements Screen {
     String name;
     int cost;
     int maxHp;
-
+    float width,height;
 
     float velocity;
     float maxSpeed;
 
 
 
-    public ShipShow(Ship ship, Game game, MainMenu menu, Player player) {
+    public ShipShow(Ship ship, Game game, MainMenu menu, Player player,float width,float height) {
 
         this.ship=ship;
         this.game=game;
         this.menu=menu;
         this.player=player;
-
+        this.width=width;
+        this.height=height;
     }
 
 
@@ -77,7 +78,7 @@ public class ShipShow implements Screen {
         skin.addRegions(textureAtlas);
 
         Shipimg = new Image(ship.getImg());
-        Shipimg.setSize((float) (Gdx.graphics.getWidth() / 4.3), (float) (Gdx.graphics.getHeight() / 2.4));
+        Shipimg.setSize((float) (width*2), (float) (height*2));
         Shipimg.setPosition(Gdx.graphics.getWidth() / Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / 2 - Shipimg.getHeight() / 2);
         //used for textManager params
 
@@ -91,7 +92,7 @@ public class ShipShow implements Screen {
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         ShList=new ShopList(game,batch,textureAtlas,menu,player);
-        font = textManager.fontInitialize(Color.BLACK, 1);
+        font = textManager.fontInitialize(Color.WHITE, 1);
         font1 = textManager.fontInitialize(Color.WHITE, 1);
         Toast.ToastFactory toastFactory = new Toast.ToastFactory.Builder()
                 .font(font1)
@@ -132,7 +133,7 @@ public class ShipShow implements Screen {
         BaStyle = new Button.ButtonStyle();
         BaStyle.up = skin.getDrawable("Back-up");
         BaStyle.down = skin.getDrawable("Back-down");
-        Back = new StageForButton(BaStyle, (int) Shipimg.getX(), (int) (Gdx.graphics.getHeight()/Gdx.graphics.getHeight()), (int) (Gdx.graphics.getHeight()/3.6), (int) (Gdx.graphics.getHeight()/3.6));
+        Back = new StageForButton(BaStyle, (int) Shipimg.getX(), (int) (Gdx.graphics.getHeight()/Gdx.graphics.getHeight()), (int) (Gdx.graphics.getWidth() / 8.8), (int) (Gdx.graphics.getHeight() / 4.96));
         System.out.println("Clicker");
         Back.btn.addListener(new ClickListener(){
             @Override
@@ -143,6 +144,16 @@ public class ShipShow implements Screen {
 
             }
         });
+        Image[]tube;
+        tube=new Image[6];
+        for (int i=0;i<6;i++){
+            tube[i]=new Image(skin.getDrawable("Tube"));
+            tube[i].setSize(400,120);
+            tube[i].setPosition((float) (xt*0.9), (float)  ((yt - dyt * (i+1))));
+            stage.addActor(tube[i]);
+
+
+        }
 
 
         System.out.println("Clicker2");
@@ -162,7 +173,8 @@ public class ShipShow implements Screen {
         LoginView.textrure.draw();
         LoginView.star.draw();
         if (name == "1") name = "Pulsate";
-
+        stage.act(delta);
+        stage.draw();
         textManager.displayMessage(batch, font, "" + ship.getName(), xt, yt);
         textManager.displayMessage(batch, font, "Price: " + ship.getCost(), xt, yt - dyt);
         textManager.displayMessage(batch, font, "HP: " + ship.getMaxHp(), xt, yt - dyt * 2);
@@ -188,8 +200,7 @@ public class ShipShow implements Screen {
         Buy.draw();
         Back.act();
         Back.draw();
-        stage.act(delta);
-        stage.draw();
+
         batch.begin();
         batch.end();
     }

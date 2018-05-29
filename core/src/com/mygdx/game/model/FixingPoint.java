@@ -48,7 +48,7 @@ public class FixingPoint  {//Точка крепления оружия
         //this.weapon.bounds.setOrigin(0,0);
     }
 
-    public void update(Ship playerShip,Ship enemyShip,Map map)
+    public void update(Ship playerShip, Ship enemyShip, Map map)
     {
 
         System.out.println(playerShip.getWidth()+"!!!"+playerShip.getHeight());

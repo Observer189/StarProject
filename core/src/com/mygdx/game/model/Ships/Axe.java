@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.model.FixingPoint;
 import com.mygdx.game.model.Ship;
 import com.mygdx.game.model.Weapons.BlueImpulseLaser;
-import com.mygdx.game.model.Weapons.GreenImpulseLaser;
 
 /**
  * Created by Sash on 27.05.2018.

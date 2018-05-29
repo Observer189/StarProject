@@ -29,7 +29,7 @@ public class Angar implements Screen {
     TextManager textManager;
     Image[] guns;
     MainMenu menu;
-    BitmapFont font;
+    BitmapFont font,font1;
     Player player;
     DrawOneShip dos1,dos2,dos3,dos4,dos5,dos6,dos7,dos8,dos9;
 
@@ -61,7 +61,8 @@ public class Angar implements Screen {
     @Override
     public void show() {
         textManager=new TextManager(0,0);
-        font = textManager.fontInitialize(Color.WHITE, (float) 0.7);
+        font = textManager.fontInitialize(Color.WHITE, (float) 0.65);
+        font1=textManager.fontInitialize(Color.WHITE, (float) 0.5);
 
 
         camera=new OrthographicCamera();
@@ -74,9 +75,9 @@ public class Angar implements Screen {
 
 
 
-        ShipInfo=new Image(skin.getDrawable("GrayFrame"));
-        ShipInfo.setSize(190,270);
-        ShipInfo.setPosition(Gdx.graphics.getWidth()-ShipInfo.getWidth(),Gdx.graphics.getHeight()-ShipInfo.getHeight()-160-10);
+      //  ShipInfo=new Image(skin.getDrawable("GrayFrame"));
+      //  ShipInfo.setSize(190,270);
+      //  ShipInfo.setPosition(Gdx.graphics.getWidth()-ShipInfo.getWidth(),Gdx.graphics.getHeight()-ShipInfo.getHeight()-160-10);
 
 
 
@@ -115,7 +116,7 @@ public class Angar implements Screen {
         dmg.setSize(250,100);
         dmg.setPosition(velocity.getX(),attackSpeed.getY());
 
-        Back.addActor(ShipInfo);
+     //   Back.addActor(ShipInfo);
         stage.addActor(hp);
         stage.addActor(speed);
         stage.addActor(velocity);
@@ -181,8 +182,9 @@ public class Angar implements Screen {
         stage.draw();
         textManager.displayMessage(batch,font,"HP: "+player.getCurrentShip().getMaxHp(), (hp.getX()*xX), (float) (hp.getY()+hp.getHeight()/yY));
         textManager.displayMessage(batch,font,"Speed: "+player.getCurrentShip().getMaxSpeed(), (float) (speed.getX()*xX*2.2),speed.getY()+speed.getHeight()/yY);
-        textManager.displayMessage(batch,font,"Velocity: "+player.getCurrentShip().getVelocity(), (float) (velocity.getX()*xX/1.16),velocity.getY()+speed.getHeight()/yY);
-
+        textManager.displayMessage(batch,font,"Velocity: "+player.getCurrentShip().getVelocity(), (float) (velocity.getX()*xX/1.12),velocity.getY()+speed.getHeight()/yY);
+        textManager.displayMessage(batch,font1,"Attack speed:"+player.getCurrentShip().getFixingPoints()[1].getWeapon().getAttackSpeed(), (float) (attackSpeed.getX()*xX*2.2),attackSpeed.getY()+attackSpeed.getHeight()/yY);
+        textManager.displayMessage(batch,font,"Dmg: "+player.getCurrentShip().getFixingPoints()[0].getWeapon().getAmmo().getDamage(),dmg.getX()*xX,dmg.getY()+dmg.getHeight()/yY);
 
 
 //        DrawDrawStage(dos1);
