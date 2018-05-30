@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Weapon;
+import com.mygdx.game.model.Weapons.BlueImpulseLaser;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Toast;
 
@@ -78,12 +79,14 @@ public class GunShow implements Screen {
         skin = new Skin();
         skin.addRegions(textureAtlas);
        // (float) (Gdx.graphics.getWidth() / 14.3), (float) (Gdx.graphics.getHeight() / 1.96669)
-        Gunimg = new Image(weapon.getImg());
+        String name=weapon.getName();
+        if (name.equals("BlueLaser"))name= "BlueImpulseLaser";
+        Gunimg = new Image(skin.getDrawable(name));
         Gunimg.setSize(width,height);
-        Gunimg.setPosition((float) (Gdx.graphics.getWidth() / Gdx.graphics.getWidth()*0.4), Gdx.graphics.getHeight() / 2 - Gunimg.getHeight() / 2);
+        Gunimg.setPosition((float) ((Gdx.graphics.getWidth() / Gdx.graphics.getWidth())*20), Gdx.graphics.getHeight() / 2 - Gunimg.getHeight() / 2);
         //used for textManager params
 
-        xt = (int) (Gunimg.getX() + Gunimg.getWidth() * 1.2);
+        xt = (int) (Gdx.graphics.getWidth()/3.2);
         yt = (int) ((Gunimg.getY() + Gunimg.getHeight()) * 1.1);
         stage.addActor(Gunimg);
         dyt = Gdx.graphics.getHeight() / 9;
@@ -93,7 +96,7 @@ public class GunShow implements Screen {
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         ShList=new ShopList2(game,batch,textureAtlas,menu,player);
-        font = textManager.fontInitialize(Color.BLACK, 1);
+        font = textManager.fontInitialize(Color.WHITE, 1);
         font1 = textManager.fontInitialize(Color.WHITE, 1);
         Toast.ToastFactory toastFactory = new Toast.ToastFactory.Builder()
                 .font(font1)
@@ -134,7 +137,7 @@ public class GunShow implements Screen {
         BaStyle = new Button.ButtonStyle();
         BaStyle.up = skin.getDrawable("Back-up");
         BaStyle.down = skin.getDrawable("Back-down");
-        Back = new StageForButton(BaStyle, (int) Gunimg.getX(), (int) (Gdx.graphics.getHeight()/Gdx.graphics.getHeight()), (int) (Gdx.graphics.getHeight()/3.6), (int) (Gdx.graphics.getHeight()/3.6));
+        Back = new StageForButton(BaStyle, (int) Gunimg.getX(), (int) (Gdx.graphics.getHeight()/Gdx.graphics.getHeight()), (int) (Gdx.graphics.getWidth() / 8.8), (int) (Gdx.graphics.getHeight() / 4.96));
         System.out.println("Clicker");
         Back.btn.addListener(new ClickListener(){
             @Override
@@ -145,12 +148,25 @@ public class GunShow implements Screen {
 
             }
         });
+        Image[]tube;
+        tube=new Image[6];
+        for (int i=0;i<6;i++){
+            if (i%2!=0){
+            tube[i]=new Image(skin.getDrawable("Tube"));
+            tube[i].setSize((float) (Gdx.graphics.getWidth()/3.2),Gdx.graphics.getHeight()/6);
+            tube[i].setPosition((float) (xt*0.9), (float)  ((yt - dyt * (i+1))));
+            stage.addActor(tube[i]);}
 
 
-        System.out.println("Clicker2");
+
+        }
+
+
+
         InputMultiplexer in=new InputMultiplexer();
         in.addProcessor(Buy);
         in.addProcessor(Back);
+        in.addProcessor(stage);
         Gdx.input.setInputProcessor(in);
 
 
@@ -160,14 +176,15 @@ public class GunShow implements Screen {
 
     @Override
     public void render(float delta) {
-        camera.setToOrtho(false, 800, 480);
-        Gdx.gl.glClearColor(0, 64, 247, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        camera.setToOrtho(false, (float) (Gdx.graphics.getWidth()/1.6), (float) (Gdx.graphics.getHeight()/1.5));
+        LoginView.textrure.draw();
+        LoginView.star.draw();
 
-
+        stage.act(delta);
+        stage.draw();
         textManager.displayMessage(batch, font, "" + weapon.getName(), xt, yt-dyt*1);
-        textManager.displayMessage(batch, font, "Price: " + weapon.getCost(), xt, yt - dyt*2);
-        textManager.displayMessage(batch, font, "Speed: " + weapon.getAttackSpeed(), xt, yt - dyt * 3);
+        textManager.displayMessage(batch, font, "Price: " + weapon.getCost(), xt, yt - dyt*3);
+        textManager.displayMessage(batch, font, "Speed: " + weapon.getAttackSpeed(), xt, yt - dyt * 5);
 
 
         if (MakeToast==true){
@@ -188,8 +205,7 @@ public class GunShow implements Screen {
         Buy.draw();
         Back.act();
         Back.draw();
-        stage.act(delta);
-        stage.draw();
+
         batch.begin();
         batch.end();
     }

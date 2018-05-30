@@ -109,26 +109,26 @@ public class ShopList implements Screen {
 
         ct2.act(delta);
         ct2.draw();
-        textManager.displayMessage(batch, font, ct2.name, (float) (ct2.x + x200*1.5), ct2.y + y175);
-        textManager.displayMessage(batch, font, "Price: " + ct2.price, (float) (ct2.x + x200*1.5), (float) (ct2.y + y75*0.915));
+        textManager.displayMessage(batch, font, ct2.name, (float) (ct1.x + x200*1.5), ct2.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct2.price, (float) (ct1.x + x200*1.5), (float) (ct2.y + y75*0.915));
         //'Dakkar' ship
         ct3.act(delta);
         ct3.draw();
-        textManager.displayMessage(batch, font, ct3.name, (float) (ct3.x + x200*1.5), ct3.y + y175);
-        textManager.displayMessage(batch, font, "Price: " + ct3.price, (float) (ct3.x + x200*1.5), (float) (ct3.y + y75*0.915));
+        textManager.displayMessage(batch, font, ct3.name, (float) (ct1.x + x200*1.5), ct3.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct3.price, (float) (ct1.x + x200*1.5), (float) (ct3.y + y75*0.915));
 
         //'Mite' ship
 
         ct4.act(delta);
         ct4.draw();
-        textManager.displayMessage(batch, font, ct4.name, (float) (ct4.x + x200*1.5), ct4.y + y175);
-        textManager.displayMessage(batch, font, "Price: " + ct4.price, (float) (ct4.x + x200*1.5), (float) (ct4.y + y75*0.915));
+        textManager.displayMessage(batch, font, ct4.name, (float) (ct1.x + x200*1.5), ct4.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct4.price, (float) (ct1.x + x200*1.5), (float) (ct4.y + y75*0.915));
         //'Hunter' ship
 
         ct5.act(delta);
         ct5.draw();
-        textManager.displayMessage(batch, font, ct5.name, (float) (ct5.btn.getX() + x200*1.5), ct5.y + y175);
-        textManager.displayMessage(batch, font, "Price: " + ct5.price, (float) (ct5.x + x200*1.5), (float) (ct5.y + y75*0.915));
+        textManager.displayMessage(batch, font, ct5.name, (float) (ct1.x + x200*1.5), ct5.y + y175);
+        textManager.displayMessage(batch, font, "Price: " + ct5.price, (float) (ct1.x + x200*1.5), (float) (ct5.y + y75*0.915));
         //Information bar
         //int a=menu.
         textManager.displayMessage(batch, font, MoneyStr,  Money.getX()+60 , InformationTube.getY()+InformationTube.getHeight()-25);
@@ -310,7 +310,7 @@ public class ShopList implements Screen {
             MoneyStr+=digits[i]+"\n";
 
         }
-        System.out.print("Fkng string: "+MoneyStr);
+
         InformationTube=new Image(skin.getDrawable("Tube2"));
         InformationTube.setSize((float) (Gdx.graphics.getWidth() / 8.8),heightOfTube);
         InformationTube.setPosition(Money.getX(), (float) (Money.getY()-InformationTube.getHeight()));
@@ -341,7 +341,7 @@ public class ShopList implements Screen {
         st2 = new Button.ButtonStyle();
         st2.up = skin.getDrawable("Dashing");
         st2.down = skin.getDrawable("Dashing");
-        ct2 = new CellStage(st2, ct1.x+(Width.DEFAULTWIDTH.getWidth()-Width.SHORTWIDTH.getWidth()),  (ct1.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Dashing", 200,Width.SHORTWIDTH,Height.DEFAULTHEIGHT);
+        ct2 = new CellStage(st2, ct1.x+(Width.DEFAULTWIDTH.getWidth()-Width.SHORTWIDTH.getWidth()),  (ct1.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Dashing", dashing.getCost(),Width.SHORTWIDTH,Height.DEFAULTHEIGHT);
         ct2.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -370,7 +370,7 @@ public class ShopList implements Screen {
         st4 = new Button.ButtonStyle();
         st4.up = skin.getDrawable("Mite");
         st4.down = skin.getDrawable("Mite");
-        ct4 = new CellStage(st4, ct1.x+(Width.DEFAULTWIDTH.getWidth()-Width.SHORTWIDTH.getWidth()),  (ct3.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Mite", 145,Width.SHORTWIDTH,Height.DEFAULTHEIGHT);
+        ct4 = new CellStage(st4, ct1.x+(Width.DEFAULTWIDTH.getWidth()-Width.SHORTWIDTH.getWidth()),  (ct3.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Mite", 0000000,Width.SHORTWIDTH,Height.DEFAULTHEIGHT);
         ct4.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
