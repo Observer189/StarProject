@@ -14,7 +14,7 @@ public class Bullet extends Ammo {
         counter++;
     }*/
     public Bullet(TextureRegion textureRegion, float x, float y,float rotation) {
-        super(textureRegion, x, y, 0.8f, 2.8f, 3f, 60,rotation);
+        super(textureRegion, x, y, 0.8f, 2.8f, 3f, 6,rotation);
         counter++;
     }
 }
