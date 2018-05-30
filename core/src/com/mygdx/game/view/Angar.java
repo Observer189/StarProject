@@ -95,25 +95,26 @@ public class Angar implements Screen {
             }
         });
         station1=new StationAnim(textureAtlas,batch,(float) (Gdx.graphics.getWidth()/100),Back.y+Back.btn.getHeight(),player);
-
+        float widthS= (float) (Gdx.graphics.getWidth()/5.12);
+        float heightS= (float) (Gdx.graphics.getHeight()/7.2);
         hp=new Image((skin.getDrawable("Tube")));
-        hp.setSize(250,100);
+        hp.setSize(widthS,heightS);
         hp.setPosition(station1.img.getX()+station1.img.getWidth()/2-hp.getWidth()/2, (float) (station1.img.getY()+station1.img.getHeight()*0.95));
 
         speed=new Image((skin.getDrawable("Tube")));
-        speed.setSize(250,100);
+        speed.setSize(widthS,heightS);
         speed.setPosition(station1.img.getX(), (float) (station1.img.getY()+station1.img.getHeight()*0.78));
 
         velocity=new Image((skin.getDrawable("Tube")));
-        velocity.setSize(250,100);
+        velocity.setSize(widthS,heightS);
         velocity.setPosition(station1.img.getX()+speed.getWidth(), speed.getY());
 
         attackSpeed=new Image(skin.getDrawable("Tube"));
-        attackSpeed.setSize(250,100);
+        attackSpeed.setSize(widthS,heightS);
         attackSpeed.setPosition(speed.getX(),station1.img.getY());
 
         dmg=new Image(skin.getDrawable("Tube"));
-        dmg.setSize(250,100);
+        dmg.setSize(widthS,heightS);
         dmg.setPosition(velocity.getX(),attackSpeed.getY());
 
      //   Back.addActor(ShipInfo);
@@ -135,25 +136,25 @@ public class Angar implements Screen {
         if (player.resources.shipList.size()>1){
             String name=player.resources.shipList.get(1).getName();
             if (name.equals("1"))name="Pulsate";
-            dos2=new DrawOneShip(name,72,station1.img.getX()+station1.img.getWidth()/2,station1.img.getY());
+            dos2=new DrawOneShip(name,station1.img.getX()+station1.img.getWidth()/2,station1.img.getY());
 
         }
         if (player.resources.shipList.size()>2){
             String name=player.resources.shipList.get(2).getName();
             if (name.equals("1"))name="Pulsate";
-            dos3=new DrawOneShip(name,144,station1.img.getX()+station1.img.getWidth()/2,station1.img.getY());
+            dos3=new DrawOneShip(name,station1.img.getX()+station1.img.getWidth()/2,station1.img.getY());
 
         }
         if (player.resources.shipList.size()>3){
             String name=player.resources.shipList.get(3).getName();
             if (name.equals("1"))name="Pulsate";
-            dos3=new DrawOneShip(name,216,station1.img.getX()+station1.img.getWidth()/2,station1.img.getY());
+            dos3=new DrawOneShip(name,station1.img.getX()+station1.img.getWidth()/2,station1.img.getY());
 
         }
         if (player.resources.shipList.size()>4){
             String name=player.resources.shipList.get(4).getName();
             if (name.equals("1"))name="Pulsate";
-            dos4=new DrawOneShip(name,-72,station1.img.getX()+station1.img.getWidth()/2,station1.img.getY());
+            dos4=new DrawOneShip(name,station1.img.getX()+station1.img.getWidth()/2,station1.img.getY());
 
         }
 
@@ -246,12 +247,11 @@ public class Angar implements Screen {
     class DrawOneShip extends Stage{
        public Image ship;
 
-        public DrawOneShip(String name,int Rotation,float x,float y){
+        public DrawOneShip(String name,float x,float y){
             if (name.equals("1")) name="Pulsate";
             ship=new Image(skin.getDrawable(name));
             ship.setSize((float) (Gdx.graphics.getHeight()/7.6), (float) (Gdx.graphics.getHeight()/7.6));
-            ship.setOrigin(ship.getWidth()/2, ship.getHeight()/2);
-            ship.rotateBy(Rotation);
+
             ship.setPosition(x-ship.getWidth()/2,y);
             addActor(ship);
 

@@ -16,8 +16,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.model.Player;
+import com.mygdx.game.model.Weapons.BlueImpulseLaser;
 import com.mygdx.game.model.Weapons.GreenImpulseLaser;
 import com.mygdx.game.model.Weapons.Machinegun;
+import com.mygdx.game.model.Weapons.Shotgun;
 import com.mygdx.game.utils.TextManager;
 
 //This screen is used to show Shop of Guns
@@ -32,8 +34,8 @@ public class ShopList2 implements Screen{
     Screen ShList;
     MainMenu menu;
     Player player;
-    CellStage g1,g2;
-    Image Money;
+    CellStage g1,g2,g3;
+    Image Money,InformationTube;
     BitmapFont font;
     int counter = 0;
     Boolean NeedToMove = false;
@@ -41,8 +43,12 @@ public class ShopList2 implements Screen{
     StageForButton Prev,Go;
     Button.ButtonStyle Gostyle,Prevstyle;
    // Weapon laser,multi;
-    GreenImpulseLaser Laser;
+    BlueImpulseLaser Laser;
     Machinegun multigun;
+    Shotgun shotgun;
+
+    int digits[];
+    String MoneyStr="";
 
     GunShow GuShow;
     OrthographicCamera camera = new OrthographicCamera();
@@ -103,16 +109,37 @@ public class ShopList2 implements Screen{
             }
         });
         Money = new Image(skin.getDrawable("Money"));
-        // InformationFrame.setSize((float) (Gdx.graphics.getWidth()/3.5), (float) (Gdx.graphics.getHeight()/3.3));
 
-        //  InformationFrame.setPosition(Gdx.graphics.getWidth()/Gdx.graphics.getWidth(),Gdx.graphics.getHeight()/3);
+
+
         Money.setSize((float) (Gdx.graphics.getWidth() / 8.8), (float) (Gdx.graphics.getHeight() / 4.96));
-        Money.setPosition(Gdx.graphics.getWidth() / Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / 3 + Gdx.graphics.getHeight() / 24);
+        Money.setPosition(Gdx.graphics.getWidth() / Gdx.graphics.getWidth(), (float) (Gdx.graphics.getHeight() -Money.getHeight()-(int) (Gdx.graphics.getHeight() / 14.4)));
 
-         Laser=new GreenImpulseLaser(textureAtlas,(int) (Gdx.graphics.getWidth() / 4 * 1.25),(int) (Gdx.graphics.getHeight() - 212-50));
-        g1=new CellStage((int) Laser.getX(), (int) Laser.getY(),Laser.getName(),Laser.getCost(), (int) (Gdx.graphics.getWidth()/21.333333), (int) (Gdx.graphics.getHeight()/3.6));
-       // laser=new GreenImpulseLaser(textureAtlas,0,0);
-        g1.img.addListener(new ClickListener() {
+        Integer mon=menu.player.getMoney();
+        int heightOfTube=0;
+        digits=new int[mon.toString().length()];
+        int restDigits=mon;
+        for (int i=mon.toString().length()-1;i>=0;i--) {
+            heightOfTube += (int) (Gdx.graphics.getWidth() / 25.6);
+            digits[i] = restDigits % 10;
+            restDigits = restDigits / 10;
+        }
+
+        for (int i=0;i<mon.toString().length();i++){
+            MoneyStr+=digits[i]+"\n";
+
+        }
+
+        InformationTube=new Image(skin.getDrawable("Tube2"));
+        InformationTube.setSize((float) (Gdx.graphics.getWidth() / 8.8),heightOfTube);
+        InformationTube.setPosition(Money.getX(), (float) (Money.getY()-InformationTube.getHeight()));
+
+
+        Laser=new BlueImpulseLaser(textureAtlas,(int) (Gdx.graphics.getWidth() / 4 * 1.25),(int) (Gdx.graphics.getHeight() - 212-50));
+        g1=new CellStage((int) Laser.getX(), (int) Laser.getY(),Laser.getName(),Laser.getCost(), 63, 200);
+
+
+        g1.gun.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
@@ -122,10 +149,10 @@ public class ShopList2 implements Screen{
 
 
             }
-        });
+        });//
          multigun=new Machinegun(textureAtlas,g1.x,(int) (g1.y - g1.img.getHeight() - Gdx.graphics.getHeight() / 360));
-        g2=new CellStage((int) multigun.getX(),(int)multigun.getY(),multigun.getName(),multigun.getCost(),Gdx.graphics.getWidth()/8,(int) (Gdx.graphics.getHeight()/3.6));
-        g2.img.addListener(new ClickListener() {
+        g2=new CellStage((int) multigun.getX()-80+g1.width,(int)multigun.getY(),multigun.getName(),multigun.getCost(),80,200);
+        g2.gun.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
@@ -136,7 +163,24 @@ public class ShopList2 implements Screen{
 
             }
         });
+        shotgun=new Shotgun(textureAtlas,g1.x,(int) (g2.y - g1.img.getHeight() - Gdx.graphics.getHeight() / 360));
+        g3=new CellStage((int) shotgun.getX()-149+g1.width, (int) shotgun.getY(),shotgun.getName(),shotgun.getCost(),149,200);
+        g3.gun.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+                GuShow = new GunShow(shotgun, game, menu, player, (float) (g3.width*1.7), (float) (g3.height*1.7));
+
+                game.setScreen(GuShow);
+
+
+            }
+        });
+
+
+
         g2.addActor(Money);
+        g2.addActor(InformationTube);
 
 
 
@@ -179,12 +223,13 @@ public class ShopList2 implements Screen{
         InputMultiplexer in=new InputMultiplexer();
         in.addProcessor(g1);
         in.addProcessor(g2);
+        in.addProcessor(g3);
         in.addProcessor(Ships);
         in.addProcessor(Back);
         in.addProcessor(Prev);
         in.addProcessor(Go);
         Gdx.input.setInputProcessor(in);
-        font = textManager.fontInitialize(Color.BLACK, 0.8f);
+        font = textManager.fontInitialize(Color.WHITE, 0.8f);
     }
 
     @Override
@@ -193,7 +238,7 @@ public class ShopList2 implements Screen{
         camera.setToOrtho(false, (float) (Gdx.graphics.getWidth()/1.6), (float) (Gdx.graphics.getHeight()/1.5));
         LoginView.textrure.draw();
         LoginView.star.draw();
-        textManager.displayMessage(batch, font, "" +menu.player.getMoney(), Money.getX() + Money.getWidth(), Money.getY() + Money.getHeight() / 2);
+
         int x200 = (int) (Gdx.graphics.getWidth() / 6.3);
         int y175 = (int) (Gdx.graphics.getHeight() / 4.11428);
         int y75 = (int) (Gdx.graphics.getHeight() / 9.6);
@@ -205,14 +250,22 @@ public class ShopList2 implements Screen{
         Back.act(delta);
         Back.draw();
         g1.act(delta);
-        textManager.displayMessage(batch, font, g1.name, g1.x + x200, g1.y + y175);
-        textManager.displayMessage(batch, font, "Price: " +g1.price, g1.x + x200, g1.y + y75);
         g1.draw();
+        textManager.displayMessage(batch, font, g1.name, (float) (g1.x + x200), (float) (g1.y + y175));
+        textManager.displayMessage(batch, font, "Price: " +g1.price, g1.x + x200, (float) (g1.y + y75*0.915));
+
 
         g2.act(delta);
-        textManager.displayMessage(batch, font, g2.name, g2.x + x200, g2.y + y175);
-        textManager.displayMessage(batch, font, "Price: " + g2.price, g2.x + x200, g2.y + y75);
         g2.draw();
+        textManager.displayMessage(batch, font, g2.name, (float) (g1.x + x200), (float) (g2.y + y175));
+        textManager.displayMessage(batch, font, "Price: " + g2.price, g1.x + x200, (float) (g2.y + y75*0.915));
+        textManager.displayMessage(batch, font, MoneyStr,  Money.getX()+60 , InformationTube.getY()+InformationTube.getHeight()-25);
+
+        g3.act(delta);
+        g3.draw();
+        textManager.displayMessage(batch, font, g3.name, (float) (g1.x + x200), (float) (g3.y + y175));
+        textManager.displayMessage(batch, font, "Price: " + g3.price, g1.x + x200, (float) (g3.y + y75*0.915));
+
         Prev.act(delta);
         Prev.draw();
         Go.act(delta);
@@ -315,6 +368,7 @@ public class ShopList2 implements Screen{
             this.x = x;
             this.y = y;
             this.name = name;
+            if (name.equals("BlueLaser"))name="BlueImpulseLaser";
             this.width=width;
             this.height=height;
 
@@ -322,8 +376,8 @@ public class ShopList2 implements Screen{
             gun=new Image(skin.getDrawable(name));
             gun.setSize(width,height);
             gun.setPosition(x, y);
-            img = new Image(skin.getDrawable("Frame"));
-            img.setPosition(x - 15, y - 10);
+            img = new Image(skin.getDrawable("InfoFrame"));
+            img.setPosition(x +gun.getWidth()+15, y - 10);
             img.setSize((float) (Gdx.graphics.getWidth() / 2.7), (float) (Gdx.graphics.getHeight() / 3.3));
 
 

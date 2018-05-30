@@ -148,7 +148,7 @@ public class ShipShow implements Screen {
         tube=new Image[6];
         for (int i=0;i<6;i++){
             tube[i]=new Image(skin.getDrawable("Tube"));
-            tube[i].setSize(400,120);
+            tube[i].setSize((float) (Gdx.graphics.getWidth()/3.2),Gdx.graphics.getHeight()/6);
             tube[i].setPosition((float) (xt*0.9), (float)  ((yt - dyt * (i+1))));
             stage.addActor(tube[i]);
 
@@ -156,7 +156,7 @@ public class ShipShow implements Screen {
         }
 
 
-        System.out.println("Clicker2");
+
         InputMultiplexer in=new InputMultiplexer();
         in.addProcessor(Buy);
         in.addProcessor(Back);
