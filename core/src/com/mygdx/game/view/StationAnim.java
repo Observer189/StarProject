@@ -25,13 +25,13 @@ public class StationAnim {
         this.y=y;
         this.batch  =batch;
         img=new Image(textureAtlas.findRegion("WB_baseu2_d0"));
-        img.setSize((float) (Gdx.graphics.getWidth()/2.56),(float) (Gdx.graphics.getWidth()/2.56));
+        img.setSize((float) (Gdx.graphics.getWidth()/1.86),(float) (Gdx.graphics.getWidth()/1.86));
         img.setPosition(x,y);
         if (player.getCurrentShip().getName().equals("1"))
         img2=new Image(textureAtlas.findRegion("Pulsate"));
         else
             img2=new Image((textureAtlas.findRegion(player.getCurrentShip().getName())));
-        img2.setSize((float) (Gdx.graphics.getHeight()/4.8),(float) (Gdx.graphics.getHeight()/4.8));
+        img2.setSize((float) (Gdx.graphics.getHeight()/5.2),(float) (Gdx.graphics.getHeight()/4.8));
         img2.setPosition(img.getX()+img.getWidth()/2-img2.getWidth()/2, img.getY()+img.getHeight()/2-img2.getHeight()/2);
         }
 
