@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class FixingPoint  {//Точка крепления оружия
     Weapon weapon;
-    float x;
-    float y;
+    public float x;
+    public float y;
     float offsetX;
     float offsetY;
     private float lastShipX;
@@ -88,6 +88,14 @@ public class FixingPoint  {//Точка крепления оружия
     {
         setOffsetX(offsetX);
         setOffsetY(offsetY);
+    }
+
+    public float getOffsetX() {
+        return offsetX;
+    }
+
+    public float getOffsetY() {
+        return offsetY;
     }
 
     public void setOffsetX(float offsetX) {

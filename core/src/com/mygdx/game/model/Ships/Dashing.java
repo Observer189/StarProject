@@ -13,8 +13,6 @@ import com.mygdx.game.model.Weapons.Shotgun;
  */
 
 public class Dashing extends Ship {
-
-
     @Override
     public void draw(SpriteBatch batch) {
         super.draw(batch);

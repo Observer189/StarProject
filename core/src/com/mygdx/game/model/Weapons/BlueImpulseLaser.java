@@ -63,6 +63,7 @@ public class BlueImpulseLaser extends Weapon {
     public String getName() {
         return name;
     }
+    public String getRealName(){return "BlueImpulseLaser";}
 
     @Override
     public String toString() {

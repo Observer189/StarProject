@@ -25,6 +25,7 @@ public class Ship extends GameObject {
     private float speedY;
     private float velocity;
     private float maxSpeed;
+    float x,y;
     private int rotationDirection;//-1-влево 1-вправо 0-без вращения
 
 
@@ -40,7 +41,8 @@ public class Ship extends GameObject {
 
     public Ship(TextureRegion textureRegion, float x, float y, float width, float height, String name, int cost, float maxHp, float velocity, float maxSpeed, FixingPoint[] fixingPoints) {
         super(textureRegion, x, y, width, height);
-
+        this.x=x;
+        this.y=y;
         this.cost = cost;
         this.maxHp = maxHp;
         currentHp = maxHp;
@@ -168,6 +170,17 @@ public class Ship extends GameObject {
     public float getSpeedY() {
         return speedY;
     }
+
+    @Override
+    public float getX() {
+        return x;
+    }
+
+    @Override
+    public float getY() {
+        return y;
+    }
+
 
     public boolean getIsShipInRedZone() {
         return isShipInRedZone;

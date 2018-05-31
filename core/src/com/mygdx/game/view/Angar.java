@@ -52,8 +52,8 @@ public class Angar implements Screen {
     public Angar(Game game, SpriteBatch batch, MainMenu menu, Player player){
         this.game=game;
         this.batch = batch;
-       this.menu=menu;
-       this.player=player;
+        this.menu=menu;
+        this.player=player;
 
 
     }
@@ -94,10 +94,23 @@ public class Angar implements Screen {
 
             }
         });
-        station1=new StationAnim(textureAtlas,batch,(float) (Gdx.graphics.getWidth()/100),Back.y+Back.btn.getHeight(),player);
+        station1=new StationAnim(textureAtlas,batch,(float) (Gdx.graphics.getWidth()/2-Gdx.graphics.getWidth()/1.86/2),Gdx.graphics.getHeight()/2-(float) (Gdx.graphics.getWidth()/1.86/2),player);
+        ClickListener cl=new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                AngarView angarView=new AngarView(game,batch,menu,player);
+                game.setScreen(angarView);
+
+
+            }
+        };
+        station1.img.addListener(cl);
+        station1.img2.addListener(cl);
+        stage.addActor(station1.img);
+        stage.addActor(station1.img2);
         float widthS= (float) (Gdx.graphics.getWidth()/5.12);
         float heightS= (float) (Gdx.graphics.getHeight()/7.2);
-        hp=new Image((skin.getDrawable("Tube")));
+       /* hp=new Image((skin.getDrawable("Tube")));
         hp.setSize(widthS,heightS);
         hp.setPosition(station1.img.getX()+station1.img.getWidth()/2-hp.getWidth()/2, (float) (station1.img.getY()+station1.img.getHeight()*0.95));
 
@@ -124,7 +137,7 @@ public class Angar implements Screen {
         stage.addActor(attackSpeed);
         stage.addActor(dmg);
 
-
+*/
 
         //crating ships image
         if (player.resources.shipList.size()>0){
@@ -181,11 +194,11 @@ public class Angar implements Screen {
         Back.draw(); station1.draw();
         stage.act(delta);
         stage.draw();
-        textManager.displayMessage(batch,font,"HP: "+player.getCurrentShip().getMaxHp(), (hp.getX()*xX), (float) (hp.getY()+hp.getHeight()/yY));
-        textManager.displayMessage(batch,font,"Speed: "+player.getCurrentShip().getMaxSpeed(), (float) (speed.getX()*xX*2.2),speed.getY()+speed.getHeight()/yY);
-        textManager.displayMessage(batch,font,"Velocity: "+player.getCurrentShip().getVelocity(), (float) (velocity.getX()*xX/1.12),velocity.getY()+speed.getHeight()/yY);
-        textManager.displayMessage(batch,font1,"Attack speed:"+player.getCurrentShip().getFixingPoints()[1].getWeapon().getAttackSpeed(), (float) (attackSpeed.getX()*xX*2.2),attackSpeed.getY()+attackSpeed.getHeight()/yY);
-        textManager.displayMessage(batch,font,"Dmg: "+player.getCurrentShip().getFixingPoints()[0].getWeapon().getAmmo().getDamage(),dmg.getX()*xX,dmg.getY()+dmg.getHeight()/yY);
+       // textManager.displayMessage(batch,font,"HP: "+player.getCurrentShip().getMaxHp(), (hp.getX()*xX), (float) (hp.getY()+hp.getHeight()/yY));
+       // textManager.displayMessage(batch,font,"Speed: "+player.getCurrentShip().getMaxSpeed(), (float) (speed.getX()*xX*2.2),speed.getY()+speed.getHeight()/yY);
+       // textManager.displayMessage(batch,font,"Velocity: "+player.getCurrentShip().getVelocity(), (float) (velocity.getX()*xX/1.12),velocity.getY()+speed.getHeight()/yY);
+      ///  textManager.displayMessage(batch,font1,"Attack speed:"+player.getCurrentShip().getFixingPoints()[1].getWeapon().getAttackSpeed(), (float) (attackSpeed.getX()*xX*2.2),attackSpeed.getY()+attackSpeed.getHeight()/yY);
+      //  textManager.displayMessage(batch,font,"Dmg: "+player.getCurrentShip().getFixingPoints()[0].getWeapon().getAmmo().getDamage(),dmg.getX()*xX,dmg.getY()+dmg.getHeight()/yY);
 
 
 //        DrawDrawStage(dos1);
