@@ -261,7 +261,7 @@ public void nullify()
         super.setPosition(x, y);
         for(int i=0;i<fixingPoints.length;i++)
         {
-            fixingPoints[i].setPosition(x+getWidth()/2+fixingPoints[i].offsetX,y+getHeight()/2+fixingPoints[i].offsetY);
+            fixingPoints[i].setPosition(x,y);
 
         }
     }
