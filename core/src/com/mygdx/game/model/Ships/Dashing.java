@@ -6,6 +6,7 @@ import com.mygdx.game.model.FixingPoint;
 import com.mygdx.game.model.Ship;
 import com.mygdx.game.model.Weapons.BlueImpulseLaser;
 import com.mygdx.game.model.Weapons.Machinegun;
+import com.mygdx.game.model.Weapons.RocketLauncher;
 import com.mygdx.game.model.Weapons.Shotgun;
 
 /**
@@ -23,8 +24,8 @@ public class Dashing extends Ship {
     public Dashing(TextureAtlas textureAtlas, float x, float y) {
         super(textureAtlas.findRegion("Dashing"), x, y, 7, 13, "Dashing", 0, 700,
                 1.5f, 60, new FixingPoint[]{
-                        new FixingPoint(x, y, 7, 13, 0, 2, new Shotgun(textureAtlas, x, y)),
-                        new FixingPoint(x, y, 7, 13, 0, -2f, new Shotgun(textureAtlas, x, y)),
+                        new FixingPoint(x, y, 7, 13, 0, 2, new RocketLauncher(textureAtlas, x, y)),
+                        new FixingPoint(x, y, 7, 13, 0, -2f, new RocketLauncher(textureAtlas, x, y)),
 
                 });
 

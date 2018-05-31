@@ -15,6 +15,8 @@ public abstract class GameObject {
     String name;
     private float width;
     private float height;
+    private float centerX;
+    private float centerY;
     public GameObject(TextureRegion textureRegion, float x,float y,float width,float height,float originX,float originY)
     {
 
@@ -29,6 +31,8 @@ public abstract class GameObject {
 
         this.width=width;
         this.height=height;
+        centerX=x+width/2;
+        centerY=y+height/2;
     }
     public GameObject(TextureRegion textureRegion, float x,float y,float width,float height)
     {
@@ -44,6 +48,8 @@ public abstract class GameObject {
 
         this.width=width;
         this.height=height;
+        centerX=x+width/2;
+        centerY=y+height/2;
     }
 
 
@@ -52,6 +58,8 @@ public abstract class GameObject {
     {
         sprite.setPosition(bounds.getX(),bounds.getY());
         sprite.setRotation(bounds.getRotation());
+        centerX=bounds.getX()+width/2;
+        centerY=bounds.getY()+height/2;
         batch.begin();
         sprite.draw(batch);
         batch.end();
@@ -86,7 +94,20 @@ public abstract class GameObject {
     public Polygon getBounds() {
         return bounds;
     }
+    public float getCenterX() {
+        return centerX;
+    }
 
+    public float getCenterY() {
+        return centerY;
+    }
+
+    public void setCenter(float centerX,float centerY)
+    {
+        bounds.setPosition(centerX-width/2,centerY-height/2);
+        this.centerX=centerX;
+        this.centerY=centerY;
+    }
 
 
     public float getRotation()

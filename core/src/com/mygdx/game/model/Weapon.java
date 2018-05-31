@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 
 public class Weapon extends GameObject {
-    private float centerX;
-    private float centerY;
+    //private float centerX;
+    //private float centerY;
     private float width;
     private float height;
     ArrayList<Ammo> ammos;
@@ -35,8 +35,8 @@ public class Weapon extends GameObject {
         cost=0;
         this.width=width;
         this.height=height;
-        centerX=x+width/2;
-        centerY=y+height/2;
+        //centerX=x+width/2;
+        //centerY=y+height/2;
         ammos=new ArrayList<Ammo>();
         counter=0;
 
@@ -50,7 +50,7 @@ public class Weapon extends GameObject {
     {
           if(ammos.size()!=0) {
               for(int i=0;i<ammos.size();i++){
-                  ammos.get(i).move();
+                  ammos.get(i).move(enemyShip);
 
                   if ((ammos.get(i).getX() > map.getWidth())||(ammos.get(i).getX() < 0)||(ammos.get(i).getY() > map.getHeight())||(ammos.get(i).getY() < 0)) {
                       ammos.remove(i);
@@ -125,7 +125,7 @@ public class Weapon extends GameObject {
         return ammo;
     }
 
-    public float getCenterX() {
+    /*public float getCenterX() {
         return centerX;
     }
 
@@ -138,6 +138,6 @@ public class Weapon extends GameObject {
         bounds.setPosition(centerX-width/2,centerY-height/2);
         this.centerX=centerX;
         this.centerY=centerY;
-    }
+    }*/
 
 }

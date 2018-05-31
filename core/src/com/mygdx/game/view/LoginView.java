@@ -58,7 +58,7 @@ public class LoginView implements Screen {
     Array<TextureAtlas.AtlasRegion> array;
     public static StarGen star;
     Boolean isRegistration=false;
-    int RegisterCounter=0;
+    int createResult;
     servApi request;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
 
@@ -95,7 +95,7 @@ public class LoginView implements Screen {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         request = retrofit.create(servApi.class);
-
+        createResult=-1;
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         array=new Array<TextureAtlas.AtlasRegion>();
@@ -229,12 +229,12 @@ public class LoginView implements Screen {
                             textFieldConfirm.getText().toString().equals(textFieldPass.getText().toString())
                             ) {
                         save();
-
-                        if (createPlayer() == 1) {
+                        createResult=createPlayer();
+                        if (createResult==1) {
                             player = new Player(textFieldLog.getText(), new Dakkar(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")), 0, 0));
                             game.setScreen(new MainMenu(batch, game, player));
                         }
-                        else if(createPlayer()==0)
+                        else if(createResult==0)
                         {
                             System.out.println("Игрок с таким именем уже существует");
                             MakeToastExist=true;
@@ -244,6 +244,7 @@ public class LoginView implements Screen {
                             System.out.println("Не удалось подключится к серверу");
                             MakeToastConnetion=true;
                         }
+                        createResult=-1;
                     }
                     else {MakeToast=true;
                     }

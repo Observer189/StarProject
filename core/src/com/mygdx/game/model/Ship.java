@@ -255,4 +255,14 @@ public void nullify()
     public boolean equals(Object o) {
         return getName().equals(o.toString());
     }
+
+    @Override
+    public void setPosition(float x, float y) {
+        super.setPosition(x, y);
+        for(int i=0;i<fixingPoints.length;i++)
+        {
+            fixingPoints[i].setPosition(x+getWidth()/2+fixingPoints[i].offsetX,y+getHeight()/2+fixingPoints[i].offsetY);
+
+        }
+    }
 }

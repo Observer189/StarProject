@@ -18,7 +18,7 @@ import retrofit2.http.Query;
 public interface servApi {
 
     @GET("battle")
-    Call<BattleStatus> getBattleNumber(@Query("name")String name,@Query("shipName") String shipName,@Query("status") String status);
+    Call<BattleStatus> getBattleNumber(@Query("name")String name,@Query("shipName") String shipName,@Query("status") String status,@Query("requestTime") long requestTime);
 
     @POST("battle/{battleNumber}")
     Call<Coord> get(@Path("battleNumber") Integer number,@Query("name")String name,@Query("enemyName")String enemyName,@Query("x") Float x, @Query("y") Float y,@Query("rotation") Float rotation);

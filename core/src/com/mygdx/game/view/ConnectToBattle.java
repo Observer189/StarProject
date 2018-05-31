@@ -149,7 +149,7 @@ public class ConnectToBattle implements Screen {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-        Call<BattleStatus> call = request.getBattleNumber(player.getName(),player.getCurrentShip().getName(),battleStatus.getStatus());
+        Call<BattleStatus> call = request.getBattleNumber(player.getName(),player.getCurrentShip().getName(),battleStatus.getStatus(),System.currentTimeMillis());
         call.enqueue(new Callback<BattleStatus>() {
             @Override
             public void onResponse(Call<BattleStatus> call, Response<BattleStatus> response) {

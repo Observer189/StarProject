@@ -12,6 +12,8 @@ public class FixingPoint  {//Точка крепления оружия
     float y;
     float offsetX;
     float offsetY;
+    float shipWidth;
+    float shipHeight;
     private float lastShipX;
     private float lastShipY;
     double weaponX;
@@ -40,6 +42,8 @@ public class FixingPoint  {//Точка крепления оружия
         this.y=y+shipHeight/2+offsetY;
         this.offsetX=offsetX;
         this.offsetY=offsetY;
+        this.shipWidth=shipWidth;
+        this.shipHeight=shipHeight;
         this.weapon=weapon;
         this.weapon.setCenter(x+shipWidth/2+offsetX,y+shipHeight/2+offsetY);
         lastShipX=x;
@@ -51,7 +55,7 @@ public class FixingPoint  {//Точка крепления оружия
     public void update(Ship playerShip, Ship enemyShip, Map map)
     {
 
-        System.out.println(playerShip.getWidth()+"!!!"+playerShip.getHeight());
+        //System.out.println(playerShip.getWidth()+"!!!"+playerShip.getHeight());
 
         weaponX=playerShip.getX()-lastShipX+weapon.getCenterX();
         weaponY=playerShip.getY()-lastShipY+weapon.getCenterY();
@@ -70,6 +74,7 @@ public class FixingPoint  {//Точка крепления оружия
         this.weapon.setCenter((float)((weaponX-shipOriginX)*Math.cos(angle)-(weaponY-shipOriginY)*Math.sin(angle)+shipOriginX),
                 (float)((weaponX-shipOriginX)*Math.sin(angle)+(weaponY-shipOriginY)*Math.cos(angle)+shipOriginY));
         this.weapon.update(playerShip,enemyShip,map);
+
     }
     public void shot()
     {
@@ -79,6 +84,7 @@ public class FixingPoint  {//Точка крепления оружия
 
 
     public void draw(SpriteBatch batch) {
+        if(weapon!=null)
         weapon.draw(batch);
 
 
@@ -104,6 +110,15 @@ public class FixingPoint  {//Точка крепления оружия
 
     public Weapon getWeapon() {
         return weapon;
+    }
+
+   public void setPosition(float x, float y)
+    {
+        this.x=x;
+        this.y=y;
+        this.weapon.setCenter(x+shipWidth/2+offsetX,y+shipHeight/2+offsetY);
+        lastShipX=x-shipWidth/2-offsetX;
+        lastShipY=y-shipHeight/2-offsetY;
     }
 }
 

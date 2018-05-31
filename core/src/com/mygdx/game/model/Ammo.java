@@ -9,8 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Ammo extends GameObject
 {
-    private float centerX;
-    private float centerY;
+
     private float width;
     private float height;
 
@@ -18,7 +17,7 @@ public class Ammo extends GameObject
     private float damage;
     private TextureRegion textureRegion;
 
-    private float rotation;
+
     /*public Ammo(TextureRegion textureRegion, float x, float y, float width, float height, float speed, float damage) {
         super(textureRegion, x, y, width, height);
         this.speed=speed;
@@ -32,10 +31,9 @@ public class Ammo extends GameObject
         this.damage=damage;
         this.width=width;
         this.height=height;
-        centerX=x+width/2;
-        centerY=y+height/2;
+
         this.textureRegion=textureRegion;
-        this.rotation=rotation;
+
 
         setRotation(rotation);
 
@@ -47,11 +45,11 @@ public class Ammo extends GameObject
         damage=ammo.damage;
         textureRegion=ammo.getTextureRegion();
     }
-    public void move()
+    public void move(Ship enemyShip)
     {
 
-        bounds.setPosition(bounds.getX() - (float)(speed*Math.sin(Math.toRadians(rotation))), bounds.getY()+(float) (speed*Math.cos(Math.toRadians(rotation))));
-
+        bounds.setPosition(bounds.getX() - (float)(speed*Math.sin(Math.toRadians(getRotation()))), bounds.getY()+(float) (speed*Math.cos(Math.toRadians(getRotation()))));
+        System.out.println(getRotation());
     }
 
     public float getSpeed() {
@@ -67,20 +65,8 @@ public class Ammo extends GameObject
         super.draw(batch);
 
     }
-    public float getCenterX() {
-        return centerX;
-    }
 
-    public float getCenterY() {
-        return centerY;
-    }
 
-    public void setCenter(float centerX,float centerY)
-    {
-        bounds.setPosition(centerX-width/2,centerY-height/2);
-        this.centerX=centerX;
-        this.centerY=centerY;
-    }
 
 
 
