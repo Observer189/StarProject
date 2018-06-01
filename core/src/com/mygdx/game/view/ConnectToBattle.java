@@ -54,15 +54,15 @@ public class ConnectToBattle implements Screen {
         this.batch = batch;
         this.game = game;
         this.textureAtlas = textureAtlas;
-        //this.player=player;
+        this.player=player;
 
 
     }
     @Override
     public void show() {
 
-        player = new Player("player", new Rock(textureAtlas,0,0));
-        player.generateName();
+        //player = new Player("player", new Rock(textureAtlas,0,0));
+        //player.generateName();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())

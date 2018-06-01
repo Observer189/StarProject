@@ -14,6 +14,8 @@ public class RocketLauncher extends Weapon {
     String name;
     TextureAtlas textureAtlas;
     int counter;
+    int recomendedw=149;
+    int recomendedh=200;
 
     private float attackSpeed;
     public RocketLauncher(TextureAtlas textureAtlas, float x, float y) {
@@ -66,6 +68,15 @@ public class RocketLauncher extends Weapon {
     @Override
     public String toString() {
         return getName();
+    }
+    @Override
+    public int getRecomendedw() {
+        return recomendedw;
+    }
+
+    @Override
+    public int getRecomendedh() {
+        return recomendedh;
     }
 
 

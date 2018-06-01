@@ -118,6 +118,7 @@ public class FixingPoint  {//Точка крепления оружия
 
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
+        this.weapon.setCenter(centerX,centerY);
     }
 
     public Weapon getWeapon() {
@@ -158,6 +159,14 @@ public class FixingPoint  {//Точка крепления оружия
 
     public float getCenterX() {
         return centerX;
+    }
+
+    public float getOffsetY() {
+        return offsetY;
+    }
+
+    public float getOffsetX() {
+        return offsetX;
     }
 }
 

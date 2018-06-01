@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.ServModels.ServPlayer;
 import com.mygdx.game.model.Ships.Dashing;
+import com.mygdx.game.model.Weapons.Machinegun;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,7 @@ public class Player {
         currentShip=new Dashing(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")),0,0);
 
         resources.shipList.add(currentShip);
+        resources.weaponList.add(new Machinegun(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")),0,0));
     }
        public void generateName()
     {

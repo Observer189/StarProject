@@ -24,6 +24,8 @@ public class Weapon extends GameObject {
     String name;
     Ammo ammo;
     int cost;
+    int recomendedw=100;
+    int recomendedh=200;
 
 
     private float attackSpeed;
@@ -139,5 +141,16 @@ public class Weapon extends GameObject {
         this.centerX=centerX;
         this.centerY=centerY;
     }*/
+    public String getRealName(){
+        if (getName().equals("BlueLaser")) return "BlueImpulseLaser";
+        else return getName();
+    }
 
+    public int getRecomendedh() {
+        return recomendedh;
+    }
+
+    public int getRecomendedw() {
+        return recomendedw;
+    }
 }
