@@ -48,6 +48,7 @@ public class MainMenu implements Screen {
     String first;
     public Music music;
     OrthographicCamera camera = new OrthographicCamera();
+    AngarView angar2;
 
     public MainMenu(SpriteBatch batch, Game game,Player player) {
         this.batch = batch;
@@ -72,6 +73,7 @@ public class MainMenu implements Screen {
         PreShop=new PreShop(game,batch,textureAtlas,this,player);
 
         angar=new Angar(game,batch,this,player);
+        angar2=new AngarView(game,batch,this,player);
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         font=textManager.fontInitialize(Color.BLACK,1f);
         //game.setScreen(battle);
@@ -124,7 +126,7 @@ public class MainMenu implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 ForLogCounter++;
                 DisableBtn(true);
-                 game.setScreen(angar);
+                 game.setScreen(angar2);
 
 
 

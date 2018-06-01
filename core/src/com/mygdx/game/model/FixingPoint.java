@@ -159,6 +159,14 @@ public class FixingPoint  {//Точка крепления оружия
     public float getCenterX() {
         return centerX;
     }
+
+    public float getOffsetY() {
+        return offsetY;
+    }
+
+    public float getOffsetX() {
+        return offsetX;
+    }
 }
 
 
