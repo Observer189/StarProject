@@ -16,6 +16,8 @@ public class Shotgun extends Weapon {
     private int fractionNumber;
     TextureAtlas textureAtlas;
     int counter;
+    int recomendedw=149;
+    int recomendedh=200;
 
     private float attackSpeed;
     public Shotgun(TextureAtlas textureAtlas, float x, float y) {
@@ -64,6 +66,15 @@ public class Shotgun extends Weapon {
     @Override
     public String toString() {
         return getName();
+    }
+    @Override
+    public int getRecomendedw() {
+        return recomendedw;
+    }
+
+    @Override
+    public int getRecomendedh() {
+        return recomendedh;
     }
 
 }

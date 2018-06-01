@@ -15,6 +15,8 @@ public class BlueImpulseLaser extends Weapon {
     String name;
     TextureAtlas textureAtlas;
     int counter;
+    int recomendedw=63;
+    int recomendedh=200;
 
     private float attackSpeed;
     public BlueImpulseLaser(TextureAtlas textureAtlas, float x, float y) {
@@ -67,6 +69,15 @@ public class BlueImpulseLaser extends Weapon {
     @Override
     public String toString() {
         return getName();
+    }
+    @Override
+    public int getRecomendedw() {
+        return recomendedw;
+    }
+
+    @Override
+    public int getRecomendedh() {
+        return recomendedh;
     }
 
 
