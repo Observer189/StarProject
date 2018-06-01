@@ -20,7 +20,7 @@ public class Mite extends Ship {
     }
     public Mite(TextureAtlas textureAtlas, float x, float y,FixingPoint[] fixingPoints)
     {
-        super(textureAtlas.findRegion("Mite"),x,y,10,10,"Mite",75000,520,15f,30,fixingPoints);
+        super(textureAtlas.findRegion("Mite"),x,y,10,10,"Mite",75000,520,15f,30,2.5f,fixingPoints);
 
 
     }

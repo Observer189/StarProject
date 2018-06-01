@@ -25,6 +25,7 @@ public class Ship extends GameObject {
     private float speedY;
     private float velocity;
     private float maxSpeed;
+    private float rotationSpeed;
     private int rotationDirection;//-1-влево 1-вправо 0-без вращения
 
 
@@ -38,7 +39,8 @@ public class Ship extends GameObject {
     Vector2 movementVector;
     FixingPoint[] fixingPoints;
 
-    public Ship(TextureRegion textureRegion, float x, float y, float width, float height, String name, int cost, float maxHp, float velocity, float maxSpeed, FixingPoint[] fixingPoints) {
+    public Ship(TextureRegion textureRegion, float x, float y, float width, float height, String name,
+                int cost, float maxHp, float velocity, float maxSpeed,float rotationSpeed, FixingPoint[] fixingPoints) {
         super(textureRegion, x, y, width, height);
 
         this.cost = cost;
@@ -47,6 +49,7 @@ public class Ship extends GameObject {
         this.velocity = velocity;
         this.maxSpeed = maxSpeed;
         this.name = name;
+        this.rotationSpeed=rotationSpeed;
         isShipInRedZone = false;
         isAlive=true;
 
@@ -136,8 +139,8 @@ public class Ship extends GameObject {
             if ((bounds.getX() > 0 + map.getWidth() * 0.95) || (bounds.getX() < 0 + map.getWidth() * 0.05) || (bounds.getY() > 0 + map.getHeight() * 0.95) || (bounds.getY() < 0 + map.getHeight() * 0.05)) {
                 currentHp = 0;
             }
-            if(rotationDirection==-1) bounds.rotate(1);
-            if(rotationDirection==1) bounds.rotate(-1);
+            if(rotationDirection==-1) bounds.rotate(rotationSpeed);
+            if(rotationDirection==1) bounds.rotate(-rotationSpeed);
 
         }
 
@@ -238,6 +241,10 @@ public void nullify()
 
     public int getRotationDirection() {
         return rotationDirection;
+    }
+
+    public float getRotationSpeed() {
+        return rotationSpeed;
     }
 
     public int getFixingPointsDigit(){return fixingPoints.length;}

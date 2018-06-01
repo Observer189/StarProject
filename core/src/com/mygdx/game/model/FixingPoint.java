@@ -77,9 +77,9 @@ public class FixingPoint  {//Точка крепления оружия
         lastShipY=playerShip.getY();
         //angle=Math.toRadians(playerShip.getRotation());
         if(playerShip.getRotationDirection()==1)
-            angle=Math.toRadians(-1);
+            angle=Math.toRadians(-playerShip.getRotationSpeed());
         else if(playerShip.getRotationDirection()==-1)
-            angle=Math.toRadians(1);
+            angle=Math.toRadians(playerShip.getRotationSpeed());
         else
             angle=Math.toRadians(0);
         this.weapon.setRotation(playerShip.getRotation());

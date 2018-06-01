@@ -45,17 +45,36 @@ public class Rocket extends Ammo {
         angle=(float)(Math.toDegrees(Math.atan2(getCenterY()-enemyShip.getCenterY(),getCenterX()-enemyShip.getCenterX())));
         angle = (angle < 0) ? angle + 360 : angle;
         angle = (angle < 270) ? angle + 90 : angle+90-360;
-        internalArcLength= (angle < 180) ? angle : 360-angle;
-        internalArcLength+=(getRotation() < 180) ? getRotation() : 360-getRotation();
+
         externalArcLength=Math.abs(angle-getRotation());
-        if(internalArcLength>externalArcLength)
-        {
-           setRotation(getRotation()+1);
+        internalArcLength=360-externalArcLength;
+        if(angle>getRotation()) {
+            if (internalArcLength > externalArcLength) {
+                if (getRotation() == 360)
+                    setRotation(0);
+                setRotation(getRotation() + 1f);
+                System.out.println("Turn +");
+            } else if (internalArcLength < externalArcLength) {
+                if (getRotation() == 0)
+                    setRotation(360);
+                setRotation(getRotation() - 1f);
+                System.out.println("Turn -");
+            }
         }
-        else if(internalArcLength>externalArcLength)
-        {
-            setRotation(getRotation()-1);
+        else if(angle<getRotation()) {
+            if (internalArcLength < externalArcLength) {
+                if (getRotation() == 360)
+                    setRotation(0);
+                setRotation(getRotation() + 1f);
+                System.out.println("Turn +");
+            } else if (internalArcLength > externalArcLength) {
+                if (getRotation() == 0)
+                    setRotation(360);
+                setRotation(getRotation() - 1f);
+                System.out.println("Turn -");
+            }
         }
+        System.out.println("Angle:"+angle+" "+"Rotation:"+getRotation());
         System.out.println(internalArcLength+" "+externalArcLength);
 
 

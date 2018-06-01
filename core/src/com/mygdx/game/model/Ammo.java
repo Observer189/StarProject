@@ -49,7 +49,7 @@ public class Ammo extends GameObject
     {
 
         bounds.setPosition(bounds.getX() - (float)(speed*Math.sin(Math.toRadians(getRotation()))), bounds.getY()+(float) (speed*Math.cos(Math.toRadians(getRotation()))));
-        System.out.println(getRotation());
+
     }
 
     public float getSpeed() {
