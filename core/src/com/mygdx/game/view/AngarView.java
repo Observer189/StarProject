@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -18,7 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.model.Player;
-import com.mygdx.game.model.Ship;
 import com.mygdx.game.model.Weapon;
 import com.mygdx.game.utils.TextManager;
 
@@ -34,11 +32,11 @@ public class AngarView implements Screen {
     TextManager textManager;
     BitmapFont font;
     OrthographicCamera camera;
-    Stage stage=new Stage();
-    StageForButton leftbtn,rightbtn,Back;
-    Ship firstShip;
+    Stage stage;
+    StageForButton leftbtn,rightbtn,Back,downbt,upbt;
+
     Image shipIMG,gunIMG,FrameIMG;
-    TextureRegion background;
+    TextureRegion background,bachfround2;
     int counter=0;
     Image img[]=new Image[5];
     float xX= (float) 2.3;
@@ -46,6 +44,7 @@ public class AngarView implements Screen {
      Boolean infoShow=true;
      HugeDraw aLotOfGuns;
      Stage stageTubes=new Stage();
+     int counterOfCells=1;
 
 
     public AngarView(Game game, SpriteBatch batch, MainMenu menu, Player player){
@@ -66,9 +65,10 @@ public class AngarView implements Screen {
         skin=new Skin();
         textureAtlas=new TextureAtlas(Gdx.files.internal("TexturePack.atlas"));
         skin.addRegions(textureAtlas);
-        firstShip=player.getCurrentShip();
+        stage=new Stage();
 
         background=skin.getRegion("AngarGround");
+        bachfround2=skin.getRegion("AngarGround2");
 
         final InputMultiplexer in =new InputMultiplexer();
 
@@ -76,7 +76,7 @@ public class AngarView implements Screen {
         shipIMG.setSize(shipIMG.getWidth()*2,shipIMG.getHeight()*2);
 
         shipIMG.setPosition(0+150+shipIMG.getWidth()/2,Gdx.graphics.getHeight()/2-shipIMG.getHeight()/2);
-        player.getCurrentShip().setPosition(shipIMG.getX(),shipIMG.getY());
+       // player.getCurrentShip().setPosition(shipIMG.getX(),shipIMG.getY());
         String realname=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
         gunIMG=new Image(skin.getDrawable(realname));
         gunIMG.setPosition(shipIMG.getX()+shipIMG.getWidth()+20,shipIMG.getY());
@@ -151,6 +151,44 @@ System.out.println("FirstY: "+player.getCurrentShip().getFixingPoints()[0].getOf
                 else System.out.println("HAHA");
             }
         });
+        Button.ButtonStyle down=new Button.ButtonStyle();
+        down.up=skin.getDrawable("Prev-up");
+        down.down=skin.getDrawable("Prev-down");
+        downbt=new StageForButton(down,850,1,150,150);
+        downbt.btn.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (counterOfCells == player.resources.weaponList.size()-1)
+                  downbt.btn.setDisabled(true);
+                else {
+                    aLotOfGuns.MoveThis(2);
+                    counterOfCells++;
+                }
+
+
+
+            }
+        });
+
+        Button.ButtonStyle up=new Button.ButtonStyle();
+       up.up=skin.getDrawable("Go-up");
+        up.down=skin.getDrawable("Go-down");
+        upbt=new StageForButton(up,850,Gdx.graphics.getHeight()-150,150,150);
+        upbt.btn.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+               // /if (counterOfCells)
+
+                if (counterOfCells == 1)
+                    upbt.btn.setDisabled(true);
+                else {
+                    aLotOfGuns.MoveThis(-489310);
+                    counterOfCells--;
+                }
+
+
+            }
+        });
 
         Button.ButtonStyle BaStyle = new Button.ButtonStyle();
         BaStyle.up = skin.getDrawable("Back-up");
@@ -207,6 +245,9 @@ System.out.println("FirstY: "+player.getCurrentShip().getFixingPoints()[0].getOf
         in.addProcessor(leftbtn);
         in.addProcessor(stage);
         in.addProcessor(Back);
+        in.addProcessor(upbt);
+        in.addProcessor(downbt);
+
 
 
         Gdx.input.setInputProcessor(in);
@@ -225,13 +266,22 @@ System.out.println("FirstY: "+player.getCurrentShip().getFixingPoints()[0].getOf
             stageTubes.act(delta);
             stageTubes.draw();
             textManager.displayMessage(batch, font, "HP: " + player.getCurrentShip().getMaxHp(), (float) (img[0].getX() * 1.053), (float) (img[0].getY() + img[0].getHeight() * 4.3));
-            textManager.displayMessage(batch, font, "Speed: " + player.getCurrentShip().getMaxHp(), (float) (img[3].getX() * 1.053), img[3].getY() - img[3].getHeight() / (2 * yY));
-            textManager.displayMessage(batch, font, "Velocity: " + player.getCurrentShip().getMaxHp(), (float) (img[2].getX() * 1.053), img[2].getY() - img[2].getHeight() / (2 * yY));
-            textManager.displayMessage(batch, font, "DMG: " + player.getCurrentShip().getMaxHp(), (float) (img[1].getX() * 1.053), img[1].getY() - img[1].getHeight() / (2 * yY));
-            textManager.displayMessage(batch, font, "Attack Speed: " + player.getCurrentShip().getMaxHp(), (float) (img[4].getX() * 1.053), img[4].getY() - img[4].getHeight() / (2 * yY));
+            textManager.displayMessage(batch, font, "Speed: " + player.getCurrentShip().getMaxSpeed(), (float) (img[3].getX() * 1.053), img[3].getY() - img[3].getHeight() / (2 * yY));
+            textManager.displayMessage(batch, font, "Velocity: " + player.getCurrentShip().getVelocity(), (float) (img[2].getX() * 1.053), img[2].getY() - img[2].getHeight() / (2 * yY));
+            textManager.displayMessage(batch, font, "DMG: " + player.getCurrentShip().getFixingPoints()[0].getWeapon().getAmmo().getDamage(), (float) (img[1].getX() * 1.053), img[1].getY() - img[1].getHeight() / (2 * yY));
+            textManager.displayMessage(batch, font, "Attack Speed: " + player.getCurrentShip().getFixingPoints()[0].getWeapon().getAttackSpeed(), (float) (img[4].getX() * 1.053), img[4].getY() - img[4].getHeight() / (2 * yY));
+
         } else {
             aLotOfGuns.act(delta);
             aLotOfGuns.draw();
+            batch.begin();
+            batch.draw(bachfround2,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+            batch.end();
+
+            downbt.act(delta);
+            downbt.draw();
+            upbt.act(delta);
+            upbt.draw();
         }
 
       rightbtn.act(delta);
@@ -267,6 +317,11 @@ System.out.println("FirstY: "+player.getCurrentShip().getFixingPoints()[0].getOf
 
     @Override
     public void dispose() {
+        stage.dispose();
+        stageTubes.dispose();
+        batch.dispose();
+        game.dispose();
+
 
     }
     class StageForButton extends Stage {
@@ -292,8 +347,8 @@ System.out.println("FirstY: "+player.getCurrentShip().getFixingPoints()[0].getOf
         float truewidth=shipIMG.getWidth();
         float trueheight=shipIMG.getHeight();
         float x;
-        float y= (float) (img[0].getY() + img[0].getHeight() * 4.3);
-        float deltaY=15;
+        float y=  (float) (img[0].getY() + img[0].getHeight() * 4.3);
+        float deltaY=215;
         ArrayList<Weapon> list;
         float width=100;
         float height=100;
@@ -305,11 +360,11 @@ System.out.println("FirstY: "+player.getCurrentShip().getFixingPoints()[0].getOf
             if (list.size()>0){
              onegun=new Image(skin.getDrawable(list.get(0).getRealName()));
                 onegun.setSize(list.get(0).getRecomendedw(),list.get(0).getRecomendedh());
-                onegun.setPosition(x,y);
+                onegun.setPosition(x,y-deltaY);
                 onegun.addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
-                        for (int i=0;i<player.resources.weaponList.size();i++){
+                        for (int i=0;i<player.getCurrentShip().getFixingPoints().length;i++){
                     player.getCurrentShip().getFixingPoints()[i].setWeapon(list.get(0));}
                         String name=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
                         gunIMG.setDrawable(skin.getDrawable(name));
@@ -318,7 +373,7 @@ System.out.println("FirstY: "+player.getCurrentShip().getFixingPoints()[0].getOf
                     //    gunIMG.setSize(truewidth,trueheight);
                   //  x=Gdx.graphics.getWidth()*2;
                     infoShow=true;
-                    System.out.println("CHECK:"+infoShow);
+
                 }
 
                 });
@@ -329,25 +384,62 @@ System.out.println("FirstY: "+player.getCurrentShip().getFixingPoints()[0].getOf
             if (list.size()>1){
                 onegun1=new Image(skin.getDrawable(list.get(1).getRealName()));
                 onegun1.setSize(list.get(1).getRecomendedw(),list.get(1).getRecomendedh());
-                onegun1.setPosition(x,y);
+                onegun1.setPosition(x,onegun.getY()-deltaY);
                 onegun1.addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
-                        for (int i=0;i<player.resources.weaponList.size();i++){
+                        for (int i=0;i<player.getCurrentShip().getFixingPoints().length;i++){
                             player.getCurrentShip().getFixingPoints()[i].setWeapon(list.get(1));}
                             String name=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
                         gunIMG.setDrawable(skin.getDrawable(name));
-                        gunIMG.setSize(player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedw(),player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedh());
+                        gunIMG.setSize(player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedw()/2,player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedh()/2);
                         gunIMG.setPosition(FrameIMG.getX()+FrameIMG.getWidth()/2-gunIMG.getWidth()/2,FrameIMG.getY()+10);
                         //    gunIMG.setSize(truewidth,trueheight);
                         //  x=Gdx.graphics.getWidth()*2;
                         infoShow=true;
-                        System.out.println("CHECK:"+infoShow);
+
                     }
 
                 });
                 addActor(onegun1);
 
+            }
+            if (list.size()>2){
+                onegun2=new Image(skin.getDrawable(list.get(2).getRealName()));
+                onegun2.setSize(list.get(2).getRecomendedw(),list.get(2).getRecomendedh());
+                onegun2.setPosition(x,onegun1.getY()-deltaY);
+                onegun2.addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        for (int i=0;i<player.getCurrentShip().getFixingPoints().length;i++){
+                            player.getCurrentShip().getFixingPoints()[i].setWeapon(list.get(1));}
+                        String name=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
+                        gunIMG.setDrawable(skin.getDrawable(name));
+                        gunIMG.setSize(player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedw()/2,player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedh()/2);
+                        gunIMG.setPosition(FrameIMG.getX()+FrameIMG.getWidth()/2-gunIMG.getWidth()/2,FrameIMG.getY()+10);
+                        //    gunIMG.setSize(truewidth,trueheight);
+                        //  x=Gdx.graphics.getWidth()*2;
+                        infoShow=true;
+
+                    }
+
+                });
+                addActor(onegun2);
+
+            }
+        }
+        public void MoveThis(int dir){
+            if (dir>0){
+                if (list.size()>0){onegun.setY(onegun.getY()+deltaY);}
+                if (list.size()>1){onegun1.setY(onegun1.getY()+deltaY);}
+                if (list.size()>2){onegun2.setY(onegun2.getY()+deltaY);}
+                if (list.size()>3){onegun3.setY(onegun3.getY()+deltaY);}
+            }
+            else {
+                if (list.size()>0){onegun.setY(onegun.getY()-deltaY);}
+                if (list.size()>1){onegun1.setY(onegun1.getY()-deltaY);}
+                if (list.size()>2){onegun2.setY(onegun2.getY()-deltaY);}
+                if (list.size()>3){onegun3.setY(onegun3.getY()-deltaY);}
             }
         }
 
