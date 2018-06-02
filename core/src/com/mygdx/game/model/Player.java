@@ -16,6 +16,7 @@ public class Player {
     private String name;
     public Resources resources;
     private Ship currentShip;
+    private TextureAtlas textureAtlas;
     public Player()
     {
 
@@ -36,10 +37,15 @@ public class Player {
         name=servPlayer.getName();
         resources=new Resources();
         setMoney(servPlayer.getMoney());
-        currentShip=new Dashing(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")),0,0);
+        textureAtlas=new TextureAtlas(Gdx.files.internal("TexturePack.atlas"));
+        currentShip=new Dashing(textureAtlas,0,0);
 
         resources.shipList.add(currentShip);
-        resources.weaponList.add(new Machinegun(new TextureAtlas(Gdx.files.internal("TexturePack.atlas")),0,0));
+        resources.weaponList.add(new Machinegun(textureAtlas,0,0));
+        for(int i=0;i<currentShip.fixingPoints.length;i++)
+        {
+            currentShip.fixingPoints[i].setWeapon(new Machinegun(textureAtlas,200,200));
+        }
     }
        public void generateName()
     {

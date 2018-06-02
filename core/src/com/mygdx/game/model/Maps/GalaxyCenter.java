@@ -10,6 +10,6 @@ import com.mygdx.game.model.Map;
 
 public class GalaxyCenter extends Map {
     public GalaxyCenter(SpriteBatch batch, TextureAtlas textureAtlas) {
-        super(batch, textureAtlas.findRegion("GalaxyCenter"), 1200, 800);
+        super(batch, textureAtlas.findRegion("GalaxyCenter"), 1000, 600);
     }
 }

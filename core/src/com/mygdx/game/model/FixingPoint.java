@@ -43,6 +43,25 @@ public class FixingPoint  {//Точка крепления оружия
         this.weapon.bounds.setPosition(x,y);
 
     }
+    public FixingPoint( float x, float y,float shipWidth,float shipHeight,float offsetX,float offsetY) {
+
+        this.centerX=x+shipWidth/2+offsetX;
+        this.centerY=y+shipHeight/2+offsetY;
+
+        this.width=10;
+        this.height=10;
+        this.x=centerX-width/2;
+        this.y=centerY-height/2;
+        this.offsetX=offsetX;
+        this.offsetY=offsetY;
+        this.shipWidth=shipWidth;
+        this.shipHeight=shipHeight;
+
+        lastShipX=x;
+        lastShipY=y;
+        //System.out.println(shipWidth+"!!!"+shipHeight);
+        //this.weapon.bounds.setOrigin(0,0);
+    }
     public FixingPoint( float x, float y,float shipWidth,float shipHeight,float offsetX,float offsetY,Weapon weapon) {
 
         this.centerX=x+shipWidth/2+offsetX;
@@ -125,16 +144,15 @@ public class FixingPoint  {//Точка крепления оружия
         return weapon;
     }
 
-   public void setPosition(float x, float y)
+   public void setPosition(Ship playerShip)
     {
 
-        this.centerX=x+shipWidth/2+offsetX;
-        this.centerY=y+shipHeight/2+offsetY;
-        this.x=centerX-width/2;
-        this.y=centerY-height/2;
-        this.weapon.setCenter(this.centerX,this.centerY);
-        lastShipX=x;
-        lastShipY=y;
+        this.centerX=playerShip.getX()+shipWidth/2+offsetX;
+        this.centerY=playerShip.getY()+shipHeight/2+offsetY;
+        setCenter(centerX,centerY);
+
+        lastShipX=playerShip.getX();
+        lastShipY=playerShip.getY();
     }
     public void setCenter(float centerX,float centerY)
     {
@@ -144,6 +162,7 @@ public class FixingPoint  {//Точка крепления оружия
         y=centerY-height/2;
         weapon.setCenter(centerX,centerY);
     }
+
 
     public float getX() {
         return x;

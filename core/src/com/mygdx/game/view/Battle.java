@@ -19,6 +19,7 @@ import com.mygdx.game.model.BattleStatus;
 import com.mygdx.game.model.Coord;
 import com.mygdx.game.model.Map;
 import com.mygdx.game.model.Maps.ClassicSpace;
+import com.mygdx.game.model.MiniMap;
 import com.mygdx.game.model.Player;
 
 import com.mygdx.game.model.ProgressBar;
@@ -70,6 +71,7 @@ public class Battle implements Screen {
     ButtonForProcessor turnLeft;
     ButtonForProcessor turnRight;
     ProgressBar hpBar;
+    MiniMap miniMap;
 
     boolean getCoordIsFinished;
     final public float AspectRatio;
@@ -133,6 +135,7 @@ public class Battle implements Screen {
         turnLeft=new ButtonForProcessor(batch,camX+widthCamera/5,camY,20,20,textureAtlas.findRegion("TurnLeft"));
         turnRight=new ButtonForProcessor(batch,camX+widthCamera/5+30,camY,20,20,textureAtlas.findRegion("TurnRight"));
         hpBar=new ProgressBar(batch,textureAtlas.findRegion("HProgressBar"),textureAtlas.findRegion("HPLine"),camX-widthCamera*0.45f,camY+heightCamera*0.45f,widthCamera*0.3f,heightCamera*0.05f,player.getCurrentShip().getMaxHp());
+        miniMap=new MiniMap(batch,textureAtlas,camX-widthCamera*0.1f,camY+heightCamera*0.3f,widthCamera*0.6f,heightCamera*0.2f,player.getCurrentShip(),enemy.getCurrentShip(),classicMap);
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         redFont=textManager.fontInitialize(Color.RED,0.1f);
         Retrofit retrofit = new Retrofit.Builder()
@@ -178,6 +181,10 @@ public class Battle implements Screen {
         hpBar.setX(camX-widthCamera*0.45f);
         hpBar.setY(camY+heightCamera*0.45f);
         ///////////////////////////////////
+        //Обновление позиции миникарты
+        miniMap.setX(camX-widthCamera*0.1f);
+        miniMap.setY(camY+heightCamera*0.3f);
+        //////////////////////////////////////
         camera.update();
         //System.out.println("x="+coord.getX()+"y="+coord.getY());
 
@@ -187,13 +194,7 @@ public class Battle implements Screen {
         //Отрисовка карты
         classicMap.draw();
         ////////////////////////////////////
-        //Отрисовка кнопок вращения
-        turnLeft.draw();
-        turnRight.draw();
-        ////////////////////////////////////
-        //Отрисовка прогресс бара
-        hpBar.draw(player.getCurrentShip().getCurrentHp());
-        /////////////////////////////////////
+
         //Логика движения игроков
         player.getCurrentShip().act(enemy.getCurrentShip(),classicMap,joystick.getVector());
         enemy.getCurrentShip().act(player.getCurrentShip(),classicMap,new Vector2(0,0));
@@ -203,6 +204,16 @@ public class Battle implements Screen {
         player.getCurrentShip().draw(batch,textureAtlas);
         enemy.getCurrentShip().draw(batch,textureAtlas);
          //////////////////////////////////////
+        //Отрисовка кнопок вращения
+        turnLeft.draw();
+        turnRight.draw();
+        ////////////////////////////////////
+        //Отрисовка прогресс бара
+        hpBar.draw(player.getCurrentShip().getCurrentHp());
+        /////////////////////////////////////
+        //Отрисовка миникарты
+        miniMap.draw(player.getCurrentShip(),enemy.getCurrentShip());
+        /////////////////////////////////////////////////////////////
 
         //Логика столкновения игроков
         if(Intersector.overlapConvexPolygons(player.getCurrentShip().getBounds(), enemy.getCurrentShip().getBounds()))
