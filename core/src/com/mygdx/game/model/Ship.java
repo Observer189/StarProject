@@ -280,12 +280,13 @@ public void nullify()
     }
     public ServShip toServ()
     {
-        ServFixingPoint[] servFixingPoints =new ServFixingPoint[fixingPoints.length];
+        /*ServFixingPoint[] servFixingPoints =new ServFixingPoint[fixingPoints.length];
         for(int i=0;i<fixingPoints.length;i++)
         {
             servFixingPoints[i]=fixingPoints[i].toServ();
-        }
-        return new ServShip(getName(),servFixingPoints);
+        }*/
+
+        return new ServShip(getName()/*,servFixingPoints*/);
     }
 
 }

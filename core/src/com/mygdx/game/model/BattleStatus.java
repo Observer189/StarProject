@@ -1,5 +1,7 @@
 package com.mygdx.game.model;
 
+import com.mygdx.game.ServModels.ServShip;
+
 /**
  * Created by Sash on 03.05.2018.
  */
@@ -8,19 +10,19 @@ public class BattleStatus { //класс необходимый для расп�
     Integer number;
     String status;
     String name;
-    String shipName;
+    ServShip ship;
     Integer queueSize;//размер очереди
     Integer positionNumber; //номер позиции игрока на карте
     public BattleStatus()
     {
 
     }
-    public BattleStatus(Integer number,Integer queueSize,String name,String shipName,String status,Integer positionNumber)
+    public BattleStatus(Integer number,Integer queueSize,String name,ServShip ship,String status,Integer positionNumber)
     {
         this.number=number;
         this.queueSize=queueSize;
         this.name=name;
-        this.shipName=shipName;
+        this.ship=ship;
         this.status=status;
         this.positionNumber=positionNumber;
     }
@@ -50,7 +52,7 @@ public class BattleStatus { //класс необходимый для расп�
         this.setStatus(battleStatus.getStatus());
         this.setQueueSize(battleStatus.getQueueSize());
         this.name=battleStatus.getName();
-        this.shipName=battleStatus.getShipName();
+        this.ship=battleStatus.getShip();
         this.setNumber(battleStatus.getNumber());
         this.setPositionNumber(battleStatus.getPositionNumber());
     }
@@ -79,11 +81,11 @@ public class BattleStatus { //класс необходимый для расп�
         this.name = name;
     }
 
-    public String getShipName() {
-        return shipName;
+    public void setShip(ServShip ship) {
+        this.ship = ship;
     }
 
-    public void setShipName(String shipName) {
-        this.shipName = shipName;
+    public ServShip getShip() {
+        return ship;
     }
 }
