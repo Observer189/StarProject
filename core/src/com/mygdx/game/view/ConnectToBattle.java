@@ -21,8 +21,6 @@ import com.mygdx.game.model.Ships.Rock;
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.TextManager;
 
-import java.io.IOException;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -109,7 +107,7 @@ public class ConnectToBattle implements Screen {
         if((battleStatus.getNumber()!=null)&&(battleStatus.getStatus().equals("ready"))&&(battleStatus.getShipName()!=null)) {
             System.out.println("CTB:"+battleStatus.getShipName());
 
-            Player enemy=new Player(battleStatus.getName(),setShipByName(battleStatus.getShipName()));
+            Player enemy=new Player(battleStatus.getName(), setShipByServ(battleStatus.getShipName()));
             game.setScreen(new Battle(batch, game, textureAtlas, battleStatus,player,enemy,mainMenu));
         }
     }
@@ -170,23 +168,25 @@ public class ConnectToBattle implements Screen {
             }
         });
     }
-    public Ship setShipByName(String name)
+    public Ship setShipByServ(String name)
     {
+        Ship shipFromServ;
         System.out.println("!"+name+"!");
         if(name.equals("Pulsate"))
-            return new Pulsate(textureAtlas, 0, 0);
+            shipFromServ = new Pulsate(textureAtlas, 0, 0);
         else if(name.equals("Dakkar"))
-            return new Dakkar(textureAtlas, 0, 0);
+            shipFromServ = new Dakkar(textureAtlas, 0, 0);
         else if(name.equals("Axe"))
-            return new Axe(textureAtlas, 0, 0);
+            shipFromServ = new Axe(textureAtlas, 0, 0);
         else if(name.equals("Dashing"))
-            return new Dashing(textureAtlas, 0, 0);
+            shipFromServ = new Dashing(textureAtlas, 0, 0);
         else if(name.equals("Rock"))
-            return new Rock(textureAtlas, 0, 0);
-        else
-        {
+            shipFromServ = new Rock(textureAtlas, 0, 0);
+        else {
             System.out.println("Ship is not exist");
             return null;
         }
+            return shipFromServ;
+
     }
 }

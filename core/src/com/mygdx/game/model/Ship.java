@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.mygdx.game.ServModels.ServFixingPoint;
+import com.mygdx.game.ServModels.ServShip;
 import com.mygdx.game.view.Battle;
 
 /**
@@ -61,6 +63,8 @@ public class Ship extends GameObject {
         appliedDamage=0;
         rotationDirection=0;
     }
+
+
 
     public FixingPoint[] getFixingPoints() {
         return fixingPoints;
@@ -271,5 +275,17 @@ public void nullify()
             fixingPoints[i].setPosition(this);
 
         }
+
+
     }
+    public ServShip toServ()
+    {
+        ServFixingPoint[] servFixingPoints =new ServFixingPoint[fixingPoints.length];
+        for(int i=0;i<fixingPoints.length;i++)
+        {
+            servFixingPoints[i]=fixingPoints[i].toServ();
+        }
+        return new ServShip(getName(),servFixingPoints);
+    }
+
 }

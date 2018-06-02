@@ -1,6 +1,12 @@
 package com.mygdx.game.model;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.mygdx.game.ServModels.ServFixingPoint;
+import com.mygdx.game.model.Weapons.BlueImpulseLaser;
+import com.mygdx.game.model.Weapons.Machinegun;
+import com.mygdx.game.model.Weapons.RocketLauncher;
+import com.mygdx.game.model.Weapons.Shotgun;
 
 /**
  * Created by Sash on 10.05.2018.
@@ -82,6 +88,7 @@ public class FixingPoint  {//Точка крепления оружия
         //System.out.println(shipWidth+"!!!"+shipHeight);
         //this.weapon.bounds.setOrigin(0,0);
     }
+
 
     public void update(Ship playerShip, Ship enemyShip, Map map)
     {
@@ -186,6 +193,30 @@ public class FixingPoint  {//Точка крепления оружия
 
     public float getOffsetX() {
         return offsetX;
+    }
+
+    ServFixingPoint toServ()
+    {
+        return new ServFixingPoint(weapon.toServ());
+    }
+    public void setWeaponByServ(TextureAtlas textureAtlas,ServFixingPoint servFixingPoint)
+    {
+        if(servFixingPoint.getWeapon().getName().equals("Shotgun"))
+        {
+            setWeapon(new Shotgun(textureAtlas,0,0));
+        }
+        else if(servFixingPoint.getWeapon().getName().equals("RocketLauncher"))
+        {
+            setWeapon(new RocketLauncher(textureAtlas,0,0));
+        }
+        else if(servFixingPoint.getWeapon().getName().equals("Machinegun"))
+        {
+            setWeapon(new Machinegun(textureAtlas,0,0));
+        }
+        else if(servFixingPoint.getWeapon().getName().equals("BlueImpulseLaser"))
+        {
+            setWeapon(new BlueImpulseLaser(textureAtlas,0,0));
+        }
     }
 }
 

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.mygdx.game.ServModels.ServWeapon;
 
 import java.util.ArrayList;
 
@@ -44,6 +45,8 @@ public class Weapon extends GameObject {
 
         //setRotation(270);
     }
+
+
     public void shot()
     {
 
@@ -152,5 +155,11 @@ public class Weapon extends GameObject {
 
     public int getRecomendedw() {
         return recomendedw;
+    }
+
+    ServWeapon toServ()
+    {
+
+        return new ServWeapon(name);
     }
 }

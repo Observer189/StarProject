@@ -27,7 +27,7 @@ public class BlueImpulseLaser extends Weapon {
         attackSpeed=10;
         cost=0;
 
-        name="BlueLaser";
+        name="BlueImpulseLaser";
     }
 
     @Override
