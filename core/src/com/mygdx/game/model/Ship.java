@@ -55,7 +55,8 @@ public class Ship extends GameObject {
         isShipInRedZone = false;
         isAlive=true;
 
-        setRotation(270);
+        speedX=0;
+        speedY=0;
         currentExplosionFrame=0;
         explosionCounter=7;
         movementVector = new Vector2(0, 0);

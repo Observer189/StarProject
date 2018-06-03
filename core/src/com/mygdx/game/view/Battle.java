@@ -198,7 +198,7 @@ public class Battle implements Screen {
         //Логика движения игроков
         player.getCurrentShip().act(enemy.getCurrentShip(),classicMap,joystick.getVector());
         enemy.getCurrentShip().act(player.getCurrentShip(),classicMap,new Vector2(0,0));
-        enemy.getCurrentShip().setRotation(coord.getRotation());
+        //enemy.getCurrentShip().setRotation(coord.getRotation());
         //////////////////////////////////////
         //Отрисовка игроков
         player.getCurrentShip().draw(batch,textureAtlas);
@@ -301,7 +301,7 @@ public class Battle implements Screen {
                 //System.out.println(coord.getX()+" "+coord.getY());
                 if(coord.getX()!=null)
                 enemy.getCurrentShip().setPosition(coord.getX(),coord.getY());
-
+                enemy.getCurrentShip().setRotation(coord.getRotation());
                 //System.out.println(enemy.getCurrentShip().getX()+" "+enemy.getCurrentShip().getY());
                while (!getCoordIsFinished)
                {

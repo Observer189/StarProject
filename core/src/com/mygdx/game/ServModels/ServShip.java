@@ -14,12 +14,12 @@ public class ServShip {
     public ServShip(String name/*,ServFixingPoint[] fixingPoints*/)
     {
         this.name=name.toString();
-       // this.fixingPoints=fixingPoints;
+        // this.fixingPoints=fixingPoints;
     }
     public ServShip(ServShip ship)
     {
-       this.name=ship.getName();
-       //this.fixingPoints=ship.getFixingPoints();
+        this.name=ship.getName();
+        //this.fixingPoints=ship.getFixingPoints();
     }
 
     public String getName() {
@@ -39,4 +39,9 @@ public class ServShip {
     public void setFixingPoints(ServFixingPoint[] fixingPoints) {
         this.fixingPoints = fixingPoints;
     }*/
+
+
+    public String toString() {
+        return name;
+    }
 }

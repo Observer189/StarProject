@@ -68,7 +68,7 @@ public class ConnectToBattle implements Screen {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         request = retrofit.create(servApi.class);
-        servShip=new ServShip(player.getCurrentShip().getName());
+        servShip=new ServShip(player.getCurrentShip().toServ());
         processor=new ConnectToBattleProcessor();
         Gdx.input.setInputProcessor(processor);
         textManager=new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -154,8 +154,8 @@ public class ConnectToBattle implements Screen {
             e.printStackTrace();
         }*/
 
-        Call<BattleStatus> call = request.getBattleNumber(player.getName(),servShip.getName(),battleStatus.getStatus());
-
+        Call<BattleStatus> call = request.getBattleNumber(player.getName(),servShip,battleStatus.getStatus());
+        System.out.println("!"+servShip.getName()+"!");
         call.enqueue(new Callback<BattleStatus>() {
             @Override
             public void onResponse(Call<BattleStatus> call, Response<BattleStatus> response) {

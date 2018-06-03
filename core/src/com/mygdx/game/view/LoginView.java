@@ -59,6 +59,7 @@ public class LoginView implements Screen {
     public static StarGen star;
     Boolean isRegistration=false;
     int createResult;
+    ServPlayer signPlayer;
     servApi request;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
 
@@ -184,10 +185,10 @@ public class LoginView implements Screen {
                         ){
                              save();
 
-
-                             if((getPlayer()!=null)&&(getPlayer().getPassword().equals(textFieldPass.getText())))
+                             signPlayer=getPlayer();
+                             if((signPlayer!=null)&&(signPlayer.getPassword().equals(textFieldPass.getText())))
                              {
-                             player=new Player(getPlayer());
+                             player=new Player(signPlayer);
                              game.setScreen(new MainMenu(batch,game,player));
                              }
                              else{
