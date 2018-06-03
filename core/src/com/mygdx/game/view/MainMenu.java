@@ -75,7 +75,7 @@ public class MainMenu implements Screen {
         angar=new Angar(game,batch,this,player);
         angar2=new AngarView(game,batch,this,player);
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        font=textManager.fontInitialize(Color.BLACK,1f);
+        font=textManager.fontInitialize(Color.WHITE,1f);
         //game.setScreen(battle);
         Skin skin = new Skin();
         skin.addRegions(textureAtlas);

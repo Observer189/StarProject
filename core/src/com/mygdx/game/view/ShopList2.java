@@ -19,6 +19,7 @@ import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Weapons.BlueImpulseLaser;
 import com.mygdx.game.model.Weapons.GreenImpulseLaser;
 import com.mygdx.game.model.Weapons.Machinegun;
+import com.mygdx.game.model.Weapons.RocketLauncher;
 import com.mygdx.game.model.Weapons.Shotgun;
 import com.mygdx.game.utils.TextManager;
 
@@ -34,9 +35,9 @@ public class ShopList2 implements Screen{
     Screen ShList;
     MainMenu menu;
     Player player;
-    CellStage g1,g2,g3;
+    CellStage g1,g2,g3,g4;
     Image Money,InformationTube;
-    BitmapFont font;
+    BitmapFont font,font1;
     int counter = 0;
     Boolean NeedToMove = false;
     Boolean NeedToMoveBack = false;
@@ -46,6 +47,7 @@ public class ShopList2 implements Screen{
     BlueImpulseLaser Laser;
     Machinegun multigun;
     Shotgun shotgun;
+    RocketLauncher rocketLauncher;
 
     int digits[];
     String MoneyStr="";
@@ -176,6 +178,19 @@ public class ShopList2 implements Screen{
 
             }
         });
+        rocketLauncher=new RocketLauncher(textureAtlas,g1.x,g3.y-g1.img.getHeight()-Gdx.graphics.getHeight() / 360);
+        g4=new CellStage((int) rocketLauncher.getX()-149+g1.width, (int) rocketLauncher.getY(),rocketLauncher.getName(),rocketLauncher.getCost(),149,160);
+        g4.gun.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+                GuShow = new GunShow(rocketLauncher, game, menu, player, (float) (g4.width*1.7), (float) (g4.height*1.7));
+
+                game.setScreen(GuShow);
+
+
+            }
+        });
 
 
 
@@ -210,7 +225,7 @@ public class ShopList2 implements Screen{
         Prev.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (counter == 4)
+                if (counter == 5)
                     Prev.btn.setDisabled(true);
                 else {
                     NeedToMoveBack = true;
@@ -224,12 +239,14 @@ public class ShopList2 implements Screen{
         in.addProcessor(g1);
         in.addProcessor(g2);
         in.addProcessor(g3);
+        in.addProcessor(g4);
         in.addProcessor(Ships);
         in.addProcessor(Back);
         in.addProcessor(Prev);
         in.addProcessor(Go);
         Gdx.input.setInputProcessor(in);
         font = textManager.fontInitialize(Color.WHITE, 0.8f);
+        font1 = textManager.fontInitialize(Color.WHITE, 0.5f);
     }
 
     @Override
@@ -243,15 +260,12 @@ public class ShopList2 implements Screen{
         int y175 = (int) (Gdx.graphics.getHeight() / 4.11428);
         int y75 = (int) (Gdx.graphics.getHeight() / 9.6);
 
-        Guns.act(delta);
-        Guns.draw();
-        Ships.act(delta);
-        Ships.draw();
+
         Back.act(delta);
         Back.draw();
         g1.act(delta);
         g1.draw();
-        textManager.displayMessage(batch, font, g1.name, (float) (g1.x + x200), (float) (g1.y + y175));
+        textManager.displayMessage(batch, font1, g1.name, (float) (g1.x + x200), (float) (g1.y + y175));
         textManager.displayMessage(batch, font, "Price: " +g1.price, g1.x + x200, (float) (g1.y + y75*0.915));
 
 
@@ -266,10 +280,43 @@ public class ShopList2 implements Screen{
         textManager.displayMessage(batch, font, g3.name, (float) (g1.x + x200), (float) (g3.y + y175));
         textManager.displayMessage(batch, font, "Price: " + g3.price, g1.x + x200, (float) (g3.y + y75*0.915));
 
+        g4.act(delta);
+        g4.draw();
+        textManager.displayMessage(batch, font1, g4.name, (float) (g1.x + x200), (float) (g4.y + y175));
+        textManager.displayMessage(batch, font, "Price: " + g4.price, g1.x + x200, (float) (g4.y + y75*0.915));
+
         Prev.act(delta);
         Prev.draw();
         Go.act(delta);
         Go.draw();
+        if (NeedToMove == true) {
+
+
+            MoveOld(g1, -1);
+            MoveOld(g2, -1);
+            MoveOld(g3, -1);
+            MoveOld(g4, -1);
+           // MoveOld(ct5, -1);
+
+
+        }
+        NeedToMove = false;
+        if (NeedToMoveBack == true) {
+
+            MoveOld(g1, 1);
+            MoveOld(g2, 1);
+            MoveOld(g3, 1);
+            MoveOld(g4, 1);
+        //    MoveOld(ct5, 1);
+
+
+        }
+
+        NeedToMoveBack = false;
+        Guns.act(delta);
+        Guns.draw();
+        Ships.act(delta);
+        Ships.draw();
         batch.begin();
         batch.end();
 
