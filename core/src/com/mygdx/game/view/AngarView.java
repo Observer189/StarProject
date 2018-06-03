@@ -365,7 +365,8 @@ System.out.println("FirstY: "+player.getCurrentShip().getFixingPoints()[0].getOf
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         for (int i=0;i<player.getCurrentShip().getFixingPoints().length;i++){
-                    player.getCurrentShip().getFixingPoints()[i].setWeapon(list.get(0));}
+                            Weapon wp=(player.resources.weaponList.get(1));
+                            player.getCurrentShip().getFixingPoints()[i].setWeapon(wp);}
                         String name=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
                         gunIMG.setDrawable(skin.getDrawable(name));
                         gunIMG.setSize(player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedw()/2,player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedh()/2);
@@ -389,7 +390,8 @@ System.out.println("FirstY: "+player.getCurrentShip().getFixingPoints()[0].getOf
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         for (int i=0;i<player.getCurrentShip().getFixingPoints().length;i++){
-                            player.getCurrentShip().getFixingPoints()[i].setWeapon(list.get(1));}
+                            Weapon wp=(player.resources.weaponList.get(1));
+                            player.getCurrentShip().getFixingPoints()[i].setWeapon(wp);}
                             String name=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
                         gunIMG.setDrawable(skin.getDrawable(name));
                         gunIMG.setSize(player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedw()/2,player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedh()/2);
@@ -412,7 +414,8 @@ System.out.println("FirstY: "+player.getCurrentShip().getFixingPoints()[0].getOf
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         for (int i=0;i<player.getCurrentShip().getFixingPoints().length;i++){
-                            player.getCurrentShip().getFixingPoints()[i].setWeapon(list.get(1));}
+                            Weapon wp=(player.resources.weaponList.get(1));
+                            player.getCurrentShip().getFixingPoints()[i].setWeapon(wp);}
                         String name=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
                         gunIMG.setDrawable(skin.getDrawable(name));
                         gunIMG.setSize(player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedw()/2,player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedh()/2);
