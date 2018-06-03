@@ -157,6 +157,12 @@ public class Weapon extends GameObject {
         return recomendedw;
     }
 
+    @Override
+    public String toString() {
+        return getName();
+    }
+
+
     ServWeapon toServ()
     {
 
