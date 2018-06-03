@@ -29,7 +29,7 @@ public class Ship extends GameObject {
     private float maxSpeed;
     private float rotationSpeed;
     private int rotationDirection;//-1-влево 1-вправо 0-без вращения
-
+    int movementPosition;
 
     private int appliedDamage;//нанесенный урон
     private Integer currentExplosionFrame;
@@ -60,6 +60,7 @@ public class Ship extends GameObject {
         currentExplosionFrame=0;
         explosionCounter=7;
         movementVector = new Vector2(0, 0);
+        movementPosition=0;
         this.fixingPoints = fixingPoints;
         appliedDamage=0;
         rotationDirection=0;
@@ -100,7 +101,7 @@ public class Ship extends GameObject {
                 explosionCounter = 0;
             }
             batch.begin();
-            batch.draw(explosionRegion, getX(), getY(), getWidth(), getHeight());
+            batch.draw(explosionRegion, getX(), getY(), getWidth()+getHeight(),getWidth()+getHeight());
             batch.end();
             explosionCounter++;
         }
@@ -122,10 +123,20 @@ public class Ship extends GameObject {
 
     public void move(Ship enemyShip, Map map) {
         if(currentHp>0) {
+            if(movementPosition==0)
+                movementVector.set(0,0);
+            else if(movementPosition==1)
+            {
+                movementVector.set((float)(-Math.sin(Math.toRadians(getRotation()))),(float)(Math.cos(Math.toRadians(getRotation()))));
+            }
+            else if(movementPosition==-1)
+            {
+                movementVector.set((float)(Math.sin(Math.toRadians(getRotation())))*0.15f,(float)(-Math.cos(Math.toRadians(getRotation())))*0.15f);
+            }
+
             speedX = speedX + velocity * movementVector.x;
             speedY = speedY + velocity * movementVector.y;
-            //speedX=2;
-            //speedY=2;
+
             if (speedX > maxSpeed) speedX = maxSpeed;
             if (speedX < -maxSpeed) speedX = -maxSpeed;
             if (speedY > maxSpeed) speedY = maxSpeed;
@@ -219,9 +230,11 @@ public class Ship extends GameObject {
 
 public void nullify()
 {
+    bounds.setPosition(0,0);
     setCurrentHp(getMaxHp());
     setIsAlive(true);
     setMovementVector(new Vector2(0,0));
+    movementPosition=0;
     speedX=0;
     speedY=0;
 }
@@ -258,6 +271,14 @@ public void nullify()
         return movementVector;
     }
 
+    public void setMovementPosition(int movementPosition) {
+        this.movementPosition = movementPosition;
+    }
+
+    public int getMovementPosition() {
+        return movementPosition;
+    }
+
     @Override
     public String toString() {
 
@@ -287,7 +308,7 @@ public void nullify()
             servFixingPoints[i]=fixingPoints[i].toServ();
         }*/
 
-        return new ServShip(getName()/*,servFixingPoints*/);
+        return new ServShip(getName(),fixingPoints[0].getWeapon().getName()/*,servFixingPoints*/);
     }
 
 }

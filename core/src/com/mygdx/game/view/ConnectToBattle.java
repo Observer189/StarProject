@@ -155,11 +155,14 @@ public class ConnectToBattle implements Screen {
         }*/
 
         Call<BattleStatus> call = request.getBattleNumber(player.getName(),servShip,battleStatus.getStatus());
-        System.out.println("!"+servShip.getName()+"!");
+        System.out.println("!"+servShip+"!");
         call.enqueue(new Callback<BattleStatus>() {
             @Override
             public void onResponse(Call<BattleStatus> call, Response<BattleStatus> response) {
-                battleStatus.setBattleStatus(response.body());
+
+                    battleStatus.setBattleStatus(response.body());
+
+
 
                 try {
                     sleep(20);

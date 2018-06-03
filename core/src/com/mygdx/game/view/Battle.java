@@ -26,6 +26,7 @@ import com.mygdx.game.model.ProgressBar;
 import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.ButtonForProcessor;
+import com.mygdx.game.utils.GasRegulator;
 import com.mygdx.game.utils.Joystick;
 import com.mygdx.game.utils.TextManager;
 
@@ -68,6 +69,7 @@ public class Battle implements Screen {
     int mapWidth;
     int mapHeight;
     public Joystick joystick;
+    public GasRegulator gasRegulator;
     ButtonForProcessor turnLeft;
     ButtonForProcessor turnRight;
     ProgressBar hpBar;
@@ -126,12 +128,13 @@ public class Battle implements Screen {
 
 
         camera=new OrthographicCamera(widthCamera,heightCamera);
-        camera.position.set(new Vector3(player.getCurrentShip().getX(),player.getCurrentShip().getX(),0));
+        camera.position.set(new Vector3(player.getCurrentShip().getCenterX(),player.getCurrentShip().getCenterX(),0));
         camX =camera.position.x;
         camY =camera.position.y;
-        coord = new Coord(0f,0f,0f);
+        coord = new Coord(333f,333f,0f);
         counter = 0;
         joystick=new Joystick(batch,0,10,textureAtlas.findRegion("Dj1p1"),textureAtlas.findRegion("Dj1p2"));
+        gasRegulator=new GasRegulator(batch,camX-widthCamera*0.45f,camY-heightCamera*0.45f,widthCamera*0.15f,heightCamera*0.4f,textureAtlas,player.getCurrentShip());
         turnLeft=new ButtonForProcessor(batch,camX+widthCamera/5,camY,20,20,textureAtlas.findRegion("TurnLeft"));
         turnRight=new ButtonForProcessor(batch,camX+widthCamera/5+30,camY,20,20,textureAtlas.findRegion("TurnRight"));
         hpBar=new ProgressBar(batch,textureAtlas.findRegion("HProgressBar"),textureAtlas.findRegion("HPLine"),camX-widthCamera*0.45f,camY+heightCamera*0.45f,widthCamera*0.3f,heightCamera*0.05f,player.getCurrentShip().getMaxHp());
@@ -143,7 +146,7 @@ public class Battle implements Screen {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         request = retrofit.create(servApi.class);
-        processor=new BattleProcessor(joystick,player.getCurrentShip());
+        processor=new BattleProcessor(joystick,gasRegulator,player.getCurrentShip());
         Gdx.input.setInputProcessor(processor);
 
 
@@ -167,10 +170,14 @@ public class Battle implements Screen {
         }*/
         //System.out.println(coord.getX() + " " + coord.getY() + " " + "count:" + counter + "number:" + battleStatus.getNumber());
 
-        camera.position.x=player.getCurrentShip().getX();
-        camera.position.y=player.getCurrentShip().getY();
+        camera.position.x=player.getCurrentShip().getCenterX();
+        camera.position.y=player.getCurrentShip().getCenterY();
         camX =camera.position.x;
         camY =camera.position.y;
+        //
+        gasRegulator.setX(camX-widthCamera*0.45f);
+        gasRegulator.setY(camY-heightCamera*0.45f);
+        ///////////////////////////////////
         //обновление позиции кнопок вращения
         turnLeft.setX(camX+widthCamera/5);
         turnLeft.setY(camY-heightCamera/3);
@@ -204,16 +211,7 @@ public class Battle implements Screen {
         player.getCurrentShip().draw(batch,textureAtlas);
         enemy.getCurrentShip().draw(batch,textureAtlas);
          //////////////////////////////////////
-        //Отрисовка кнопок вращения
-        turnLeft.draw();
-        turnRight.draw();
-        ////////////////////////////////////
-        //Отрисовка прогресс бара
-        hpBar.draw(player.getCurrentShip().getCurrentHp());
-        /////////////////////////////////////
-        //Отрисовка миникарты
-        miniMap.draw(player.getCurrentShip(),enemy.getCurrentShip());
-        /////////////////////////////////////////////////////////////
+
 
         //Логика столкновения игроков
         if(Intersector.overlapConvexPolygons(player.getCurrentShip().getBounds(), enemy.getCurrentShip().getBounds()))
@@ -222,17 +220,38 @@ public class Battle implements Screen {
             enemy.getCurrentShip().setCurrentHp(0);
         }
         /////////////////////////////////////////
-        //Отрисовка предупреждения края карты
-        if(player.getCurrentShip().getIsShipInRedZone()){
-            batch.begin();
-            batch.draw(textureAtlas.findRegion("RedZoneAttention"),camX-widthCamera/9,camY-heightCamera/2,70,20);
-            batch.end();
-        }
+
+
         /////////////////////////////////////////////
         //Логика и отрисовка джойстика
-        if(player.getCurrentShip().getCurrentHp()>0) {
+        if((player.getCurrentShip().getCurrentHp()>0)&& (enemy.getCurrentShip().getCurrentHp()>0)) {
             joystick.update(BattleProcessor.offsetX, BattleProcessor.offsetY, BattleProcessor.offsetDynamicX, BattleProcessor.offsetDynamicY);//компенсирует смещение камеры смещением джойстика
             joystick.draw();
+            //
+            gasRegulator.draw();
+            /////////////////////////////
+            //Отрисовка кнопок вращения
+            turnLeft.draw();
+            turnRight.draw();
+            ////////////////////////////////////
+            //Отрисовка прогресс бара
+            hpBar.draw(player.getCurrentShip().getCurrentHp());
+            /////////////////////////////////////
+            //Отрисовка миникарты
+            miniMap.draw(player.getCurrentShip(),enemy.getCurrentShip());
+            /////////////////////////////////////////////////////////////
+            //Отрисовка предупреждения края карты
+            if(player.getCurrentShip().getIsShipInRedZone()){
+                batch.begin();
+                batch.draw(textureAtlas.findRegion("RedZoneAttention"),camX-widthCamera/9,camY-heightCamera/2,70,20);
+                batch.end();
+            }
+            /////////////////////////////////////////////
+        }
+        if(!(enemy.getCurrentShip().getCurrentHp()>0))
+        {
+            camera.position.x=enemy.getCurrentShip().getCenterX();
+            camera.position.y=enemy.getCurrentShip().getCenterY();
         }
         ///////////////////////////////////////////////
         //Обработка условий завершения боя
@@ -302,7 +321,8 @@ public class Battle implements Screen {
                 if(coord.getX()!=null)
                 enemy.getCurrentShip().setPosition(coord.getX(),coord.getY());
                 enemy.getCurrentShip().setRotation(coord.getRotation());
-                //System.out.println(enemy.getCurrentShip().getX()+" "+enemy.getCurrentShip().getY());
+                System.out.println("Player: "+player.getCurrentShip().getX()+" "+player.getCurrentShip().getY());
+                System.out.println("Enemy: "+enemy.getCurrentShip().getX()+" "+enemy.getCurrentShip().getY());
                while (!getCoordIsFinished)
                {
                    if(System.currentTimeMillis() - startTime>=20)

@@ -1,717 +1,734 @@
 
 TexturePack.png
+size: 4096,2048
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
-ClassicSpace
-  rotate: false
-  xy: 1, 967
-  size: 1920, 1080
-  orig: 1920, 1080
-  offset: 0, 0
-  index: -1
-GalaxyCenter
-  rotate: false
-  xy: 1, 197
-  size: 1024, 768
-  orig: 1024, 768
-  offset: 0, 0
-  index: -1
-WB_baseu2_d0
-  rotate: false
-  xy: 1027, 365
-  size: 600, 600
-  orig: 600, 600
-  offset: 0, 0
-  index: -1
-HProgressBar
-  rotate: false
-  xy: 1, 168
-  size: 727, 27
-  orig: 727, 27
-  offset: 0, 0
-  index: -1
-Station
-  rotate: false
-  xy: 1027, 107
-  size: 512, 256
-  orig: 512, 256
-  offset: 0, 0
-  index: -1
-Rocket
-  rotate: false
-  xy: 1629, 573
-  size: 168, 392
-  orig: 168, 392
-  offset: 0, 0
-  index: -1
-SelectGun
-  rotate: false
-  xy: 1, 116
-  size: 400, 50
-  orig: 400, 50
-  offset: 0, 0
-  index: -1
-SelectShip
-  rotate: false
-  xy: 1, 64
-  size: 400, 50
-  orig: 400, 50
-  offset: 0, 0
-  index: -1
-UnSelectGun
-  rotate: false
-  xy: 1, 12
-  size: 400, 50
-  orig: 400, 50
-  offset: 0, 0
-  index: -1
 1
   rotate: false
-  xy: 1799, 663
+  xy: 1924, 970
   size: 138, 302
   orig: 138, 302
   offset: 0, 0
   index: -1
-Tube
-  rotate: false
-  xy: 403, 59
-  size: 268, 107
-  orig: 268, 107
-  offset: 0, 0
-  index: -1
-Tube2
-  rotate: false
-  xy: 1923, 1779
-  size: 107, 268
-  orig: 107, 268
-  offset: 0, 0
-  index: -1
-Money
-  rotate: false
-  xy: 1629, 371
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-Axe
-  rotate: false
-  xy: 1923, 1555
-  size: 119, 222
-  orig: 119, 222
-  offset: 0, 0
-  index: -1
-Skarab
-  rotate: false
-  xy: 1923, 1336
-  size: 111, 217
-  orig: 111, 217
-  offset: 0, 0
-  index: -1
-Rock
-  rotate: false
-  xy: 1541, 123
-  size: 145, 240
-  orig: 145, 240
-  offset: 0, 0
-  index: -1
-BlueImpulseLaser
-  rotate: false
-  xy: 1923, 1095
-  size: 75, 239
-  orig: 75, 239
-  offset: 0, 0
-  index: -1
-RedZoneAttention
-  rotate: false
-  xy: 403, 12
-  size: 357, 45
-  orig: 357, 45
-  offset: 0, 0
-  index: -1
-MiniMap
-  rotate: false
-  xy: 1688, 219
-  size: 200, 150
-  orig: 200, 150
-  offset: 0, 0
-  index: -1
-Frame
-  rotate: false
-  xy: 1688, 116
-  size: 200, 101
-  orig: 200, 101
-  offset: 0, 0
-  index: -1
-FrameInput
-  rotate: false
-  xy: 730, 94
-  size: 200, 101
-  orig: 200, 101
-  offset: 0, 0
-  index: -1
-UnSelectShip
-  rotate: false
-  xy: 932, 55
-  size: 400, 50
-  orig: 400, 50
-  offset: 0, 0
-  index: -1
-Dakkar
-  rotate: false
-  xy: 1334, 1
-  size: 100, 104
-  orig: 100, 104
-  offset: 0, 0
-  index: -1
-InfoFrame
-  rotate: false
-  xy: 1799, 581
-  size: 150, 80
-  orig: 150, 80
-  offset: 0, 0
-  index: -1
-Machinegun
-  rotate: false
-  xy: 1831, 376
-  size: 81, 203
-  orig: 81, 203
-  offset: 0, 0
-  index: -1
-RocketLauncher
-  rotate: false
-  xy: 1914, 450
-  size: 133, 129
-  orig: 133, 129
-  offset: 0, 0
-  index: -1
-Knight
-  rotate: false
-  xy: 1890, 177
-  size: 86, 197
-  orig: 86, 197
-  offset: 0, 0
-  index: -1
-Dj1p2
-  rotate: false
-  xy: 1436, 5
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-TurnLeft
-  rotate: false
-  xy: 1923, 993
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-Dashing
-  rotate: false
-  xy: 1939, 850
-  size: 83, 141
-  orig: 83, 141
-  offset: 0, 0
-  index: -1
-Mite
-  rotate: false
-  xy: 1939, 721
-  size: 83, 127
-  orig: 83, 127
-  offset: 0, 0
-  index: -1
-GreenLaser
-  rotate: false
-  xy: 2000, 1206
-  size: 34, 128
-  orig: 34, 128
-  offset: 0, 0
-  index: -1
-Dj1p1
-  rotate: false
-  xy: 932, 122
-  size: 79, 73
-  orig: 79, 73
-  offset: 0, 0
-  index: -1
 Angar-down
   rotate: false
-  xy: 1890, 27
+  xy: 2176, 212
   size: 147, 148
   orig: 147, 148
   offset: 0, 0
   index: -1
-Bat
+Angar-up
   rotate: false
-  xy: 1541, 27
-  size: 100, 94
-  orig: 100, 94
-  offset: 0, 0
-  index: -1
-Hunter
-  rotate: false
-  xy: 1643, 17
-  size: 100, 97
-  orig: 100, 97
-  offset: 0, 0
-  index: -1
-TurnRight
-  rotate: false
-  xy: 1745, 14
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-EnemyMarker
-  rotate: false
-  xy: 673, 116
-  size: 50, 50
-  orig: 50, 50
-  offset: 0, 0
-  index: -1
-GrayFrame
-  rotate: false
-  xy: 1914, 398
-  size: 50, 50
-  orig: 50, 50
-  offset: 0, 0
-  index: -1
-PlayerMarker
-  rotate: false
-  xy: 1939, 669
-  size: 50, 50
-  orig: 50, 50
-  offset: 0, 0
-  index: -1
-Bullet
-  rotate: false
-  xy: 1978, 320
-  size: 24, 128
-  orig: 24, 128
-  offset: 0, 0
-  index: -1
-HPLine
-  rotate: false
-  xy: 2000, 1173
-  size: 31, 31
-  orig: 31, 31
-  offset: 0, 0
-  index: -1
-BlueLaserAmmo
-  rotate: false
-  xy: 2032, 1997
-  size: 2, 50
-  orig: 2, 50
-  offset: 0, 0
-  index: -1
-GreenLaserAmmo
-  rotate: false
-  xy: 1013, 163
-  size: 8, 32
-  orig: 8, 32
-  offset: 0, 0
-  index: -1
-
-TexturePack2.png
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-YellowSpace
-  rotate: false
-  xy: 1, 1276
-  size: 1024, 768
-  orig: 1024, 768
+  xy: 3534, 1123
+  size: 147, 148
+  orig: 147, 148
   offset: 0, 0
   index: -1
 AngarGround
   rotate: false
-  xy: 1, 654
+  xy: 2950, 1422
   size: 1101, 620
   orig: 1101, 620
   offset: 0, 0
   index: -1
 AngarGround2
   rotate: false
-  xy: 1, 32
+  xy: 1028, 340
   size: 1101, 620
   orig: 1101, 620
   offset: 0, 0
   index: -1
-Angar-up
+Axe
   rotate: false
-  xy: 1027, 1896
-  size: 147, 148
-  orig: 147, 148
+  xy: 2980, 1099
+  size: 119, 222
+  orig: 119, 222
+  offset: 0, 0
+  index: -1
+Back
+  rotate: false
+  xy: 991, 26
+  size: 35, 81
+  orig: 35, 81
   offset: 0, 0
   index: -1
 Back-down
   rotate: false
-  xy: 1027, 1746
-  size: 147, 148
-  orig: 147, 148
-  offset: 0, 0
-  index: -1
-Buy-down
-  rotate: false
-  xy: 1176, 1896
-  size: 147, 148
-  orig: 147, 148
-  offset: 0, 0
-  index: -1
-Buy-up
-  rotate: false
-  xy: 1027, 1596
-  size: 147, 148
-  orig: 147, 148
-  offset: 0, 0
-  index: -1
-Go-down
-  rotate: false
-  xy: 1176, 1746
-  size: 147, 148
-  orig: 147, 148
-  offset: 0, 0
-  index: -1
-Left-down
-  rotate: false
-  xy: 1325, 1896
-  size: 147, 148
-  orig: 147, 148
-  offset: 0, 0
-  index: -1
-Prev-down
-  rotate: false
-  xy: 1027, 1446
-  size: 147, 148
-  orig: 147, 148
-  offset: 0, 0
-  index: -1
-Right-down
-  rotate: false
-  xy: 1176, 1596
-  size: 147, 148
-  orig: 147, 148
-  offset: 0, 0
-  index: -1
-Shop-down
-  rotate: false
-  xy: 1325, 1746
-  size: 147, 148
-  orig: 147, 148
-  offset: 0, 0
-  index: -1
-Start-down
-  rotate: false
-  xy: 1474, 1896
+  xy: 1432, 190
   size: 147, 148
   orig: 147, 148
   offset: 0, 0
   index: -1
 Back-up
   rotate: false
-  xy: 1027, 1297
+  xy: 3554, 1273
   size: 147, 147
   orig: 147, 147
   offset: 0, 0
   index: -1
-Go-up
+Bat
   rotate: false
-  xy: 1176, 1446
-  size: 146, 148
-  orig: 146, 148
+  xy: 3797, 795
+  size: 100, 94
+  orig: 100, 94
   offset: 0, 0
   index: -1
-IconFrame
+BlueImpulseLaser
   rotate: false
-  xy: 1325, 1596
-  size: 146, 148
-  orig: 146, 148
+  xy: 2903, 1033
+  size: 75, 239
+  orig: 75, 239
   offset: 0, 0
   index: -1
-Left-up
+BlueLaserAmmo
   rotate: false
-  xy: 1474, 1747
-  size: 147, 147
-  orig: 147, 147
-  offset: 0, 0
-  index: -1
-Prev-up
-  rotate: false
-  xy: 1623, 1897
-  size: 147, 147
-  orig: 147, 147
-  offset: 0, 0
-  index: -1
-Right-up
-  rotate: false
-  xy: 1324, 1447
-  size: 147, 147
-  orig: 147, 147
-  offset: 0, 0
-  index: -1
-Shop-up
-  rotate: false
-  xy: 1623, 1748
-  size: 147, 147
-  orig: 147, 147
-  offset: 0, 0
-  index: -1
-Start-up
-  rotate: false
-  xy: 1772, 1896
-  size: 146, 148
-  orig: 146, 148
+  xy: 404, 111
+  size: 2, 50
+  orig: 2, 50
   offset: 0, 0
   index: -1
 Bought-up
   rotate: false
-  xy: 1176, 1297
+  xy: 2622, 253
   size: 146, 147
   orig: 146, 147
   offset: 0, 0
   index: -1
-Star1
+Bullet
   rotate: false
-  xy: 1324, 1303
-  size: 144, 142
-  orig: 144, 142
+  xy: 4053, 1914
+  size: 24, 128
+  orig: 24, 128
   offset: 0, 0
   index: -1
-Star10
+Buy-down
   rotate: false
-  xy: 1772, 1752
-  size: 144, 142
-  orig: 144, 142
+  xy: 1730, 190
+  size: 147, 148
+  orig: 147, 148
   offset: 0, 0
   index: -1
-Star11
+Buy-up
   rotate: false
-  xy: 1104, 1153
-  size: 144, 142
-  orig: 144, 142
+  xy: 3703, 1272
+  size: 147, 148
+  orig: 147, 148
   offset: 0, 0
   index: -1
-Star12
+ClassicSpace
   rotate: false
-  xy: 1104, 1009
-  size: 144, 142
-  orig: 144, 142
+  xy: 2, 962
+  size: 1920, 1080
+  orig: 1920, 1080
   offset: 0, 0
   index: -1
-Star13
+Dakkar
   rotate: false
-  xy: 1104, 865
-  size: 144, 142
-  orig: 144, 142
+  xy: 3081, 608
+  size: 100, 104
+  orig: 100, 104
   offset: 0, 0
   index: -1
-Star14
+Dashing
   rotate: false
-  xy: 1104, 721
-  size: 144, 142
-  orig: 144, 142
+  xy: 4001, 1279
+  size: 83, 141
+  orig: 83, 141
   offset: 0, 0
   index: -1
-Star15
+Dj1p1
   rotate: false
-  xy: 1104, 577
-  size: 144, 142
-  orig: 144, 142
+  xy: 3017, 894
+  size: 79, 73
+  orig: 79, 73
   offset: 0, 0
   index: -1
-Star16
+Dj1p2
   rotate: false
-  xy: 1104, 433
-  size: 144, 142
-  orig: 144, 142
+  xy: 3797, 891
+  size: 100, 100
+  orig: 100, 100
   offset: 0, 0
   index: -1
-Star2
+EnemyMarker
   rotate: false
-  xy: 1104, 289
-  size: 144, 142
-  orig: 144, 142
-  offset: 0, 0
-  index: -1
-Star3
-  rotate: false
-  xy: 1104, 145
-  size: 144, 142
-  orig: 144, 142
-  offset: 0, 0
-  index: -1
-Shotgun
-  rotate: false
-  xy: 1920, 1894
-  size: 112, 150
-  orig: 112, 150
-  offset: 0, 0
-  index: -1
-Star4
-  rotate: false
-  xy: 1104, 1
-  size: 144, 142
-  orig: 144, 142
+  xy: 2533, 362
+  size: 50, 50
+  orig: 50, 50
   offset: 0, 0
   index: -1
 Explosion1
   rotate: false
-  xy: 1918, 1764
+  xy: 3277, 890
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
-Star5
-  rotate: false
-  xy: 1250, 1153
-  size: 144, 142
-  orig: 144, 142
-  offset: 0, 0
-  index: -1
-Star6
-  rotate: false
-  xy: 1250, 1009
-  size: 144, 142
-  orig: 144, 142
-  offset: 0, 0
-  index: -1
-Star7
-  rotate: false
-  xy: 1250, 865
-  size: 144, 142
-  orig: 144, 142
-  offset: 0, 0
-  index: -1
-Star8
-  rotate: false
-  xy: 1250, 721
-  size: 144, 142
-  orig: 144, 142
-  offset: 0, 0
-  index: -1
-Star9
-  rotate: false
-  xy: 1250, 577
-  size: 144, 142
-  orig: 144, 142
-  offset: 0, 0
-  index: -1
 Explosion10
   rotate: false
-  xy: 1250, 447
+  xy: 2770, 162
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion11
   rotate: false
-  xy: 1250, 317
+  xy: 3083, 714
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion12
   rotate: false
-  xy: 1250, 187
+  xy: 731, 62
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion13
   rotate: false
-  xy: 1250, 57
+  xy: 3537, 860
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion14
   rotate: false
-  xy: 1396, 1173
+  xy: 861, 62
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion15
   rotate: false
-  xy: 1396, 1043
+  xy: 3537, 730
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion16
   rotate: false
-  xy: 1396, 913
+  xy: 1028, 6
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion17
   rotate: false
-  xy: 1396, 783
+  xy: 3667, 862
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion18
   rotate: false
-  xy: 1396, 653
+  xy: 3017, 969
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion2
   rotate: false
-  xy: 1396, 523
+  xy: 3147, 974
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion3
   rotate: false
-  xy: 1380, 393
+  xy: 3147, 844
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion4
   rotate: false
-  xy: 1380, 263
+  xy: 3446, 990
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion5
   rotate: false
-  xy: 1380, 133
+  xy: 3407, 860
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion6
   rotate: false
-  xy: 1380, 3
+  xy: 3711, 993
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion7
   rotate: false
-  xy: 1510, 393
+  xy: 3277, 760
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion8
   rotate: false
-  xy: 1510, 263
+  xy: 3841, 993
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 Explosion9
   rotate: false
-  xy: 1510, 133
+  xy: 3407, 730
   size: 128, 128
   orig: 128, 128
+  offset: 0, 0
+  index: -1
+Frame
+  rotate: false
+  xy: 3352, 1319
+  size: 200, 101
+  orig: 200, 101
+  offset: 0, 0
+  index: -1
+FrameInput
+  rotate: false
+  xy: 1230, 185
+  size: 200, 101
+  orig: 200, 101
+  offset: 0, 0
+  index: -1
+GalaxyCenter
+  rotate: false
+  xy: 2, 192
+  size: 1024, 768
+  orig: 1024, 768
+  offset: 0, 0
+  index: -1
+Gas
+  rotate: false
+  xy: 991, 109
+  size: 35, 81
+  orig: 35, 81
+  offset: 0, 0
+  index: -1
+Go-down
+  rotate: false
+  xy: 1581, 190
+  size: 147, 148
+  orig: 147, 148
+  offset: 0, 0
+  index: -1
+Go-up
+  rotate: false
+  xy: 2935, 731
+  size: 146, 148
+  orig: 146, 148
+  offset: 0, 0
+  index: -1
+GrayFrame
+  rotate: false
+  xy: 3213, 792
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+GreenLaser
+  rotate: false
+  xy: 2064, 1144
+  size: 34, 128
+  orig: 34, 128
+  offset: 0, 0
+  index: -1
+GreenLaserAmmo
+  rotate: false
+  xy: 3342, 1336
+  size: 8, 32
+  orig: 8, 32
+  offset: 0, 0
+  index: -1
+HPLine
+  rotate: false
+  xy: 3309, 1337
+  size: 31, 31
+  orig: 31, 31
+  offset: 0, 0
+  index: -1
+HProgressBar
+  rotate: false
+  xy: 2, 163
+  size: 727, 27
+  orig: 727, 27
+  offset: 0, 0
+  index: -1
+Hunter
+  rotate: false
+  xy: 3667, 661
+  size: 100, 97
+  orig: 100, 97
+  offset: 0, 0
+  index: -1
+IconFrame
+  rotate: false
+  xy: 2474, 212
+  size: 146, 148
+  orig: 146, 148
+  offset: 0, 0
+  index: -1
+InfoFrame
+  rotate: false
+  xy: 272, 29
+  size: 150, 80
+  orig: 150, 80
+  offset: 0, 0
+  index: -1
+Knight
+  rotate: false
+  xy: 3446, 1120
+  size: 86, 197
+  orig: 86, 197
+  offset: 0, 0
+  index: -1
+Left-down
+  rotate: false
+  xy: 3852, 1272
+  size: 147, 148
+  orig: 147, 148
+  offset: 0, 0
+  index: -1
+Left-up
+  rotate: false
+  xy: 424, 14
+  size: 147, 147
+  orig: 147, 147
+  offset: 0, 0
+  index: -1
+Machinegun
+  rotate: false
+  xy: 3214, 1118
+  size: 81, 203
+  orig: 81, 203
+  offset: 0, 0
+  index: -1
+MiniMap
+  rotate: false
+  xy: 1028, 136
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Mite
+  rotate: false
+  xy: 3981, 1143
+  size: 83, 127
+  orig: 83, 127
+  offset: 0, 0
+  index: -1
+Money
+  rotate: false
+  xy: 2733, 678
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+PlayerMarker
+  rotate: false
+  xy: 3899, 839
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Prev-down
+  rotate: false
+  xy: 3297, 1169
+  size: 147, 148
+  orig: 147, 148
+  offset: 0, 0
+  index: -1
+Prev-up
+  rotate: false
+  xy: 3297, 1020
+  size: 147, 147
+  orig: 147, 147
+  offset: 0, 0
+  index: -1
+RedZoneAttention
+  rotate: false
+  xy: 2950, 1323
+  size: 357, 45
+  orig: 357, 45
+  offset: 0, 0
+  index: -1
+Right-down
+  rotate: false
+  xy: 573, 13
+  size: 147, 148
+  orig: 147, 148
+  offset: 0, 0
+  index: -1
+Right-up
+  rotate: false
+  xy: 3832, 1123
+  size: 147, 147
+  orig: 147, 147
+  offset: 0, 0
+  index: -1
+Rock
+  rotate: false
+  xy: 2754, 436
+  size: 145, 240
+  orig: 145, 240
+  offset: 0, 0
+  index: -1
+Rocket
+  rotate: false
+  xy: 2733, 880
+  size: 168, 392
+  orig: 168, 392
+  offset: 0, 0
+  index: -1
+RocketLauncher
+  rotate: false
+  xy: 3576, 992
+  size: 133, 129
+  orig: 133, 129
+  offset: 0, 0
+  index: -1
+SelectGun
+  rotate: false
+  xy: 1028, 288
+  size: 400, 50
+  orig: 400, 50
+  offset: 0, 0
+  index: -1
+SelectShip
+  rotate: false
+  xy: 2950, 1370
+  size: 400, 50
+  orig: 400, 50
+  offset: 0, 0
+  index: -1
+Shop-down
+  rotate: false
+  xy: 1879, 190
+  size: 147, 148
+  orig: 147, 148
+  offset: 0, 0
+  index: -1
+Shop-up
+  rotate: false
+  xy: 3683, 1123
+  size: 147, 147
+  orig: 147, 147
+  offset: 0, 0
+  index: -1
+Shotgun
+  rotate: false
+  xy: 2903, 881
+  size: 112, 150
+  orig: 112, 150
+  offset: 0, 0
+  index: -1
+Skarab
+  rotate: false
+  xy: 3101, 1104
+  size: 111, 217
+  orig: 111, 217
+  offset: 0, 0
+  index: -1
+Star1
+  rotate: false
+  xy: 1230, 41
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star10
+  rotate: false
+  xy: 2770, 292
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star11
+  rotate: false
+  xy: 1960, 46
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star12
+  rotate: false
+  xy: 2935, 587
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star13
+  rotate: false
+  xy: 2106, 46
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star14
+  rotate: false
+  xy: 2901, 443
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star15
+  rotate: false
+  xy: 2252, 68
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star16
+  rotate: false
+  xy: 2916, 299
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star2
+  rotate: false
+  xy: 2398, 68
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star3
+  rotate: false
+  xy: 1376, 41
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star4
+  rotate: false
+  xy: 2544, 68
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star5
+  rotate: false
+  xy: 1522, 46
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star6
+  rotate: false
+  xy: 3047, 443
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star7
+  rotate: false
+  xy: 1668, 46
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star8
+  rotate: false
+  xy: 3062, 299
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Star9
+  rotate: false
+  xy: 1814, 46
+  size: 144, 142
+  orig: 144, 142
+  offset: 0, 0
+  index: -1
+Start-down
+  rotate: false
+  xy: 2325, 212
+  size: 147, 148
+  orig: 147, 148
+  offset: 0, 0
+  index: -1
+Start-up
+  rotate: false
+  xy: 2028, 190
+  size: 146, 148
+  orig: 146, 148
+  offset: 0, 0
+  index: -1
+Station
+  rotate: false
+  xy: 2131, 414
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
+Stop
+  rotate: false
+  xy: 1158, 53
+  size: 35, 81
+  orig: 35, 81
+  offset: 0, 0
+  index: -1
+Tube
+  rotate: false
+  xy: 2, 2
+  size: 268, 107
+  orig: 268, 107
+  offset: 0, 0
+  index: -1
+Tube2
+  rotate: false
+  xy: 2645, 402
+  size: 107, 268
+  orig: 107, 268
+  offset: 0, 0
+  index: -1
+TurnLeft
+  rotate: false
+  xy: 3667, 760
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+TurnRight
+  rotate: false
+  xy: 3899, 891
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+UnSelectGun
+  rotate: false
+  xy: 2, 111
+  size: 400, 50
+  orig: 400, 50
+  offset: 0, 0
+  index: -1
+UnSelectShip
+  rotate: false
+  xy: 2131, 362
+  size: 400, 50
+  orig: 400, 50
+  offset: 0, 0
+  index: -1
+WB_baseu2_d0
+  rotate: false
+  xy: 2131, 672
+  size: 600, 600
+  orig: 600, 600
+  offset: 0, 0
+  index: -1
+YellowSpace
+  rotate: false
+  xy: 1924, 1274
+  size: 1024, 768
+  orig: 1024, 768
   offset: 0, 0
   index: -1
