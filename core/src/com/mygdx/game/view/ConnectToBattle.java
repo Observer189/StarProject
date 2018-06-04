@@ -199,6 +199,8 @@ public class ConnectToBattle implements Screen {
             shipFromServ = new Dashing(textureAtlas, 0, 0);
         else if(ship.getName().equals("Rock"))
             shipFromServ = new Rock(textureAtlas, 0, 0);
+        else if(ship.getName().equals("Sudden"))
+            shipFromServ = new Sudden(textureAtlas, 0, 0);
         else {
             System.out.println("Ship is not exist");
             return null;
