@@ -25,7 +25,7 @@ public class Shotgun extends Weapon {
                 new Bullet(textureAtlas.findRegion("Bullet"),x,y,0));
         this.textureAtlas=textureAtlas;
         counter=0;
-        cost=7500;
+        cost=40000;
         attackSpeed=5;
 
         name="Shotgun";

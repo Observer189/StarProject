@@ -25,7 +25,7 @@ public class BlueImpulseLaser extends Weapon {
         this.textureAtlas=textureAtlas;
         counter=0;
         attackSpeed=10;
-        cost=0;
+        cost=35000;
 
         name="BlueImpulseLaser";
         setTextureAtlas(textureAtlas);

@@ -2,6 +2,7 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -89,6 +90,10 @@ public class ConnectToBattle implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            if((Gdx.input.isKeyPressed(Input.Keys.BACK))&&(!battleStatus.getStatus().equals("ready")))
+        {
+            game.setScreen(mainMenu);
+        }
         if(counter==100)counter=0;
         counter++;
         if(getBattleIsFinished)

@@ -2,6 +2,8 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
@@ -24,6 +26,7 @@ import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ships.Dakkar;
 import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.Assets;
+import com.mygdx.game.utils.Confirmation;
 import com.mygdx.game.utils.StarGen;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Toast;
@@ -62,7 +65,7 @@ public class LoginView implements Screen {
     ServPlayer signPlayer;
     servApi request;
     public final String baseURL = "https://star-project-serv.herokuapp.com/";
-
+    Confirmation confirmation;
     TextureAtlas textureAtlas;
 
     public LoginView(SpriteBatch batch, Game game){
@@ -75,7 +78,7 @@ public class LoginView implements Screen {
     @Override
     public void show() {
         Assets.load();
-
+        Gdx.input.setCatchBackKey(true);
 
         music = Gdx.audio.newMusic(Gdx.files.internal("MenuMusic.mp3"));
         music.setLooping(true);
@@ -107,7 +110,7 @@ public class LoginView implements Screen {
 
         font=textManager.fontInitialize(Color.BLACK,1f);
         font1=textManager.fontInitialize(Color.WHITE,1f);
-
+        confirmation=new Confirmation(font1,batch);
         Toast.ToastFactory toastFactory = new Toast.ToastFactory.Builder()
                 .font(font1)
                 .build();
@@ -260,14 +263,14 @@ public class LoginView implements Screen {
         stage.addActor(SignUpBtn);
 
 
+        InputMultiplexer in=new InputMultiplexer();
+        in.addProcessor(confirmation.stage);
+        in.addProcessor(stage);
 
 
 
 
-
-
-
-        Gdx.input.setInputProcessor(stage);
+        Gdx.input.setInputProcessor(in);
         star=new StarGen(textureAtlas,batch);
 
 
@@ -322,6 +325,11 @@ public class LoginView implements Screen {
                 NoConnection.timeToLive= Toast.Length.LONG.duration;
                 NoConnection.opacity=1f;
             }
+
+        }
+        confirmation.draw();
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)){
+            confirmation.setActive(true);
 
         }
     }

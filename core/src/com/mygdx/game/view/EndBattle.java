@@ -2,6 +2,7 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -68,6 +69,7 @@ public class EndBattle implements Screen {
         }
     @Override
     public void show() {
+        Gdx.input.setCatchBackKey(true);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -130,6 +132,8 @@ public class EndBattle implements Screen {
             textManager.displayMessage(batch,smallRedFont,"Reward: "+reward,Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.6f);
         }
         System.out.println(status);
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)){
+            game.setScreen(mainMenu);}
 
     }
     @Override

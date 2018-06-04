@@ -15,7 +15,7 @@ public class RocketLauncher extends Weapon {
     TextureAtlas textureAtlas;
     int counter;
     int recomendedw=149;
-    int recomendedh=200;
+    int recomendedh=160;
 
     private float attackSpeed;
     public RocketLauncher(TextureAtlas textureAtlas, float x, float y) {
@@ -24,7 +24,7 @@ public class RocketLauncher extends Weapon {
         this.textureAtlas=textureAtlas;
         counter=0;
         attackSpeed=5f;
-        cost=0;
+        cost=50000;
 
         name="RocketLauncher";
         setTextureAtlas(textureAtlas);

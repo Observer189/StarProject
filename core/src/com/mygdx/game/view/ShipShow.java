@@ -2,6 +2,7 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -77,7 +78,7 @@ public class ShipShow implements Screen {
 
     @Override
     public void show() {
-
+        Gdx.input.setCatchBackKey(true);
 
         textureAtlas=new TextureAtlas(Gdx.files.internal("TexturePack.atlas"));
         stage = new Stage();
@@ -215,6 +216,8 @@ public class ShipShow implements Screen {
 
         batch.begin();
         batch.end();
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)){
+            game.setScreen(ShList);}
     }
 
     @Override

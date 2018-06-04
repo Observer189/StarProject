@@ -218,6 +218,7 @@ public class Battle implements Screen {
         {
             player.getCurrentShip().setCurrentHp(0);
             enemy.getCurrentShip().setCurrentHp(0);
+
         }
         /////////////////////////////////////////
 

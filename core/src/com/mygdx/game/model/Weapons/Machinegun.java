@@ -24,7 +24,7 @@ public class Machinegun extends Weapon {
                 new Bullet(textureAtlas.findRegion("Bullet"),x,y,0));
         this.textureAtlas=textureAtlas;
         counter=0;
-        cost=1250;
+        cost=12500;
         attackSpeed=50;
 
         name="Machinegun";

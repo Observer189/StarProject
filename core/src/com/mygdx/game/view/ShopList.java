@@ -3,6 +3,7 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -173,6 +174,8 @@ public class ShopList implements Screen {
         NeedToMoveBack = false;
         batch.begin();
         batch.end();
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)){
+            game.setScreen(menu);}
     }
 
     @Override
@@ -201,7 +204,7 @@ public class ShopList implements Screen {
 
     @Override
     public void show() {
-
+        Gdx.input.setCatchBackKey(true);
         camera = new OrthographicCamera();
 
         //  VP=new FillViewport((float)(camera.position.x*3.2),camera.position.y*3,camera) ;
