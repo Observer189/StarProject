@@ -19,6 +19,8 @@ import com.mygdx.game.view.Battle;
 public class Ship extends GameObject {
 
     int cost;
+    public float realw=100;
+    public float realh=100;
     private boolean isShipInRedZone;
     private boolean isAlive;
     private float maxHp;
@@ -311,4 +313,11 @@ public void nullify()
         return new ServShip(getName()/*,servFixingPoints*/);
     }
 
+    public float getRealh() {
+        return realh;
+    }
+
+    public float getRealw() {
+        return realw;
+    }
 }

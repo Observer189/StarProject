@@ -96,7 +96,7 @@ public class Confirmation  {
             stage.act(Gdx.graphics.getDeltaTime());
             stage.draw();
             TextManager textManager=new TextManager(0,0);
-            textManager.displayMessage(batch,font,"Are you sure??", btn.getX()+btn.getWidth()/5, (float) (btn.getY()+btn.getHeight()/1.5));
+            textManager.displayMessage(batch,font,"Are you sure?", btn.getX()+btn.getWidth()/5, (float) (btn.getY()+btn.getHeight()/1.5));
         }
         else {
             isActive=false;

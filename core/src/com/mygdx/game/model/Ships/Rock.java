@@ -1,5 +1,6 @@
 package com.mygdx.game.model.Ships;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.model.FixingPoint;
@@ -11,6 +12,8 @@ import com.mygdx.game.model.Weapons.RocketLauncher;
  */
 
 public class Rock extends Ship {
+    public float realw=  (Gdx.graphics.getWidth()/42.6666666f*6);
+    public float realh=  (Gdx.graphics.getHeight()/14.4f*6);
 
 
     @Override
@@ -30,6 +33,15 @@ public class Rock extends Ship {
 
                 });
 
+    }
+
+    @Override
+    public float getRealw() {
+        return realw;
+    }
+    @Override
+    public float getRealh() {
+        return realh;
     }
 }
 

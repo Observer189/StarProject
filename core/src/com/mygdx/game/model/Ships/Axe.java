@@ -1,5 +1,6 @@
 package com.mygdx.game.model.Ships;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.model.FixingPoint;
@@ -11,6 +12,8 @@ import com.mygdx.game.model.Weapons.BlueImpulseLaser;
  */
 
 public class Axe extends Ship {
+    public float realw= ((Gdx.graphics.getWidth()/85.3333333f)*6);
+    public float realh=  ((Gdx.graphics.getHeight()/28.8f)*6);
 
 
     @Override
@@ -39,4 +42,13 @@ public class Axe extends Ship {
             getFixingPoints()[1].setOffset(0, -7f);
         }
     }*/
+
+    @Override
+    public float getRealw() {
+        return realw;
+    }
+    @Override
+    public float getRealh() {
+        return realh;
+    }
 }

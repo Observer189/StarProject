@@ -1,5 +1,6 @@
 package com.mygdx.game.model.Ships;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.model.FixingPoint;
@@ -14,6 +15,8 @@ import com.mygdx.game.model.Weapons.Shotgun;
  */
 
 public class Dashing extends Ship {
+    public float realw= (Gdx.graphics.getWidth()/182.85714286f*6);
+    public float realh=  (Gdx.graphics.getHeight()/55.38461538f*6);
 
 
     @Override
@@ -29,5 +32,13 @@ public class Dashing extends Ship {
 
                 });
 
+    }
+    @Override
+    public float getRealh() {
+        return realh;
+    }
+    @Override
+    public float getRealw() {
+        return realw;
     }
 }

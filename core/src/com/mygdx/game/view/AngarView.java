@@ -78,9 +78,9 @@ public class AngarView implements Screen {
          in =new InputMultiplexer();
 
         shipIMG=new Image(player.getCurrentShip().getImg());
-        shipIMG.setSize(shipIMG.getWidth()*2,shipIMG.getHeight()*2);
+        shipIMG.setSize(player.getCurrentShip().getRealw(),player.getCurrentShip().getRealh());
 
-        shipIMG.setPosition((float) (0+Gdx.graphics.getWidth()/8.53333333+shipIMG.getWidth()/2),Gdx.graphics.getHeight()/2-shipIMG.getHeight()/2);
+        shipIMG.setPosition((float) (Gdx.graphics.getWidth()/4.26666-shipIMG.getWidth()/2),Gdx.graphics.getHeight()/2-shipIMG.getHeight()/2);
        // player.getCurrentShip().setPosition(shipIMG.getX(),shipIMG.getY());
         String realname=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
         gunIMG=new Image(skin.getDrawable(realname));
@@ -89,10 +89,10 @@ public class AngarView implements Screen {
         FrameIMG=new Image(skin.getDrawable("GrayFrame"));
         System.out.println("WIDTH:"+gunIMG.getHeight()*2+" Height: "+gunIMG.getHeight()*2);
         FrameIMG.setSize((float) (Gdx.graphics.getWidth()/9.92248062), (float) (Gdx.graphics.getHeight()/5.58139535));
-        FrameIMG.setPosition(gunIMG.getX(),gunIMG.getY());
+        FrameIMG.setPosition((float) (Gdx.graphics.getWidth()/2.56), (float) (Gdx.graphics.getHeight()/2.4));
         gunIMG.setPosition(FrameIMG.getX()+FrameIMG.getWidth()/2-gunIMG.getWidth()/2,FrameIMG.getY()+Gdx.graphics.getHeight()/72);
 
-
+        System.out.println(shipIMG.getWidth()+" !!!! "+shipIMG.getHeight());
         Gun1=new HugeDraw(player.resources.weaponList,0,Gdx.graphics.getHeight()/2,Gdx.graphics.getWidth()*2);
         if (player.resources.weaponList.size()>1) Gun2=new HugeDraw(player.resources.weaponList,1, (int) (Gdx.graphics.getHeight()/4.96551724),Gdx.graphics.getWidth()*2);
         if (player.resources.weaponList.size()>2) Gun3=new HugeDraw(player.resources.weaponList,2, (int) (Gdx.graphics.getHeight()/-10.28571429),Gdx.graphics.getWidth()*2);
@@ -245,6 +245,10 @@ public class AngarView implements Screen {
                       shipIMG.setDrawable(skin.getDrawable(name));
                     String realname=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
                     gunIMG.setDrawable(skin.getDrawable(realname));
+                    gunIMG.setSize(player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedw()/2,player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedh()/2);
+                    gunIMG.setPosition(FrameIMG.getX()+FrameIMG.getWidth()/2-gunIMG.getWidth()/2,FrameIMG.getY()+Gdx.graphics.getHeight()/72);
+                    shipIMG.setSize(player.getCurrentShip().getRealw(),player.getCurrentShip().getRealh());
+                    shipIMG.setPosition((float) (Gdx.graphics.getWidth()/4.26666-shipIMG.getWidth()/2),Gdx.graphics.getHeight()/2-shipIMG.getHeight()/2);
                 }
                 else System.out.println("HAHA");
             }
@@ -267,6 +271,10 @@ public class AngarView implements Screen {
                     shipIMG.setDrawable(skin.getDrawable(name));
                     String realname=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
                     gunIMG.setDrawable(skin.getDrawable(realname));
+                    gunIMG.setSize(player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedw()/2,player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedh()/2);
+                    gunIMG.setPosition(FrameIMG.getX()+FrameIMG.getWidth()/2-gunIMG.getWidth()/2,FrameIMG.getY()+Gdx.graphics.getHeight()/72);
+                    shipIMG.setSize(player.getCurrentShip().getRealw(),player.getCurrentShip().getRealh());
+                    shipIMG.setPosition((float) (Gdx.graphics.getWidth()/4.26666-shipIMG.getWidth()/2),Gdx.graphics.getHeight()/2-shipIMG.getHeight()/2);
                 }
                 else System.out.println("HAHA");
             }
@@ -410,6 +418,7 @@ public class AngarView implements Screen {
 
 
         }
+        System.out.println(shipIMG.getWidth()+" "+shipIMG.getHeight());
       rightbtn.act(delta);
       rightbtn.draw();
       leftbtn.act(delta);
