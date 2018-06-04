@@ -330,7 +330,7 @@ public class AngarView implements Screen {
 
         for (int i=0;i<5;i++){
                 img[i]=new Image(skin.getDrawable("Tube"));
-                img[i].setSize((float) (Gdx.graphics.getWidth()/3.2),img[i].getHeight());
+                img[i].setSize((float) (Gdx.graphics.getWidth()/3.2), (float) (Gdx.graphics.getHeight()/6.72897196));
                 img[i].setPosition(rightbtn.x-rightbtn.width/5-img[i].getWidth(), (float) (Gdx.graphics.getHeight()/7.2*(i+1)));
 
                   stageTubes.addActor(img[i]);
@@ -366,11 +366,11 @@ public class AngarView implements Screen {
         if (infoShow) {
             stageTubes.act(delta);
             stageTubes.draw();
-            textManager.displayMessage(batch, font, "HP: " + player.getCurrentShip().getMaxHp(), (float) (img[0].getX() * 1.053), (float) (img[0].getY() + img[0].getHeight() * 4.3));
-            textManager.displayMessage(batch, font, "Speed: " + player.getCurrentShip().getMaxSpeed(), (float) (img[3].getX() * 1.053), img[3].getY() - img[3].getHeight() / (2 * yY));
-            textManager.displayMessage(batch, font, "Velocity: " + player.getCurrentShip().getVelocity(), (float) (img[2].getX() * 1.053), img[2].getY() - img[2].getHeight() / (2 * yY));
-            textManager.displayMessage(batch, font, "DMG: " + player.getCurrentShip().getFixingPoints()[0].getWeapon().getAmmo().getDamage(), (float) (img[1].getX() * 1.053), img[1].getY() - img[1].getHeight() / (2 * yY));
-            textManager.displayMessage(batch, font, "Attack Speed: " + player.getCurrentShip().getFixingPoints()[0].getWeapon().getAttackSpeed(), (float) (img[4].getX() * 1.053), img[4].getY() - img[4].getHeight() / (2 * yY));
+            textManager.displayMessage(batch, font, "HP: " + player.getCurrentShip().getMaxHp(), (float) (img[4].getX() * 1.053), (float) (img[4].getY()+Gdx.graphics.getWidth()/18));
+            textManager.displayMessage(batch, font, "Speed: " + player.getCurrentShip().getMaxSpeed(), (float) (img[3].getX() * 1.053), (float) (img[3].getY()+Gdx.graphics.getWidth()/18));
+            textManager.displayMessage(batch, font, "Velocity: " + player.getCurrentShip().getVelocity(), (float) (img[2].getX() * 1.053), (float) (img[2].getY() +Gdx.graphics.getWidth()/18));
+            textManager.displayMessage(batch, font, "DMG: " + player.getCurrentShip().getFixingPoints()[0].getWeapon().getAmmo().getDamage(), (float) (img[1].getX() * 1.053), (float) (img[1].getY()+Gdx.graphics.getWidth()/18));
+            textManager.displayMessage(batch, font, "Attack Speed: " + player.getCurrentShip().getFixingPoints()[0].getWeapon().getAttackSpeed(), (float) (img[0].getX() * 1.053), (float) (img[0].getY()+Gdx.graphics.getWidth()/18));
 
         } else {
             batch.begin();
