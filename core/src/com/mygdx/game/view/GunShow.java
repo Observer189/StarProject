@@ -2,6 +2,7 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -72,7 +73,7 @@ public class GunShow implements Screen {
 
     @Override
     public void show() {
-
+        Gdx.input.setCatchBackKey(true);
 
         textureAtlas=new TextureAtlas(Gdx.files.internal("TexturePack.atlas"));
         stage = new Stage();
@@ -96,7 +97,10 @@ public class GunShow implements Screen {
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         ShList=new ShopList2(game,batch,textureAtlas,menu,player);
-        font = textManager.fontInitialize(Color.WHITE, 1);
+        if (weapon.getName().equals("BlueImpulseLaser")||weapon.getName().equals("RocketLauncher"))
+        font = textManager.fontInitialize(Color.WHITE, (float) 0.7);
+        else
+            font = textManager.fontInitialize(Color.WHITE, 1);
         font1 = textManager.fontInitialize(Color.WHITE, 1);
         Toast.ToastFactory toastFactory = new Toast.ToastFactory.Builder()
                 .font(font1)
@@ -205,7 +209,8 @@ public class GunShow implements Screen {
         Buy.draw();
         Back.act();
         Back.draw();
-
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)){
+            game.setScreen(ShList);  }
         batch.begin();
         batch.end();
     }

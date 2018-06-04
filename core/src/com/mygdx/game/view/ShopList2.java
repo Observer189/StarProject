@@ -2,6 +2,7 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -22,6 +23,9 @@ import com.mygdx.game.model.Weapons.Machinegun;
 import com.mygdx.game.model.Weapons.RocketLauncher;
 import com.mygdx.game.model.Weapons.Shotgun;
 import com.mygdx.game.utils.TextManager;
+
+import java.awt.Menu;
+import java.security.Key;
 
 //This screen is used to show Shop of Guns
 public class ShopList2 implements Screen{
@@ -65,6 +69,8 @@ public class ShopList2 implements Screen{
     }
     @Override
     public void show() {
+        Gdx.input.setCatchBackKey(true);
+
         //ShList=new ShopList(game,batch,textureAtlas);
         textManager=new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         skin=new Skin();
@@ -225,7 +231,7 @@ public class ShopList2 implements Screen{
         Prev.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (counter == 5)
+                if (counter == 3)
                     Prev.btn.setDisabled(true);
                 else {
                     NeedToMoveBack = true;
@@ -246,7 +252,7 @@ public class ShopList2 implements Screen{
         in.addProcessor(Go);
         Gdx.input.setInputProcessor(in);
         font = textManager.fontInitialize(Color.WHITE, 0.8f);
-        font1 = textManager.fontInitialize(Color.WHITE, 0.5f);
+        font1 = textManager.fontInitialize(Color.WHITE, 0.6f);
     }
 
     @Override
@@ -319,6 +325,8 @@ public class ShopList2 implements Screen{
         Ships.draw();
         batch.begin();
         batch.end();
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)){
+            game.setScreen(menu);}
 
     }
 
