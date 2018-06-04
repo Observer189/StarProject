@@ -18,14 +18,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Weapons.BlueImpulseLaser;
-import com.mygdx.game.model.Weapons.GreenImpulseLaser;
 import com.mygdx.game.model.Weapons.Machinegun;
 import com.mygdx.game.model.Weapons.RocketLauncher;
 import com.mygdx.game.model.Weapons.Shotgun;
 import com.mygdx.game.utils.TextManager;
-
-import java.awt.Menu;
-import java.security.Key;
 
 //This screen is used to show Shop of Guns
 public class ShopList2 implements Screen{
@@ -143,8 +139,8 @@ public class ShopList2 implements Screen{
         InformationTube.setPosition(Money.getX(), (float) (Money.getY()-InformationTube.getHeight()));
 
 
-        Laser=new BlueImpulseLaser(textureAtlas,(int) (Gdx.graphics.getWidth() / 4 * 1.25),(int) (Gdx.graphics.getHeight() - 212-50));
-        g1=new CellStage((int) Laser.getX(), (int) Laser.getY(),Laser.getName(),Laser.getCost(), 63, 200);
+        Laser=new BlueImpulseLaser(textureAtlas,(int) (Gdx.graphics.getWidth() / 4 * 1.25),(int) (Gdx.graphics.getHeight() -Gdx.graphics.getHeight()/2.7480916));
+        g1=new CellStage((int) Laser.getX(), (int) Laser.getY(),Laser.getName(),Laser.getCost(), Laser.getRecomendedw(), Laser.getRecomendedh());
 
 
         g1.gun.addListener(new ClickListener() {
@@ -159,7 +155,7 @@ public class ShopList2 implements Screen{
             }
         });//
          multigun=new Machinegun(textureAtlas,g1.x,(int) (g1.y - g1.img.getHeight() - Gdx.graphics.getHeight() / 360));
-        g2=new CellStage((int) multigun.getX()-80+g1.width,(int)multigun.getY(),multigun.getName(),multigun.getCost(),80,200);
+        g2=new CellStage((int) ((int) multigun.getX()-multigun.getRecomendedw()+g1.width),(int)multigun.getY(),multigun.getName(),multigun.getCost(),multigun.getRecomendedw(),multigun.getRecomendedh());
         g2.gun.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -172,7 +168,7 @@ public class ShopList2 implements Screen{
             }
         });
         shotgun=new Shotgun(textureAtlas,g1.x,(int) (g2.y - g1.img.getHeight() - Gdx.graphics.getHeight() / 360));
-        g3=new CellStage((int) shotgun.getX()-149+g1.width, (int) shotgun.getY(),shotgun.getName(),shotgun.getCost(),149,200);
+        g3=new CellStage((int) ((int) shotgun.getX()-shotgun.getRecomendedw()+g1.width), (int) shotgun.getY(),shotgun.getName(),shotgun.getCost(),shotgun.getRecomendedw(),shotgun.getRecomendedh());
         g3.gun.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -185,7 +181,7 @@ public class ShopList2 implements Screen{
             }
         });
         rocketLauncher=new RocketLauncher(textureAtlas,g1.x,g3.y-g1.img.getHeight()-Gdx.graphics.getHeight() / 360);
-        g4=new CellStage((int) rocketLauncher.getX()-149+g1.width, (int) rocketLauncher.getY(),rocketLauncher.getName(),rocketLauncher.getCost(),149,160);
+        g4=new CellStage((int) ((int) rocketLauncher.getX()-rocketLauncher.getRecomendedw()+g1.width), (int) rocketLauncher.getY(),rocketLauncher.getName(),rocketLauncher.getCost(),rocketLauncher.getRecomendedw(),rocketLauncher.getRecomendedh());
         g4.gun.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -279,7 +275,7 @@ public class ShopList2 implements Screen{
         g2.draw();
         textManager.displayMessage(batch, font, g2.name, (float) (g1.x + x200), (float) (g2.y + y175));
         textManager.displayMessage(batch, font, "Price: " + g2.price, g1.x + x200, (float) (g2.y + y75*0.915));
-        textManager.displayMessage(batch, font, MoneyStr,  Money.getX()+60 , InformationTube.getY()+InformationTube.getHeight()-25);
+        textManager.displayMessage(batch, font, MoneyStr, (float) (Money.getX()+Gdx.graphics.getWidth()/21.33333), (float) (InformationTube.getY()+InformationTube.getHeight()-Gdx.graphics.getHeight()/28.8));
 
         g3.act(delta);
         g3.draw();
@@ -370,11 +366,11 @@ public class ShopList2 implements Screen{
     public void MoveOld(CellStage ct, int dir) {
 
         if (dir < 0)
-            ct.y -= ct.img.getImageHeight() + Gdx.graphics.getHeight() / 360 + 3;
+            ct.y -= ct.img.getImageHeight() + Gdx.graphics.getHeight() / 360 + Gdx.graphics.getHeight()/240;
         else
-            ct.y += ct.img.getImageHeight() + Gdx.graphics.getHeight() / 360 + 3;
+            ct.y += ct.img.getImageHeight() + Gdx.graphics.getHeight() / 360 + Gdx.graphics.getHeight()/240;
         ct.gun.setY(ct.y);
-        ct.img.setY(ct.y - 15);
+        ct.img.setY(ct.y - Gdx.graphics.getHeight()/48);
 
 
     }
@@ -415,11 +411,11 @@ public class ShopList2 implements Screen{
         int y;
         String name;
         Image img;
-        int width,height;
+        float width,height;
 
         int price;
 
-        public CellStage( int x, int y, String name, int price,int width,int height) {
+        public CellStage(int x, int y, String name, int price, float width, float height) {
             this.x = x;
             this.y = y;
             this.name = name;
@@ -432,7 +428,7 @@ public class ShopList2 implements Screen{
             gun.setSize(width,height);
             gun.setPosition(x, y);
             img = new Image(skin.getDrawable("InfoFrame"));
-            img.setPosition(x +gun.getWidth()+15, y - 10);
+            img.setPosition((float) (x +gun.getWidth()+Gdx.graphics.getWidth()/85.333333), y - Gdx.graphics.getHeight()/72);
             img.setSize((float) (Gdx.graphics.getWidth() / 2.7), (float) (Gdx.graphics.getHeight() / 3.3));
 
 

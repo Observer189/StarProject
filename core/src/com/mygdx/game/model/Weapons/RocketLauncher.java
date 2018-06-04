@@ -1,7 +1,7 @@
 package com.mygdx.game.model.Weapons;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.mygdx.game.model.Ammos.BlueLaserAmmo;
 import com.mygdx.game.model.Ammos.Rocket;
 import com.mygdx.game.model.Weapon;
 
@@ -14,8 +14,8 @@ public class RocketLauncher extends Weapon {
     String name;
     TextureAtlas textureAtlas;
     int counter;
-    int recomendedw=149;
-    int recomendedh=160;
+    float recomendedw= (float) (Gdx.graphics.getWidth()/8.59060403);
+    float recomendedh= (float) (Gdx.graphics.getHeight()/4.5);
 
     private float attackSpeed;
     public RocketLauncher(TextureAtlas textureAtlas, float x, float y) {
@@ -71,12 +71,12 @@ public class RocketLauncher extends Weapon {
         return getName();
     }
     @Override
-    public int getRecomendedw() {
-        return recomendedw;
+    public float getRecomendedw() {
+        return (float)recomendedw;
     }
 
     @Override
-    public int getRecomendedh() {
+    public float getRecomendedh() {
         return recomendedh;
     }
 

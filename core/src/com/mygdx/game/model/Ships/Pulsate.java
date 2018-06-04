@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.model.FixingPoint;
 import com.mygdx.game.model.Ship;
+import com.mygdx.game.model.Weapons.BlueImpulseLaser;
 import com.mygdx.game.model.Weapons.GreenImpulseLaser;
 
 /**
@@ -19,8 +20,8 @@ public class Pulsate extends Ship {
     }
     public Pulsate(TextureAtlas textureAtlas, float x, float y) {
         super(textureAtlas.findRegion("1"), x, y, 15, 15, "Pulsate", 50000, 780,
-                2.5f, 70,1.5f,new FixingPoint[]{new FixingPoint(x,y,7.5f,0f,new GreenImpulseLaser(textureAtlas,x,y)),
-                        new FixingPoint(x,y,7.5f,8.2f,new GreenImpulseLaser(textureAtlas,x,y))});
+                2.5f, 70,1.5f,new FixingPoint[]{new FixingPoint(x,y,7.5f,0f,new BlueImpulseLaser(textureAtlas,x,y)),
+                        new FixingPoint(x,y,7.5f,8.2f,new BlueImpulseLaser(textureAtlas,x,y))});
 
     }
 
