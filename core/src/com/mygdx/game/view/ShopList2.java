@@ -252,7 +252,7 @@ public class ShopList2 implements Screen{
         in.addProcessor(Go);
         Gdx.input.setInputProcessor(in);
         font = textManager.fontInitialize(Color.WHITE, 0.8f);
-        font1 = textManager.fontInitialize(Color.WHITE, 0.5f);
+        font1 = textManager.fontInitialize(Color.WHITE, 0.6f);
     }
 
     @Override

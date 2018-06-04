@@ -97,7 +97,10 @@ public class GunShow implements Screen {
 
         textManager = new TextManager(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         ShList=new ShopList2(game,batch,textureAtlas,menu,player);
-        font = textManager.fontInitialize(Color.WHITE, 1);
+        if (weapon.getName().equals("BlueImpulseLaser")||weapon.getName().equals("RocketLauncher"))
+        font = textManager.fontInitialize(Color.WHITE, (float) 0.7);
+        else
+            font = textManager.fontInitialize(Color.WHITE, 1);
         font1 = textManager.fontInitialize(Color.WHITE, 1);
         Toast.ToastFactory toastFactory = new Toast.ToastFactory.Builder()
                 .font(font1)
