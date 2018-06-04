@@ -29,7 +29,7 @@ public class Ship extends GameObject {
     private float maxSpeed;
     private float rotationSpeed;
     private int rotationDirection;//-1-влево 1-вправо 0-без вращения
-    int movementPosition;
+    private int movementPosition;
 
     private int appliedDamage;//нанесенный урон
     private Integer currentExplosionFrame;

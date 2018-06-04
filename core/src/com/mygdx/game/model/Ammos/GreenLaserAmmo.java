@@ -14,7 +14,7 @@ public class GreenLaserAmmo extends Ammo {
         counter++;
     }*/
     public GreenLaserAmmo(TextureRegion textureRegion, float x, float y,float rotation) {
-        super(textureRegion, x, y, 1, 10, 7f, 15,rotation);
+        super(textureRegion, x, y, 1, 10, 7f, 15,700,rotation);
         counter++;
     }
 }

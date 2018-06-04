@@ -17,8 +17,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Ship;
+import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Toast;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ShipShow implements Screen {
     //for drawing
@@ -55,8 +62,8 @@ public class ShipShow implements Screen {
     float velocity;
     float maxSpeed;
 
-
-
+    servApi request;
+    public final String baseURL = "https://star-project-serv.herokuapp.com/";
     public ShipShow(Ship ship, Game game, MainMenu menu, Player player,float width,float height) {
 
         this.ship=ship;
@@ -76,6 +83,11 @@ public class ShipShow implements Screen {
         stage = new Stage();
         skin = new Skin();
         skin.addRegions(textureAtlas);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        request = retrofit.create(servApi.class);
 
         Shipimg = new Image(ship.getImg());
         Shipimg.setSize((float) (width*2), (float) (height*2));
@@ -260,6 +272,23 @@ public class ShipShow implements Screen {
 
             addActor(btn);
         }
+    }
+    private void buy(int money)
+    {
+        Call<Integer> call = request.updateMoney(player.getName(),money);
+        call.enqueue(new Callback<Integer>()
+        {
+
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+
+            }
+        });
     }
 
 

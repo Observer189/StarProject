@@ -14,7 +14,7 @@ public class Rocket extends Ammo {
     float internalArcLength;
     float externalArcLength;
     public Rocket(TextureRegion textureRegion, float x, float y, float rotation) {
-        super(textureRegion, x, y, 2f, 5f, 2f, 30,rotation);
+        super(textureRegion, x, y, 2f, 5f, 2f, 75,500,rotation);
         counter++;
         angle =0;
         internalArcLength=0;

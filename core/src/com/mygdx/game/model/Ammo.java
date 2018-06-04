@@ -15,6 +15,8 @@ public class Ammo extends GameObject
 
     private float speed;
     private float damage;
+    private float appliedDistance;
+    private float maxRange;
     private TextureRegion textureRegion;
 
 
@@ -25,7 +27,7 @@ public class Ammo extends GameObject
         this.textureRegion=textureRegion;
 
     }*/
-    public Ammo(TextureRegion textureRegion, float x, float y, float width, float height, float speed, float damage,float rotation) {
+    public Ammo(TextureRegion textureRegion, float x, float y, float width, float height, float speed, float damage,float maxRange,float rotation) {
         super(textureRegion, x, y, width, height,0,0);
         this.speed=speed;
         this.damage=damage;
@@ -36,7 +38,8 @@ public class Ammo extends GameObject
 
 
         setRotation(rotation);
-
+        this.maxRange=maxRange;
+        appliedDistance=0;
     }
     public Ammo(Ammo ammo)
     {
@@ -49,7 +52,7 @@ public class Ammo extends GameObject
     {
 
         bounds.setPosition(bounds.getX() - (float)(speed*Math.sin(Math.toRadians(getRotation()))), bounds.getY()+(float) (speed*Math.cos(Math.toRadians(getRotation()))));
-
+        appliedDistance+=speed;
     }
 
     public float getSpeed() {
@@ -58,6 +61,14 @@ public class Ammo extends GameObject
 
     public float getDamage() {
         return damage;
+    }
+
+    public float getAppliedDistance() {
+        return appliedDistance;
+    }
+
+    public float getMaxRange() {
+        return maxRange;
     }
 
     @Override

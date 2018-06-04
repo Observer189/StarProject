@@ -61,7 +61,11 @@ public class Weapon extends GameObject {
               for(int i=0;i<ammos.size();i++){
                   ammos.get(i).move(enemyShip);
 
-                  if ((ammos.get(i).getX() > map.getWidth())||(ammos.get(i).getX() < 0)||(ammos.get(i).getY() > map.getHeight())||(ammos.get(i).getY() < 0)) {
+                  if ((ammos.get(i).getX() > map.getWidth())||
+                          (ammos.get(i).getX() < 0)||
+                          (ammos.get(i).getY() > map.getHeight())||
+                          (ammos.get(i).getY() < 0)||
+                          (ammos.get(i).getAppliedDistance()>=ammos.get(i).getMaxRange())) {
                       ammos.remove(i);
                   }
                   else if((Intersector.overlapConvexPolygons(ammos.get(i).getBounds(),enemyShip.getBounds()))&&(enemyShip.getCurrentHp()>0))
