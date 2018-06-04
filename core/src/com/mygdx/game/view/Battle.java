@@ -322,8 +322,8 @@ public class Battle implements Screen {
                 if(coord.getX()!=null)
                 enemy.getCurrentShip().setPosition(coord.getX(),coord.getY());
                 enemy.getCurrentShip().setRotation(coord.getRotation());
-                System.out.println("Player: "+player.getCurrentShip().getX()+" "+player.getCurrentShip().getY());
-                System.out.println("Enemy: "+enemy.getCurrentShip().getX()+" "+enemy.getCurrentShip().getY());
+                //System.out.println("Player: "+player.getCurrentShip().getX()+" "+player.getCurrentShip().getY());
+                //System.out.println("Enemy: "+enemy.getCurrentShip().getX()+" "+enemy.getCurrentShip().getY());
                while (!getCoordIsFinished)
                {
                    if(System.currentTimeMillis() - startTime>=200)
