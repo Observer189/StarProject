@@ -22,10 +22,10 @@ public class Sudden extends Ship {
     public Sudden(TextureAtlas textureAtlas, float x, float y) {
         super(textureAtlas.findRegion("Sudden"), x, y, 10, 22, "Sudden", 60000, 1400,
                 1.1f, 50, 1.3f, new FixingPoint[]{
-                        new FixingPoint(x, y, 10, 22, 2, 3, new Shotgun(textureAtlas, x, y)),
-                        new FixingPoint(x, y, 10, 22, 2, -3, new Shotgun(textureAtlas, x, y)),
-                        new FixingPoint(x, y, 10, 22, 6, 1, new Shotgun(textureAtlas, x, y)),
-                        new FixingPoint(x, y, 10, 22, 6, -1, new Shotgun(textureAtlas, x, y))
+                        new FixingPoint(x, y, 10, 22, 3, 2, new Shotgun(textureAtlas, x, y)),
+                        new FixingPoint(x, y, 10, 22, -3, 2, new Shotgun(textureAtlas, x, y)),
+                        new FixingPoint(x, y, 10, 22, 1, 6, new Shotgun(textureAtlas, x, y)),
+                        new FixingPoint(x, y, 10, 22, -1, 6, new Shotgun(textureAtlas, x, y))
                 });
 
     }

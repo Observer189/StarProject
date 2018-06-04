@@ -25,11 +25,11 @@ public class Rock extends Ship {
         super(textureAtlas.findRegion("Rock"), x, y, 30, 50, "Rock", 500000, 3500,
                 0.4f, 15,0.3f, new FixingPoint[]{
                         new FixingPoint(x, y, 30, 50, 0, 5, new RocketLauncher(textureAtlas, x, y)),
-                        new FixingPoint(x, y, 30, 50, 0, -5f, new RocketLauncher(textureAtlas, x, y)),
-                        new FixingPoint(x, y, 30, 50, 10, 5f, new RocketLauncher(textureAtlas, x, y)),
-                        new FixingPoint(x, y, 30, 50, 10, -5f, new RocketLauncher(textureAtlas, x, y)),
-                        new FixingPoint(x, y, 30, 50, -10, 5f, new RocketLauncher(textureAtlas, x, y)),
-                        new FixingPoint(x, y, 30, 50, -10, -5f, new RocketLauncher(textureAtlas, x, y)),
+                        new FixingPoint(x, y, 30, 50, -5f, 0f, new RocketLauncher(textureAtlas, x, y)),
+                        new FixingPoint(x, y, 30, 50, 5, 10f, new RocketLauncher(textureAtlas, x, y)),
+                        new FixingPoint(x, y, 30, 50, -5, 10, new RocketLauncher(textureAtlas, x, y)),
+                        new FixingPoint(x, y, 30, 50, 5, -10f, new RocketLauncher(textureAtlas, x, y)),
+                        new FixingPoint(x, y, 30, 50, -5, -10f, new RocketLauncher(textureAtlas, x, y)),
 
                 });
 

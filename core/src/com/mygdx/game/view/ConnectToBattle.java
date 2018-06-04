@@ -63,8 +63,8 @@ public class ConnectToBattle implements Screen {
     @Override
     public void show() {
 
-        player = new Player("player", new Sudden(textureAtlas,0,0));
-        player.generateName();
+        //player = new Player("player", new Sudden(textureAtlas,0,0));
+        //player.generateName();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())

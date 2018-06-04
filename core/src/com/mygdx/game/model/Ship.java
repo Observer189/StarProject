@@ -239,6 +239,8 @@ public void nullify()
     movementPosition=0;
     speedX=0;
     speedY=0;
+    currentExplosionFrame=0;
+    explosionCounter=7;
 }
 
     public float getMaxSpeed(){return  maxSpeed;}

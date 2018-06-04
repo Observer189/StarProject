@@ -111,16 +111,16 @@ public class Battle implements Screen {
         if(battleStatus.getPositionNumber()==1)
         {
             player.getCurrentShip().setPosition(200,400);
-            player.getCurrentShip().setRotation(270);
+            player.getCurrentShip().setRotation(0);
             enemy.getCurrentShip().setPosition(800,200);
-            enemy.getCurrentShip().setRotation(90);
+            enemy.getCurrentShip().setRotation(0);
         }
         else if (battleStatus.getPositionNumber()==2)
         {
             player.getCurrentShip().setPosition(800,200);
-            player.getCurrentShip().setRotation(90);
+            player.getCurrentShip().setRotation(0);
             enemy.getCurrentShip().setPosition(200,400);
-            enemy.getCurrentShip().setRotation(270);
+            enemy.getCurrentShip().setRotation(0);
         }
         ////////////////////////////////////////////////////
 
@@ -249,7 +249,7 @@ public class Battle implements Screen {
             }
             /////////////////////////////////////////////
         }
-        if(!(enemy.getCurrentShip().getCurrentHp()>0))
+        if(enemy.getCurrentShip().getCurrentHp()<=0)
         {
             camera.position.x=enemy.getCurrentShip().getCenterX();
             camera.position.y=enemy.getCurrentShip().getCenterY();
