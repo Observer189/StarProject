@@ -242,6 +242,8 @@ public class ShipShow implements Screen {
         textureAtlas.dispose();
         skin.dispose();
         stage.dispose();
+        font.dispose();
+        font1.dispose();
 
     }
 

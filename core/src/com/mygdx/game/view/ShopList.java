@@ -25,6 +25,7 @@ import com.mygdx.game.model.Ships.Dakkar;
 import com.mygdx.game.model.Ships.Dashing;
 import com.mygdx.game.model.Ships.Mite;
 import com.mygdx.game.model.Ships.Pulsate;
+import com.mygdx.game.model.Ships.Rock;
 import com.mygdx.game.utils.TextManager;
 
 
@@ -52,7 +53,7 @@ public class ShopList implements Screen {
     String MoneyStr="";
 
     //ships
-    Ship pulsate, bat, dakkar, hunter, mite,axe,dashing;
+    Ship pulsate, bat, rock, hunter, mite,axe,dashing;
     Player player;
 
 
@@ -354,15 +355,15 @@ public class ShopList implements Screen {
             }
         });
         //place for 'Dakkar' ship
-        dakkar = new Dakkar(textureAtlas, 0, 0);
+        rock = new Rock(textureAtlas, 0, 0);
         st3 = new Button.ButtonStyle();
-        st3.up = skin.getDrawable("Dakkar");
-        st3.down = skin.getDrawable("Dakkar");
-        ct3 = new CellStage(st3, ct1.x,  (ct2.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), dakkar.getName(), dakkar.getCost(),Width.DEFAULTWIDTH,Height.DEFAULTHEIGHT);
+        st3.up = skin.getDrawable("Rock");
+        st3.down = skin.getDrawable("Rock");
+        ct3 = new CellStage(st3, ct1.x+(Width.DEFAULTWIDTH.getWidth()-Width.SHORTWIDTH.getWidth()),  (ct2.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360),rock.getName(),rock.getCost(),Width.SHORTWIDTH,Height.DEFAULTHEIGHT);
         ct3.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ShShow = new ShipShow(dakkar, game, menu, player,ct3.width,ct3.height);
+                ShShow = new ShipShow(rock, game, menu, player,ct3.width,ct3.height);
 
                 game.setScreen(ShShow);
 
@@ -373,7 +374,7 @@ public class ShopList implements Screen {
         st4 = new Button.ButtonStyle();
         st4.up = skin.getDrawable("Mite");
         st4.down = skin.getDrawable("Mite");
-        ct4 = new CellStage(st4, ct1.x+(Width.DEFAULTWIDTH.getWidth()-Width.SHORTWIDTH.getWidth()),  (ct3.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Mite", 0000000,Width.SHORTWIDTH,Height.DEFAULTHEIGHT);
+        ct4 = new CellStage(st4, ct1.x+(Width.DEFAULTWIDTH.getWidth()-Width.SHORTWIDTH.getWidth()),  (ct3.y - ct1.img.getHeight() - Gdx.graphics.getHeight() / 360), "Mite", 30000,Width.SHORTWIDTH,Height.DEFAULTHEIGHT);
         ct4.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
