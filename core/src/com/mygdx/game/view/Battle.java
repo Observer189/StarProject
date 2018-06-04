@@ -326,8 +326,13 @@ public class Battle implements Screen {
                 System.out.println("Enemy: "+enemy.getCurrentShip().getX()+" "+enemy.getCurrentShip().getY());
                while (!getCoordIsFinished)
                {
-                   if(System.currentTimeMillis() - startTime>=20)
+                   if(System.currentTimeMillis() - startTime>=200)
                    {
+                       try {
+                           sleep(10);
+                       } catch (InterruptedException e) {
+                           e.printStackTrace();
+                       }
                        getCoordIsFinished=true;
                    }
                }
