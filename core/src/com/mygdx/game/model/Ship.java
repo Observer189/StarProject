@@ -308,7 +308,7 @@ public void nullify()
             servFixingPoints[i]=fixingPoints[i].toServ();
         }*/
 
-        return new ServShip(getName(),fixingPoints[0].getWeapon().getName()/*,servFixingPoints*/);
+        return new ServShip(getName()/*,servFixingPoints*/);
     }
 
 }

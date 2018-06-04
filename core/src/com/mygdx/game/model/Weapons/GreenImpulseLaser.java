@@ -24,6 +24,7 @@ public class GreenImpulseLaser extends Weapon {
         cost=0;
 
         name="GreenLaser";
+        setTextureAtlas(textureAtlas);
     }
 
     @Override

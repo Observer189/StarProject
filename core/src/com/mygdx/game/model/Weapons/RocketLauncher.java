@@ -27,6 +27,7 @@ public class RocketLauncher extends Weapon {
         cost=0;
 
         name="RocketLauncher";
+        setTextureAtlas(textureAtlas);
     }
 
     @Override

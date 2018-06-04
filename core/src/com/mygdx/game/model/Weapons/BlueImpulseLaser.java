@@ -28,6 +28,7 @@ public class BlueImpulseLaser extends Weapon {
         cost=0;
 
         name="BlueImpulseLaser";
+        setTextureAtlas(textureAtlas);
     }
 
     @Override

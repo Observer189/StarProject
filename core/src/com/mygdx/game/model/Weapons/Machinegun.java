@@ -29,6 +29,7 @@ public class Machinegun extends Weapon {
 
         name="Machinegun";
         spread=5;
+        setTextureAtlas(textureAtlas);
     }
 
     @Override

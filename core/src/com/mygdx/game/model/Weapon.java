@@ -8,6 +8,10 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.mygdx.game.ServModels.ServWeapon;
+import com.mygdx.game.model.Weapons.BlueImpulseLaser;
+import com.mygdx.game.model.Weapons.Machinegun;
+import com.mygdx.game.model.Weapons.RocketLauncher;
+import com.mygdx.game.model.Weapons.Shotgun;
 
 import java.util.ArrayList;
 
@@ -27,7 +31,7 @@ public class Weapon extends GameObject {
     int cost;
     int recomendedw=100;
     int recomendedh=200;
-
+    TextureAtlas textureAtlas;
 
     private float attackSpeed;
 
@@ -157,6 +161,10 @@ public class Weapon extends GameObject {
         return recomendedw;
     }
 
+    public void setTextureAtlas(TextureAtlas textureAtlas) {
+        this.textureAtlas = textureAtlas;
+    }
+
     @Override
     public String toString() {
         return getName();
@@ -167,5 +175,38 @@ public class Weapon extends GameObject {
     {
 
         return new ServWeapon(name);
+    }
+    public Weapon weaponByName()
+    {
+        if(getName().equals("Shotgun"))
+            return new Shotgun(textureAtlas,0,0);
+        else if(getName().equals("RocketLauncher"))
+            return new RocketLauncher(textureAtlas,0,0);
+        else if(getName().equals("Machinegun"))
+            return new Machinegun(textureAtlas,0,0);
+        else if(getName().equals("BlueImpulseLaser"))
+            return new BlueImpulseLaser(textureAtlas,0,0);
+        else
+        {
+            System.out.println("Weapon is not exist");
+            return null;
+        }
+    }
+
+    public Weapon weaponByName(String name)
+    {
+        if(name.equals("Shotgun"))
+            return new Shotgun(textureAtlas,0,0);
+        else if(name.equals("RocketLauncher"))
+            return new RocketLauncher(textureAtlas,0,0);
+        else if(name.equals("Machinegun"))
+            return new Machinegun(textureAtlas,0,0);
+        else if(name.equals("BlueImpulseLaser"))
+            return new BlueImpulseLaser(textureAtlas,0,0);
+        else
+            {
+            System.out.println("Weapon is not exist");
+            return null;
+        }
     }
 }

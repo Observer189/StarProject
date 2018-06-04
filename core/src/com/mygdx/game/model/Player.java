@@ -44,7 +44,7 @@ public class Player {
         resources.weaponList.add(new Machinegun(textureAtlas,0,0));
         for(int i=0;i<currentShip.fixingPoints.length;i++)
         {
-            currentShip.fixingPoints[i].setWeapon(new Machinegun(textureAtlas,0,0));
+            currentShip.fixingPoints[i].setWeapon(resources.weaponList.get(0).weaponByName());
         }
     }
        public void generateName()

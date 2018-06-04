@@ -31,6 +31,7 @@ public class Shotgun extends Weapon {
         name="Shotgun";
         spread=15;
         fractionNumber=6;
+        setTextureAtlas(textureAtlas);
     }
 
     @Override
