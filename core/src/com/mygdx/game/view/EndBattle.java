@@ -122,14 +122,14 @@ public class EndBattle implements Screen {
         if(status.equals("Victory"))
         {
             System.out.println("V");
-            textManager.displayMessage(batch,bigBlueFont,"Victory!!!",Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.8f);
-            textManager.displayMessage(batch,smallBlueFont,"Reward: "+reward,Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.6f);
+            textManager.displayMessage(batch,bigBlueFont,"Victory!!!",Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.9f);
+            textManager.displayMessage(batch,smallBlueFont,"Reward: "+reward,Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.65f);
         }
         if(status.equals("Failure"))
         {
             System.out.println("F");
-            textManager.displayMessage(batch,bigRedFont,"Failure",Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.8f);
-            textManager.displayMessage(batch,smallRedFont,"Reward: "+reward,Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.6f);
+            textManager.displayMessage(batch,bigRedFont,"Failure",Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.9f);
+            textManager.displayMessage(batch,smallRedFont,"Reward: "+reward,Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()*0.65f);
         }
         System.out.println(status);
         if (Gdx.input.isKeyPressed(Input.Keys.BACK)){
