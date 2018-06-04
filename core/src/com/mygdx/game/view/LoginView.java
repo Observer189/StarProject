@@ -147,6 +147,8 @@ public class LoginView implements Screen {
         textFieldPass.setMessageText("Your password");
         textFieldPass.setSize(Gdx.graphics.getWidth()/2,100);
         textFieldPass.setPosition(Gdx.graphics.getWidth()/2-textFieldLog.getWidth()/2,420);
+        textFieldPass.setPasswordMode(true);
+        textFieldPass.setPasswordCharacter('*');
 
         textFieldPass.addListener(new ClickListener(){
             @Override
@@ -162,6 +164,8 @@ public class LoginView implements Screen {
 
         textFieldConfirm.setSize(textFieldPass.getWidth(),textFieldPass.getHeight());
         textFieldConfirm.setPosition(textFieldPass.getX(),textFieldPass.getY()-textFieldConfirm.getHeight()-20);
+        textFieldConfirm.setPasswordMode(true);
+        textFieldConfirm.setPasswordCharacter('*');
 
         textFieldConfirm.addListener(new ClickListener(){
             @Override

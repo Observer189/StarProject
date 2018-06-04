@@ -80,23 +80,23 @@ public class AngarView implements Screen {
         shipIMG=new Image(player.getCurrentShip().getImg());
         shipIMG.setSize(shipIMG.getWidth()*2,shipIMG.getHeight()*2);
 
-        shipIMG.setPosition(0+150+shipIMG.getWidth()/2,Gdx.graphics.getHeight()/2-shipIMG.getHeight()/2);
+        shipIMG.setPosition((float) (0+Gdx.graphics.getWidth()/8.53333333+shipIMG.getWidth()/2),Gdx.graphics.getHeight()/2-shipIMG.getHeight()/2);
        // player.getCurrentShip().setPosition(shipIMG.getX(),shipIMG.getY());
         String realname=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
         gunIMG=new Image(skin.getDrawable(realname));
-        gunIMG.setPosition(shipIMG.getX()+shipIMG.getWidth()+20,shipIMG.getY());
+        gunIMG.setPosition(shipIMG.getX()+shipIMG.getWidth()+Gdx.graphics.getHeight()/36,shipIMG.getY());
         gunIMG.setSize(gunIMG.getWidth()/2,gunIMG.getHeight()/2);
         FrameIMG=new Image(skin.getDrawable("GrayFrame"));
         System.out.println("WIDTH:"+gunIMG.getHeight()*2+" Height: "+gunIMG.getHeight()*2);
-        FrameIMG.setSize(129,129);
+        FrameIMG.setSize((float) (Gdx.graphics.getWidth()/9.92248062), (float) (Gdx.graphics.getHeight()/5.58139535));
         FrameIMG.setPosition(gunIMG.getX(),gunIMG.getY());
-        gunIMG.setPosition(FrameIMG.getX()+FrameIMG.getWidth()/2-gunIMG.getWidth()/2,FrameIMG.getY()+10);
+        gunIMG.setPosition(FrameIMG.getX()+FrameIMG.getWidth()/2-gunIMG.getWidth()/2,FrameIMG.getY()+Gdx.graphics.getHeight()/72);
 
 
-        Gun1=new HugeDraw(player.resources.weaponList,0,560-200,Gdx.graphics.getWidth()*2);
-        if (player.resources.weaponList.size()>1) Gun2=new HugeDraw(player.resources.weaponList,1,560-215-200,Gdx.graphics.getWidth()*2);
-        if (player.resources.weaponList.size()>2) Gun3=new HugeDraw(player.resources.weaponList,2,560-215*2-200,Gdx.graphics.getWidth()*2);
-        if (player.resources.weaponList.size()>3) Gun4=new HugeDraw(player.resources.weaponList,3,560-215*3-200,Gdx.graphics.getWidth()*2);
+        Gun1=new HugeDraw(player.resources.weaponList,0,Gdx.graphics.getHeight()/2,Gdx.graphics.getWidth()*2);
+        if (player.resources.weaponList.size()>1) Gun2=new HugeDraw(player.resources.weaponList,1, (int) (Gdx.graphics.getHeight()/4.96551724),Gdx.graphics.getWidth()*2);
+        if (player.resources.weaponList.size()>2) Gun3=new HugeDraw(player.resources.weaponList,2, (int) (Gdx.graphics.getHeight()/-10.28571429),Gdx.graphics.getWidth()*2);
+        if (player.resources.weaponList.size()>3) Gun4=new HugeDraw(player.resources.weaponList,3, (int) (Gdx.graphics.getHeight()/-2.52631579),Gdx.graphics.getWidth()*2);
         gunIMG.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -230,7 +230,7 @@ public class AngarView implements Screen {
 
         right.up=skin.getDrawable("Right-up");
         right.down=skin.getDrawable("Right-down");
-        rightbtn=new StageForButton(right,Gdx.graphics.getWidth()-150,Gdx.graphics.getHeight()/2-150/2,150,150);
+        rightbtn=new StageForButton(right, (int) (Gdx.graphics.getWidth()-(Gdx.graphics.getWidth()/8.533333)),Gdx.graphics.getHeight()/2-150/2,(int) (Gdx.graphics.getWidth()/8.533333), (int) (Gdx.graphics.getHeight()/4.8));
         rightbtn.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -241,8 +241,10 @@ public class AngarView implements Screen {
                     System.out.println("Ship:"+ player.getCurrentShip());
                   //  shipIMG.setDrawable(player.getCurrentShip().getImg());
                     String name=player.getCurrentShip().getName();
-                    if (name.equals("pulsate")) name="1";
+                    if (name.equals("Pulsate")) name="1";
                       shipIMG.setDrawable(skin.getDrawable(name));
+                    String realname=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
+                    gunIMG.setDrawable(skin.getDrawable(realname));
                 }
                 else System.out.println("HAHA");
             }
@@ -261,8 +263,10 @@ public class AngarView implements Screen {
                     System.out.println("Ship1:"+ player.getCurrentShip());
                    // shipIMG.setDrawable(player.getCurrentShip().getImg());
                     String name=player.getCurrentShip().getName();
-                    if (name.equals("pulsate")) name="1";
+                    if (name.equals("Pulsate")) name="1";
                     shipIMG.setDrawable(skin.getDrawable(name));
+                    String realname=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
+                    gunIMG.setDrawable(skin.getDrawable(realname));
                 }
                 else System.out.println("HAHA");
             }
@@ -270,7 +274,7 @@ public class AngarView implements Screen {
         Button.ButtonStyle down=new Button.ButtonStyle();
         down.up=skin.getDrawable("Prev-up");
         down.down=skin.getDrawable("Prev-down");
-        downbt=new StageForButton(down,850,1,150,150);
+        downbt=new StageForButton(down,(int) (Gdx.graphics.getWidth()/1.50588235),1,(int) (Gdx.graphics.getWidth()/8.533333), (int) (Gdx.graphics.getHeight()/4.8));
         downbt.btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -290,7 +294,7 @@ public class AngarView implements Screen {
         Button.ButtonStyle up=new Button.ButtonStyle();
        up.up=skin.getDrawable("Go-up");
         up.down=skin.getDrawable("Go-down");
-        upbt=new StageForButton(up,850,Gdx.graphics.getHeight()-150,150,150);
+        upbt=new StageForButton(up, downbt.x,Gdx.graphics.getHeight()-150, (int) (Gdx.graphics.getWidth()/8.533333), (int) (Gdx.graphics.getHeight()/4.8));
         upbt.btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -326,7 +330,7 @@ public class AngarView implements Screen {
 
         for (int i=0;i<5;i++){
                 img[i]=new Image(skin.getDrawable("Tube"));
-                img[i].setSize(400,img[i].getHeight());
+                img[i].setSize((float) (Gdx.graphics.getWidth()/3.2),img[i].getHeight());
                 img[i].setPosition(rightbtn.x-rightbtn.width/5-img[i].getWidth(), (float) (Gdx.graphics.getHeight()/7.2*(i+1)));
 
                   stageTubes.addActor(img[i]);
@@ -472,10 +476,10 @@ public class AngarView implements Screen {
         float trueheight=shipIMG.getHeight();
         float x;
         float y;
-        float deltaY=215;
+        float deltaY= (float) (Gdx.graphics.getHeight()/3.34883721);
         ArrayList<Weapon> list;
-        float width=100;
-        float height=100;
+        float width= (float) (Gdx.graphics.getWidth()/12.8);
+        float height= (float) (Gdx.graphics.getHeight()/7.2);
         Button.ButtonStyle s;
         Button onegun;
         public HugeDraw(final ArrayList<Weapon> list,int index,int y,int x){

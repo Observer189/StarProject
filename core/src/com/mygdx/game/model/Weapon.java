@@ -153,11 +153,11 @@ public class Weapon extends GameObject {
         else return getName();
     }
 
-    public int getRecomendedh() {
+    public float getRecomendedh() {
         return recomendedh;
     }
 
-    public int getRecomendedw() {
+    public float getRecomendedw() {
         return recomendedw;
     }
 

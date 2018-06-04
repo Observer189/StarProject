@@ -249,6 +249,12 @@ public class GunShow implements Screen {
         textureAtlas.dispose();
         skin.dispose();
         stage.dispose();
+        game.dispose();
+        font.dispose();
+        batch.dispose();
+
+
+        textureAtlas.dispose();
 
     }
 

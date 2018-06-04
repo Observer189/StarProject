@@ -22,7 +22,7 @@ public class Dashing extends Ship {
     }
 
     public Dashing(TextureAtlas textureAtlas, float x, float y) {
-        super(textureAtlas.findRegion("Dashing"), x, y, 7, 13, "Dashing", 0, 700,
+        super(textureAtlas.findRegion("Dashing"), x, y, 7, 13, "Dashing", 5000, 700,
                 1.5f, 60,1.2f, new FixingPoint[]{
                         new FixingPoint(x, y, 7, 13, 0, 2, new Machinegun(textureAtlas, x, y)),
                         new FixingPoint(x, y, 7, 13, 0, -2f, new Machinegun(textureAtlas, x, y)),

@@ -56,7 +56,7 @@ public class PreShop implements Screen {
         Gstyle = new Button.ButtonStyle();
         Gstyle.up = skin.getDrawable("UnSelectGun");
         Gstyle.down = skin.getDrawable("UnSelectGun");
-        Guns=new StageForButton(Gstyle,0,Gdx.graphics.getHeight()-51);
+        Guns=new StageForButton(Gstyle,0,(int) (Gdx.graphics.getHeight()-Gdx.graphics.getHeight()/14.11764706));
         //change scene when 'guns' clicked
         Guns.btn.addListener(new ClickListener(){
             @Override
@@ -73,7 +73,7 @@ public class PreShop implements Screen {
         Sstyle = new Button.ButtonStyle();
         Sstyle.up = skin.getDrawable("UnSelectShip");
         Sstyle.down = skin.getDrawable("UnSelectShip");
-        Ships=new StageForButton(Sstyle,Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()-51);
+        Ships=new StageForButton(Sstyle,Gdx.graphics.getWidth()/2, (int) (Gdx.graphics.getHeight()-Gdx.graphics.getHeight()/14.11764706));
         //change scene when 'ships' clicked
         Ships.btn.addListener(new ClickListener(){
             @Override
@@ -99,8 +99,8 @@ public class PreShop implements Screen {
         camera.setToOrtho(false, (float) (Gdx.graphics.getWidth()/1.6), (float) (Gdx.graphics.getHeight()/1.5));
         LoginView.textrure.draw();
         LoginView.star.draw();
-        textManager.displayMessage(batch,font,"Guns " , (int) (Gdx.graphics.getWidth()/4.6), Gdx.graphics.getHeight()-60);
-        textManager.displayMessage(batch,font,"Ships" , (Gdx.graphics.getWidth())-(int) (Gdx.graphics.getWidth()/3.4), Gdx.graphics.getHeight()-60);
+        textManager.displayMessage(batch,font,"Guns " , (int) (Gdx.graphics.getWidth()/4.6), Gdx.graphics.getHeight()-Gdx.graphics.getHeight()/12);
+        textManager.displayMessage(batch,font,"Ships" , (Gdx.graphics.getWidth())-(int) (Gdx.graphics.getWidth()/3.4), Gdx.graphics.getHeight()-Gdx.graphics.getHeight()/12);
         Guns.act(delta);
         Guns.draw();
         Ships.act(delta);

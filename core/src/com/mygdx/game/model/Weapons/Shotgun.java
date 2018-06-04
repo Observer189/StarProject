@@ -1,5 +1,6 @@
 package com.mygdx.game.model.Weapons;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.game.model.Ammos.Bullet;
 import com.mygdx.game.model.Weapon;
@@ -16,8 +17,8 @@ public class Shotgun extends Weapon {
     private int fractionNumber;
     TextureAtlas textureAtlas;
     int counter;
-    int recomendedw=149;
-    int recomendedh=200;
+    float recomendedw=(float) (Gdx.graphics.getWidth()/8.59060403);;
+    float recomendedh= (float) (Gdx.graphics.getHeight()/3.6);
 
     private float attackSpeed;
     public Shotgun(TextureAtlas textureAtlas, float x, float y) {
@@ -69,12 +70,12 @@ public class Shotgun extends Weapon {
         return getName();
     }
     @Override
-    public int getRecomendedw() {
+    public float getRecomendedw() {
         return recomendedw;
     }
 
     @Override
-    public int getRecomendedh() {
+    public float getRecomendedh() {
         return recomendedh;
     }
 
