@@ -26,6 +26,7 @@ import com.mygdx.game.model.Ships.Dashing;
 import com.mygdx.game.model.Ships.Mite;
 import com.mygdx.game.model.Ships.Pulsate;
 import com.mygdx.game.model.Ships.Rock;
+import com.mygdx.game.model.Ships.Sudden;
 import com.mygdx.game.utils.TextManager;
 
 
@@ -53,7 +54,7 @@ public class ShopList implements Screen {
     String MoneyStr="";
 
     //ships
-    Ship pulsate, bat, rock, hunter, mite,axe,dashing;
+    Ship pulsate, bat, rock, hunter, mite,axe,dashing,sudden;
     Player player;
 
 
@@ -321,18 +322,25 @@ public class ShopList implements Screen {
 
 
         //place for '1' ship
-        pulsate = new Pulsate(textureAtlas, 0, 0);
+     /*   pulsate = new Pulsate(textureAtlas, 0, 0);
         st1 = new Button.ButtonStyle();
         st1.up = skin.getDrawable("1");
         st1.down = skin.getDrawable("1");
         ct1 = new CellStage(st1, (float) (Gdx.graphics.getWidth() / 5 * 1), (float) (Ships.y - Gdx.graphics.getHeight()/3.39622642), pulsate.getName(), pulsate.getCost(),Width.SHORTWIDTH,Height.DEFAULTHEIGHT);
+        ct1.btn.setPosition(ct1.x+(Width.DEFAULTWIDTH.getWidth()-Width.SHORTWIDTH.getWidth()),ct1.y);
+        ct1.img.setPosition(ct1.btn.getX() +ct1.btn.getWidth()+15, ct1.y - 10);*/
+        sudden=new Sudden(textureAtlas,0,0);
+        st1 = new Button.ButtonStyle();
+        st1.up = skin.getDrawable("Sudden");
+        st1.down = skin.getDrawable("Sudden");
+        ct1 = new CellStage(st1, (float) (Gdx.graphics.getWidth() / 5 * 1), (float) (Ships.y - Gdx.graphics.getHeight()/3.39622642), sudden.getName(), sudden.getCost(),Width.SHORTWIDTH,Height.DEFAULTHEIGHT);
         ct1.btn.setPosition(ct1.x+(Width.DEFAULTWIDTH.getWidth()-Width.SHORTWIDTH.getWidth()),ct1.y);
         ct1.img.setPosition(ct1.btn.getX() +ct1.btn.getWidth()+15, ct1.y - 10);
         ct1.btn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
-                ShShow = new ShipShow(pulsate, game, menu, player,ct1.width,ct1.height);
+                ShShow = new ShipShow(sudden, game, menu, player,ct1.width,ct1.height);
 
                 game.setScreen(ShShow);
 
