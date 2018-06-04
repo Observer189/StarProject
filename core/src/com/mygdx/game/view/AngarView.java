@@ -2,6 +2,7 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -62,6 +63,7 @@ public class AngarView implements Screen {
 
     @Override
     public void show() {
+        Gdx.input.setCatchBackKey(true);
         camera=new OrthographicCamera();
         textManager=new TextManager(0,0);
         font = textManager.fontInitialize(Color.WHITE, (float) 0.65);
@@ -94,6 +96,7 @@ public class AngarView implements Screen {
         Gun1=new HugeDraw(player.resources.weaponList,0,560-200,Gdx.graphics.getWidth()*2);
         if (player.resources.weaponList.size()>1) Gun2=new HugeDraw(player.resources.weaponList,1,560-215-200,Gdx.graphics.getWidth()*2);
         if (player.resources.weaponList.size()>2) Gun3=new HugeDraw(player.resources.weaponList,2,560-215*2-200,Gdx.graphics.getWidth()*2);
+        if (player.resources.weaponList.size()>3) Gun4=new HugeDraw(player.resources.weaponList,3,560-215*3-200,Gdx.graphics.getWidth()*2);
         gunIMG.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -105,8 +108,8 @@ public class AngarView implements Screen {
                         @Override
                         public void clicked(InputEvent event, float x, float y) {
                             for (int i=0;i<player.getCurrentShip().getFixingPoints().length;i++){
-                                Weapon wp=(player.resources.weaponList.get(0));
-                                player.getCurrentShip().getFixingPoints()[i].setWeapon(wp);}
+
+                                player.getCurrentShip().getFixingPoints()[i].setWeapon(player.resources.weaponList.get(0).weaponByName());}
                             String name=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
                             gunIMG.setDrawable(skin.getDrawable(name));
                             gunIMG.setSize(player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedw()/2,player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedh()/2);
@@ -118,6 +121,7 @@ public class AngarView implements Screen {
                            Gun1.x=Gdx.graphics.getWidth()*2;
                            if (player.resources.weaponList.size()>1)Gun2.x=Gun1.x;
                             if (player.resources.weaponList.size()>2)Gun3.x=Gun1.x;
+                            if (player.resources.weaponList.size()>3){Gun4.x=Gun1.x; Gun4.onegun.setX(Gun1.x);}
 
                         }
 
@@ -133,8 +137,7 @@ public class AngarView implements Screen {
                         @Override
                         public void clicked(InputEvent event, float x, float y) {
                             for (int i=0;i<player.getCurrentShip().getFixingPoints().length;i++){
-                                Weapon wp=(player.resources.weaponList.get(1));
-                                player.getCurrentShip().getFixingPoints()[i].setWeapon(wp);}
+                                player.getCurrentShip().getFixingPoints()[i].setWeapon(player.resources.weaponList.get(1).weaponByName());}
                             String name=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
                             gunIMG.setDrawable(skin.getDrawable(name));
                             gunIMG.setSize(player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedw()/2,player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedh()/2);
@@ -147,6 +150,7 @@ public class AngarView implements Screen {
                             Gun1.onegun.setX(Gun1.x);
                             if (player.resources.weaponList.size()>1){Gun2.x=Gun1.x; Gun2.onegun.setX(Gun1.x);}
                             if (player.resources.weaponList.size()>2){Gun3.x=Gun1.x; Gun3.onegun.setX(Gun1.x);}
+                            if (player.resources.weaponList.size()>3){Gun4.x=Gun1.x; Gun4.onegun.setX(Gun1.x);}
 
                         }
 
@@ -162,8 +166,7 @@ public class AngarView implements Screen {
                         @Override
                         public void clicked(InputEvent event, float x, float y) {
                             for (int i=0;i<player.getCurrentShip().getFixingPoints().length;i++){
-                                Weapon wp=(player.resources.weaponList.get(2));
-                                player.getCurrentShip().getFixingPoints()[i].setWeapon(wp);}
+                                player.getCurrentShip().getFixingPoints()[i].setWeapon(player.resources.weaponList.get(2).weaponByName());}
                             String name=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
                             gunIMG.setDrawable(skin.getDrawable(name));
                             gunIMG.setSize(player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedw()/2,player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedh()/2);
@@ -176,6 +179,7 @@ public class AngarView implements Screen {
                             Gun1.onegun.setX(Gun1.x);
                             if (player.resources.weaponList.size()>1){Gun2.x=Gun1.x; Gun2.onegun.setX(Gun1.x);}
                             if (player.resources.weaponList.size()>2){Gun3.x=Gun1.x; Gun3.onegun.setX(Gun1.x);}
+                            if (player.resources.weaponList.size()>3){Gun4.x=Gun1.x; Gun4.onegun.setX(Gun1.x);}
 
 
                         }
@@ -184,6 +188,36 @@ public class AngarView implements Screen {
                     System.out.println(Gun1.y+" "+Gun2.y+" "+Gun3.y);
 
                     in.addProcessor(Gun3);
+                }
+                if (player.resources.weaponList.size()>3){
+                    Gun4.x=Gun1.x;
+                    Gun4.onegun.setX(Gun1.x);
+                    Gun4.onegun.addListener(new ClickListener(){
+                        @Override
+                        public void clicked(InputEvent event, float x, float y) {
+                            for (int i=0;i<player.getCurrentShip().getFixingPoints().length;i++){
+                                player.getCurrentShip().getFixingPoints()[i].setWeapon(player.resources.weaponList.get(3).weaponByName());}
+                            String name=player.getCurrentShip().getFixingPoints()[0].getWeapon().getRealName();
+                            gunIMG.setDrawable(skin.getDrawable(name));
+                            gunIMG.setSize(player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedw()/2,player.getCurrentShip().getFixingPoints()[0].getWeapon().getRecomendedh()/2);
+                            gunIMG.setPosition(FrameIMG.getX()+FrameIMG.getWidth()/2-gunIMG.getWidth()/2,FrameIMG.getY()+10);
+                            //    gunIMG.setSize(truewidth,trueheight);
+                            //  x=Gdx.graphics.getWidth()*2;
+                            infoShow=true;
+                            //counterOfCells=0;
+                            Gun1.x=Gdx.graphics.getWidth()*2;
+                            Gun1.onegun.setX(Gun1.x);
+                            if (player.resources.weaponList.size()>1){Gun2.x=Gun1.x; Gun2.onegun.setX(Gun1.x);}
+                            if (player.resources.weaponList.size()>2){Gun3.x=Gun1.x; Gun3.onegun.setX(Gun1.x);}
+                            if (player.resources.weaponList.size()>3){Gun4.x=Gun1.x; Gun4.onegun.setX(Gun1.x);}
+
+
+                        }
+
+                    });
+                    System.out.println(Gun1.y+" "+Gun2.y+" "+Gun3.y);
+
+                    in.addProcessor(Gun4);
                 }
 
 
@@ -335,6 +369,9 @@ public class AngarView implements Screen {
             textManager.displayMessage(batch, font, "Attack Speed: " + player.getCurrentShip().getFixingPoints()[0].getWeapon().getAttackSpeed(), (float) (img[4].getX() * 1.053), img[4].getY() - img[4].getHeight() / (2 * yY));
 
         } else {
+            batch.begin();
+            batch.draw(bachfround2,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+            batch.end();
            // aLotOfGuns.act(delta);
            // aLotOfGuns.draw();
             Gun1.act(delta);
@@ -345,6 +382,9 @@ public class AngarView implements Screen {
             if (player.resources.weaponList.size()>2){
             Gun3.act(delta);
             Gun3.draw();}
+            if (player.resources.weaponList.size()>3){
+                Gun4.act(delta);
+                Gun4.draw();}
             batch.begin();
             batch.draw(bachfround2,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
             batch.end();
@@ -356,64 +396,12 @@ public class AngarView implements Screen {
         }
 
         if (MoveUp){
-          //  if (player.resources.weaponList.size()>0) Move(Gun1,-1);
-          //  if (player.resources.weaponList.size()>1)   Move(Gun2,-1);
-          //  if (player.resources.weaponList.size()>2)   Move(Gun3,-1);
-            Gun1.y-=Gun1.deltaY;
-            Gun1.onegun.setY(Gun1.y);
-            if (player.resources.weaponList.size()>1){
-
-                Gun2.y-=Gun2.deltaY;
-                Gun2.onegun.setY(Gun2.y);
-            }
-            if (player.resources.weaponList.size()>2){
-                Gun3.y-=Gun3.deltaY;
-                Gun3.onegun.setY(Gun3.y);
-
-            }
-
-            System.out.println("What2: "+Gun1.deltaY+" "+Gun1.y);
-
-            Gun1.act(delta);
-            Gun1.draw(); //System.out.println("Need "+Gun1.y);
-            if (player.resources.weaponList.size()>1){
-                Gun2.act(delta);
-                Gun2.draw();}
-            if (player.resources.weaponList.size()>2){
-                Gun3.act(delta);
-                Gun3.draw();}
-            MoveUp=false;
-          //  in.addProcessor(aLotOfGuns);
+         MoveUpS();
 
         }
         if (MoveDown) {
-            System.out.println("Wha: "+Gun2.deltaY+" "+Gun2.y);
 
-            Gun1.y+=Gun1.deltaY;
-            Gun1.onegun.setY(Gun1.y);
-            if (player.resources.weaponList.size()>1){
-
-                Gun2.y+=Gun2.deltaY;
-                Gun2.onegun.setY(Gun2.y);
-            }
-            if (player.resources.weaponList.size()>2){
-                Gun3.y+=Gun3.deltaY;
-                Gun3.onegun.setY(Gun3.y);
-
-            }
-            Gun1.act(delta);
-            Gun1.draw(); //System.out.println("Need "+Gun1.y);
-            if (player.resources.weaponList.size()>1){
-                Gun2.act(delta);
-                Gun2.draw();}
-            if (player.resources.weaponList.size()>2){
-                Gun3.act(delta);
-                Gun3.draw();}
-
-            System.out.println("What: "+Gun2.deltaY+" "+Gun2.y);
-
-
-            MoveDown=false;
+          MoveDownS();
 
 
 
@@ -423,6 +411,8 @@ public class AngarView implements Screen {
       leftbtn.act(delta);
       leftbtn.draw();
 
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)){
+            game.setScreen(menu);}
       Back.act(delta);
       Back.draw();
 
@@ -510,15 +500,89 @@ public class AngarView implements Screen {
 
 
     }
-    public void Move(HugeDraw hd, int dir){
-        if (dir>0){
-           hd.y+=hd.deltaY;
-        }
-        else{
-            hd.y-=hd.deltaY;
-        }
-        hd.onegun.setY(hd.y);
+    public void MoveDownS(){
+        //change
+        Gun1.y+=Gun1.deltaY;
+        Gun1.onegun.setY(Gun1.y);
 
+        if (player.resources.weaponList.size()>1){
+
+            Gun2.y+=Gun2.deltaY;
+            Gun2.onegun.setY(Gun2.y);
+        }
+        if (player.resources.weaponList.size()>2){
+
+            Gun3.y+=Gun3.deltaY;
+            Gun3.onegun.setY(Gun3.y);
+
+        }
+        if (player.resources.weaponList.size()>3){
+
+            Gun4.y+=Gun4.deltaY;
+            Gun4.onegun.setY(Gun4.y);
+
+        }
+
+
+        //act
+    /*    Gun1.act(Gdx.graphics.getDeltaTime());
+        Gun1.draw(); //System.out.println("Need "+Gun1.y);
+        if (player.resources.weaponList.size()>1){
+            Gun2.act(Gdx.graphics.getDeltaTime());
+            Gun2.draw();}
+        if (player.resources.weaponList.size()>2){
+            Gun3.act(Gdx.graphics.getDeltaTime());
+            Gun3.draw();}
+        if (player.resources.weaponList.size()>3){
+            Gun4.act(Gdx.graphics.getDeltaTime());
+            Gun4.draw();}*/
+
+        System.out.println("What: "+Gun2.deltaY+" "+Gun2.y);
+
+
+        MoveDown=false;
+
+
+
+    }
+    public void MoveUpS(){
+        //change
+        Gun1.y-=Gun1.deltaY;
+        Gun1.onegun.setY(Gun1.y);
+
+        if (player.resources.weaponList.size()>1){
+
+            Gun2.y-=Gun2.deltaY;
+            Gun2.onegun.setY(Gun2.y);
+
+        }
+        if (player.resources.weaponList.size()>2){
+            Gun3.y-=Gun3.deltaY;
+            Gun3.onegun.setY(Gun3.y);
+
+
+        }
+        if (player.resources.weaponList.size()>3){
+            Gun4.y-=Gun4.deltaY;
+            Gun4.onegun.setY(Gun4.y);
+
+
+        }
+
+
+        //act
+     /*   Gun1.act(Gdx.graphics.getDeltaTime());
+        Gun1.draw(); //System.out.println("Need "+Gun1.y);
+        if (player.resources.weaponList.size()>1){
+            Gun2.act(Gdx.graphics.getDeltaTime());
+            Gun2.draw();}
+        if (player.resources.weaponList.size()>2){
+            Gun3.act(Gdx.graphics.getDeltaTime());
+            Gun3.draw();}
+        if (player.resources.weaponList.size()>3){
+            Gun4.act(Gdx.graphics.getDeltaTime());
+            Gun4.draw();}*/
+        MoveUp=false;
 
     }
 

@@ -2,6 +2,7 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -72,7 +73,7 @@ public class GunShow implements Screen {
 
     @Override
     public void show() {
-
+        Gdx.input.setCatchBackKey(true);
 
         textureAtlas=new TextureAtlas(Gdx.files.internal("TexturePack.atlas"));
         stage = new Stage();
@@ -205,7 +206,8 @@ public class GunShow implements Screen {
         Buy.draw();
         Back.act();
         Back.draw();
-
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)){
+            game.setScreen(ShList);  }
         batch.begin();
         batch.end();
     }

@@ -18,9 +18,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.model.Player;
+import com.mygdx.game.utils.Confirmation;
 import com.mygdx.game.utils.LogListener;
 import com.mygdx.game.utils.PassListener;
 import com.mygdx.game.utils.TextManager;
+
+import java.awt.Image;
 
 /**
  * Created by Sash on 24.04.2018.
@@ -40,7 +43,7 @@ public class MainMenu implements Screen {
     Screen PreShop,angar;
     BitmapFont font;
     Input.TextInputListener LogIn;
-
+    int deltaX=Gdx.graphics.getWidth()/4;
     public LogListener Log;
     PassListener Pass;
     int ForLogCounter=0;
@@ -49,7 +52,7 @@ public class MainMenu implements Screen {
     public Music music;
     OrthographicCamera camera = new OrthographicCamera();
     AngarView angar2;
-
+    Confirmation confirmation;
     public MainMenu(SpriteBatch batch, Game game,Player player) {
         this.batch = batch;
         this.game = game;
@@ -79,6 +82,7 @@ public class MainMenu implements Screen {
         //game.setScreen(battle);
         Skin skin = new Skin();
         skin.addRegions(textureAtlas);
+        confirmation=new Confirmation(font,batch);
 
                 p_button = new Button.ButtonStyle();
         p_button.up = skin.getDrawable("Start-up");
@@ -86,7 +90,7 @@ public class MainMenu implements Screen {
 
 
 
-        sfplaybutton = new StageForButton(p_button, (int) (Gdx.graphics.getWidth()/4.3), (int) (Gdx.graphics.getHeight()/4.8));
+        sfplaybutton = new StageForButton(p_button, deltaX-100, (int) (Gdx.graphics.getHeight()/4.8));
         sfplaybutton.btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -102,7 +106,7 @@ public class MainMenu implements Screen {
         sh_button = new Button.ButtonStyle();
         sh_button.up = skin.getDrawable("Shop-up");
         sh_button.down = skin.getDrawable("Shop-down");
-        sfshop = new StageForButton(sh_button, (int) (Gdx.graphics.getWidth()/2.13), (int) (Gdx.graphics.getHeight()/4.8));
+        sfshop = new StageForButton(sh_button, (int) (deltaX*2-100), (int) (Gdx.graphics.getHeight()/4.8));
         sfshop.btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -120,7 +124,7 @@ public class MainMenu implements Screen {
         ang_button = new Button.ButtonStyle();
         ang_button.up = skin.getDrawable("Angar-up");
         ang_button.down = skin.getDrawable("Angar-down");
-        sfangar = new StageForButton(ang_button, (int) (Gdx.graphics.getWidth()/1.42), (int) (Gdx.graphics.getHeight()/4.8));
+        sfangar = new StageForButton(ang_button, (int) (deltaX*3-100), (int) (Gdx.graphics.getHeight()/4.8));
         sfangar.btn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -139,7 +143,7 @@ public class MainMenu implements Screen {
         in.addProcessor(sfplaybutton);
         in.addProcessor(sfshop);
         in.addProcessor(sfangar);
-
+        in.addProcessor(confirmation.stage);
 
             Gdx.input.setInputProcessor(in);
 
@@ -154,7 +158,6 @@ public class MainMenu implements Screen {
         camera.setToOrtho(false, (float) (Gdx.graphics.getWidth()/1.6), (float) (Gdx.graphics.getHeight()/1.5));
         LoginView.textrure.draw();
         LoginView.star.draw();
-
 
 
 
@@ -173,7 +176,10 @@ public class MainMenu implements Screen {
 
         sfangar.act(delta);
         sfangar.draw();
+        confirmation.draw();
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)){
 
+            confirmation.setActive(true);}
         batch.begin();
         batch.end();
 
@@ -224,7 +230,7 @@ public class MainMenu implements Screen {
 
     @Override
     public void dispose() {
-        batch.dispose();
+//        batch.dispose();
         sfplaybutton.dispose();
         sfangar.dispose();
         sfshop.dispose();
@@ -253,6 +259,8 @@ public class MainMenu implements Screen {
             addActor(btn);
         }
     }
+
+
 
 
 

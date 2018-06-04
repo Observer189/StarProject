@@ -2,6 +2,7 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -107,6 +108,9 @@ public class PreShop implements Screen {
 
         batch.begin();
         batch.end();
+
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)){
+            game.setScreen(menu);}
 
     }
 
