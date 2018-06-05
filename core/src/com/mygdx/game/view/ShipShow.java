@@ -22,6 +22,8 @@ import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Toast;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -133,6 +135,7 @@ public class ShipShow implements Screen {
                 MakeToast=true;
                 int mon=menu.player.getMoney()-ship.getCost();
                 menu.player.setMoney(mon);
+                updatePlayerMoney();
                 player.resources.shipList.add(ship);
 
                     }else MakeToast2=true;
@@ -278,22 +281,14 @@ public class ShipShow implements Screen {
             addActor(btn);
         }
     }
-    private void buy(int money)
+    private void updatePlayerMoney()
     {
-        Call<Integer> call = request.updateMoney(player.getName(),money);
-        call.enqueue(new Callback<Integer>()
-        {
-
-            @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
-
-            }
-        });
+        Call<Integer> call=request.updateMoney(player.getName(),player.getMoney());
+        try {
+            call.execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

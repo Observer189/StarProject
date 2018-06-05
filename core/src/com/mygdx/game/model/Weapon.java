@@ -66,6 +66,7 @@ public class Weapon extends GameObject {
                           (ammos.get(i).getY() > map.getHeight())||
                           (ammos.get(i).getY() < 0)||
                           (ammos.get(i).getAppliedDistance()>=ammos.get(i).getMaxRange())) {
+
                       ammos.remove(i);
                   }
                   else if((Intersector.overlapConvexPolygons(ammos.get(i).getBounds(),enemyShip.getBounds()))&&(enemyShip.getCurrentHp()>0))

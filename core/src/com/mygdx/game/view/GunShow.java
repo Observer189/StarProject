@@ -20,8 +20,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.model.Weapon;
 import com.mygdx.game.model.Weapons.BlueImpulseLaser;
+import com.mygdx.game.requests.servApi;
 import com.mygdx.game.utils.TextManager;
 import com.mygdx.game.utils.Toast;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GunShow implements Screen {
     //for drawing
@@ -58,7 +65,8 @@ public class GunShow implements Screen {
     float velocity;
     float maxSpeed;
 
-
+    servApi request;
+    public final String baseURL = "https://star-project-serv.herokuapp.com/";
 
     public GunShow(Weapon weapon, Game game, MainMenu menu, Player player, float width, float height) {
         this.width=width;
@@ -81,6 +89,11 @@ public class GunShow implements Screen {
         skin.addRegions(textureAtlas);
        // (float) (Gdx.graphics.getWidth() / 14.3), (float) (Gdx.graphics.getHeight() / 1.96669)
         String name=weapon.getName();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        request = retrofit.create(servApi.class);
         if (name.equals("BlueLaser"))name= "BlueImpulseLaser";
         Gunimg = new Image(skin.getDrawable(name));
         Gunimg.setSize(width,height);
@@ -128,6 +141,7 @@ public class GunShow implements Screen {
                         MakeToast=true;
                         int mon=menu.player.getMoney()-weapon.getCost();
                         menu.player.setMoney(mon);
+                        updatePlayerMoney();
                         player.resources.weaponList.add(weapon);
 
                     }else MakeToast2=true;
@@ -275,6 +289,15 @@ public class GunShow implements Screen {
 
 
             addActor(btn);
+        }
+    }
+    private void updatePlayerMoney()
+    {
+        Call<Integer> call=request.updateMoney(player.getName(),player.getMoney());
+        try {
+            call.execute();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
